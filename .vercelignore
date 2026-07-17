@@ -1,0 +1,15 @@
+# secrets — never upload to Vercel
+.env*.local
+.env*.development
+.env*.production
+
+# local-only debug API route（排查用，绝不进生产）
+app/api/debug/
+
+# build artifacts (Vercel ignores these by default, but be explicit)
+.vercel
+.next
+node_modules
+*.tsbuildinfo
+_tsc2.txt
+*.log

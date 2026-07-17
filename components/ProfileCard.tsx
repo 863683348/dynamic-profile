@@ -32,7 +32,7 @@ export function ProfileCard({
     <article className="paper-card overflow-hidden">
       {/* 封面大图（无图时用 terracotta 渐变占位） */}
       <div
-        className="h-40 w-full"
+        className="h-32 w-full sm:h-40"
         style={
           cover
             ? {
@@ -51,7 +51,7 @@ export function ProfileCard({
         {/* 头像（圆角叠加在封面上） */}
         <div className="-mt-12 mb-3">
           <div
-            className="h-24 w-24 rounded-lg border-2 shadow-sm"
+            className="h-20 w-20 rounded-lg border-2 shadow-sm sm:h-24 sm:w-24"
             style={{
               borderColor: 'var(--paper)',
               backgroundImage: avatar ? `url(${avatar})` : undefined,
@@ -64,18 +64,18 @@ export function ProfileCard({
           />
         </div>
 
-        <h1 className="magazine-title text-3xl">{profile.display_name}</h1>
+        <h1 className="magazine-title break-words text-2xl sm:text-3xl">{profile.display_name}</h1>
         <p className="mt-1 text-sm opacity-70">@{profile.handle}</p>
 
         {profile.status_text && (
-          <p className="mt-3 flex items-center gap-2 text-sm">
+          <p className="mt-3 flex items-center gap-2 break-words text-sm">
             <span className="status-dot" />
             <span className="opacity-90">{profile.status_text}</span>
           </p>
         )}
 
         {profile.bio && (
-          <p className="mt-4 text-[0.9375rem] leading-relaxed opacity-90">
+          <p className="mt-4 break-words text-[0.9375rem] leading-relaxed opacity-90">
             {profile.bio}
           </p>
         )}

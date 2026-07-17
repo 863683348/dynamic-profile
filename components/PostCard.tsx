@@ -22,9 +22,9 @@ export function PostCard({ post }: { post: Post }) {
           {isGithub ? 'GitHub' : '手动'}
         </span>
       </div>
-      <h2 className="magazine-title text-2xl">{post.title}</h2>
+      <h2 className="magazine-title break-words text-2xl">{post.title}</h2>
       {post.content && (
-        <p className="mt-2 whitespace-pre-line leading-relaxed opacity-90">
+        <p className="mt-2 break-words whitespace-pre-line leading-relaxed opacity-90">
           {post.content}
         </p>
       )}

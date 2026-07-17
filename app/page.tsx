@@ -4,13 +4,13 @@ import { ArrowRight, Newspaper } from 'lucide-react';
 export default function LandingPage() {
   return (
     <main className="theme-surface min-h-screen">
-      <div className="mx-auto max-w-3xl px-6 py-20">
+      <div className="mx-auto max-w-3xl px-5 py-16 sm:px-6 sm:py-20">
         <div className="double-rule mb-10 flex items-center justify-between px-1 py-3">
           <span className="text-xs uppercase tracking-[0.2em] opacity-70">动态个人主页</span>
           <Newspaper className="h-5 w-5 text-primary" />
         </div>
 
-        <h1 className="magazine-title text-5xl leading-tight md:text-6xl">
+        <h1 className="magazine-title text-3xl leading-tight sm:text-4xl md:text-5xl lg:text-6xl">
           把你的动态，<br />
           排成一本杂志。
         </h1>
@@ -18,12 +18,12 @@ export default function LandingPage() {
           一个属于你自己的编辑风格主页。记录动态、展示作品，用衬线大标题与双线分隔，呈现克制的阅读美感。
         </p>
 
-        <div className="mt-10 flex flex-wrap items-center gap-4">
-          <Link href="/dashboard" className="mag-btn">
+        <div className="mt-10 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:gap-4">
+          <Link href="/dashboard" className="mag-btn w-full justify-center sm:w-auto">
             进入控制台
             <ArrowRight className="h-4 w-4" />
           </Link>
-          <Link href="/linxi" className="mag-btn mag-btn-secondary">
+          <Link href="/linxi" className="mag-btn mag-btn-secondary w-full justify-center sm:w-auto">
             查看样本主页
           </Link>
         </div>

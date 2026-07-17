@@ -32,6 +32,10 @@
     font-family: Georgia, 'Times New Roman', 'Noto Serif SC', serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    /* 刘海屏 / 圆角屏安全区，非异形屏为 0，无副作用 */
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+    -webkit-tap-highlight-color: transparent;
   }
 
   ::selection {

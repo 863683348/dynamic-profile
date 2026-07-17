@@ -19,7 +19,7 @@ export function Tabs({ posts, profile }: { posts: Post[]; profile: Profile }) {
   return (
     <section>
       {/* Tab 头 */}
-      <div className="double-rule mb-2 flex gap-6 px-1">
+      <div className="double-rule mb-2 flex gap-4 overflow-x-auto px-1 sm:gap-6">
         {TABS.map((t) => {
           const active = tab === t.key;
           const Icon = t.icon;
@@ -28,7 +28,7 @@ export function Tabs({ posts, profile }: { posts: Post[]; profile: Profile }) {
               key={t.key}
               type="button"
               onClick={() => setTab(t.key)}
-              className="flex items-center gap-2 border-b-2 py-3 text-sm font-medium transition-colors"
+              className="flex shrink-0 items-center gap-2 whitespace-nowrap border-b-2 py-3 text-sm font-medium transition-colors"
               style={{
                 borderColor: active ? 'var(--primary)' : 'transparent',
                 color: active ? 'var(--primary)' : 'var(--ink)',

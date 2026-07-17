@@ -44,12 +44,12 @@ export function LoginButton() {
         <input
           id="login-email"
           type="email"
-          className="mag-input"
+          className="mag-input min-w-0"
           placeholder="you@example.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        <button type="submit" className="mag-btn" disabled={loading}>
+        <button type="submit" className="mag-btn shrink-0" disabled={loading}>
           <Mail className="h-4 w-4" />
           {loading ? '登录中' : '登录'}
         </button>

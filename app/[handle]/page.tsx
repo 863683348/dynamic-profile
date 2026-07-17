@@ -51,7 +51,7 @@ export default async function ProfilePage({
       style={themeStyle}
     >
       <ViewTracker handle={handle} />
-      <div className="mx-auto max-w-5xl px-4 py-10 md:grid md:grid-cols-[320px_1fr] md:gap-8">
+      <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6 md:py-10 md:grid md:grid-cols-[320px_1fr] md:gap-8">
         <aside className="md:sticky md:top-4 md:self-start">
           <ProfileCard profile={profile} stats={stats} postCount={posts.length} />
         </aside>

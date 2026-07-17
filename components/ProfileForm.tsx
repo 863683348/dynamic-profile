@@ -116,25 +116,25 @@ export function ProfileForm({
         <span className="mag-label">外链</span>
         {links.map((l, i) => (
           <div key={i} className="mb-2 flex gap-2">
-            <input
-              className="mag-input"
-              style={{ maxWidth: '38%' }}
-              value={l.label}
+              <input
+                className="mag-input min-w-0"
+                style={{ maxWidth: '38%' }}
+                value={l.label}
               onChange={(e) => updateLink(i, 'label', e.target.value)}
               placeholder="标签"
             />
-            <input
-              className="mag-input"
-              value={l.url}
+              <input
+                className="mag-input min-w-0"
+                value={l.url}
               onChange={(e) => updateLink(i, 'url', e.target.value)}
               placeholder="https://..."
             />
-            <button
-              type="button"
-              className="mag-btn mag-btn-secondary"
-              onClick={() => setLinks((p) => p.filter((_, idx) => idx !== i))}
-              aria-label="删除链接"
-            >
+              <button
+                type="button"
+                className="mag-btn mag-btn-secondary shrink-0 px-2 sm:px-3"
+                onClick={() => setLinks((p) => p.filter((_, idx) => idx !== i))}
+                aria-label="删除链接"
+              >
               <Trash2 className="h-4 w-4" />
             </button>
           </div>

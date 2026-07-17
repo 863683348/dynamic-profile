@@ -44,7 +44,7 @@ export function PostComposer({
         onChange={(e) => setContent(e.target.value)}
         placeholder="内容（支持换行）"
       />
-      <div className="flex items-center justify-between">
+      <div className="flex flex-wrap items-center justify-between gap-3">
         <label className="flex items-center gap-2 text-sm">
           <input
             type="checkbox"
@@ -53,11 +53,11 @@ export function PostComposer({
           />
           立即发布
         </label>
-        <button
-          type="submit"
-          className="mag-btn"
-          disabled={saving || !title.trim()}
-        >
+          <button
+            type="submit"
+            className="mag-btn shrink-0"
+            disabled={saving || !title.trim()}
+          >
           <Send className="h-4 w-4" />
           {saving ? '发布中…' : status === 'published' ? '发布' : '存为草稿'}
         </button>
