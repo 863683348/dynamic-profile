@@ -1,0 +1,195 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --primary: #c2410c;
+    --bg: #fbf8f3;
+    --paper: #fbf8f3;
+    --ink: #1a1a1a;
+    --rule: #d8cfc0;
+  }
+
+  /* 风格 B：暗色配色（terracotta 提亮） */
+  [data-theme='dark'] {
+    --primary: #e8763a;
+    --bg: #14110d;
+    --paper: #1f1a14;
+    --ink: #f3ead9;
+    --rule: #3a3128;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: Georgia, 'Times New Roman', 'Noto Serif SC', serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background: var(--primary);
+    color: #fff;
+  }
+}
+
+@layer components {
+  /* 衬线大标题 */
+  .magazine-title {
+    font-family: Georgia, 'Times New Roman', 'Noto Serif SC', serif;
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+  }
+
+  /* 双线分隔 */
+  .double-rule {
+    border-top: 3px double var(--rule);
+    border-bottom: 3px double var(--rule);
+  }
+
+  /* 纸面卡片 */
+  .paper-card {
+    background-color: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+  }
+
+  /* 整页主题表面（承载 data-theme 的变量作用域） */
+  .theme-surface {
+    background-color: var(--bg);
+    color: var(--ink);
+  }
+
+  .text-primary {
+    color: var(--primary);
+  }
+
+  /* 外链 chip */
+  .link-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.25rem 0.625rem;
+    border: 1px solid var(--rule);
+    border-radius: 9999px;
+    font-size: 0.8125rem;
+    color: var(--ink);
+    text-decoration: none;
+    transition:
+      border-color 200ms cubic-bezier(0.4, 0, 0.2, 1),
+      color 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .link-chip:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+  }
+
+  /* 来源 badge */
+  .source-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.125rem 0.5rem;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    font-size: 0.6875rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink);
+    white-space: nowrap;
+  }
+
+  /* 状态点 */
+  .status-dot {
+    display: inline-block;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 9999px;
+    background: var(--primary);
+  }
+
+  /* 杂志按钮 */
+  .mag-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1.25rem;
+    font-family: Georgia, 'Times New Roman', 'Noto Serif SC', serif;
+    font-size: 0.9375rem;
+    border: 1px solid var(--primary);
+    background: var(--primary);
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    transition:
+      opacity 200ms cubic-bezier(0.4, 0, 0.2, 1),
+      transform 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .mag-btn:hover {
+    opacity: 0.92;
+    transform: translateY(-1px);
+  }
+  .mag-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+  .mag-btn-secondary {
+    background: transparent;
+    color: var(--primary);
+  }
+
+  /* 表单输入 */
+  .mag-input {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    background: var(--bg);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    color: var(--ink);
+    font-family: Georgia, 'Times New Roman', 'Noto Serif SC', serif;
+    font-size: 0.9375rem;
+    transition: border-color 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .mag-input:focus {
+    outline: none;
+    border-color: var(--primary);
+  }
+  .mag-label {
+    display: block;
+    margin-bottom: 0.375rem;
+    font-size: 0.8125rem;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+    opacity: 0.8;
+  }
+
+  /* 动态列表分隔（仅条目之间） */
+  .posts-list > article + article {
+    border-top: 3px double var(--rule);
+  }
+  .posts-list > article {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
