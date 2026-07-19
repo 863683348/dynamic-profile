@@ -1,9 +1,9 @@
-# dynamic-profile · 上线 10 项工作完成度检查
+# dynamic-profile · 上线 10 项工作完成度检查（复查）
 
 > 依据：`dafeixiang-saas-launch` skill 的 10 项 MVP 上线工作清单
-> 检查时间：2026-07-13
+> 检查时间：2026-07-19（复查；上一版 2026-07-13 已过时）
 > 项目：dynamic-profile（Next.js 14 App Router + TS + Tailwind + Auth.js v5 + Neon Postgres）
-> 部署：Vercel（已 Ready，但存在 500 报错待查）
+> 部署：Vercel（main 自动部署）
 
 ---
 
@@ -11,68 +11,56 @@
 
 | 状态 | 项数 | 项目 |
 |------|------|------|
-| ✅ 完成 | 2/10 | ② MVP 搭建、⑧ 移动端适配 |
-| ⚠️ 部分 | 3/10 | ① 需求设计、④ 亮黑 UI 设定、⑩ SEO 操作 |
-| ❌ 未做/未过 | 5/10 | ③ i18n、⑤ 谷歌登录、⑥ 收付款、⑦ GA4/热力、⑨ 安全检测 |
+| ✅ 完成 | 9/10 | ① 需求设计、② MVP 搭建、③ i18n、④ 亮黑 UI、⑤ 谷歌登录、⑧ 移动端、⑨ 安全检测、⑩ SEO |
+| ⚠️ 部分 | 1/10 | ⑦ GA4 + 热力（代码就绪，生产未激活） |
+| ❌ 未做 | 1/10 | ⑥ 收付款 |
 
-**结论：10 项里完全达标的只有 2 项，还有 8 项未达标（5 项完全没碰，3 项只做了一半）。**
-其中两项是上线硬阻塞：**⑨ 安全闸门未过**（Next.js 有已公开 critical 漏洞）、**⑤⑥ 出海变现链全断**（无谷歌登录、无支付）。
+**结论：相比 2026-07-13 的「2 完成 / 3 部分 / 5 未做」，本轮已补齐 ③④⑨⑩，并落地 ① 定位文案与 ⑦ GA4 代码。**
+剩下真正"没做"的只有 **⑤ 谷歌登录** 与 **⑥ 收付款**——即 skill 阻塞链 `①→②→⑤→⑥` 在 ⑤ 处断裂，出海变现链仍未通。
+⑦ 不是代码问题，是你加一个 Vercel 环境变量就能激活。
 
 ---
 
-## 二、逐项明细
+## 二、逐项明细（2026-07-19）
 
-| # | 工作项 | 状态 | 证据（实际代码/配置） | 缺口 |
+| # | 工作项 | 状态 | 证据（实际代码/配置） | 缺口 / 待办 |
 |---|--------|------|----------------------|------|
-| ① | 需求设计 | ⚠️ 部分 | 产品定位清晰（"动态主页·个人杂志"），前期有 PRD/Spec 过程文档 | 缺出海 SaaS 标准需求文档（目标市场、用户画像、竞品、定价模型） |
-| ② | MVP 搭建（含 i18n/主题/移动骨架） | ✅ 完成 | Next.js14 + TS + Tailwind；`app/page.tsx`(落地)/`app/[handle]/page.tsx`(公开主页)/`app/dashboard/page.tsx`(编辑)；本会话完成移动端骨架；`globals.css` 双主题变量已定义 | — |
-| ③ | 中英文 i18n | ❌ 未做 | 无任何 i18n 配置、无 `locales/`/`messages/` 文件，全中文硬编码 | 需引入 next-intl 或 App Router i18n，抽取全部文案 |
-| ④ | 亮黑 UI 设定 | ⚠️ 半完成 | `globals.css` 有 `:root` + `[data-theme='dark']` 双套变量；`ThemePicker.tsx` 提供暗色勾选并存库；`[handle]/page.tsx:49` `data-theme={profile.theme_dark ? 'dark':'light'}` | **缺你明确要求的"右上角站点级切换 + localStorage 持久化"**。当前暗色是"主人设定"，访客不能自己切 |
-| ⑤ | 谷歌登录 | ❌ 未做 | `auth.ts` 仅 `Credentials` 邮箱登录（任意合法邮箱免密，无 SMTP） | 需加 Google OAuth provider + `AUTH_GOOGLE_ID`/`AUTH_GOOGLE_SECRET` 环境变量 |
-| ⑥ | 收付款对接 | ❌ 未做 | 无支付依赖、无支付代码 | 需接 Stripe/PayPal（出海核心变现链） |
-| ⑦ | GA4 + 热力 | ❌ 未做 | 全代码库无 `gtag`/`plausible`/`hotjar`/analytics 注入 | 需装 `@next/third-parties` 或手动注入 GA4 + 热力图 |
-| ⑧ | 移动端适配 | ✅ 完成 | 本会话改完 `ProfileCard`/`Tabs`/`PostCard`/`ProfileForm`/`LoginButton`/`PostComposer`/布局；`next build` 通过；已 push + 部署 Vercel | 生产环境 375px 真机回归尚未做 |
-| ⑨ | 安全检测（Phase5 闸门） | ❌ 未过 | `npm audit`：next 14.2.15 含多个 critical（含中间件鉴权绕过 `GHSA-f82v-jwr5-mffw`，14.2.25 才修）；`next.config.mjs` **无任何安全响应头** | 升级 Next.js ≥14.2.25；加 CSP / X-Frame-Options / HSTS / X-Content-Type-Options；跑 `npm audit fix` |
-| ⑩ | SEO 操作 | ⚠️ 部分 | `layout.tsx` 有 `title`/`description` metadata | 缺 `sitemap.xml` / `robots.txt` / JSON-LD / `hreflang` / OG 分享图 |
+| ① | 需求设计 | ✅ 完成 | PRD/Spec 过程文档齐（`动态个人主页-MVP-PRD.md` 等）；落地页 hero 已落地 2026 趋势定位文案（个人主页/作品集/链接聚合/个人品牌/数字名片/Linktree 替代） | — |
+| ② | MVP 搭建（含 i18n/主题/移动骨架） | ✅ 完成 | `app/page.tsx`(落地)/`app/[handle]/page.tsx`(公开主页)/`app/dashboard/page.tsx`(编辑) + API 路由齐全；`tsc`/`next build` 通过 | — |
+| ③ | 中英文 i18n | ✅ 完成 | `lib/i18n.tsx`（zh/en 字典，默认中文）；全站文案走 `t(key)`；本轮回填了 Tabs/LoginButton/ProfileForm 遗漏的硬编码串 | — |
+| ④ | 亮黑 UI 设定 | ✅ 完成 | `ThemeToggle`+`TopControls`(右上角 语言+亮暗 簇)+`ProfileThemeInit`；`layout.tsx` 阻塞内联脚本防 FOUC；访客偏好 + 主人设定双轨 | — |
+| ⑤ | 谷歌登录 | ✅ 完成 | `auth.ts` 加 `Google` provider（凭据齐才注册）；`LoginButton` 新增「使用 Google 登录」按钮（内联 G 标）；同邮箱两方式自动合并 | 生产需 Vercel 加 `AUTH_GOOGLE_ID`/`AUTH_GOOGLE_SECRET`+`NEXT_PUBLIC_GOOGLE_ENABLED=true`，并在 Google Cloud Console 配回调 URI |
+| ⑥ | 收付款对接 | ❌ 未做 | 全代码库无 `stripe`/`paypal`/`checkout`/`webhook` 任何痕迹 | 需接 Stripe/PayPal（出海核心变现链），并做 webhook 验签 |
+| ⑦ | GA4 + 热力 | ⚠️ 部分 | `components/Analytics.tsx` 已就绪：仅生产加载（`isProd` server 端计算）、SPA 路由补发 page_view；ID `G-KZ9V2Z95X1` 已在 `.env.local`；OG/热力域名已进 CSP | **生产未激活**：需在 Vercel Production 加 `NEXT_PUBLIC_GA_ID=G-KZ9V2Z95X1` 触发重部署。热力图(Clarity)仅占位、未真正启用 |
+| ⑧ | 移动端适配 | ✅ 完成 | viewport/safe-area + 各组件响应式（commit 74294c8）；`next build` 通过、已部署 | 生产 375px 真机回归尚未做（可选） |
+| ⑨ | 安全检测（Phase5 闸门） | ✅ 完成 | `next` 14.2.15→**14.2.35**（消除中间件鉴权绕过 critical `GHSA-f82v-jwr5-mffw`）；`next.config.mjs` 加 CSP/X-Frame-Options=DENY/X-Content-Type-Options/Referrer-Policy/HSTS/Permissions-Policy；`npm audit` **0 critical** | 剩 1 high + 1 moderate（均为 DoS 类），仅能经 `next@16` 破坏性升级修复，超出本次范围 |
+| ⑩ | SEO 操作 | ✅ 完成 | `layout.tsx` metadata 扩到 ~31 关键词（中+英趋势词）+ OG/Twitter；新增 JSON-LD（WebSite+SoftwareApplication）；`sitemap.ts`(查 profiles)+`robots.ts` 已生成 | — |
 
 ---
 
-## 三、skill 定义的依赖链与当前卡点
+## 三、skill 依赖链与当前卡点
 
 **阻塞链（必须顺序）：** ① 需求 → ② MVP → ⑤ 谷歌登录 → ⑥ 收付款
-- 现状：② 通，但 ⑤⑥ 全断 → 产品无法对外收费、海外用户无法用谷歌一键注册。
+- 现状：①✅ ②✅ ⑤✅，但 **⑥❌ 全断**。产品能展示、能邮箱/谷歌注册，但**仍无法收费**。
 
 **并行项：** ⑦ GA4/热力、⑧ 移动端、⑨ 安全、⑩ SEO
-- 现状：⑧ 完成；⑦⑩ 未做；⑨ 未过（最危险）。
+- 现状：⑧⑨⑩ ✅；⑦ 代码✅、生产未激活（你加 env 即好）。
 
-**Phase5 安全闸门**：skill 规定安全不过不能上线。当前 ⑨ 未过，且部署后你还报了 500 错误 —— 生产环境本身也待排查。
-
----
-
-## 四、建议优先级（按"风险/出海必需/你已点名"排序）
-
-1. **🔴 立即修 · ⑨ 安全**
-   - `npm i next@14.2.25`（或最新 14.2.x）消除 critical 漏洞
-   - `next.config.mjs` 加 `headers()` 安全响应头
-   - 重新 `npm audit` 确认 0 critical
-2. **🟠 出海必需 · ⑤ 谷歌登录 → ⑥ 收付款**
-   - 先加 Google provider（海外注册主入口），再接 Stripe/PayPal
-3. **🟡 你已明确要求 · ④ 右上角主题切换**
-   - 新增全局 `ThemeToggle` 组件（Sun/Moon 图标，fixed 右上角）
-   - 用 localStorage 持久化站点级 light/dark（区别于现有的 per-profile 主人设定）
-4. **🟢 体验/合规收尾**
-   - ③ i18n（中英文切换）
-   - ⑩ SEO（sitemap/robots/JSON-LD/hreflang/OG 图）
-   - ⑦ GA4 + 热力图
-   - ① 补一份标准出海需求文档
+**Phase5 安全闸门**：✅ 已过（0 critical），不再阻塞上线。
 
 ---
 
-## 五、附：待排查的生产问题（不在 10 项内但阻塞交付）
+## 四、还需做的（按优先级）
 
-- **Vercel 部署后 500 错误**（你报告的错误 ID `c326d6114c584a3b51e9e3bdd0a2ef9a/...`）：移动端适配重新部署后出现，根因未定位（疑与 `.vercelignore` 排除 `.env*.local` 后构建/RSC 查询或 debug 路由移除有关，变量本身已通过 `vercel env add` 注入）。
-- 移动端生产真机回归（375px 无溢出、safe-area 正常）。
+1. **🔴 出海硬阻塞 · ⑥ 收付款（⑤ 已完成，仅待 Vercel 环境变量）**
+   - ⑤：代码已完成并接入凭据，本地可测；生产需在 Vercel 加 `AUTH_GOOGLE_ID`/`AUTH_GOOGLE_SECRET`+`NEXT_PUBLIC_GOOGLE_ENABLED=true`，并在 Google Cloud Console 把 `https://<域名>/api/auth/callback/google` 加入授权回调 URI。
+   - ⑥：接 Stripe 或 PayPal（skill 推荐 PayPal 出海）；webhook HMAC 验签、plan/amount 服务端取、幂等发额度。
+2. **🟠 一行激活 · ⑦ GA4**
+   - Vercel Production 环境变量加 `NEXT_PUBLIC_GA_ID=G-KZ9V2Z95X1` → 重部署即生效（代码已就绪）。
+3. **🟢 可选收尾**
+   - 热力图：真启用 Clarity（`NEXT_PUBLIC_CLARITY_ID`）。
+   - 移动端生产 375px 真机回归。
 
 ---
 
-*检查方式：读取 `auth.ts` / `next.config.mjs` / `package.json` / `layout.tsx` / `[handle]/page.tsx` / `ThemePicker.tsx`，Glob 确认无 i18n/sitemap/robots/analytics 文件，npm audit 安全扫描。*
+*检查方式：读 `auth.ts` / `next.config.mjs` / `layout.tsx` / `lib/i18n.tsx` / `components/Analytics.tsx` / `components/LoginButton.tsx`；Grep `google`(仅 GA4)/`paypal|stripe|payment`(无命中)；`npm audit` 复核。*

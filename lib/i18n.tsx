@@ -86,6 +86,8 @@ const zh: Dict = {
   err_generic: '登录失败',
   login_loading: '登录中',
   login: '登录',
+  login_google: '使用 Google 登录',
+  login_or: '或',
 
   // PostComposer
   pc_title: '写一条动态',
@@ -188,6 +190,8 @@ const en: Dict = {
   err_generic: 'Login failed',
   login_loading: 'Signing in',
   login: 'Sign in',
+  login_google: 'Continue with Google',
+  login_or: 'or',
 
   pc_title: 'Write an update',
   pc_ph_title: 'Title',

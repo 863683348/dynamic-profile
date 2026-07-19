@@ -34,3 +34,4 @@ app/api/debug/
 # Vercel 内部目录（含 project id，不进仓库）
 .vercel/
 .next-verify
+.next-dev
