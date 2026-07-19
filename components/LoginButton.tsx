@@ -47,7 +47,7 @@ export function LoginButton() {
           id="login-email"
           type="email"
           className="mag-input min-w-0"
-          placeholder="you@example.com"
+          placeholder={t('ph_email')}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />

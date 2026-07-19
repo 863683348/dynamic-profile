@@ -58,34 +58,37 @@ export function Tabs({ posts, profile }: { posts: Post[]; profile: Profile }) {
 
         {tab === 'about' && (
           <div className="py-6">
-            <h3 className="magazine-title text-xl">关于 {profile.display_name}</h3>
+            <h3 className="magazine-title text-xl">
+              {t('about_title', { name: profile.display_name ?? '' })}
+            </h3>
             <p className="mt-3 leading-relaxed opacity-90">
-              {profile.bio || '这个人很神秘，还没填写简介。'}
+              {profile.bio || t('about_empty')}
             </p>
             {profile.status_text && (
               <p className="mt-4 flex items-center gap-2 text-sm opacity-80">
                 <span className="status-dot" />
-                当前状态：{profile.status_text}
+                {t('about_status')}
+                {profile.status_text}
               </p>
             )}
             <dl className="mt-5 space-y-2 text-sm opacity-80">
               <div className="flex gap-3">
-                <dt className="w-20 opacity-60">Handle</dt>
+                <dt className="w-20 opacity-60">{t('about_handle')}</dt>
                 <dd>@{profile.handle}</dd>
               </div>
               <div className="flex gap-3">
-                <dt className="w-20 opacity-60">主题色</dt>
+                <dt className="w-20 opacity-60">{t('about_theme')}</dt>
                 <dd className="flex items-center gap-2">
                   <span
                     className="inline-block h-3 w-3 rounded-sm"
                     style={{ background: profile.theme_color || 'var(--primary)' }}
                   />
-                  {profile.theme_color || '默认'}
+                  {profile.theme_color || t('scheme_default')}
                 </dd>
               </div>
               <div className="flex gap-3">
-                <dt className="w-20 opacity-60">配色</dt>
-                <dd>{profile.theme_dark ? '暗色' : '浅色'}</dd>
+                <dt className="w-20 opacity-60">{t('about_scheme')}</dt>
+                <dd>{profile.theme_dark ? t('scheme_dark') : t('scheme_light')}</dd>
               </div>
             </dl>
           </div>
@@ -99,11 +102,11 @@ export function Tabs({ posts, profile }: { posts: Post[]; profile: Profile }) {
                   key={i}
                   className="paper-card flex h-40 items-center justify-center text-sm opacity-50"
                 >
-                  作品占位 {i + 1}
+                  {t('works_placeholder', { n: i + 1 })}
                 </div>
               ))}
             </div>
-            <p className="mt-4 text-center text-xs opacity-50">作品集模块即将上线</p>
+            <p className="mt-4 text-center text-xs opacity-50">{t('works_soon')}</p>
           </div>
         )}
       </div>

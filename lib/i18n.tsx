@@ -15,10 +15,10 @@ type Dict = Record<string, string>;
 const zh: Dict = {
   // Landing
   brand: '动态个人主页',
-  hero_a: '把你的动态，',
+  hero_a: '把你的动态、作品与链接，',
   hero_b: '排成一本杂志。',
   hero_sub:
-    '一个属于你自己的编辑风格主页。记录动态、展示作品，用衬线大标题与双线分隔，呈现克制的阅读美感。',
+    '一个属于你自己的编辑风格个人主页。一站式聚合作品集、动态与社交链接，呈现克制的阅读美感——既是你的个人品牌与数字名片，也是 Linktree 链接树之外更体面的选择。',
   cta_console: '进入控制台',
   cta_sample: '查看样本主页',
   sample_label: '样本：',
@@ -37,7 +37,7 @@ const zh: Dict = {
   about_title: '关于 {name}',
   about_empty: '这个人很神秘，还没填写简介。',
   about_status: '当前状态：',
-  about_handle: 'Handle',
+  about_handle: '用户名',
   about_theme: '主题色',
   about_scheme: '配色',
   scheme_light: '浅色',
@@ -54,6 +54,7 @@ const zh: Dict = {
   label_name: '显示名称',
   label_handle: 'Handle（小写字母 / 数字 / 下划线，3-20 位）',
   ph_name: '林夕',
+  ph_handle: '例如：linxi',
   handle_locked: 'Handle 创建后不可修改。',
   label_status: '状态文字',
   ph_status: '正在构建有趣的东西',
@@ -79,7 +80,7 @@ const zh: Dict = {
 
   // LoginButton
   label_email: '邮箱（任意邮箱即可登录）',
-  ph_email: 'you@example.com',
+  ph_email: '请输入邮箱',
   err_invalid: '请输入有效的邮箱地址',
   err_login: '登录失败，请重试',
   err_generic: '登录失败',
@@ -122,10 +123,10 @@ const zh: Dict = {
 
 const en: Dict = {
   brand: 'Dynamic Profile',
-  hero_a: 'Turn your updates',
+  hero_a: 'Turn your updates, work & links',
   hero_b: 'into a magazine.',
   hero_sub:
-    'Your own editorial-style homepage. Log updates, showcase work, with serif headlines and double rules for a restrained reading aesthetic.',
+    'Your own editorial-style personal homepage. One place for your portfolio, updates and social links — a restrained reading aesthetic that doubles as your personal brand and digital business card, and a classier alternative to Linktree.',
   cta_console: 'Open Console',
   cta_sample: 'View Sample',
   sample_label: 'Sample: ',
@@ -157,6 +158,7 @@ const en: Dict = {
   label_name: 'Display name',
   label_handle: 'Handle (lowercase letters / numbers / underscore, 3-20 chars)',
   ph_name: 'Lin Xi',
+  ph_handle: 'e.g. linxi',
   handle_locked: 'Handle cannot be changed after creation.',
   label_status: 'Status text',
   ph_status: 'Building something fun',

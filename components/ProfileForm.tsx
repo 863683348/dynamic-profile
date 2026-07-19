@@ -81,7 +81,7 @@ export function ProfileForm({
           className="mag-input"
           value={handle}
           onChange={(e) => setHandle(e.target.value.toLowerCase())}
-          placeholder="linxi"
+          placeholder={t('ph_handle')}
           pattern="^[a-z0-9_]{3,20}$"
           disabled={handleExists}
         />
