@@ -1,39 +1,51 @@
+'use client';
+
 import Link from 'next/link';
-import { ArrowRight, Newspaper } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import { useI18n } from '@/lib/i18n';
+import { TopControls } from '@/components/TopControls';
 
 export default function LandingPage() {
+  const { t } = useI18n();
+
   return (
     <main className="theme-surface min-h-screen">
+      <TopControls />
       <div className="mx-auto max-w-3xl px-5 py-16 sm:px-6 sm:py-20">
         <div className="double-rule mb-10 flex items-center justify-between px-1 py-3">
-          <span className="text-xs uppercase tracking-[0.2em] opacity-70">动态个人主页</span>
-          <Newspaper className="h-5 w-5 text-primary" />
+          <span className="text-xs uppercase tracking-[0.2em] opacity-70">
+            {t('brand')}
+          </span>
         </div>
 
         <h1 className="magazine-title text-3xl leading-tight sm:text-4xl md:text-5xl lg:text-6xl">
-          把你的动态，<br />
-          排成一本杂志。
+          {t('hero_a')}
+          <br />
+          {t('hero_b')}
         </h1>
         <p className="mt-6 max-w-xl text-lg leading-relaxed opacity-80">
-          一个属于你自己的编辑风格主页。记录动态、展示作品，用衬线大标题与双线分隔，呈现克制的阅读美感。
+          {t('hero_sub')}
         </p>
 
         <div className="mt-10 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:gap-4">
           <Link href="/dashboard" className="mag-btn w-full justify-center sm:w-auto">
-            进入控制台
+            {t('cta_console')}
             <ArrowRight className="h-4 w-4" />
           </Link>
-          <Link href="/linxi" className="mag-btn mag-btn-secondary w-full justify-center sm:w-auto">
-            查看样本主页
+          <Link
+            href="/linxi"
+            className="mag-btn mag-btn-secondary w-full justify-center sm:w-auto"
+          >
+            {t('cta_sample')}
           </Link>
         </div>
 
         <div className="double-rule mt-16 px-1 py-4 text-sm opacity-70">
-          样本：
+          {t('sample_label')}
           <Link href="/linxi" className="text-primary underline-offset-2 hover:underline">
             @linxi
           </Link>{' '}
-          · 风格 B · 杂志编辑风
+          {t('sample_style')}
         </div>
       </div>
     </main>

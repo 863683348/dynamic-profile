@@ -9,6 +9,11 @@ import type { Post, Profile, Stats } from '@/lib/types';
 import { ProfileCard } from '@/components/ProfileCard';
 import { Tabs } from '@/components/Tabs';
 import { ViewTracker } from '@/components/ViewTracker';
+import { TopControls } from '@/components/TopControls';
+import { ProfileThemeInit } from '@/components/ProfileThemeInit';
+
+const SITE =
+  process.env.NEXT_PUBLIC_SITE_URL || 'https://dynamic-profile-ten.vercel.app';
 
 export const dynamic = "force-dynamic";
 
@@ -44,13 +49,33 @@ export default async function ProfilePage({
     ? { '--primary': profile.theme_color }
     : {}) as unknown as CSSProperties;
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'ProfilePage',
+    mainEntity: {
+      '@type': 'Person',
+      name: profile.display_name,
+      alternateName: `@${profile.handle}`,
+      description: profile.bio || '',
+      url: `${SITE}/${profile.handle}`,
+      ...(profile.avatar_url ? { image: profile.avatar_url } : {}),
+    },
+  };
+
   return (
-    <main
-      data-theme={profile.theme_dark ? 'dark' : 'light'}
-      className="theme-surface min-h-screen"
-      style={themeStyle}
-    >
+    <main className="theme-surface min-h-screen" style={themeStyle}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <ViewTracker handle={handle} />
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `try{var t=localStorage.getItem('theme');if(t!=='dark'&&t!=='light'){document.documentElement.dataset.theme=${profile.theme_dark ? "'dark'" : "'light'"};}}catch(e){}`,
+        }}
+      />
+      <ProfileThemeInit dark={profile.theme_dark} />
+      <TopControls />
       <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6 md:py-10 md:grid md:grid-cols-[320px_1fr] md:gap-8">
         <aside className="md:sticky md:top-4 md:self-start">
           <ProfileCard profile={profile} stats={stats} postCount={posts.length} />

@@ -4,9 +4,11 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { signIn } from 'next-auth/react';
 import { Mail } from 'lucide-react';
+import { useI18n } from '@/lib/i18n';
 
 export function LoginButton() {
   const router = useRouter();
+  const { t } = useI18n();
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -14,7 +16,7 @@ export function LoginButton() {
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
     if (!email.includes('@')) {
-      setError('请输入有效的邮箱地址');
+      setError(t('err_invalid'));
       return;
     }
     setLoading(true);
@@ -25,11 +27,11 @@ export function LoginButton() {
         email: email.trim().toLowerCase(),
         redirect: false,
       });
-      if (res?.error) throw new Error('登录失败，请重试');
+      if (res?.error) throw new Error(t('err_login'));
       router.push('/dashboard');
       router.refresh();
     } catch (err) {
-      setError(err instanceof Error ? err.message : '登录失败');
+      setError(err instanceof Error ? err.message : t('err_generic'));
     } finally {
       setLoading(false);
     }
@@ -38,7 +40,7 @@ export function LoginButton() {
   return (
     <form onSubmit={handleLogin} className="paper-card p-6">
       <label className="mag-label" htmlFor="login-email">
-        邮箱（任意邮箱即可登录）
+        {t('label_email')}
       </label>
       <div className="flex gap-2">
         <input
@@ -51,7 +53,7 @@ export function LoginButton() {
         />
         <button type="submit" className="mag-btn shrink-0" disabled={loading}>
           <Mail className="h-4 w-4" />
-          {loading ? '登录中' : '登录'}
+          {loading ? t('login_loading') : t('login')}
         </button>
       </div>
       {error && <p className="mt-2 text-sm text-primary">{error}</p>}

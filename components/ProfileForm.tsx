@@ -4,6 +4,7 @@ import { useState } from 'react';
 import type { Profile } from '@/lib/types';
 import { ThemePicker } from './ThemePicker';
 import { Plus, Trash2 } from 'lucide-react';
+import { useI18n } from '@/lib/i18n';
 
 export type LinkItem = { label: string; url: string };
 
@@ -36,6 +37,7 @@ export function ProfileForm({
     Array.isArray(initial?.links) ? (initial!.links as LinkItem[]) : []
   );
 
+  const { t } = useI18n();
   const handleExists = !!initial?.handle;
 
   function updateLink(i: number, key: keyof LinkItem, value: string) {
@@ -59,20 +61,20 @@ export function ProfileForm({
     <form onSubmit={handleSubmit} className="space-y-5">
       <div>
         <label className="mag-label" htmlFor="pf-name">
-          显示名称
+          {t('label_name')}
         </label>
         <input
           id="pf-name"
           className="mag-input"
           value={displayName}
           onChange={(e) => setDisplayName(e.target.value)}
-          placeholder="林夕"
+          placeholder={t('ph_name')}
         />
       </div>
 
       <div>
         <label className="mag-label" htmlFor="pf-handle">
-          Handle（小写字母 / 数字 / 下划线，3-20 位）
+          {t('label_handle')}
         </label>
         <input
           id="pf-handle"
@@ -83,37 +85,37 @@ export function ProfileForm({
           pattern="^[a-z0-9_]{3,20}$"
           disabled={handleExists}
         />
-        {handleExists && <p className="mt-1 text-xs opacity-60">Handle 创建后不可修改。</p>}
+        {handleExists && <p className="mt-1 text-xs opacity-60">{t('handle_locked')}</p>}
       </div>
 
       <div>
         <label className="mag-label" htmlFor="pf-status">
-          状态文字
+          {t('label_status')}
         </label>
         <input
           id="pf-status"
           className="mag-input"
           value={statusText}
           onChange={(e) => setStatusText(e.target.value)}
-          placeholder="正在构建有趣的东西"
+          placeholder={t('ph_status')}
         />
       </div>
 
       <div>
         <label className="mag-label" htmlFor="pf-bio">
-          简介
+          {t('label_bio')}
         </label>
         <textarea
           id="pf-bio"
           className="mag-input min-h-[100px]"
           value={bio}
           onChange={(e) => setBio(e.target.value)}
-          placeholder="一句话介绍你自己"
+          placeholder={t('ph_bio')}
         />
       </div>
 
       <div>
-        <span className="mag-label">外链</span>
+        <span className="mag-label">{t('label_links')}</span>
         {links.map((l, i) => (
           <div key={i} className="mb-2 flex gap-2">
               <input
@@ -121,19 +123,19 @@ export function ProfileForm({
                 style={{ maxWidth: '38%' }}
                 value={l.label}
               onChange={(e) => updateLink(i, 'label', e.target.value)}
-              placeholder="标签"
+              placeholder={t('ph_link_label')}
             />
               <input
                 className="mag-input min-w-0"
                 value={l.url}
               onChange={(e) => updateLink(i, 'url', e.target.value)}
-              placeholder="https://..."
+              placeholder={t('ph_link_url')}
             />
               <button
                 type="button"
                 className="mag-btn mag-btn-secondary shrink-0 px-2 sm:px-3"
                 onClick={() => setLinks((p) => p.filter((_, idx) => idx !== i))}
-                aria-label="删除链接"
+                aria-label={t('aria_del_link')}
               >
               <Trash2 className="h-4 w-4" />
             </button>
@@ -144,7 +146,7 @@ export function ProfileForm({
           className="mag-btn mag-btn-secondary mt-1"
           onClick={() => setLinks((p) => [...p, { label: '', url: '' }])}
         >
-          <Plus className="h-4 w-4" /> 添加外链
+          <Plus className="h-4 w-4" /> {t('add_link')}
         </button>
       </div>
 
@@ -156,7 +158,7 @@ export function ProfileForm({
       />
 
       <button type="submit" className="mag-btn" disabled={saving}>
-        {saving ? '保存中…' : '保存档案'}
+        {saving ? t('save_saving') : t('save')}
       </button>
     </form>
   );

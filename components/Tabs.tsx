@@ -4,30 +4,32 @@ import { useState } from 'react';
 import { PenLine, User, FolderOpen, type LucideIcon } from 'lucide-react';
 import type { Post, Profile } from '@/lib/types';
 import { PostCard } from './PostCard';
+import { useI18n } from '@/lib/i18n';
 
 type TabKey = 'posts' | 'about' | 'works';
 
-const TABS: { key: TabKey; label: string; icon: LucideIcon }[] = [
-  { key: 'posts', label: '动态', icon: PenLine },
-  { key: 'about', label: '关于', icon: User },
-  { key: 'works', label: '作品', icon: FolderOpen },
+const TABS: { key: TabKey; labelKey: string; icon: LucideIcon }[] = [
+  { key: 'posts', labelKey: 'tab_posts', icon: PenLine },
+  { key: 'about', labelKey: 'tab_about', icon: User },
+  { key: 'works', labelKey: 'tab_works', icon: FolderOpen },
 ];
 
 export function Tabs({ posts, profile }: { posts: Post[]; profile: Profile }) {
+  const { t } = useI18n();
   const [tab, setTab] = useState<TabKey>('posts');
 
   return (
     <section>
       {/* Tab 头 */}
       <div className="double-rule mb-2 flex gap-4 overflow-x-auto px-1 sm:gap-6">
-        {TABS.map((t) => {
-          const active = tab === t.key;
-          const Icon = t.icon;
+        {TABS.map((tabItem) => {
+          const active = tab === tabItem.key;
+          const Icon = tabItem.icon;
           return (
             <button
-              key={t.key}
+              key={tabItem.key}
               type="button"
-              onClick={() => setTab(t.key)}
+              onClick={() => setTab(tabItem.key)}
               className="flex shrink-0 items-center gap-2 whitespace-nowrap border-b-2 py-3 text-sm font-medium transition-colors"
               style={{
                 borderColor: active ? 'var(--primary)' : 'transparent',
@@ -36,7 +38,7 @@ export function Tabs({ posts, profile }: { posts: Post[]; profile: Profile }) {
               }}
             >
               <Icon className="h-4 w-4" />
-              {t.label}
+              {t(tabItem.labelKey)}
             </button>
           );
         })}
@@ -45,7 +47,7 @@ export function Tabs({ posts, profile }: { posts: Post[]; profile: Profile }) {
       <div className="pt-2">
         {tab === 'posts' &&
           (posts.length === 0 ? (
-            <p className="py-10 text-center text-sm opacity-60">还没有发布动态。</p>
+            <p className="py-10 text-center text-sm opacity-60">{t('no_posts')}</p>
           ) : (
             <div className="posts-list">
               {posts.map((p) => (

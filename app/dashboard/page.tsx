@@ -11,9 +11,12 @@ import {
 } from '@/components/ProfileForm';
 import { PostComposer, type PostDraft } from '@/components/PostComposer';
 import { Loader2, Eye, EyeOff } from 'lucide-react';
+import { useI18n } from '@/lib/i18n';
+import { TopControls } from '@/components/TopControls';
 
 export default function DashboardPage() {
   const { data: session, status } = useSession();
+  const { t, lang } = useI18n();
   const router = useRouter();
   const [profile, setProfile] = useState<Profile | null>(null);
   const [posts, setPosts] = useState<Post[]>([]);
@@ -50,13 +53,13 @@ export default function DashboardPage() {
         body: JSON.stringify(data),
       });
       const json = await res.json();
-      if (!res.ok) throw new Error(json?.message ?? '保存失败');
+      if (!res.ok) throw new Error(json?.message ?? t('d_err_save'));
 
       const saved = json.profile as Profile;
       setProfile(saved);
-      setMsg('档案已保存');
+      setMsg(t('d_msg_saved'));
     } catch (e) {
-      setError(e instanceof Error ? e.message : '保存失败');
+      setError(e instanceof Error ? e.message : t('d_err_save'));
     } finally {
       setSavingProfile(false);
     }
@@ -64,7 +67,7 @@ export default function DashboardPage() {
 
   async function handlePublish(data: PostDraft) {
     if (!profile?.handle) {
-      setError('请先创建档案');
+      setError(t('d_need_profile'));
       return;
     }
     setSavingPost(true);
@@ -82,13 +85,13 @@ export default function DashboardPage() {
         }),
       });
       const json = await res.json();
-      if (!res.ok) throw new Error(json?.message ?? '发布失败');
+      if (!res.ok) throw new Error(json?.message ?? t('d_err_publish'));
 
       const created = json.post as Post;
       setPosts((prev) => [created, ...prev]);
-      setMsg('动态已发布');
+      setMsg(t('d_msg_published'));
     } catch (e) {
-      setError(e instanceof Error ? e.message : '发布失败');
+      setError(e instanceof Error ? e.message : t('d_err_publish'));
     } finally {
       setSavingPost(false);
     }
@@ -106,13 +109,13 @@ export default function DashboardPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status: next }),
       });
-      if (!res.ok) throw new Error('更新状态失败');
+      if (!res.ok) throw new Error(t('d_err_status'));
     } catch (e) {
       // 失败回滚
       setPosts((prev) =>
         prev.map((p) => (p.id === post.id ? { ...p, status: post.status } : p))
       );
-      setError(e instanceof Error ? e.message : '更新状态失败');
+      setError(e instanceof Error ? e.message : t('d_err_status'));
     }
   }
 
@@ -128,10 +131,11 @@ export default function DashboardPage() {
   if (!session?.user) {
     return (
       <main className="theme-surface min-h-screen">
+        <TopControls />
         <div className="mx-auto max-w-md px-6 py-20">
-          <h1 className="magazine-title text-3xl">登录控制台</h1>
+          <h1 className="magazine-title text-3xl">{t('d_login_title')}</h1>
           <p className="mt-2 text-sm opacity-80">
-            使用邮箱登录后，即可编辑你的动态主页。
+            {t('d_login_desc')}
           </p>
           <div className="mt-8">
             <LoginButton />
@@ -143,9 +147,10 @@ export default function DashboardPage() {
 
   return (
     <main className="theme-surface min-h-screen">
+      <TopControls />
       <div className="mx-auto max-w-3xl px-6 py-10">
         <div className="double-rule mb-8 flex items-center justify-between px-1 py-3">
-          <span className="text-xs uppercase tracking-[0.2em] opacity-70">编辑台</span>
+          <span className="text-xs uppercase tracking-[0.2em] opacity-70">{t('d_console')}</span>
           {profile?.handle && (
             <a
               href={`/${profile.handle}`}
@@ -153,7 +158,7 @@ export default function DashboardPage() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              查看公开主页 ↗
+              {t('d_view_public')}
             </a>
           )}
         </div>
@@ -162,9 +167,9 @@ export default function DashboardPage() {
         {error && <p className="mb-4 text-sm text-primary">{error}</p>}
 
         <section className="paper-card mb-8 p-6">
-          <h2 className="magazine-title text-xl">档案</h2>
+          <h2 className="magazine-title text-xl">{t('d_section_profile')}</h2>
           <p className="mb-4 text-sm opacity-70">
-            {profile ? '编辑你的公开信息' : '创建你的档案以生成公开主页'}
+            {profile ? t('d_profile_edit') : t('d_profile_create')}
           </p>
           <ProfileForm
             initial={profile}
@@ -177,14 +182,14 @@ export default function DashboardPage() {
           {profile ? (
             <PostComposer onPublish={handlePublish} saving={savingPost} />
           ) : (
-            <p className="text-sm opacity-60">创建档案后即可发布动态。</p>
+            <p className="text-sm opacity-60">{t('d_create_first')}</p>
           )}
         </section>
 
         <section>
-          <h2 className="magazine-title mb-4 text-xl">我的动态（{posts.length}）</h2>
+          <h2 className="magazine-title mb-4 text-xl">{t('d_my_posts', { n: posts.length })}</h2>
           {posts.length === 0 ? (
-            <p className="text-sm opacity-60">还没有动态。</p>
+            <p className="text-sm opacity-60">{t('d_no_posts')}</p>
           ) : (
             <div className="space-y-3">
               {posts.map((p) => (
@@ -196,26 +201,26 @@ export default function DashboardPage() {
                     <div className="flex items-center gap-2">
                       <h3 className="magazine-title truncate text-lg">{p.title}</h3>
                       <span className="source-badge">
-                        {p.source === 'github' ? 'GitHub' : '手动'}
+                        {p.source === 'github' ? t('source_github') : t('source_manual')}
                       </span>
                     </div>
                     <p className="mt-1 text-xs opacity-60">
-                      {new Date(p.created_at).toLocaleDateString('zh-CN')} ·{' '}
-                      {p.status === 'published' ? '已发布' : '草稿'}
+                      {new Date(p.created_at).toLocaleDateString(lang === 'en' ? 'en-US' : 'zh-CN')} ·{' '}
+                      {p.status === 'published' ? t('d_status_published') : t('d_status_draft')}
                     </p>
                   </div>
                   <button
                     type="button"
                     className="mag-btn mag-btn-secondary shrink-0"
                     onClick={() => handleToggleStatus(p)}
-                    title={p.status === 'published' ? '转为草稿' : '发布'}
+                    title={p.status === 'published' ? t('d_draft_aria') : t('d_publish_aria')}
                   >
                     {p.status === 'published' ? (
                       <EyeOff className="h-4 w-4" />
                     ) : (
                       <Eye className="h-4 w-4" />
                     )}
-                    {p.status === 'published' ? '下架' : '发布'}
+                    {p.status === 'published' ? t('d_to_draft') : t('d_publish_action')}
                   </button>
                 </article>
               ))}

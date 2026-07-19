@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { Send } from 'lucide-react';
+import { useI18n } from '@/lib/i18n';
 
 export type PostDraft = {
   title: string;
@@ -16,6 +17,7 @@ export function PostComposer({
   onPublish: (data: PostDraft) => void;
   saving: boolean;
 }) {
+  const { t } = useI18n();
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [status, setStatus] = useState<'draft' | 'published'>('published');
@@ -31,18 +33,18 @@ export function PostComposer({
 
   return (
     <form onSubmit={handleSubmit} className="paper-card space-y-3 p-5">
-      <h3 className="magazine-title text-lg">写一条动态</h3>
+      <h3 className="magazine-title text-lg">{t('pc_title')}</h3>
       <input
         className="mag-input"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
-        placeholder="标题"
+        placeholder={t('pc_ph_title')}
       />
       <textarea
         className="mag-input min-h-[80px]"
         value={content}
         onChange={(e) => setContent(e.target.value)}
-        placeholder="内容（支持换行）"
+        placeholder={t('pc_ph_content')}
       />
       <div className="flex flex-wrap items-center justify-between gap-3">
         <label className="flex items-center gap-2 text-sm">
@@ -51,15 +53,15 @@ export function PostComposer({
             checked={status === 'published'}
             onChange={(e) => setStatus(e.target.checked ? 'published' : 'draft')}
           />
-          立即发布
+          {t('pc_now')}
         </label>
-          <button
-            type="submit"
-            className="mag-btn shrink-0"
-            disabled={saving || !title.trim()}
-          >
+        <button
+          type="submit"
+          className="mag-btn shrink-0"
+          disabled={saving || !title.trim()}
+        >
           <Send className="h-4 w-4" />
-          {saving ? '发布中…' : status === 'published' ? '发布' : '存为草稿'}
+          {saving ? t('pc_saving') : status === 'published' ? t('pc_publish') : t('pc_draft')}
         </button>
       </div>
     </form>

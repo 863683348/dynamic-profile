@@ -1,5 +1,8 @@
+'use client';
+
 import { ExternalLink, Github, Globe, Mail, Twitter } from 'lucide-react';
 import type { Profile, Stats } from '@/lib/types';
+import { useI18n } from '@/lib/i18n';
 
 type LinkItem = { label: string; url: string };
 
@@ -19,6 +22,7 @@ export function ProfileCard({
   stats?: Stats | null;
   postCount?: number;
 }) {
+  const { t } = useI18n();
   const cover = profile.cover_url;
   const avatar = profile.avatar_url;
   const links: LinkItem[] = Array.isArray(profile.links)
@@ -101,13 +105,13 @@ export function ProfileCard({
         {/* 统计条：浏览 / 动态 / 关注 */}
         <div className="double-rule mt-5 flex items-center justify-between px-1 py-2 text-sm">
           <span>
-            <strong className="magazine-title">{views}</strong> 浏览
+            <strong className="magazine-title">{views}</strong> {t('views')}
           </span>
           <span>
-            <strong className="magazine-title">{posts}</strong> 动态
+            <strong className="magazine-title">{posts}</strong> {t('posts')}
           </span>
           <span>
-            <strong className="magazine-title">{followers}</strong> 关注
+            <strong className="magazine-title">{followers}</strong> {t('followers')}
           </span>
         </div>
       </div>
