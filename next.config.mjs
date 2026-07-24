@@ -1,12 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  experimental: {
-    // 使用 worker_threads 代替 child_process，避免沙箱中子进程被杀导致 jest-worker 崩溃
-    workerThreads: true,
-    // 限制为 1 个 worker，减少内存压力
-    cpus: 1,
-  },
+  // 注意：experimental.workerThreads/cpus 仅用于沙箱内 next build（防 jest-worker 崩溃）。
+  // 本地 next dev 开启会卡在 Starting...，故 dev 预览时临时注释，需要沙箱构建时再打开。
+  // experimental: {
+  //   workerThreads: true,
+  //   cpus: 1,
+  // },
   async headers() {
     return [
       {
@@ -42,7 +42,9 @@ const nextConfig = {
               // 头像 / OG 图来自外部 https 域名，data: 用于内联 SVG
               "img-src 'self' data: https: blob:",
               "font-src 'self' data:",
-              "connect-src 'self' https://*.google-analytics.com https://*.clarity.ms https://*.googletagmanager.com",
+              "connect-src 'self' https://*.google-analytics.com https://*.clarity.ms https://*.googletagmanager.com https://api.polar.sh https://sandbox-api.polar.sh",
+              // Polar 收银台为整页跳转（非 iframe），此处仍放开其域名以策万全
+              "frame-src 'self' https://polar.sh https://sandbox.polar.sh",
               "frame-ancestors 'none'",
               "base-uri 'self'",
               "form-action 'self'",

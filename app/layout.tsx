@@ -4,7 +4,7 @@ import { Providers } from './providers';
 import { Analytics } from '@/components/Analytics';
 
 const SITE =
-  process.env.NEXT_PUBLIC_SITE_URL || 'https://dynamic-profile-ten.vercel.app';
+  process.env.NEXT_PUBLIC_SITE_URL || 'https://dynamic-profile.shop';
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),

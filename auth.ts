@@ -38,9 +38,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         ]
       : []),
   ],
-  pages: {
-    signIn: "/dashboard",
-  },
   callbacks: {
     jwt({ token, user }) {
       // 统一以邮箱作为账号 id（Credentials 与 Google 一致），保证同一人无论哪种方式登录都映射到同一 profile

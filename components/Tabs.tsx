@@ -46,15 +46,18 @@ export function Tabs({ posts, profile }: { posts: Post[]; profile: Profile }) {
 
       <div className="pt-2">
         {tab === 'posts' &&
-          (posts.length === 0 ? (
-            <p className="py-10 text-center text-sm opacity-60">{t('no_posts')}</p>
-          ) : (
-            <div className="posts-list">
-              {posts.map((p) => (
-                <PostCard key={p.id} post={p} />
-              ))}
-            </div>
-          ))}
+          (() => {
+            const dynamics = posts.filter(p => p.category === 'post');
+            return dynamics.length === 0 ? (
+              <p className="py-10 text-center text-sm opacity-60">{t('no_posts')}</p>
+            ) : (
+              <div className="posts-list">
+                {dynamics.map((p) => (
+                  <PostCard key={p.id} post={p} />
+                ))}
+              </div>
+            );
+          })()}
 
         {tab === 'about' && (
           <div className="py-6">
@@ -94,21 +97,19 @@ export function Tabs({ posts, profile }: { posts: Post[]; profile: Profile }) {
           </div>
         )}
 
-        {tab === 'works' && (
-          <div className="py-6">
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              {[0, 1, 2, 3].map((i) => (
-                <div
-                  key={i}
-                  className="paper-card flex h-40 items-center justify-center text-sm opacity-50"
-                >
-                  {t('works_placeholder', { n: i + 1 })}
-                </div>
-              ))}
-            </div>
-            <p className="mt-4 text-center text-xs opacity-50">{t('works_soon')}</p>
-          </div>
-        )}
+        {tab === 'works' &&
+          (() => {
+            const works = posts.filter(p => p.category === 'work');
+            return works.length === 0 ? (
+              <p className="py-10 text-center text-sm opacity-60">{t('no_works_public')}</p>
+            ) : (
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                {works.map((p) => (
+                  <PostCard key={p.id} post={p} />
+                ))}
+              </div>
+            );
+          })()}
       </div>
     </section>
   );

@@ -13,7 +13,7 @@ import { TopControls } from '@/components/TopControls';
 import { ProfileThemeInit } from '@/components/ProfileThemeInit';
 
 const SITE =
-  process.env.NEXT_PUBLIC_SITE_URL || 'https://dynamic-profile-ten.vercel.app';
+  process.env.NEXT_PUBLIC_SITE_URL || 'https://dynamic-profile.shop';
 
 export const dynamic = "force-dynamic";
 
@@ -39,7 +39,7 @@ export default async function ProfilePage({
   // 对某些 handle 值的参数化查询返回空结果的 bug）
   const safeH = escHandle(handle);
   const postsRaw = await sql(
-    [`SELECT id, handle, title, content, source, status, created_at FROM posts WHERE handle = '${safeH}' AND status = 'published' ORDER BY created_at DESC`] as any,
+    [`SELECT id, handle, title, content, source, category, status, created_at FROM posts WHERE handle = '${safeH}' AND status = 'published' ORDER BY created_at DESC`] as any,
   );
   const posts = postsRaw as Post[];
 
@@ -84,6 +84,20 @@ export default async function ProfilePage({
           <Tabs posts={posts} profile={profile} />
         </div>
       </div>
+
+      {/* 页脚品牌标识：仅免费版显示，Pro 去除（收付款 ⑥ 权益之一） */}
+      {profile.plan !== 'pro' && (
+        <footer className="mx-auto max-w-5xl px-4 pb-10 pt-2 text-center text-xs opacity-50">
+          <a
+            href={SITE}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:underline"
+          >
+            由 动态主页 强力驱动
+          </a>
+        </footer>
+      )}
     </main>
   );
 }

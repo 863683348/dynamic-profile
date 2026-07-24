@@ -13,10 +13,35 @@ export interface Profile {
   theme_dark: boolean;
   status_text: string | null;
   links: unknown[] | null;
+  plan: string; // 'free' | 'pro'
   created_at: string; // timestamptz -> ISO 字符串
 }
 
+export type PostCategory = "post" | "work";
 export type PostStatus = "draft" | "published" | "hidden";
+
+// 订阅（Polar.sh）记录，与 neon/schema.sql 的 subscriptions 表对应。
+export interface Subscription {
+  id: string;
+  owner_email: string;
+  polar_subscription_id: string;
+  polar_customer_id: string | null;
+  plan: string;
+  status: string;
+  cancel_at_period_end: boolean;
+  current_period_end: string | null;
+  metadata: unknown;
+  created_at: string;
+  updated_at: string;
+}
+
+// /api/subscription 返回的套餐状态（供 dashboard 展示）
+export interface PlanStatus {
+  plan: string; // 'free' | 'pro'
+  status: string | null; // active / canceled / revoked / trialing ...
+  cancel_at_period_end: boolean;
+  current_period_end: string | null;
+}
 
 export interface Post {
   id: string;
@@ -24,6 +49,7 @@ export interface Post {
   title: string | null;
   content: string | null;
   source: string;
+  category: PostCategory;
   status: PostStatus;
   created_at: string;
 }
@@ -54,5 +80,6 @@ export interface PostInput {
   title?: string | null;
   content?: string | null;
   source?: string;
+  category?: PostCategory;
   status?: PostStatus;
 }

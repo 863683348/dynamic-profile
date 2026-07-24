@@ -47,6 +47,12 @@ export default function LandingPage() {
           </Link>{' '}
           {t('sample_style')}
         </div>
+
+        <div className="mt-6 text-sm">
+          <Link href="/pricing" className="text-primary hover:underline">
+            {t('nav_pricing')} →
+          </Link>
+        </div>
       </div>
     </main>
   );
