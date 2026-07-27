@@ -9,11 +9,11 @@ const SITE =
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),
   title: {
-    default: '动态主页 · 杂志风个人主页 / 作品集 / 链接聚合',
+    default: '动态主页 · 零代码个人主页生成器 | 杂志风作品集与链接聚合',
     template: '%s · 动态主页',
   },
   description:
-    '杂志编辑风的动态个人主页生成器：一站式聚合作品集、动态与个人品牌，是 Linktree 链接树之外的更体面选择。零代码、移动端友好、SEO 友好，几分钟搭好你的个人网站与数字名片。',
+    '杂志编辑风的动态个人主页生成器，只需几分钟零代码打造你的专属个人网站。聚合作品集、动态与社交链接，是 Linktree 之外更体面的选择，免费试用 →',
   keywords: [
     // 中文趋势词
     '动态主页',
@@ -59,16 +59,16 @@ export const metadata: Metadata = {
     type: 'website',
     siteName: '动态主页',
     locale: 'zh_CN',
-    title: '动态主页 · 杂志风个人主页 / 作品集 / 链接聚合',
+    title: '动态主页 · 零代码个人主页生成器 | 杂志风作品集与链接聚合',
     description:
-      '杂志编辑风的动态个人主页生成器：一站式聚合作品集、动态与个人品牌，是 Linktree 链接树之外的更体面选择。零代码、移动端友好、SEO 友好。',
+      '杂志编辑风的动态个人主页生成器，零代码打造你的专属个人网站。聚合作品集、动态与社交链接，Linktree 之外的更体面选择。',
     url: SITE,
   },
   twitter: {
     card: 'summary_large_image',
-    title: '动态主页 · 杂志风个人主页 / 作品集 / 链接聚合',
+    title: '动态主页 · 零代码个人主页生成器',
     description:
-      '杂志编辑风的动态个人主页生成器：一站式聚合作品集、动态与个人品牌，是 Linktree 链接树之外的更体面选择。零代码、移动端友好、SEO 友好。',
+      '杂志编辑风的动态个人主页生成器，零代码打造你的专属个人网站。聚合作品集、动态与社交链接，Linktree 之外的更体面选择。',
   },
 };
 

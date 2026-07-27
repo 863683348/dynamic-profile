@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation';
+import type { Metadata } from 'next';
 import type { CSSProperties } from 'react';
 import { sql } from '@/lib/db/index';
 import {
@@ -16,6 +17,41 @@ const SITE =
   process.env.NEXT_PUBLIC_SITE_URL || 'https://dynamic-profile.shop';
 
 export const dynamic = "force-dynamic";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { handle: string };
+}): Promise<Metadata> {
+  const profile = await getProfileByHandle(params.handle);
+  if (!profile) {
+    return { title: '用户不存在' };
+  }
+
+  const displayName = profile.display_name || `@${profile.handle}`;
+  const bio = profile.bio || `${displayName} 的个人主页，展示作品集与社交链接`;
+  const title = `${displayName} 的动态主页 · 作品集与个人品牌`;
+  const desc = bio.length > 155 ? bio.slice(0, 152) + '...' : bio;
+
+  return {
+    title,
+    description: desc,
+    openGraph: {
+      title,
+      description: desc,
+      url: `${SITE}/${profile.handle}`,
+      ...(profile.avatar_url ? { images: [{ url: profile.avatar_url }] } : {}),
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description: desc,
+    },
+    alternates: {
+      canonical: `${SITE}/${profile.handle}`,
+    },
+  };
+}
 
 /**
  * 安全的 handle 转义（防止 SQL 注入）。

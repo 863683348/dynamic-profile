@@ -7,10 +7,7 @@ const SITE =
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: `${SITE}/`, lastModified: new Date(), changeFrequency: 'weekly', priority: 1 },
-    { url: `${SITE}/linxi`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
     { url: `${SITE}/pricing`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${SITE}/privacy`, lastModified: new Date(), changeFrequency: 'yearly', priority: 0.4 },
-    { url: `${SITE}/terms`, lastModified: new Date(), changeFrequency: 'yearly', priority: 0.4 },
     { url: `${SITE}/faq`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.5 },
     { url: `${SITE}/blog`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.5 },
     { url: `${SITE}/contact`, lastModified: new Date(), changeFrequency: 'yearly', priority: 0.4 },
