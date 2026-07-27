@@ -1,18 +1,18 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: '定价 · 免费版与 Pro 版功能对比',
+  title: 'Pricing · Free vs Pro Plans',
   description:
-    '动态主页提供免费版和 Pro 版两种方案。免费版免费创建个人主页，Pro 版去除品牌标识、开放高级主题与数据分析面板，按年订阅更优惠。',
+    'Dynamic Profile offers Free and Pro plans. Start free with your personal homepage, upgrade to Pro to remove branding, unlock advanced themes, and get analytics. Save with yearly billing.',
   openGraph: {
-    title: '定价 · 动态主页 | 免费版与 Pro 版功能对比',
+    title: 'Pricing · Dynamic Profile | Free vs Pro Plans',
     description:
-      '免费创建个人主页，Pro 版解锁更多高级功能。按年订阅更优惠，随时可升级。',
+      'Create your personal homepage for free. Upgrade to Pro to unlock advanced themes, remove branding, and access analytics.',
   },
   twitter: {
-    title: '定价 · 动态主页 | 免费版与 Pro 版功能对比',
+    title: 'Pricing · Dynamic Profile | Free vs Pro Plans',
     description:
-      '免费创建个人主页，Pro 版解锁更多高级功能。按年订阅更优惠，随时可升级。',
+      'Create your personal homepage for free. Upgrade to Pro to unlock advanced themes, remove branding, and access analytics.',
   },
 };
 

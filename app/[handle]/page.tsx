@@ -25,12 +25,12 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const profile = await getProfileByHandle(params.handle);
   if (!profile) {
-    return { title: '用户不存在' };
+    return { title: 'User not found' };
   }
 
   const displayName = profile.display_name || `@${profile.handle}`;
-  const bio = profile.bio || `${displayName} 的个人主页，展示作品集与社交链接`;
-  const title = `${displayName} 的动态主页 · 作品集与个人品牌`;
+  const bio = profile.bio || `${displayName}'s personal homepage — portfolio, social links & bio`;
+  const title = `${displayName} · Portfolio & Personal Brand on Dynamic Profile`;
   const desc = bio.length > 155 ? bio.slice(0, 152) + '...' : bio;
 
   return {

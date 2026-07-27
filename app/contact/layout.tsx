@@ -1,18 +1,18 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: '联系我们 · 动态主页',
+  title: 'Contact Us · Dynamic Profile',
   description:
-    '有疑问或建议？联系我们获取帮助。动态主页 — 零代码杂志风个人主页生成器。',
+    'Have questions or suggestions? Get in touch with the Dynamic Profile team. We build the no-code magazine-style personal homepage builder.',
   openGraph: {
-    title: '联系我们 · 动态主页',
+    title: 'Contact Us · Dynamic Profile',
     description:
-      '有疑问或建议？联系我们获取帮助。动态主页 — 零代码杂志风个人主页生成器。',
+      'Have questions or suggestions? Get in touch with the Dynamic Profile team.',
   },
   twitter: {
-    title: '联系我们 · 动态主页',
+    title: 'Contact Us · Dynamic Profile',
     description:
-      '有疑问或建议？联系我们获取帮助。动态主页 — 零代码杂志风个人主页生成器。',
+      'Have questions or suggestions? Get in touch with the Dynamic Profile team.',
   },
 };
 

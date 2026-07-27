@@ -484,7 +484,7 @@ type I18nValue = {
 const I18nContext = createContext<I18nValue | null>(null);
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [lang, setLangState] = useState<Lang>('zh');
+  const [lang, setLangState] = useState<Lang>('en');
 
   // 读取已保存的语言偏好（localStorage）
   useEffect(() => {
@@ -520,9 +520,9 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 export function useI18n(): I18nValue {
   const ctx = useContext(I18nContext);
   if (!ctx) {
-    // 兜底：未在 Provider 内时返回中文
+    // 兜底：未在 Provider 内时返回英文
     return {
-      lang: 'zh',
+      lang: 'en',
       setLang: () => {},
       t: (key: string, vars?: Record<string, string | number>) => {
         let s = dicts.zh[key] ?? key;

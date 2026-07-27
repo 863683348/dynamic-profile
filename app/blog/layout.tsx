@@ -1,18 +1,18 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: '博客 · 个人品牌与作品集建设指南',
+  title: 'Blog · Personal Brand & Portfolio Tips',
   description:
-    '关于个人品牌打造、作品集展示技巧、链接树替代方案及零代码建站的深度文章。用杂志风格的个人主页在数字世界脱颖而出。',
+    'In-depth articles about personal branding, portfolio showcase tips, link-in-bio alternatives, and no-code website building. Stand out online with a magazine-style personal homepage.',
   openGraph: {
-    title: '动态主页 · 博客',
+    title: 'Blog · Dynamic Profile',
     description:
-      '个人品牌、作品集与动态主页的思考与更新。分享使用技巧、设计思路与产品更新。',
+      'Tips and guides on personal branding, portfolio building, and making the most of your Dynamic Profile homepage.',
   },
   twitter: {
-    title: '动态主页 · 博客',
+    title: 'Blog · Dynamic Profile',
     description:
-      '个人品牌、作品集与动态主页的思考与更新。分享使用技巧、设计思路与产品更新。',
+      'Tips and guides on personal branding, portfolio building, and making the most of your Dynamic Profile homepage.',
   },
 };
 

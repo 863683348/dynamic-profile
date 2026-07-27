@@ -1,19 +1,19 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: '服务条款 · 动态主页',
+  title: 'Terms of Service · Dynamic Profile',
   description:
-    '动态主页服务条款，使用我们的个人主页生成器即表示同意以下条款和条件。',
+    'Dynamic Profile terms of service. By using our personal homepage builder, you agree to these terms and conditions.',
   robots: { index: false, follow: true },
   openGraph: {
-    title: '服务条款 · 动态主页',
+    title: 'Terms of Service · Dynamic Profile',
     description:
-      '动态主页服务条款，使用我们的个人主页生成器即表示同意以下条款和条件。',
+      'Dynamic Profile terms of service. By using our personal homepage builder, you agree to these terms and conditions.',
   },
   twitter: {
-    title: '服务条款 · 动态主页',
+    title: 'Terms of Service · Dynamic Profile',
     description:
-      '动态主页服务条款，使用我们的个人主页生成器即表示同意以下条款和条件。',
+      'Dynamic Profile terms of service. By using our personal homepage builder, you agree to these terms and conditions.',
   },
 };
 
