@@ -1,110 +1,200 @@
-# 动态个人主页 (Dynamic Profile) — MVP
+<div align="center">
+  <br/>
+  <h1>📰 Dynamic Profile</h1>
+  <p><strong>Magazine-style personal homepage builder</strong></p>
+  <p>
+    <a href="https://dynamic-profile.shop" target="_blank">🌐 dynamic-profile.shop</a>
+    ·
+    <a href="#features">Features</a>
+    ·
+    <a href="#getting-started">Getting Started</a>
+    ·
+    <a href="#tech-stack">Tech Stack</a>
+  </p>
+  <br/>
+</div>
 
-一个基于 **Next.js 14 (App Router) + Supabase + TypeScript + Tailwind** 的动态个人主页。
-用户可拥有自定义 `handle` 的主页（`/[handle]`），编辑档案与内容，并查看浏览量统计。
+**Dynamic Profile** lets you create a beautiful, magazine-style personal homepage in minutes — no coding required. It's a more elegant alternative to Linktree, designed for creators, artists, freelancers, and anyone who wants to present their portfolio, social links, and updates in one place.
 
-> 本仓库为 MVP 后端脚手架 + 数据层。**前端页面 / 组件 / 全局样式由前端同事负责**（见「职责边界」）。
+<p align="center">
+  <img src="https://img.shields.io/badge/Next.js-14-black?style=flat&logo=next.js" alt="Next.js 14"/>
+  <img src="https://img.shields.io/badge/TypeScript-5.6-blue?style=flat&logo=typescript" alt="TypeScript"/>
+  <img src="https://img.shields.io/badge/Neon-Postgres-green?style=flat&logo=postgresql" alt="Neon Postgres"/>
+  <img src="https://img.shields.io/badge/Auth.js-v5-orange?style=flat" alt="Auth.js v5"/>
+  <img src="https://img.shields.io/badge/Tailwind_CSS-3.4-cyan?style=flat&logo=tailwindcss" alt="Tailwind CSS"/>
+  <img src="https://img.shields.io/badge/Vercel-Deployed-black?style=flat&logo=vercel" alt="Vercel"/>
+</p>
 
-## 技术栈
+---
 
-- Next.js 14（App Router、TypeScript）
-- Supabase（Postgres + Auth + RLS），通过 `@supabase/supabase-js` + `@supabase/ssr`
-- Tailwind CSS
+## ✨ Features
 
-## 快速开始
+- **🎨 Magazine-Style Layouts** — Choose from multiple editorial-style themes for your personal page
+- **🔗 Link in Bio, Done Right** — Aggregate your portfolio, social links, and latest updates in one elegant page
+- **📝 Posts & Portfolio** — Share updates (posts) and showcase your work (portfolio) with separate tabs
+- **🌐 Multi-Language** — Built-in Chinese/English i18n with runtime language switching
+- **🎭 Custom Themes** — Pick your own accent color, light/dark mode, and typography
+- **📊 Visit Analytics** — Track page views (Pro plan)
+- **🔒 Auth.js Authentication** — Sign in with email magic link or Google OAuth
+- **📱 Mobile-First** — Fully responsive, optimized for all devices
+- **⚡ Blazing Fast** — Built on Next.js 14 with Vercel Edge Network
+- **🆓 Free to Start** — Create and publish your homepage at no cost
 
-### 1. 安装依赖
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 18+
+- A [Neon](https://neon.tech) Postgres database
+- (Optional) A [Polar.sh](https://polar.sh) account for payment processing
+
+### 1. Clone & Install
 
 ```bash
+git clone https://github.com/863683348/dynamic-profile.git
+cd dynamic-profile
 npm install
 ```
 
-### 2. 配置环境变量
+### 2. Environment Variables
 
 ```bash
 cp .env.example .env.local
 ```
 
-在 `.env.local` 填入 Supabase 项目凭证（控制台 → Project Settings → API）：
+Fill in your credentials:
 
-| 变量 | 说明 |
-|------|------|
-| `NEXT_PUBLIC_SUPABASE_URL` | 项目 URL（公开，浏览器可见） |
-| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | anon key（公开，受 RLS 限制） |
-| `SUPABASE_SERVICE_ROLE_KEY` | service_role key（**私密，仅服务端**，切勿暴露到浏览器） |
+| Variable | Description |
+|----------|-------------|
+| `DATABASE_URL` | Neon Postgres connection string |
+| `AUTH_SECRET` | Auth.js secret (`openssl rand -base64 32`) |
+| `AUTH_GOOGLE_ID` | Google OAuth client ID (optional) |
+| `AUTH_GOOGLE_SECRET` | Google OAuth client secret (optional) |
+| `NEXT_PUBLIC_SITE_URL` | Your deployed URL |
+| `POLAR_ACCESS_TOKEN` | Polar.sh API token (optional) |
+| `NEXT_PUBLIC_POLAR_ENABLED` | Enable Polar.sh payments (optional) |
 
-### 3. 初始化数据库
+### 3. Database Setup
 
-在 Supabase **SQL Editor** 依次执行：
+Run the schema in your Neon database console:
 
-1. `supabase/schema.sql` —— 建表 / 索引 / 函数 / 触发器 / RLS
-2. `supabase/seed.sql` —— 示例档案 `linxi`（含 3 条已发布内容 + 统计）
+```sql
+-- Execute supabase/schema.sql (tables, indexes, functions, RLS)
+-- Then seed sample data:
+-- supabase/seed.sql — creates sample profile "linxi" with 3 posts
+```
 
-> 或使用 CLI：`supabase db push`（seed 仍需手动执行或 `supabase db execute --file supabase/seed.sql`）。
-> 详见 `supabase/README.md`。
-
-### 4. 本地运行
+### 4. Run Locally
 
 ```bash
 npm run dev
-# 打开 http://localhost:3000/linxi 查看示例主页
 ```
 
-## 目录结构（后端相关）
+Open [http://localhost:3000](http://localhost:3000) — visit `/linxi` to see the sample profile.
+
+---
+
+## 🏗️ Project Structure
 
 ```
-.
-├── app/
-│   ├── api/                       # API 路由（后端边界）
-│   │   ├── profile/route.ts                 # POST 创建/更新档案
-│   │   ├── posts/route.ts                   # POST 创建内容
-│   │   ├── posts/[id]/route.ts              # PATCH 更新内容状态
-│   │   └── profile/[handle]/view/route.ts   # POST 浏览量 +1（公开）
-│   └── auth/callback/route.ts     # GET 服务端兑换 Magic Link code → 302 /dashboard
-├── lib/
-│   ├── types.ts                  # Profile / Post / Stats 类型
-│   └── supabase/
-│       ├── client.ts             # 浏览器端 client（anon）
-│       ├── server.ts             # 服务端 client（cookies 会话透传）
-│       └── queries.ts            # 类型化数据访问函数
-├── supabase/
-│   ├── schema.sql                # 表 / 索引 / 函数 / 触发器 / RLS
-│   ├── seed.sql                  # 示例数据
-│   └── README.md                 # 数据库执行说明
-├── .env.example
-├── package.json / tsconfig.json / next.config.mjs
-├── tailwind.config.ts / postcss.config.mjs / next-env.d.ts
-└── README.md
+app/
+├── [handle]/              # Dynamic user profile pages (SSR)
+│   └── page.tsx           # Public profile page
+├── api/                   # API routes
+│   ├── auth/              # Auth.js endpoints
+│   ├── checkout/          # Polar.sh checkout
+│   ├── posts/             # Post CRUD
+│   ├── profile/           # Profile CRUD
+│   ├── subscription/      # Subscription management
+│   └── webhook/           # Polar.sh webhooks
+├── blog/                  # Blog
+├── contact/               # Contact page
+├── dashboard/             # User dashboard (profile editor)
+├── faq/                   # FAQ page
+├── pricing/               # Pricing page
+├── layout.tsx             # Root layout with SEO metadata
+├── sitemap.ts             # Dynamic sitemap generation
+└── robots.ts              # Robots.txt configuration
+
+components/                # Reusable UI components
+├── ProfileCard.tsx        # User profile card
+├── Tabs.tsx               # Posts / About / Works tabs
+├── LangToggle.tsx         # Language switcher
+├── TopControls.tsx        # Top bar (language + theme toggle)
+├── SiteFooter.tsx         # Site footer
+└── ...
+
+lib/
+├── db/                    # Database layer (Neon serverless)
+│   ├── index.ts           # Connection
+│   └── queries.ts         # Typed queries
+├── i18n.tsx               # Chinese/English i18n
+└── types.ts               # TypeScript types
+
+supabase/
+├── schema.sql             # Database schema
+└── seed.sql               # Sample data
 ```
 
-## API 速览
+---
 
-| 方法 | 路径 | 鉴权 | 说明 |
-|------|------|------|------|
-| POST | `/api/profile` | ✅ | 创建/更新当前用户档案（body 含 `handle`），返回 `{ ok, profile }` |
-| POST | `/api/posts` | ✅ | 在指定 `handle` 下创建内容（body 必带 `handle`），返回 `{ post }` |
-| PATCH | `/api/posts/[id]` | ✅ | 更新内容状态 `draft/published/hidden` |
-| POST | `/api/profile/[handle]/view` | ❌ | 浏览量 +1，返回 `{ views }` |
-| GET | `/api/auth/callback` | ❌ | Supabase Magic Link/OAuth 回调：服务端 `exchangeCodeForSession` 后 302 `/dashboard` |
+## 🛠️ Tech Stack
 
-> 写接口已直接返回完整 `profile` / `post` 对象，前端无需本地重建。
-> 后台读取（dashboard）：登录用户可经浏览器端 `createClient()` 直连 Supabase 读 `profiles`(按 `owner_id`) 与 `posts`(按 `handle`，含草稿)，由 RLS 约束（见下）。
+| Layer | Technology |
+|-------|-----------|
+| **Framework** | [Next.js 14](https://nextjs.org/) (App Router, RSC) |
+| **Language** | [TypeScript](https://www.typescriptlang.org/) |
+| **Database** | [Neon](https://neon.tech/) (serverless Postgres) |
+| **ORM** | Raw SQL via `@neondatabase/serverless` |
+| **Auth** | [Auth.js v5](https://authjs.dev/) (Credentials + Google) |
+| **Payments** | [Polar.sh](https://polar.sh) |
+| **Styling** | [Tailwind CSS 3](https://tailwindcss.com/) + CSS variables |
+| **Icons** | [Lucide](https://lucide.dev/) |
+| **Hosting** | [Vercel](https://vercel.com/) (Edge Network) |
 
-错误返回统一带 `code` / `message`，例如未登录 `40101`、handle 非法 `40002`。
+---
 
-## 职责边界（与前端约定）
+## 🔒 Security
 
-- **后端负责**：上述 `app/api/*`、所有 `lib/*`、`supabase/*`、配置文件、`.env.example`、本 README。
-- **前端负责**：`app/layout.tsx`、`app/globals.css`、`app/page.tsx`、`app/[handle]/page.tsx`、`app/dashboard/**`、`components/**`。
+- **Content Security Policy** — Strict CSP headers configured
+- **HSTS Preload** — HTTPS enforced with 2-year HSTS
+- **XSS Protection** — X-Frame-Options DENY, X-Content-Type-Options nosniff
+- **SQL Injection** — Handle validation + parameterized queries
+- **Auth** — Server-side session validation via Auth.js
 
-### 给前端的约定
+---
 
-- 主题色读取 `profiles.theme_color`（默认 `#c2410c`）与 `profiles.theme_dark`，由前端 `globals.css` 的 CSS 变量驱动。
-- 路径别名 `@/*` → 项目根；服务端取数统一走 `lib/supabase/queries.ts` 的导出函数（如 `getProfileByHandle`、`getPublishedPosts`、`getStats`、`incrementViews`）。
-- `handle` 格式约束：`^[a-z0-9_]{3,20}$`（前后端保持一致）。
-- 浏览器端如需直接读公开数据，可用 `lib/supabase/client.ts` 的 `createClient()`。
+## 🌐 Internationalization
 
-## 安全要点
+Dynamic Profile supports **Chinese (zh-CN)** and **English (en)**. The default language is English. Users can switch between languages at any time via the toggle in the top-right corner. Language preference is persisted in localStorage.
 
-- 所有写入受 **RLS** 约束：档案/内容仅 owner（`auth.uid()`）可写，浏览量只能经 `security definer` 函数自增。
-- `service_role` key 仅服务端使用，绝不进浏览器包。
+---
+
+## 📈 SEO
+
+This project is optimized for search engines:
+
+- ✅ Semantic HTML with proper heading hierarchy
+- ✅ Unique `<title>` and `<meta description>` per page
+- ✅ JSON-LD structured data (WebSite + SoftwareApplication + ProfilePage/Person)
+- ✅ Dynamic sitemap.xml with static + user-generated routes
+- ✅ robots.txt with proper crawl directives
+- ✅ Open Graph + Twitter Card metadata
+- ✅ Core Web Vitals optimized (Vercel CDN)
+- ✅ Hreflang tags for multi-language support
+
+---
+
+## 📄 License
+
+MIT © Dynamic Profile
+
+---
+
+<p align="center">
+  Made with ❤️ for the creator economy.
+  <br/>
+  <a href="https://dynamic-profile.shop">🌐 dynamic-profile.shop</a>
+</p>
