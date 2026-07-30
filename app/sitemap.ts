@@ -6,11 +6,17 @@ const SITE =
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes: MetadataRoute.Sitemap = [
-    { url: `${SITE}/`, lastModified: new Date(), changeFrequency: 'weekly', priority: 1 },
-    { url: `${SITE}/pricing`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${SITE}/faq`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.5 },
-    { url: `${SITE}/blog`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.5 },
-    { url: `${SITE}/contact`, lastModified: new Date(), changeFrequency: 'yearly', priority: 0.4 },
+    { url: `${SITE}/`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 1 },
+    { url: `${SITE}/pricing`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.7 },
+    { url: `${SITE}/privacy`, lastModified: new Date(), changeFrequency: 'yearly' as const, priority: 0.3 },
+    { url: `${SITE}/terms`, lastModified: new Date(), changeFrequency: 'yearly' as const, priority: 0.3 },
+    { url: `${SITE}/faq`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.5 },
+    { url: `${SITE}/blog`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.5 },
+    { url: `${SITE}/contact`, lastModified: new Date(), changeFrequency: 'yearly' as const, priority: 0.4 },
+    // AdSense 授权文件（ads.txt）由 Google 爬虫抓取验证
+    ...(process.env.ADS_TXT_CONTENT
+      ? [{ url: `${SITE}/ads.txt`, lastModified: new Date(), changeFrequency: 'yearly' as const, priority: 0.1 }]
+      : []),
   ];
 
   let dynamic: MetadataRoute.Sitemap = [];

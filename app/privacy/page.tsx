@@ -12,6 +12,7 @@ export default function PrivacyPage() {
       <Block h={t('privacy_collect_h')} b={t('privacy_collect_b')} />
       <Block h={t('privacy_payment_h')} b={t('privacy_payment_b')} />
       <Block h={t('privacy_cookies_h')} b={t('privacy_cookies_b')} />
+      <Block h={t('privacy_ads_h')} b={t('privacy_ads_b')} />
       <Block h={t('privacy_rights_h')} b={t('privacy_rights_b')} />
       <Block h={t('privacy_contact_h')} b={t('privacy_contact_b')} />
     </LegalLayout>

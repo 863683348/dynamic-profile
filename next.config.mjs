@@ -37,14 +37,14 @@ const nextConfig = {
             value: [
               "default-src 'self'",
               // 主题切换等内联脚本需要 unsafe-inline；Auth.js 与 GA4/Clarity 走 https 域名
-              "script-src 'self' 'unsafe-inline' https://*.googletagmanager.com https://*.clarity.ms",
+              "script-src 'self' 'unsafe-inline' https://*.googletagmanager.com https://*.clarity.ms https://pagead2.googlesyndication.com https://securepubads.g.doubleclick.net https://*.adsensecustomsearchads.com https://*.google.com https://*.gstatic.com",
               "style-src 'self' 'unsafe-inline'",
-              // 头像 / OG 图来自外部 https 域名，data: 用于内联 SVG
+              // 头像 / OG 图来自外部 https 域名，data: 用于内联 SVG；放开广告创意所需的三方图
               "img-src 'self' data: https: blob:",
               "font-src 'self' data:",
-              "connect-src 'self' https://*.google-analytics.com https://*.clarity.ms https://*.googletagmanager.com https://api.polar.sh https://sandbox-api.polar.sh",
+              "connect-src 'self' https://*.google-analytics.com https://*.clarity.ms https://*.googletagmanager.com https://api.polar.sh https://sandbox-api.polar.sh https://pagead2.googlesyndication.com https://securepubads.g.doubleclick.net",
               // Polar 收银台为整页跳转（非 iframe），此处仍放开其域名以策万全
-              "frame-src 'self' https://polar.sh https://sandbox.polar.sh",
+              "frame-src 'self' https://polar.sh https://sandbox.polar.sh https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://pagead2.googlesyndication.com",
               "frame-ancestors 'none'",
               "base-uri 'self'",
               "form-action 'self'",

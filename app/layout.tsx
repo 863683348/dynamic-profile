@@ -2,6 +2,7 @@ import './globals.css';
 import type { Metadata, Viewport } from 'next';
 import { Providers } from './providers';
 import { Analytics } from '@/components/Analytics';
+import { AdSense } from '@/components/AdSense';
 
 const SITE =
   process.env.NEXT_PUBLIC_SITE_URL || 'https://dynamic-profile.shop';
@@ -122,6 +123,7 @@ export default function RootLayout({
         />
         <Providers>{children}</Providers>
         <Analytics isProd={isProd} />
+        <AdSense isProd={isProd} />
       </body>
     </html>
   );

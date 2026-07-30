@@ -194,6 +194,9 @@ const zh: Dict = {
     '你可以随时登录控制台修改或删除你的档案与动态。如需删除账号或导出数据，请联系我们，我们将在合理时间内处理。',
   privacy_contact_h: '联系我们',
   privacy_contact_b: '关于本政策的任何问题，欢迎通过下方邮箱联系我们。',
+  privacy_ads_h: '广告',
+  privacy_ads_b:
+    '本服务可能通过 Google AdSense 展示广告。Google 及其合作伙伴可能使用 Cookie 与其它技术投放与你的兴趣相关的广告，并衡量广告效果。你可以通过 Google 的广告设置（aboutads.info）管理个性化广告偏好。我们不会将你的个人档案内容用于广告定向。',
 
   // Terms
   terms_title: '服务条款',
@@ -420,6 +423,9 @@ const en: Dict = {
     'You can edit or delete your profile and updates anytime from the console. To delete your account or export your data, contact us and we will act within a reasonable time.',
   privacy_contact_h: 'Contact us',
   privacy_contact_b: 'For any questions about this policy, reach us via the email below.',
+  privacy_ads_h: 'Advertising',
+  privacy_ads_b:
+    'This service may display ads served by Google AdSense. Google and its partners may use cookies and similar technologies to serve ads based on your interests and to measure ad performance. You can manage personalized ad preferences via Google’s Ads Settings (aboutads.info). We do not use your profile content for ad targeting.',
 
   // Terms
   terms_title: 'Terms of Service',

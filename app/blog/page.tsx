@@ -2,6 +2,7 @@
 
 import { useI18n } from '@/lib/i18n';
 import { LegalLayout } from '@/components/LegalLayout';
+import { AdSlot } from '@/components/AdSlot';
 
 export default function BlogPage() {
   const { t } = useI18n();
@@ -16,6 +17,7 @@ export default function BlogPage() {
         <h2 className="magazine-title mb-2 mt-3 text-2xl">{t('blog_post1_title')}</h2>
         <p className="text-sm leading-relaxed opacity-80">{t('blog_post1_body')}</p>
       </article>
+      <AdSlot className="my-8 min-h-[120px]" />
     </LegalLayout>
   );
 }

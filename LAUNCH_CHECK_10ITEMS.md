@@ -33,7 +33,7 @@
 | ⑦ | GA4 + 热力 | ⚠️ 部分 | `components/Analytics.tsx` 已就绪：仅生产加载（`isProd` server 端计算）、SPA 路由补发 page_view；ID `G-KZ9V2Z95X1` 已在 `.env.local`；OG/热力域名已进 CSP | **生产未激活**：需在 Vercel Production 加 `NEXT_PUBLIC_GA_ID=G-KZ9V2Z95X1` 触发重部署。热力图(Clarity)仅占位、未真正启用 |
 | ⑧ | 移动端适配 | ✅ 完成 | viewport/safe-area + 各组件响应式（commit 74294c8）；`next build` 通过、已部署 | 生产 375px 真机回归尚未做（可选） |
 | ⑨ | 安全检测（Phase5 闸门） | ✅ 完成 | `next` 14.2.15→**14.2.35**（消除中间件鉴权绕过 critical `GHSA-f82v-jwr5-mffw`）；`next.config.mjs` 加 CSP/X-Frame-Options=DENY/X-Content-Type-Options/Referrer-Policy/HSTS/Permissions-Policy；`npm audit` **0 critical** | 剩 1 high + 1 moderate（均为 DoS 类），仅能经 `next@16` 破坏性升级修复，超出本次范围 |
-| ⑩ | SEO 操作 | ✅ 完成 | `layout.tsx` metadata 扩到 ~31 关键词（中+英趋势词）+ OG/Twitter；新增 JSON-LD（WebSite+SoftwareApplication）；`sitemap.ts`(查 profiles)+`robots.ts` 已生成 | — |
+| ⑩ | SEO 操作 | ✅ 完成 | `layout.tsx` metadata 扩到 ~31 关键词（中+英趋势词）+ OG/Twitter；新增 JSON-LD（WebSite+SoftwareApplication）；`sitemap.ts`(查 profiles)+`robots.ts` 已生成；新增 `ads.txt` 路由支持 AdSense 授权，`robots.ts` 条件性声明 ads.txt 路径；新增 `/privacy` 和 `/terms` 页面并纳入 sitemap；`.env.example` 新增 `ADS_TXT_CONTENT` 占位 | — |
 
 ---
 

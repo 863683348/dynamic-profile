@@ -12,6 +12,7 @@ import { Tabs } from '@/components/Tabs';
 import { ViewTracker } from '@/components/ViewTracker';
 import { TopControls } from '@/components/TopControls';
 import { ProfileThemeInit } from '@/components/ProfileThemeInit';
+import { AdSlot } from '@/components/AdSlot';
 
 const SITE =
   process.env.NEXT_PUBLIC_SITE_URL || 'https://dynamic-profile.shop';
@@ -134,6 +135,9 @@ export default async function ProfilePage({
           </a>
         </footer>
       )}
+
+      {/* 内容广告位（仅生产环境 + 已配置 AdSense 时展示） */}
+      <AdSlot className="mx-auto my-10 max-w-5xl px-4" />
     </main>
   );
 }
