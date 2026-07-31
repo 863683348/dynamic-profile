@@ -2,15 +2,15 @@
 
 import { useI18n } from '@/lib/i18n';
 
+// PRD US-03：从 6 个预设主题色中点选。
+// 统一暖色编辑风调性，不含紫/粉（避免 P0-2 紫粉渐变套路）。
 const PRESETS = [
-  '#c2410c', // terracotta（默认）
-  '#9a3412',
-  '#b45309',
-  '#7c2d12',
-  '#a16207',
-  '#9333ea',
-  '#0f766e',
-  '#1d4ed8',
+  '#c2410c', // terracotta 赤陶（默认）
+  '#9a3412', // rust 铁锈
+  '#b45309', // amber 琥珀
+  '#a16207', // ochre 赭石
+  '#0f766e', // teal 墨绿
+  '#1d4ed8', // navy 藏蓝
 ];
 
 export function ThemePicker({

@@ -155,6 +155,7 @@ export default function DashboardPage() {
           content: data.content,
           category: data.category,
           status: data.status,
+          source: data.source ?? 'manual',
         }),
       });
       const json = await res.json();
