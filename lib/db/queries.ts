@@ -6,6 +6,7 @@ import type {
   Stats,
   ProfileInput,
   PostInput,
+  PostCategory,
   PostStatus,
   Subscription,
 } from "@/lib/types";
@@ -195,6 +196,64 @@ export async function updatePostStatus(
 ): Promise<boolean> {
   const rows = (await sql`
     UPDATE posts SET status = ${status}
+    WHERE id = ${id}
+      AND handle IN (SELECT handle FROM profiles WHERE owner_id = ${ownerId})
+    RETURNING id
+  `) as { id: string }[];
+  return rows.length > 0;
+}
+
+/**
+ * 整条更新内容（标题 / 内容 / 类别 / 状态，按需部分更新）。仅 owner 可操作。
+ * 通过 handle 归属校验保证只能改自己名下的内容。
+ */
+export async function updatePost(
+  id: string,
+  patch: {
+    title?: string | null;
+    content?: string | null;
+    category?: PostCategory;
+    status?: PostStatus;
+  },
+  ownerId: string
+): Promise<boolean> {
+  // 先取现有行，未提供的字段保留原值（仍走参数化，避免 SQL 注入）
+  const existing = (await sql`
+    SELECT title, content, category, status
+    FROM posts
+    WHERE id = ${id}
+      AND handle IN (SELECT handle FROM profiles WHERE owner_id = ${ownerId})
+    LIMIT 1
+  `) as Array<{
+    title: string | null;
+    content: string | null;
+    category: PostCategory;
+    status: PostStatus;
+  }>;
+  const cur = existing[0];
+  if (!cur) return false;
+
+  const title = patch.title !== undefined ? (patch.title ?? null) : cur.title;
+  const content = patch.content !== undefined ? (patch.content ?? null) : cur.content;
+  const category = patch.category !== undefined ? patch.category : cur.category;
+  const status = patch.status !== undefined ? patch.status : cur.status;
+
+  const rows = (await sql`
+    UPDATE posts
+    SET title = ${title}, content = ${content}, category = ${category}, status = ${status}
+    WHERE id = ${id}
+      AND handle IN (SELECT handle FROM profiles WHERE owner_id = ${ownerId})
+    RETURNING id
+  `) as unknown as { id: string }[];
+  return rows.length > 0;
+}
+
+/**
+ * 删除内容。仅 owner 可操作（同理归属校验）。
+ */
+export async function deletePost(id: string, ownerId: string): Promise<boolean> {
+  const rows = (await sql`
+    DELETE FROM posts
     WHERE id = ${id}
       AND handle IN (SELECT handle FROM profiles WHERE owner_id = ${ownerId})
     RETURNING id

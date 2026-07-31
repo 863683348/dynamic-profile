@@ -1,9 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Send, Github, RefreshCw, Loader2 } from 'lucide-react';
 import { useI18n } from '@/lib/i18n';
-import type { PostCategory } from '@/lib/types';
+import type { PostCategory, Post } from '@/lib/types';
 
 export type PostDraft = {
   title: string;
@@ -27,18 +27,38 @@ type GithubActivity = {
 export function PostComposer({
   onPublish,
   saving,
+  initial,
+  lockCategory,
 }: {
-  onPublish: (data: PostDraft) => void;
+  // editingId 非空时走"更新"，否则走"新建"
+  onPublish: (data: PostDraft, editingId?: string | null) => void;
   saving: boolean;
+  initial?: Post | null;
+  lockCategory?: PostCategory;
 }) {
   const { t } = useI18n();
+  const isEditing = Boolean(initial);
+
   const [source, setSource] = useState<'manual' | 'github'>('manual');
 
   // 手动模式
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
-  const [category, setCategory] = useState<PostCategory>('post');
-  const [status, setStatus] = useState<'draft' | 'published'>('published');
+  const [title, setTitle] = useState(initial?.title ?? '');
+  const [content, setContent] = useState(initial?.content ?? '');
+  const [category, setCategory] = useState<PostCategory>(
+    initial?.category ?? lockCategory ?? 'post'
+  );
+  const [status, setStatus] = useState<'draft' | 'published'>(
+    initial?.status === 'hidden' ? 'draft' : initial?.status ?? 'published'
+  );
+
+  // 切换编辑目标 / 取消编辑时，同步表单
+  useEffect(() => {
+    setTitle(initial?.title ?? '');
+    setContent(initial?.content ?? '');
+    setCategory(initial?.category ?? lockCategory ?? 'post');
+    setStatus(initial?.status === 'hidden' ? 'draft' : initial?.status ?? 'published');
+    setSource('manual');
+  }, [initial, lockCategory]);
 
   // GitHub 模式
   const [ghUser, setGhUser] = useState('');
@@ -49,11 +69,16 @@ export function PostComposer({
   function handleManualSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!title.trim()) return;
-    onPublish({ title: title.trim(), content: content.trim(), category, status });
-    setTitle('');
-    setContent('');
-    setCategory('post');
-    setStatus('published');
+    onPublish(
+      { title: title.trim(), content: content.trim(), category, status },
+      initial?.id ?? null
+    );
+    if (!isEditing) {
+      setTitle('');
+      setContent('');
+      setCategory(lockCategory ?? 'post');
+      setStatus('published');
+    }
   }
 
   async function loadGithub() {
@@ -93,51 +118,57 @@ export function PostComposer({
       className="paper-card space-y-3 p-5"
     >
       <div className="flex items-center justify-between">
-        <h3 className="magazine-title text-lg">{t('pc_title')}</h3>
+        <h3 className="magazine-title text-lg">
+          {isEditing ? t('pc_editing') : t('pc_title')}
+        </h3>
       </div>
 
-      {/* 来源切换：手动 / GitHub */}
-      <div className="flex gap-2" role="radiogroup" aria-label={t('pc_source_label')}>
-        {(['manual', 'github'] as const).map((s) => (
-          <button
-            key={s}
-            type="button"
-            role="radio"
-            aria-checked={source === s}
-            onClick={() => setSource(s)}
-            className={`flex items-center gap-1.5 rounded-md border px-3 py-1.5 text-sm font-medium transition-colors ${
-              source === s
-                ? 'border-primary bg-primary/10 text-primary'
-                : 'border-gray-300 opacity-70 hover:border-gray-400 hover:opacity-100'
-            }`}
-          >
-            {s === 'github' ? <Github className="h-4 w-4" /> : <Send className="h-4 w-4" />}
-            {s === 'github' ? t('pc_src_github') : t('pc_src_manual')}
-          </button>
-        ))}
-      </div>
+      {/* 编辑态：隐藏来源切换，仅手动 */}
+      {!isEditing && (
+        <div className="flex gap-2" role="radiogroup" aria-label={t('pc_source_label')}>
+          {(['manual', 'github'] as const).map((s) => (
+            <button
+              key={s}
+              type="button"
+              role="radio"
+              aria-checked={source === s}
+              onClick={() => setSource(s)}
+              className={`flex items-center gap-1.5 rounded-md border px-3 py-1.5 text-sm font-medium transition-colors ${
+                source === s
+                  ? 'border-primary bg-primary/10 text-primary'
+                  : 'border-gray-300 opacity-70 hover:border-gray-400 hover:opacity-100'
+              }`}
+            >
+              {s === 'github' ? <Github className="h-4 w-4" /> : <Send className="h-4 w-4" />}
+              {s === 'github' ? t('pc_src_github') : t('pc_src_manual')}
+            </button>
+          ))}
+        </div>
+      )}
 
       {source === 'manual' ? (
         <>
-          {/* 类型切换：动态 / 作品 */}
-          <div className="flex gap-2" role="radiogroup" aria-label={t('pc_category_label')}>
-            {(['post', 'work'] as PostCategory[]).map((cat) => (
-              <button
-                key={cat}
-                type="button"
-                role="radio"
-                aria-checked={category === cat}
-                onClick={() => setCategory(cat)}
-                className={`rounded-md border px-3 py-1.5 text-sm font-medium transition-colors ${
-                  category === cat
-                    ? 'border-primary bg-primary/10 text-primary'
-                    : 'border-gray-300 opacity-70 hover:border-gray-400 hover:opacity-100'
-                }`}
-              >
-                {cat === 'post' ? t('pc_cat_post') : t('pc_cat_work')}
-              </button>
-            ))}
-          </div>
+          {/* 类型切换：动态 / 作品（新建且未锁定类别时显示） */}
+          {!lockCategory && !isEditing && (
+            <div className="flex gap-2" role="radiogroup" aria-label={t('pc_category_label')}>
+              {(['post', 'work'] as PostCategory[]).map((cat) => (
+                <button
+                  key={cat}
+                  type="button"
+                  role="radio"
+                  aria-checked={category === cat}
+                  onClick={() => setCategory(cat)}
+                  className={`rounded-md border px-3 py-1.5 text-sm font-medium transition-colors ${
+                    category === cat
+                      ? 'border-primary bg-primary/10 text-primary'
+                      : 'border-gray-300 opacity-70 hover:border-gray-400 hover:opacity-100'
+                  }`}
+                >
+                  {cat === 'post' ? t('pc_cat_post') : t('pc_cat_work')}
+                </button>
+              ))}
+            </div>
+          )}
 
           <input
             className="mag-input"
@@ -166,7 +197,13 @@ export function PostComposer({
               disabled={saving || !title.trim()}
             >
               <Send className="h-4 w-4" />
-              {saving ? t('pc_saving') : status === 'published' ? t('pc_publish') : t('pc_draft')}
+              {saving
+                ? t('pc_saving')
+                : isEditing
+                ? t('pc_save_changes')
+                : status === 'published'
+                ? t('pc_publish')
+                : t('pc_draft')}
             </button>
           </div>
         </>
