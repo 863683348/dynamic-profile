@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, type CSSProperties } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { LoginButton } from '@/components/LoginButton';
@@ -220,7 +220,15 @@ export default function DashboardPage() {
   }
 
   return (
-    <main className="theme-surface min-h-screen">
+    <main
+      className="theme-surface min-h-screen"
+      data-style={profile?.style || 'magazine'}
+      style={
+        {
+          '--primary': profile?.theme_color || undefined,
+        } as CSSProperties
+      }
+    >
       <TopControls />
       <div className="mx-auto max-w-3xl px-6 py-10">
         <div className="double-rule mb-8 flex items-center justify-between px-1 py-3">

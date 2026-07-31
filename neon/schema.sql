@@ -44,6 +44,12 @@ ALTER TABLE posts
 ALTER TABLE posts
   ADD CONSTRAINT posts_category_check CHECK (category IN ('post', 'work'));
 
+-- 视觉风格（对应原型 A–E）：minimal / magazine / geek / glass / neon
+-- 仅改变观感（字体 / 配色 / 卡片质感），与 theme_color（强调色）正交。
+-- 已有库默认 'magazine'（杂志编辑风），不影响现有数据。
+ALTER TABLE profiles
+  ADD COLUMN IF NOT EXISTS style text NOT NULL DEFAULT 'magazine';
+
 -- 浏览量 +1
 CREATE OR REPLACE FUNCTION increment_views(p_handle text)
 RETURNS integer AS $$

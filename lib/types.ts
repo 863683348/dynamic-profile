@@ -13,6 +13,7 @@ export interface Profile {
   theme_dark: boolean;
   status_text: string | null;
   links: unknown[] | null;
+  style: string; // 'minimal' | 'magazine' | 'geek' | 'glass' | 'neon'
   plan: string; // 'free' | 'pro'
   created_at: string; // timestamptz -> ISO 字符串
 }
@@ -72,6 +73,7 @@ export interface ProfileInput {
   theme_dark?: boolean;
   status_text?: string | null;
   links?: unknown[] | null;
+  style?: string;
 }
 
 // 创建内容时的输入

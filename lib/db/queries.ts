@@ -1,4 +1,5 @@
 import { sql } from "./index";
+import { isStyleId, DEFAULT_STYLE } from "@/lib/styles";
 import type {
   Profile,
   Post,
@@ -87,41 +88,70 @@ export async function incrementViews(handle: string): Promise<number> {
  * 新建或更新档案。owner 绑定到当前登录邮箱。
  * - handle 必须先通过格式校验，否则抛错（INVALID_HANDLE → API 层转 400）。
  * - 若 handle 已存在但属于其他 owner，抛 FORBIDDEN_HANDLE（→ 403），防止抢注。
+ * - 支持修改 handle：以 owner_id 定位唯一档案并整行 UPDATE（含 handle 重命名），
+ *   不会产生孤儿行；同时把 stats 行的 handle 一并改名。
+ * - style 校验白名单，非法值回落到 DEFAULT_STYLE（'magazine'）。
  */
 export async function upsertProfile(input: ProfileInput, ownerId: string): Promise<Profile> {
   if (!isValidHandle(input.handle)) {
     throw new Error("INVALID_HANDLE");
   }
 
-  // 抢注防护：存在但不属于自己的 handle 直接拒绝
-  const existing = await getProfileByHandle(input.handle);
-  if (existing && existing.owner_id !== ownerId) {
+  const ownerProfile = await getProfileByOwner(ownerId);
+  const handleTarget = await getProfileByHandle(input.handle);
+
+  // 抢注防护：目标 handle 存在但不属于自己 → 拒绝
+  if (handleTarget && handleTarget.owner_id !== ownerId) {
     throw new Error("FORBIDDEN_HANDLE");
   }
 
   const links = JSON.stringify(input.links ?? []);
+  const style = isStyleId(input.style) ? input.style : DEFAULT_STYLE;
+
+  if (ownerProfile) {
+    // 已存在档案：整行更新（允许重命名 handle）
+    const oldHandle = ownerProfile.handle;
+    const rows = (await sql`
+      UPDATE profiles SET
+        handle = ${input.handle},
+        display_name = ${input.display_name ?? null},
+        bio = ${input.bio ?? null},
+        avatar_url = ${input.avatar_url ?? null},
+        cover_url = ${input.cover_url ?? null},
+        theme_color = ${input.theme_color ?? "#c2410c"},
+        theme_dark = ${input.theme_dark ?? false},
+        status_text = ${input.status_text ?? null},
+        links = ${links}::jsonb,
+        style = ${style}
+      WHERE owner_id = ${ownerId}
+      RETURNING *
+    `) as Profile[];
+
+    // handle 变更时同步 stats 主键，避免浏览量统计孤儿行
+    if (oldHandle !== input.handle) {
+      await sql`
+        UPDATE stats SET handle = ${input.handle} WHERE handle = ${oldHandle}
+      `;
+    }
+
+    const profile = rows[0];
+    if (!profile) throw new Error("UPSERT_FAILED");
+    return profile;
+  }
+
+  // 首次创建
   const rows = (await sql`
     INSERT INTO profiles (
       handle, owner_id, display_name, bio, avatar_url, cover_url,
-      theme_color, theme_dark, status_text, links
+      theme_color, theme_dark, status_text, links, style
     )
     VALUES (
       ${input.handle}, ${ownerId},
       ${input.display_name ?? null}, ${input.bio ?? null},
       ${input.avatar_url ?? null}, ${input.cover_url ?? null},
       ${input.theme_color ?? "#c2410c"}, ${input.theme_dark ?? false},
-      ${input.status_text ?? null}, ${links}::jsonb
+      ${input.status_text ?? null}, ${links}::jsonb, ${style}
     )
-    ON CONFLICT (handle) DO UPDATE SET
-      display_name = EXCLUDED.display_name,
-      bio = EXCLUDED.bio,
-      avatar_url = EXCLUDED.avatar_url,
-      cover_url = EXCLUDED.cover_url,
-      theme_color = EXCLUDED.theme_color,
-      theme_dark = EXCLUDED.theme_dark,
-      status_text = EXCLUDED.status_text,
-      links = EXCLUDED.links
-    WHERE profiles.owner_id = ${ownerId}
     RETURNING *
   `) as Profile[];
 

@@ -3,6 +3,8 @@
 import { useRef, useState } from 'react';
 import type { Profile } from '@/lib/types';
 import { ThemePicker } from './ThemePicker';
+import { StylePicker } from './StylePicker';
+import type { StyleId } from '@/lib/styles';
 import { Plus, Trash2, Upload, Image as ImageIcon } from 'lucide-react';
 import { useI18n } from '@/lib/i18n';
 import { avatarDataUrl, coverDataUrl } from '@/lib/image';
@@ -17,6 +19,7 @@ export type ProfileFormData = {
   links: LinkItem[];
   theme_color: string;
   theme_dark: boolean;
+  style: StyleId;
   avatar_url?: string | null;
   cover_url?: string | null;
 };
@@ -41,11 +44,13 @@ export function ProfileForm({
   const [links, setLinks] = useState<LinkItem[]>(
     Array.isArray(initial?.links) ? (initial!.links as LinkItem[]) : []
   );
+  const [style, setStyle] = useState<StyleId>(
+    (initial?.style as StyleId) ?? "magazine"
+  );
   const [imgErr, setImgErr] = useState<string | null>(null);
   const [imgBusy, setImgBusy] = useState(false);
 
   const { t } = useI18n();
-  const handleExists = !!initial?.handle;
 
   const avatarInput = useRef<HTMLInputElement>(null);
   const coverInput = useRef<HTMLInputElement>(null);
@@ -90,6 +95,7 @@ export function ProfileForm({
       links,
       theme_color: themeColor,
       theme_dark: themeDark,
+      style,
       avatar_url: avatarUrl,
       cover_url: coverUrl,
     });
@@ -218,9 +224,8 @@ export function ProfileForm({
           onChange={(e) => setHandle(e.target.value.toLowerCase())}
           placeholder={t('ph_handle')}
           pattern="^[a-z0-9_]{3,20}$"
-          disabled={handleExists}
         />
-        {handleExists && <p className="mt-1 text-xs opacity-60">{t('handle_locked')}</p>}
+        <p className="mt-1 text-xs opacity-60">{t('handle_change_hint')}</p>
       </div>
 
       <div>
@@ -291,6 +296,8 @@ export function ProfileForm({
         onChangeColor={setThemeColor}
         onChangeDark={setThemeDark}
       />
+
+      <StylePicker value={style} onChange={setStyle} />
 
       <button type="submit" className="mag-btn" disabled={saving}>
         {saving ? t('save_saving') : t('save')}

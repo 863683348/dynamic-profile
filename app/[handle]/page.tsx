@@ -86,6 +86,8 @@ export default async function ProfilePage({
     ? { '--primary': profile.theme_color }
     : {}) as unknown as CSSProperties;
 
+  const pageStyle = profile.style || 'magazine';
+
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'ProfilePage',
@@ -100,7 +102,7 @@ export default async function ProfilePage({
   };
 
   return (
-    <main className="theme-surface min-h-screen" style={themeStyle}>
+    <main className="theme-surface min-h-screen" style={themeStyle} data-style={pageStyle}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

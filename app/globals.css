@@ -9,6 +9,9 @@
     --paper: #fbf8f3;
     --ink: #1a1a1a;
     --rule: #d8cfc0;
+    /* 字体变量：各风格通过 [data-style] 覆盖，组件统一引用这两个变量 */
+    --font-body: Georgia, 'Times New Roman', 'Noto Serif SC', serif;
+    --font-display: Georgia, 'Times New Roman', 'Noto Serif SC', serif;
   }
 
   /* 风格 B：暗色配色（terracotta 提亮） */
@@ -20,6 +23,127 @@
     --rule: #3a3128;
   }
 
+  /* ============================================================================
+   * 5 套视觉风格（对应原型 A–E）。仅改变观感，不改动结构。
+   * 强调色 --primary 由容器上的内联 style 决定（用户自选 theme_color），
+   * 优先级高于下列块；风格只负责字体 / 背景 / 卡片质感 / 发光等氛围。
+   * 注意：本文件禁止 purple→pink 渐变与发光+毛玻璃+Indigo 的 AI 模板三件套。
+   * ========================================================================== */
+
+  /* A 简约风：无衬线、纯白、克制留白、细描边 */
+  [data-style='minimal'] {
+    --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', 'PingFang SC',
+      'Microsoft YaHei', sans-serif;
+    --font-display: 'Inter', system-ui, -apple-system, 'Segoe UI', 'PingFang SC',
+      'Microsoft YaHei', sans-serif;
+    --bg: #ffffff;
+    --paper: #ffffff;
+    --ink: #18181b;
+    --rule: #e5e7eb;
+  }
+  [data-style='minimal'] .double-rule {
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  [data-style='minimal'] .paper-card {
+    border-radius: 10px;
+  }
+
+  /* C 极客风：等宽字体 + 终端暗色（不随 data-theme 切换，本身即暗） */
+  [data-style='geek'] {
+    --font-body: ui-monospace, 'SF Mono', 'JetBrains Mono', Menlo, Consolas,
+      'Noto Sans Mono CJK SC', monospace;
+    --font-display: ui-monospace, 'SF Mono', 'JetBrains Mono', Menlo, Consolas,
+      'Noto Sans Mono CJK SC', monospace;
+    --bg: #0d1117;
+    --paper: #161b22;
+    --ink: #c9d1d9;
+    --rule: #30363d;
+  }
+  [data-style='geek'] .magazine-title {
+    letter-spacing: 0.02em;
+  }
+  [data-style='geek'] .paper-card {
+    border-radius: 6px;
+  }
+
+  /* D 玻璃拟态风：等宽偏无衬线 + 浅色柔光背景 + 磨砂卡片（非紫粉渐变） */
+  [data-style='glass'] {
+    --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', 'PingFang SC',
+      'Microsoft YaHei', sans-serif;
+    --font-display: 'Inter', system-ui, -apple-system, 'Segoe UI', 'PingFang SC',
+      'Microsoft YaHei', sans-serif;
+    --bg: #eef4ff;
+    --paper: rgba(255, 255, 255, 0.55);
+    --ink: #0f172a;
+    --rule: rgba(15, 23, 42, 0.12);
+  }
+  [data-style='glass'] .theme-surface {
+    background-image: linear-gradient(135deg, #eef4ff 0%, #ecfeff 100%);
+  }
+  [data-style='glass'] .paper-card {
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+    border-radius: 14px;
+  }
+  /* 玻璃风暗色态：保证磨砂在深色下也成立 */
+  [data-style='glass'][data-theme='dark'] {
+    --bg: #0b1220;
+    --paper: rgba(30, 41, 59, 0.45);
+    --ink: #e2e8f0;
+    --rule: rgba(226, 232, 240, 0.16);
+  }
+  [data-style='glass'][data-theme='dark'] .theme-surface {
+    background-image: linear-gradient(135deg, #0b1220 0%, #0f2942 100%);
+  }
+  [data-style='glass'][data-theme='dark'] .paper-card {
+    background: rgba(30, 41, 59, 0.45);
+    border: 1px solid rgba(226, 232, 240, 0.18);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  }
+
+  /* E 霓虹赛博风：暗色 + 霓虹描边/发光（青色，非紫粉；不随 data-theme 切换） */
+  [data-style='neon'] {
+    --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', 'PingFang SC',
+      'Microsoft YaHei', sans-serif;
+    --font-display: 'Inter', system-ui, -apple-system, 'Segoe UI', 'PingFang SC',
+      'Microsoft YaHei', sans-serif;
+    --bg: #0a0a0f;
+    --paper: #12121a;
+    --ink: #e5e7eb;
+    --rule: #2a2a3a;
+  }
+  [data-style='neon'] .magazine-title {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    text-shadow: 0 0 12px color-mix(in srgb, var(--primary) 60%, transparent);
+  }
+  [data-style='neon'] .double-rule {
+    border-color: color-mix(in srgb, var(--primary) 50%, var(--rule));
+    box-shadow: 0 0 10px color-mix(in srgb, var(--primary) 25%, transparent);
+  }
+  [data-style='neon'] .paper-card {
+    border-radius: 10px;
+    border-color: color-mix(in srgb, var(--primary) 45%, var(--rule));
+    box-shadow: 0 0 16px color-mix(in srgb, var(--primary) 18%, transparent);
+  }
+  [data-style='neon'] .mag-btn {
+    box-shadow: 0 0 14px color-mix(in srgb, var(--primary) 35%, transparent);
+  }
+  [data-style='neon'] .link-chip {
+    box-shadow: 0 0 10px color-mix(in srgb, var(--primary) 18%, transparent);
+  }
+
+  /* 风格选择器预览卡：填充该风格背景 */
+  .style-preview {
+    background: var(--bg);
+    color: var(--ink);
+    min-height: 76px;
+  }
+
   html {
     -webkit-text-size-adjust: 100%;
   }
@@ -29,7 +153,7 @@
     min-height: 100vh;
     background-color: var(--bg);
     color: var(--ink);
-    font-family: Georgia, 'Times New Roman', 'Noto Serif SC', serif;
+    font-family: var(--font-body);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     /* 刘海屏 / 圆角屏安全区，非异形屏为 0，无副作用 */
@@ -47,7 +171,7 @@
 @layer components {
   /* 衬线大标题 */
   .magazine-title {
-    font-family: Georgia, 'Times New Roman', 'Noto Serif SC', serif;
+    font-family: var(--font-display);
     font-weight: 700;
     line-height: 1.12;
     letter-spacing: -0.01em;
@@ -127,7 +251,7 @@
     justify-content: center;
     gap: 0.5rem;
     padding: 0.625rem 1.25rem;
-    font-family: Georgia, 'Times New Roman', 'Noto Serif SC', serif;
+    font-family: var(--font-body);
     font-size: 0.9375rem;
     border: 1px solid var(--primary);
     background: var(--primary);
@@ -161,7 +285,7 @@
     border: 1px solid var(--rule);
     border-radius: 4px;
     color: var(--ink);
-    font-family: Georgia, 'Times New Roman', 'Noto Serif SC', serif;
+    font-family: var(--font-body);
     font-size: 0.9375rem;
     transition: border-color 200ms cubic-bezier(0.4, 0, 0.2, 1);
   }
