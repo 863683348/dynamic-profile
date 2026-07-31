@@ -1,13 +1,13 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { signIn } from 'next-auth/react';
+import { signIn, getProviders } from 'next-auth/react';
+
+// 从 getProviders 返回值推导 provider 元素类型（该版本 next-auth 未导出 ClientSafeProvider）
+type AnyProvider = NonNullable<Awaited<ReturnType<typeof getProviders>>>[string];
 import { Mail } from 'lucide-react';
 import { useI18n } from '@/lib/i18n';
-
-// 谷歌登录按钮是否展示：需同时配置 AUTH_GOOGLE_ID/AUTH_GOOGLE_SECRET 且把该公开开关置 true
-const googleEnabled = process.env.NEXT_PUBLIC_GOOGLE_ENABLED === 'true';
 
 export function LoginButton() {
   const router = useRouter();
@@ -15,6 +15,33 @@ export function LoginButton() {
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  // Google 登录按钮是否展示：以服务端实际注册的 provider 为准
+  // （auth.ts 仅在 AUTH_GOOGLE_ID/AUTH_GOOGLE_SECRET 都配置时才注册 google provider）。
+  // 这样前端无需维护一个易与后端脱节的 NEXT_PUBLIC_GOOGLE_ENABLED 开关，
+  // 配置齐全按钮自动出现，缺配置则自动隐藏，绝不会出现"点了没反应"的死按钮。
+  const [googleProvider, setGoogleProvider] = useState<AnyProvider | null>(null);
+  const [providersLoading, setProvidersLoading] = useState(true);
+
+  useEffect(() => {
+    let active = true;
+    getProviders()
+      .then((providers) => {
+        if (!active) return;
+        setGoogleProvider(providers?.google ?? null);
+      })
+      .catch(() => {
+        if (active) setGoogleProvider(null);
+      })
+      .finally(() => {
+        if (active) setProvidersLoading(false);
+      });
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  const googleEnabled = Boolean(googleProvider);
 
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
@@ -40,12 +67,19 @@ export function LoginButton() {
     }
   }
 
+  async function handleGoogle() {
+    setError(null);
+    // 交由 Auth.js 完成 OAuth 重定向；失败（如未配置）会自动跳到错误页，
+    // 这里不阻塞 UI，仅做基本兜底。
+    await signIn('google', { callbackUrl: '/dashboard' });
+  }
+
   return (
     <div className="paper-card p-6">
-      {googleEnabled && (
+      {googleEnabled && !providersLoading && (
         <button
           type="button"
-          onClick={() => signIn('google', { callbackUrl: '/dashboard' })}
+          onClick={handleGoogle}
           className="mag-btn mag-btn-secondary w-full justify-center"
         >
           <GoogleIcon />
@@ -53,7 +87,7 @@ export function LoginButton() {
         </button>
       )}
 
-      {googleEnabled && (
+      {googleEnabled && !providersLoading && (
         <div className="my-4 flex items-center gap-3 text-xs opacity-60">
           <span className="h-px flex-1 bg-current opacity-30" />
           {t('login_or')}
