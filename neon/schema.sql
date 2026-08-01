@@ -112,3 +112,24 @@ CREATE TABLE IF NOT EXISTS webhook_events (
   type text,
   processed_at timestamptz NOT NULL DEFAULT now()
 );
+
+-- ============================================================================
+-- 打赏 / 收款（访客给作者支持）· 2026-08-02 新增
+-- 微信/支付宝收款码（作者上传，存为 data URL 或个人图床 URL）+ Buy Me a Coffee 用户名 + 感谢语
+-- 以下语句带 IF NOT EXISTS 列，可安全重复执行（含旧库迁移）。
+-- ============================================================================
+
+ALTER TABLE profiles
+  ADD COLUMN IF NOT EXISTS tip_enabled boolean NOT NULL DEFAULT false;
+
+ALTER TABLE profiles
+  ADD COLUMN IF NOT EXISTS tip_message text;
+
+ALTER TABLE profiles
+  ADD COLUMN IF NOT EXISTS bmc_username text;
+
+ALTER TABLE profiles
+  ADD COLUMN IF NOT EXISTS wechat_qr_url text;
+
+ALTER TABLE profiles
+  ADD COLUMN IF NOT EXISTS alipay_qr_url text;

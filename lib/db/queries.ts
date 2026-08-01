@@ -123,7 +123,12 @@ export async function upsertProfile(input: ProfileInput, ownerId: string): Promi
         theme_dark = ${input.theme_dark ?? false},
         status_text = ${input.status_text ?? null},
         links = ${links}::jsonb,
-        style = ${style}
+        style = ${style},
+        tip_enabled = ${input.tip_enabled ?? false},
+        tip_message = ${input.tip_message ?? null},
+        bmc_username = ${input.bmc_username ?? null},
+        wechat_qr_url = ${input.wechat_qr_url ?? null},
+        alipay_qr_url = ${input.alipay_qr_url ?? null}
       WHERE owner_id = ${ownerId}
       RETURNING *
     `) as Profile[];
@@ -144,14 +149,18 @@ export async function upsertProfile(input: ProfileInput, ownerId: string): Promi
   const rows = (await sql`
     INSERT INTO profiles (
       handle, owner_id, display_name, bio, avatar_url, cover_url,
-      theme_color, theme_dark, status_text, links, style
+      theme_color, theme_dark, status_text, links, style,
+      tip_enabled, tip_message, bmc_username, wechat_qr_url, alipay_qr_url
     )
     VALUES (
       ${input.handle}, ${ownerId},
       ${input.display_name ?? null}, ${input.bio ?? null},
       ${input.avatar_url ?? null}, ${input.cover_url ?? null},
       ${input.theme_color ?? "#c2410c"}, ${input.theme_dark ?? false},
-      ${input.status_text ?? null}, ${links}::jsonb, ${style}
+      ${input.status_text ?? null}, ${links}::jsonb, ${style},
+      ${input.tip_enabled ?? false}, ${input.tip_message ?? null},
+      ${input.bmc_username ?? null}, ${input.wechat_qr_url ?? null},
+      ${input.alipay_qr_url ?? null}
     )
     RETURNING *
   `) as Profile[];

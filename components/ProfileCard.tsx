@@ -3,6 +3,7 @@
 import { ExternalLink, Github, Globe, Mail, Twitter } from 'lucide-react';
 import type { Profile, Stats } from '@/lib/types';
 import { useI18n } from '@/lib/i18n';
+import { TipDialog } from './TipDialog';
 
 type LinkItem = { label: string; url: string };
 
@@ -114,6 +115,9 @@ export function ProfileCard({
             <strong className="magazine-title">{followers}</strong> {t('followers')}
           </span>
         </div>
+
+        {/* 打赏入口：按作者配置渲染（tip_enabled 且至少一种方式） */}
+        <TipDialog profile={profile} />
       </div>
     </article>
   );

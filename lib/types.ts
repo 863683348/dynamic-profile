@@ -16,6 +16,12 @@ export interface Profile {
   style: string; // 'minimal' | 'magazine' | 'geek' | 'glass' | 'neon'
   plan: string; // 'free' | 'pro'
   created_at: string; // timestamptz -> ISO 字符串
+  // 打赏（访客给作者支持）：微信/支付宝收款码 + Buy Me a Coffee 用户名 + 感谢语
+  tip_enabled: boolean;
+  tip_message: string | null;
+  bmc_username: string | null; // Buy Me a Coffee 用户名（不含域名）
+  wechat_qr_url: string | null; // 微信收款码（data URL 或个人图床 URL）
+  alipay_qr_url: string | null; // 支付宝收款码
 }
 
 export type PostCategory = "post" | "work";
@@ -74,6 +80,12 @@ export interface ProfileInput {
   status_text?: string | null;
   links?: unknown[] | null;
   style?: string;
+  // 打赏设置
+  tip_enabled?: boolean;
+  tip_message?: string | null;
+  bmc_username?: string | null;
+  wechat_qr_url?: string | null;
+  alipay_qr_url?: string | null;
 }
 
 // 创建内容时的输入

@@ -56,3 +56,8 @@ export function avatarDataUrl(file: File): Promise<string> {
 export function coverDataUrl(file: File): Promise<string> {
   return fileToResizedDataUrl(file, { maxW: 1200, maxH: 400, quality: 0.78 });
 }
+
+/** 收款码：400×400 正方形，PNG 无损，保证二维码扫码清晰（典型输出 <40KB 的 data URL）。 */
+export function qrDataUrl(file: File): Promise<string> {
+  return fileToResizedDataUrl(file, { maxW: 400, maxH: 400, quality: 0.95, mime: "image/png" });
+}

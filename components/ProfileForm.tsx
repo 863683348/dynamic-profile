@@ -5,9 +5,9 @@ import type { Profile } from '@/lib/types';
 import { ThemePicker } from './ThemePicker';
 import { StylePicker } from './StylePicker';
 import type { StyleId } from '@/lib/styles';
-import { Plus, Trash2, Upload, Image as ImageIcon } from 'lucide-react';
+import { Plus, Trash2, Upload, Image as ImageIcon, QrCode } from 'lucide-react';
 import { useI18n } from '@/lib/i18n';
-import { avatarDataUrl, coverDataUrl } from '@/lib/image';
+import { avatarDataUrl, coverDataUrl, qrDataUrl } from '@/lib/image';
 
 export type LinkItem = { label: string; url: string };
 
@@ -22,6 +22,12 @@ export type ProfileFormData = {
   style: StyleId;
   avatar_url?: string | null;
   cover_url?: string | null;
+  // 打赏设置
+  tip_enabled: boolean;
+  tip_message: string;
+  bmc_username: string;
+  wechat_qr_url?: string | null;
+  alipay_qr_url?: string | null;
 };
 
 export function ProfileForm({
@@ -49,6 +55,17 @@ export function ProfileForm({
   );
   const [imgErr, setImgErr] = useState<string | null>(null);
   const [imgBusy, setImgBusy] = useState(false);
+
+  // 打赏设置
+  const [tipEnabled, setTipEnabled] = useState(initial?.tip_enabled ?? false);
+  const [tipMessage, setTipMessage] = useState(initial?.tip_message ?? '');
+  const [bmcUsername, setBmcUsername] = useState(initial?.bmc_username ?? '');
+  const [wechatQr, setWechatQr] = useState(initial?.wechat_qr_url ?? null);
+  const [alipayQr, setAlipayQr] = useState(initial?.alipay_qr_url ?? null);
+  const [qrErr, setQrErr] = useState<string | null>(null);
+  const [qrBusy, setQrBusy] = useState(false);
+  const wechatInput = useRef<HTMLInputElement>(null);
+  const alipayInput = useRef<HTMLInputElement>(null);
 
   const { t } = useI18n();
 
@@ -81,6 +98,32 @@ export function ProfileForm({
     }
   }
 
+  async function onPickWechat(file?: File) {
+    if (!file) return;
+    setQrBusy(true);
+    setQrErr(null);
+    try {
+      setWechatQr(await qrDataUrl(file));
+    } catch {
+      setQrErr(t('img_invalid'));
+    } finally {
+      setQrBusy(false);
+    }
+  }
+
+  async function onPickAlipay(file?: File) {
+    if (!file) return;
+    setQrBusy(true);
+    setQrErr(null);
+    try {
+      setAlipayQr(await qrDataUrl(file));
+    } catch {
+      setQrErr(t('img_invalid'));
+    } finally {
+      setQrBusy(false);
+    }
+  }
+
   function updateLink(i: number, key: keyof LinkItem, value: string) {
     setLinks((prev) => prev.map((l, idx) => (idx === i ? { ...l, [key]: value } : l)));
   }
@@ -98,6 +141,11 @@ export function ProfileForm({
       style,
       avatar_url: avatarUrl,
       cover_url: coverUrl,
+      tip_enabled: tipEnabled,
+      tip_message: tipMessage.trim(),
+      bmc_username: bmcUsername.trim(),
+      wechat_qr_url: wechatQr,
+      alipay_qr_url: alipayQr,
     });
   }
 
@@ -298,6 +346,143 @@ export function ProfileForm({
       />
 
       <StylePicker value={style} onChange={setStyle} />
+
+      {/* 打赏设置 */}
+      <div className="double-rule space-y-4 pt-4">
+        <div>
+          <span className="mag-label">{t('tip_section')}</span>
+          <label className="mt-2 flex cursor-pointer items-center gap-2">
+            <input
+              type="checkbox"
+              checked={tipEnabled}
+              onChange={(e) => setTipEnabled(e.target.checked)}
+              className="h-4 w-4 accent-[color:var(--primary)]"
+            />
+            <span className="text-sm">{t('tip_enable')}</span>
+          </label>
+          <p className="mt-1 text-xs opacity-60">{t('tip_enable_hint')}</p>
+        </div>
+
+        {tipEnabled && (
+          <div className="space-y-4">
+            <div>
+              <label className="mag-label" htmlFor="pf-tip-msg">
+                {t('tip_message')}
+              </label>
+              <input
+                id="pf-tip-msg"
+                className="mag-input"
+                value={tipMessage}
+                onChange={(e) => setTipMessage(e.target.value)}
+                placeholder={t('ph_tip_message')}
+              />
+            </div>
+
+            <div>
+              <label className="mag-label" htmlFor="pf-bmc">
+                {t('tip_bmc')}
+              </label>
+              <input
+                id="pf-bmc"
+                className="mag-input"
+                value={bmcUsername}
+                onChange={(e) => setBmcUsername(e.target.value)}
+                placeholder={t('ph_tip_bmc')}
+              />
+            </div>
+
+            {/* 微信收款码 */}
+            <div>
+              <span className="mag-label">{t('tip_wechat')}</span>
+              <div className="flex items-center gap-3">
+                <div
+                  className="h-20 w-20 shrink-0 overflow-hidden rounded-md border"
+                  style={{
+                    borderColor: 'var(--rule)',
+                    backgroundImage: wechatQr ? `url(${wechatQr})` : undefined,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                  }}
+                />
+                <div className="flex flex-wrap gap-2">
+                  <button
+                    type="button"
+                    className="mag-btn mag-btn-secondary"
+                    onClick={() => wechatInput.current?.click()}
+                    disabled={qrBusy}
+                  >
+                    <QrCode className="h-4 w-4" />
+                    {wechatQr ? t('tip_change_qr') : t('tip_upload_qr')}
+                  </button>
+                  {wechatQr && (
+                    <button
+                      type="button"
+                      className="mag-btn mag-btn-secondary"
+                      onClick={() => setWechatQr(null)}
+                      aria-label={t('tip_remove_qr')}
+                    >
+                      <Trash2 className="h-4 w-4" />
+                    </button>
+                  )}
+                </div>
+                <input
+                  ref={wechatInput}
+                  type="file"
+                  accept="image/*"
+                  className="hidden"
+                  onChange={(e) => onPickWechat(e.target.files?.[0])}
+                />
+              </div>
+            </div>
+
+            {/* 支付宝收款码 */}
+            <div>
+              <span className="mag-label">{t('tip_alipay')}</span>
+              <div className="flex items-center gap-3">
+                <div
+                  className="h-20 w-20 shrink-0 overflow-hidden rounded-md border"
+                  style={{
+                    borderColor: 'var(--rule)',
+                    backgroundImage: alipayQr ? `url(${alipayQr})` : undefined,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                  }}
+                />
+                <div className="flex flex-wrap gap-2">
+                  <button
+                    type="button"
+                    className="mag-btn mag-btn-secondary"
+                    onClick={() => alipayInput.current?.click()}
+                    disabled={qrBusy}
+                  >
+                    <QrCode className="h-4 w-4" />
+                    {alipayQr ? t('tip_change_qr') : t('tip_upload_qr')}
+                  </button>
+                  {alipayQr && (
+                    <button
+                      type="button"
+                      className="mag-btn mag-btn-secondary"
+                      onClick={() => setAlipayQr(null)}
+                      aria-label={t('tip_remove_qr')}
+                    >
+                      <Trash2 className="h-4 w-4" />
+                    </button>
+                  )}
+                </div>
+                <input
+                  ref={alipayInput}
+                  type="file"
+                  accept="image/*"
+                  className="hidden"
+                  onChange={(e) => onPickAlipay(e.target.files?.[0])}
+                />
+              </div>
+            </div>
+
+            {qrErr && <p className="text-xs text-primary">{qrErr}</p>}
+          </div>
+        )}
+      </div>
 
       <button type="submit" className="mag-btn" disabled={saving}>
         {saving ? t('save_saving') : t('save')}
