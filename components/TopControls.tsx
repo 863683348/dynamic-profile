@@ -5,6 +5,7 @@ import { useSession, signIn, signOut, getProviders } from 'next-auth/react';
 import { LangToggle } from './LangToggle';
 import { ThemeToggle } from './ThemeToggle';
 import { LogOut, User } from 'lucide-react';
+import { useI18n } from '@/lib/i18n';
 
 // 从 getProviders 返回值推导 provider 元素类型（该版本 next-auth 未导出 ClientSafeProvider）
 type AnyProvider = NonNullable<Awaited<ReturnType<typeof getProviders>>>[string];
@@ -27,6 +28,7 @@ function GoogleIcon({ size = 16 }: { size?: number }) {
  */
 export function TopControls() {
   const { data: session, status } = useSession();
+  const { t } = useI18n();
 
   // Google provider 探测（与 LoginButton 同一逻辑）
   const [googleProvider, setGoogleProvider] = useState<AnyProvider | null>(null);
@@ -74,29 +76,20 @@ export function TopControls() {
         </button>
       )}
 
-      {/* 已登录 → 显示用户头像 + 退出 */}
+      {/* 已登录 → 显示用户名 + 退出链接 */}
       {status === 'authenticated' && (
-        <div className="flex items-center gap-1.5">
-          {session.user?.image ? (
-            <img
-              src={session.user.image}
-              alt=""
-              referrerPolicy="no-referrer"
-              className="h-7 w-7 rounded-full border border-[color:var(--rule)]"
-            />
-          ) : (
-            <div className="flex h-7 w-7 items-center justify-center rounded-full border border-[color:var(--rule)] bg-[color:var(--paper)]">
-              <User className="h-3.5 w-3.5" style={{ color: 'var(--ink)' }} />
-            </div>
-          )}
+        <div className="flex items-center gap-2">
+          <span className="max-w-[120px] truncate text-xs font-medium text-[color:var(--ink)]">
+            {session.user?.name || session.user?.email || 'User'}
+          </span>
           <button
             type="button"
             onClick={handleLogout}
-            aria-label="Sign out"
-            className="flex h-7 w-7 items-center justify-center rounded-full border border-[color:var(--rule)] bg-[color:var(--paper)] transition-colors hover:border-red-300 hover:text-red-500"
+            className="flex items-center gap-1 rounded-full border border-[color:var(--rule)] bg-[color:var(--paper)] px-2 py-1 text-xs transition-colors hover:border-red-300 hover:text-red-500"
             style={{ backdropFilter: 'blur(4px)' }}
           >
-            <LogOut className="h-3.5 w-3.5" />
+            <LogOut className="h-3 w-3" />
+            <span className="hidden sm:inline">{t('logout') || '退出'}</span>
           </button>
         </div>
       )}
