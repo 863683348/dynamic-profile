@@ -1,6 +1,7 @@
 import './globals.css';
 import type { Metadata, Viewport } from 'next';
 import { Providers } from './providers';
+import { TopControls } from '@/components/TopControls';
 import { Analytics } from '@/components/Analytics';
 import { AdSense } from '@/components/AdSense';
 
@@ -121,7 +122,10 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <Providers>{children}</Providers>
+        <Providers>
+          {children}
+          <TopControls />
+        </Providers>
         <Analytics isProd={isProd} />
         <AdSense isProd={isProd} />
       </body>

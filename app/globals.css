@@ -90,22 +90,82 @@
     border-radius: 14px;
   }
   /* 玻璃风暗色态：保证磨砂在深色下也成立 */
-  [data-style='glass'][data-theme='dark'] {
+  html[data-theme='dark'] [data-style='glass'] {
     --bg: #0b1220;
     --paper: rgba(30, 41, 59, 0.45);
     --ink: #e2e8f0;
     --rule: rgba(226, 232, 240, 0.16);
   }
-  [data-style='glass'][data-theme='dark'] .theme-surface {
+  html[data-theme='dark'] [data-style='glass'] .theme-surface {
     background-image: linear-gradient(135deg, #0b1220 0%, #0f2942 100%);
   }
-  [data-style='glass'][data-theme='dark'] .paper-card {
+  html[data-theme='dark'] [data-style='glass'] .paper-card {
     background: rgba(30, 41, 59, 0.45);
     border: 1px solid rgba(226, 232, 240, 0.18);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
   }
 
-  /* E 霓虹赛博风：暗色 + 霓虹描边/发光（青色，非紫粉；不随 data-theme 切换） */
+  /* A 简约风暗色态 */
+  html[data-theme='dark'] [data-style='minimal'] {
+    --bg: #18181b;
+    --paper: #27272a;
+    --ink: #e4e4e7;
+    --rule: #3f3f46;
+  }
+  html[data-theme='dark'] [data-style='minimal'] .theme-surface {
+    background-color: var(--bg);
+  }
+  html[data-theme='dark'] [data-style='minimal'] .paper-card {
+    background: var(--paper);
+    border-color: var(--rule);
+  }
+  html[data-theme='dark'] [data-style='minimal'] .mag-input {
+    background: var(--paper);
+    border-color: var(--rule);
+    color: var(--ink);
+  }
+
+  /* B 杂志风暗色态 */
+  html[data-theme='dark'] [data-style='magazine'] {
+    --bg: #14110d;
+    --paper: #1f1a14;
+    --ink: #f3ead9;
+    --rule: #3a3128;
+  }
+  html[data-theme='dark'] [data-style='magazine'] .theme-surface {
+    background-color: var(--bg);
+  }
+  html[data-theme='dark'] [data-style='magazine'] .paper-card {
+    background: var(--paper);
+    border-color: var(--rule);
+  }
+  html[data-theme='dark'] [data-style='magazine'] .mag-input {
+    background: var(--bg);
+    border-color: var(--rule);
+    color: var(--ink);
+  }
+
+  /* C 极客风暗色态（加深） */
+  html[data-theme='dark'] [data-style='geek'] {
+    --bg: #010409;
+    --paper: #0d1117;
+    --ink: #e6edf3;
+    --rule: #21262d;
+  }
+  html[data-theme='dark'] [data-style='geek'] .theme-surface {
+    background-color: var(--bg);
+  }
+  html[data-theme='dark'] [data-style='geek'] .paper-card {
+    background: var(--paper);
+    border-color: var(--rule);
+  }
+  html[data-theme='dark'] [data-style='geek'] .mag-input {
+    background: var(--bg);
+    border-color: var(--rule);
+    color: var(--ink);
+  }
+
+  /* E 霓虹赛博风暗色态（增强发光） */
   [data-style='neon'] {
     --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', 'PingFang SC',
       'Microsoft YaHei', sans-serif;
@@ -135,6 +195,21 @@
   }
   [data-style='neon'] .link-chip {
     box-shadow: 0 0 10px color-mix(in srgb, var(--primary) 18%, transparent);
+  }
+  /* E 霓虹暗色态：加深底色 + 增强发光 */
+  html[data-theme='dark'] [data-style='neon'] {
+    --bg: #050508;
+    --paper: #0a0a10;
+    --ink: #e2e8f0;
+    --rule: #1a1a2e;
+  }
+  html[data-theme='dark'] [data-style='neon'] .theme-surface {
+    background-color: var(--bg);
+  }
+  html[data-theme='dark'] [data-style='neon'] .paper-card {
+    background: var(--paper);
+    border-color: color-mix(in srgb, var(--primary) 35%, var(--rule));
+    box-shadow: 0 0 24px color-mix(in srgb, var(--primary) 25%, transparent);
   }
 
   /* 风格选择器预览卡：填充该风格背景 */

@@ -8,6 +8,11 @@ const nextConfig = {
   //   cpus: 1,
   // },
   async headers() {
+    // dev 模式下 Next.js HMR/客户端运行时依赖 eval，必须放开 'unsafe-eval' 否则浏览器
+    // 会因 CSP 拒绝执行 dev 客户端脚本，导致整页不 hydration、所有交互失效。
+    // 生产构建不使用 eval，故仅 dev 放开，保持生产 CSP 收紧。
+    const isDev = process.env.NODE_ENV !== 'production';
+    const scriptSrcExtra = isDev ? " 'unsafe-eval'" : '';
     return [
       {
         source: '/:path*',
@@ -36,8 +41,8 @@ const nextConfig = {
             key: 'Content-Security-Policy',
             value: [
               "default-src 'self'",
-              // 主题切换等内联脚本需要 unsafe-inline；Auth.js 与 GA4/Clarity 走 https 域名
-              "script-src 'self' 'unsafe-inline' https://*.googletagmanager.com https://*.clarity.ms https://pagead2.googlesyndication.com https://securepubads.g.doubleclick.net https://*.adsensecustomsearchads.com https://*.google.com https://*.gstatic.com",
+              // 主题切换等内联脚本需要 unsafe-inline；dev 需 unsafe-eval 以支持 HMR 客户端运行时
+              `script-src 'self' 'unsafe-inline'${scriptSrcExtra} https://*.googletagmanager.com https://*.clarity.ms https://pagead2.googlesyndication.com https://securepubads.g.doubleclick.net https://*.adsensecustomsearchads.com https://*.google.com https://*.gstatic.com`,
               "style-src 'self' 'unsafe-inline'",
               // 头像 / OG 图来自外部 https 域名，data: 用于内联 SVG；放开广告创意所需的三方图
               "img-src 'self' data: https: blob:",

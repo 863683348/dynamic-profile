@@ -14,10 +14,11 @@ export function LangToggle({ fixed = false }: { fixed?: boolean }) {
       type="button"
       onClick={() => setLang(l)}
       aria-pressed={lang === l}
-      className="px-2 py-1 transition-colors"
+      className="relative px-2.5 py-1 text-xs font-medium transition-all duration-150 rounded-full"
       style={{
-        color: lang === l ? 'var(--primary)' : 'var(--ink)',
-        opacity: lang === l ? 1 : 0.55,
+        color: lang === l ? '#fff' : 'var(--ink)',
+        background: lang === l ? 'var(--primary)' : 'transparent',
+        opacity: lang === l ? 1 : 0.65,
         fontWeight: lang === l ? 700 : 500,
       }}
     >
@@ -37,7 +38,7 @@ export function LangToggle({ fixed = false }: { fixed?: boolean }) {
       style={{ backdropFilter: 'blur(4px)' }}
     >
       {btn('zh', '中')}
-      <span className="opacity-30">·</span>
+      <span className="opacity-30 mx-0.5">·</span>
       {btn('en', 'EN')}
     </div>
   );

@@ -2,7 +2,6 @@
 
 import { useSession } from 'next-auth/react';
 import { useEffect, useState, type CSSProperties } from 'react';
-import { TopControls } from '@/components/TopControls';
 import { DashboardNav } from '@/components/DashboardNav';
 
 export default function DashboardLayout({
@@ -34,7 +33,6 @@ export default function DashboardLayout({
       data-style={style}
       style={{ '--primary': primary } as CSSProperties}
     >
-      <TopControls />
       {status === 'authenticated' ? (
         <div className="mx-auto flex max-w-5xl flex-col gap-8 px-4 py-10 md:flex-row">
           <DashboardNav />

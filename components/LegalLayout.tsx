@@ -2,14 +2,12 @@
 
 import type { ReactNode } from 'react';
 import { useI18n } from '@/lib/i18n';
-import { TopControls } from '@/components/TopControls';
 import { SiteFooter } from '@/components/SiteFooter';
 
 export function LegalLayout({ title, children }: { title: string; children: ReactNode }) {
   const { t } = useI18n();
   return (
     <main className="theme-surface min-h-screen">
-      <TopControls />
       <div className="mx-auto max-w-3xl px-6 py-12">
         <div className="double-rule mb-8 flex items-center justify-between px-1 py-3">
           <span className="text-xs uppercase tracking-[0.2em] opacity-70">

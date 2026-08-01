@@ -10,7 +10,6 @@ import type { Post, Profile, Stats } from '@/lib/types';
 import { ProfileCard } from '@/components/ProfileCard';
 import { Tabs } from '@/components/Tabs';
 import { ViewTracker } from '@/components/ViewTracker';
-import { TopControls } from '@/components/TopControls';
 import { ProfileThemeInit } from '@/components/ProfileThemeInit';
 import { AdSlot } from '@/components/AdSlot';
 
@@ -114,7 +113,6 @@ export default async function ProfilePage({
         }}
       />
       <ProfileThemeInit dark={profile.theme_dark} />
-      <TopControls />
       <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6 md:py-10 md:grid md:grid-cols-[320px_1fr] md:gap-8">
         <aside className="md:sticky md:top-4 md:self-start">
           <ProfileCard profile={profile} stats={stats} postCount={posts.length} />

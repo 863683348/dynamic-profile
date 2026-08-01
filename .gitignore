@@ -35,3 +35,8 @@ app/api/debug/
 .vercel/
 .next-verify
 .next-dev
+# next.js 构建/缓存备份目录（debug 重命名产生，非项目产物）
+.next-*/
+.next-bak-*
+.next-old-*
+.next-devtest*

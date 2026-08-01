@@ -2,12 +2,11 @@
 
 import Link from 'next/link';
 import { useI18n } from '@/lib/i18n';
-import { LangToggle } from './LangToggle';
-import { ThemeToggle } from './ThemeToggle';
 import { Logo } from './Logo';
 
 /**
- * 落地页顶栏：左上角 Logo，中部锚点导航，右上角 语言切换 + 亮暗切换。
+ * 落地页顶栏：左上角 Logo，中部锚点导航。
+ * 右上角的 谷歌登录 / 语言切换 / 亮暗切换 由根布局统一挂的浮动 TopControls 提供（全站一致）。
  * sticky 固定，半透明纸面 + 模糊，承载 design tokens。
  */
 export function LandingNav() {
@@ -36,11 +35,6 @@ export function LandingNav() {
               {l.label}
             </Link>
           ))}
-        </div>
-
-        <div className="flex items-center gap-2">
-          <LangToggle />
-          <ThemeToggle />
         </div>
       </nav>
     </header>
