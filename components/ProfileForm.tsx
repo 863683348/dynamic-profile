@@ -158,16 +158,24 @@ export function ProfileForm({
           <div className="flex items-center gap-3">
             <div
               className="h-16 w-28 shrink-0 overflow-hidden rounded-md border"
-              style={{
-                borderColor: 'var(--rule)',
-                backgroundImage: coverUrl ? `url(${coverUrl})` : undefined,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                background: coverUrl
-                  ? undefined
-                  : 'linear-gradient(135deg, color-mix(in srgb, var(--primary) 70%, #fff), var(--primary))',
-              }}
-            />
+              style={{ borderColor: 'var(--rule)' }}
+            >
+              {coverUrl ? (
+                <img
+                  src={coverUrl}
+                  alt=""
+                  className="h-full w-full object-cover"
+                />
+              ) : (
+                <div
+                  className="h-full w-full"
+                  style={{
+                    background:
+                      'linear-gradient(135deg, color-mix(in srgb, var(--primary) 70%, #fff), var(--primary))',
+                  }}
+                />
+              )}
+            </div>
             <div className="flex flex-wrap gap-2">
               <button
                 type="button"
@@ -204,16 +212,24 @@ export function ProfileForm({
           <div className="flex items-center gap-3">
             <div
               className="h-16 w-16 shrink-0 overflow-hidden rounded-lg border-2"
-              style={{
-                borderColor: 'var(--paper)',
-                backgroundImage: avatarUrl ? `url(${avatarUrl})` : undefined,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                background: avatarUrl
-                  ? undefined
-                  : 'linear-gradient(135deg, color-mix(in srgb, var(--primary) 75%, #fff), var(--primary))',
-              }}
-            />
+              style={{ borderColor: 'var(--paper)' }}
+            >
+              {avatarUrl ? (
+                <img
+                  src={avatarUrl}
+                  alt=""
+                  className="h-full w-full object-cover"
+                />
+              ) : (
+                <div
+                  className="h-full w-full"
+                  style={{
+                    background:
+                      'linear-gradient(135deg, color-mix(in srgb, var(--primary) 75%, #fff), var(--primary))',
+                  }}
+                />
+              )}
+            </div>
             <div className="flex flex-wrap gap-2">
               <button
                 type="button"
@@ -397,13 +413,18 @@ export function ProfileForm({
               <div className="flex items-center gap-3">
                 <div
                   className="h-20 w-20 shrink-0 overflow-hidden rounded-md border"
-                  style={{
-                    borderColor: 'var(--rule)',
-                    backgroundImage: wechatQr ? `url(${wechatQr})` : undefined,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                  }}
-                />
+                  style={{ borderColor: 'var(--rule)' }}
+                >
+                  {wechatQr ? (
+                    <img
+                      src={wechatQr}
+                      alt=""
+                      className="h-full w-full object-cover"
+                    />
+                  ) : (
+                    <div className="h-full w-full bg-[color:var(--muted)]" />
+                  )}
+                </div>
                 <div className="flex flex-wrap gap-2">
                   <button
                     type="button"
@@ -441,13 +462,18 @@ export function ProfileForm({
               <div className="flex items-center gap-3">
                 <div
                   className="h-20 w-20 shrink-0 overflow-hidden rounded-md border"
-                  style={{
-                    borderColor: 'var(--rule)',
-                    backgroundImage: alipayQr ? `url(${alipayQr})` : undefined,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                  }}
-                />
+                  style={{ borderColor: 'var(--rule)' }}
+                >
+                  {alipayQr ? (
+                    <img
+                      src={alipayQr}
+                      alt=""
+                      className="h-full w-full object-cover"
+                    />
+                  ) : (
+                    <div className="h-full w-full bg-[color:var(--muted)]" />
+                  )}
+                </div>
                 <div className="flex flex-wrap gap-2">
                   <button
                     type="button"
