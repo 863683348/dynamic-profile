@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS profiles (
 
 CREATE TABLE IF NOT EXISTS posts (
   id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-  handle text NOT NULL REFERENCES profiles(handle) ON DELETE CASCADE,
+  handle text NOT NULL REFERENCES profiles(handle) ON DELETE CASCADE ON UPDATE CASCADE,
   title text,
   content text,
   source text NOT NULL DEFAULT 'manual',
@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS posts (
 );
 
 CREATE TABLE IF NOT EXISTS stats (
-  handle text PRIMARY KEY REFERENCES profiles(handle) ON DELETE CASCADE,
+  handle text PRIMARY KEY REFERENCES profiles(handle) ON DELETE CASCADE ON UPDATE CASCADE,
   views integer NOT NULL DEFAULT 0,
   followers integer NOT NULL DEFAULT 0,
   updated_at timestamptz NOT NULL DEFAULT now()
