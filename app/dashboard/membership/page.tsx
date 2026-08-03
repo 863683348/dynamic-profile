@@ -333,8 +333,7 @@ export default function MembershipPage() {
             icon={BarChart3}
             title={t('mem_analytics')}
             desc={t('mem_analytics_desc')}
-            locked={!isPro}
-            soon
+            href="/dashboard/analytics"
           />
           <PerkCard
             icon={Palette}

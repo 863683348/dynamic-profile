@@ -5,7 +5,7 @@ import type { Profile } from '@/lib/types';
 import { ThemePicker } from './ThemePicker';
 import { StylePicker } from './StylePicker';
 import type { StyleId } from '@/lib/styles';
-import { Plus, Trash2, Upload, Image as ImageIcon, QrCode } from 'lucide-react';
+import { Plus, Trash2, Upload, Image as ImageIcon, QrCode, Lock } from 'lucide-react';
 import { useI18n } from '@/lib/i18n';
 import { avatarDataUrl, coverDataUrl, qrDataUrl } from '@/lib/image';
 
@@ -68,6 +68,7 @@ export function ProfileForm({
   const alipayInput = useRef<HTMLInputElement>(null);
 
   const { t } = useI18n();
+  const isPro = initial?.plan === 'pro';
 
   const avatarInput = useRef<HTMLInputElement>(null);
   const coverInput = useRef<HTMLInputElement>(null);
@@ -136,7 +137,7 @@ export function ProfileForm({
       bio: bio.trim(),
       status_text: statusText.trim(),
       links,
-      theme_color: themeColor,
+      theme_color: isPro ? themeColor : (initial?.theme_color ?? '#c2410c'),
       theme_dark: themeDark,
       style,
       avatar_url: avatarUrl,
@@ -354,12 +355,24 @@ export function ProfileForm({
         </button>
       </div>
 
-      <ThemePicker
-        color={themeColor}
-        dark={themeDark}
-        onChangeColor={setThemeColor}
-        onChangeDark={setThemeDark}
-      />
+      <div className="relative">
+        <ThemePicker
+          color={themeColor}
+          dark={themeDark}
+          onChangeColor={setThemeColor}
+          onChangeDark={setThemeDark}
+          disabled={!isPro}
+        />
+        {!isPro && (
+          <p className="mt-2 flex items-center gap-1.5 text-xs text-primary">
+            <Lock className="h-3.5 w-3.5 shrink-0" />
+            <span>{t('pro_only_theme')}</span>
+            <a href="/pricing" className="underline hover:opacity-80">
+              {t('pro_upgrade_link')}
+            </a>
+          </p>
+        )}
+      </div>
 
       <StylePicker value={style} onChange={setStyle} />
 

@@ -18,15 +18,17 @@ export function ThemePicker({
   dark,
   onChangeColor,
   onChangeDark,
+  disabled,
 }: {
   color: string;
   dark: boolean;
   onChangeColor: (v: string) => void;
   onChangeDark: (v: boolean) => void;
+  disabled?: boolean;
 }) {
   const { t } = useI18n();
   return (
-    <div>
+    <div className={disabled ? 'pointer-events-none opacity-60' : undefined}>
       <span className="mag-label">{t('tp_theme')}</span>
       <div className="flex flex-wrap items-center gap-2">
         {PRESETS.map((c) => {
@@ -36,6 +38,7 @@ export function ThemePicker({
               key={c}
               type="button"
               onClick={() => onChangeColor(c)}
+              disabled={disabled}
               aria-label={t('tp_pick', { c })}
               className="h-7 w-7 rounded-sm border"
               style={{
@@ -51,6 +54,7 @@ export function ThemePicker({
           type="color"
           value={color}
           onChange={(e) => onChangeColor(e.target.value)}
+          disabled={disabled}
           className="h-7 w-10 cursor-pointer rounded-sm border bg-transparent"
           style={{ borderColor: 'var(--rule)' }}
           aria-label={t('tp_custom')}
@@ -61,6 +65,7 @@ export function ThemePicker({
           type="checkbox"
           checked={dark}
           onChange={(e) => onChangeDark(e.target.checked)}
+          disabled={disabled}
         />
         {t('tp_dark')}
       </label>

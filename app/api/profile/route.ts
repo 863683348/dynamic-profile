@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/auth";
-import { upsertProfile } from "@/lib/db/queries";
+import { upsertProfile, getProfileByOwner } from "@/lib/db/queries";
 
 export const dynamic = "force-dynamic";
 
@@ -24,7 +24,15 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    const profile = await upsertProfile(body as never, ownerId);
+    // 真门禁：非 Pro 用户锁定自定义主题色，沿用现有值，防止前端绕过
+    const raw = body as Record<string, unknown>;
+    if (typeof raw.theme_color === 'string') {
+      const existing = await getProfileByOwner(ownerId);
+      if (!existing || existing.plan !== 'pro') {
+        raw.theme_color = existing?.theme_color ?? '#c2410c';
+      }
+    }
+    const profile = await upsertProfile(raw as never, ownerId);
     return NextResponse.json({ ok: true, profile });
   } catch (e) {
     if (e instanceof Error && e.message === "INVALID_HANDLE") {

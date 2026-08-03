@@ -133,3 +133,21 @@ ALTER TABLE profiles
 
 ALTER TABLE profiles
   ADD COLUMN IF NOT EXISTS alipay_qr_url text;
+
+-- ============================================================================
+-- 访客分析明细（Pro 专属）· 2026-08-03 新增
+-- 记录每次主页访问：handle / 时间 / 来源域名 / 板块 / 匿名访客ID / 是否登录。
+-- 用于 /dashboard/analytics 聚合（PV / UV / 来源等）。不存储个人身份信息。
+-- ============================================================================
+
+CREATE TABLE IF NOT EXISTS visits (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  handle text NOT NULL REFERENCES profiles(handle) ON DELETE CASCADE ON UPDATE CASCADE,
+  visited_at timestamptz NOT NULL DEFAULT now(),
+  referrer_domain text,
+  section text NOT NULL DEFAULT 'home',
+  vid text,
+  is_logged_in boolean NOT NULL DEFAULT false
+);
+
+CREATE INDEX IF NOT EXISTS idx_visits_handle_visited ON visits(handle, visited_at DESC);

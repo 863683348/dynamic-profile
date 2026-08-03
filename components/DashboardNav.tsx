@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, User, FileText, Briefcase, Crown, type LucideIcon } from 'lucide-react';
+import { Home, User, FileText, Briefcase, Crown, BarChart3, type LucideIcon } from 'lucide-react';
 import { useI18n } from '@/lib/i18n';
 
 type NavItem = {
@@ -18,6 +18,7 @@ const ITEMS: NavItem[] = [
   { href: '/dashboard/posts', labelKey: 'nav_posts', icon: FileText },
   { href: '/dashboard/works', labelKey: 'nav_works', icon: Briefcase },
   { href: '/dashboard/membership', labelKey: 'nav_membership', icon: Crown },
+  { href: '/dashboard/analytics', labelKey: 'nav_analytics', icon: BarChart3 },
 ];
 
 export function DashboardNav() {
