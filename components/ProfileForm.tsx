@@ -68,7 +68,7 @@ export function ProfileForm({
   const alipayInput = useRef<HTMLInputElement>(null);
 
   const { t } = useI18n();
-  const isPro = initial?.plan === 'pro';
+  const isPro = true; // [临时测试] 上线前恢复：const isPro = initial?.plan === 'pro';
 
   // 当父组件异步加载到 profile 后回填表单；以 handle 为版本标识，
   // 避免父组件无关重渲染覆盖用户正在输入的未保存内容。

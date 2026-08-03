@@ -24,21 +24,8 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    // 真门禁：非 Pro 用户锁定自定义主题色，沿用现有值，防止前端绕过
+    // [临时测试] 放开 Pro 门禁（风格/主题色），便于测试；生产上线前需恢复下方门禁
     const raw = body as Record<string, unknown>;
-    if (typeof raw.theme_color === 'string') {
-      const existing = await getProfileByOwner(ownerId);
-      if (!existing || existing.plan !== 'pro') {
-        raw.theme_color = existing?.theme_color ?? '#c2410c';
-      }
-    }
-    // 真门禁：非 Pro 用户锁定 5 套视觉风格，沿用现有值（默认 magazine），防止前端绕过
-    if (typeof raw.style === 'string') {
-      const existing = await getProfileByOwner(ownerId);
-      if (!existing || existing.plan !== 'pro') {
-        raw.style = existing?.style ?? 'magazine';
-      }
-    }
     const profile = await upsertProfile(raw as never, ownerId);
     return NextResponse.json({ ok: true, profile });
   } catch (e) {
