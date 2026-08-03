@@ -10,13 +10,15 @@ import { STYLE_IDS, STYLE_ACCENT, type StyleId } from '@/lib/styles';
 export function StylePicker({
   value,
   onChange,
+  disabled,
 }: {
   value: StyleId;
   onChange: (s: StyleId) => void;
+  disabled?: boolean;
 }) {
   const { t } = useI18n();
   return (
-    <div>
+    <div className={disabled ? 'pointer-events-none opacity-60' : undefined}>
       <span className="mag-label">{t('style_label')}</span>
       <p className="mb-3 text-xs opacity-60">{t('style_hint')}</p>
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
@@ -27,6 +29,7 @@ export function StylePicker({
               key={id}
               type="button"
               onClick={() => onChange(id)}
+              disabled={disabled}
               aria-pressed={active}
               className="relative overflow-hidden rounded-lg border-2 bg-[color:var(--paper)] text-left transition"
               style={{ borderColor: active ? 'var(--primary)' : 'var(--rule)' }}

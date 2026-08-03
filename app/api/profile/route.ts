@@ -32,6 +32,13 @@ export async function POST(req: NextRequest) {
         raw.theme_color = existing?.theme_color ?? '#c2410c';
       }
     }
+    // 真门禁：非 Pro 用户锁定 5 套视觉风格，沿用现有值（默认 magazine），防止前端绕过
+    if (typeof raw.style === 'string') {
+      const existing = await getProfileByOwner(ownerId);
+      if (!existing || existing.plan !== 'pro') {
+        raw.style = existing?.style ?? 'magazine';
+      }
+    }
     const profile = await upsertProfile(raw as never, ownerId);
     return NextResponse.json({ ok: true, profile });
   } catch (e) {

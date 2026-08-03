@@ -162,7 +162,7 @@ export function ProfileForm({
       links,
       theme_color: isPro ? themeColor : (initial?.theme_color ?? '#c2410c'),
       theme_dark: themeDark,
-      style,
+      style: isPro ? style : (initial?.style ?? 'magazine'),
       avatar_url: avatarUrl,
       cover_url: coverUrl,
       tip_enabled: tipEnabled,
@@ -397,7 +397,18 @@ export function ProfileForm({
         )}
       </div>
 
-      <StylePicker value={style} onChange={setStyle} />
+      <div className="relative">
+        <StylePicker value={style} onChange={setStyle} disabled={!isPro} />
+        {!isPro && (
+          <p className="mt-2 flex items-center gap-1.5 text-xs text-primary">
+            <Lock className="h-3.5 w-3.5 shrink-0" />
+            <span>{t('pro_only_style')}</span>
+            <a href="/pricing" className="underline hover:opacity-80">
+              {t('pro_upgrade_link')}
+            </a>
+          </p>
+        )}
+      </div>
 
       {/* 打赏设置 */}
       <div className="double-rule space-y-4 pt-4">

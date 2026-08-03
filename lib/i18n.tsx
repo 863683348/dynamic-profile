@@ -294,6 +294,7 @@ const zh: Dict = {
   mem_tips_desc: '开启后访客可为你打赏',
   // 会员专属 / 访客分析
   pro_only_theme: '自定义主题色为 Pro 专属，升级解锁',
+  pro_only_style: '5 套视觉风格为 Pro 专属，升级解锁',
   pro_upgrade_link: '升级解锁',
   nav_analytics: '访客分析',
   analytics_title: '访客分析',
@@ -706,6 +707,7 @@ const en: Dict = {
   mem_tips_desc: 'Let visitors tip you when enabled',
   // Member-only / Visitor analytics
   pro_only_theme: 'Custom theme color is a Pro feature — upgrade to unlock',
+  pro_only_style: 'The 5 visual styles are a Pro feature — upgrade to unlock',
   pro_upgrade_link: 'Upgrade to unlock',
   nav_analytics: 'Analytics',
   analytics_title: 'Visitor analytics',
