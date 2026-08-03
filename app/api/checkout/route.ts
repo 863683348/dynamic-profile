@@ -46,7 +46,7 @@ export async function POST(req: NextRequest) {
   }
 
   const origin = process.env.NEXT_PUBLIC_SITE_URL || new URL(req.url).origin;
-  const successUrl = `${origin}/dashboard?upgraded=1&checkout_id={CHECKOUT_ID}`;
+  const successUrl = `${origin}/dashboard/membership?upgraded=1&checkout_id={CHECKOUT_ID}`;
 
   try {
     const checkout = await polar.checkouts.create({
