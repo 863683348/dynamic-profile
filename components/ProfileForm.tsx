@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { Profile } from '@/lib/types';
 import { ThemePicker } from './ThemePicker';
 import { StylePicker } from './StylePicker';
@@ -69,6 +69,29 @@ export function ProfileForm({
 
   const { t } = useI18n();
   const isPro = initial?.plan === 'pro';
+
+  // 当父组件异步加载到 profile 后回填表单；以 handle 为版本标识，
+  // 避免父组件无关重渲染覆盖用户正在输入的未保存内容。
+  const lastHandle = useRef(initial?.handle);
+  useEffect(() => {
+    if (initial?.handle === lastHandle.current) return;
+    lastHandle.current = initial?.handle;
+    setDisplayName(initial?.display_name ?? '');
+    setHandle(initial?.handle ?? '');
+    setBio(initial?.bio ?? '');
+    setStatusText(initial?.status_text ?? '');
+    setThemeColor(initial?.theme_color ?? '#c2410c');
+    setThemeDark(initial?.theme_dark ?? false);
+    setAvatarUrl(initial?.avatar_url ?? null);
+    setCoverUrl(initial?.cover_url ?? null);
+    setLinks(Array.isArray(initial?.links) ? (initial!.links as LinkItem[]) : []);
+    setStyle((initial?.style as StyleId) ?? 'magazine');
+    setTipEnabled(initial?.tip_enabled ?? false);
+    setTipMessage(initial?.tip_message ?? '');
+    setBmcUsername(initial?.bmc_username ?? '');
+    setWechatQr(initial?.wechat_qr_url ?? null);
+    setAlipayQr(initial?.alipay_qr_url ?? null);
+  }, [initial?.handle]);
 
   const avatarInput = useRef<HTMLInputElement>(null);
   const coverInput = useRef<HTMLInputElement>(null);
