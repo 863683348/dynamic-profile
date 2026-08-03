@@ -162,7 +162,7 @@ export function ProfileForm({
       links,
       theme_color: isPro ? themeColor : (initial?.theme_color ?? '#c2410c'),
       theme_dark: themeDark,
-      style: isPro ? style : (initial?.style ?? 'magazine'),
+      style: isPro ? style : ((initial?.style ?? 'magazine') as StyleId),
       avatar_url: avatarUrl,
       cover_url: coverUrl,
       tip_enabled: tipEnabled,
