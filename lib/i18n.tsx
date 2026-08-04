@@ -427,6 +427,18 @@ const zh: Dict = {
   blog_post1_body:
     '我们打造动态主页，是为了让每个人都能用最体面的方式呈现自己——像经营一本杂志那样经营你的个人品牌。这篇博客将陆续分享使用技巧、设计思路与产品更新。',
 
+  blog_post2_tag: '教程',
+  blog_post2_title: '三分钟从零到上线：你的第一张个人主页',
+  blog_post2_date: '2026 年 8 月',
+  blog_post2_body:
+    '填表单 → 选主题 → 发布，全程无代码。这篇教程带你三分钟做出第一张能展示作品、动态和社交链接的个人主页，并分享三个让页面更好看的小技巧。',
+
+  blog_post2_tag: 'Tutorial',
+  blog_post2_title: 'Launch Your First Personal Homepage in 3 Minutes',
+  blog_post2_date: 'August 2026',
+  blog_post2_body:
+    'Fill a form, pick a theme, publish — zero code. This tutorial takes you from zero to your first homepage with portfolio, posts, and social links, plus three tips to make it shine.',
+
   // Contact
   contact_title: '联系我们',
   contact_intro: '有任何问题、建议或合作意向，欢迎随时联系我们。',
