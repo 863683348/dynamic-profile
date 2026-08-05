@@ -6,6 +6,8 @@ import { sql } from '@/lib/db';
  * 增加 ON UPDATE CASCADE（原仅有 ON DELETE CASCADE，导致改 handle 时被 FK 拦截）。
  * 访问一次即可；DROP/ADD 带 IF EXISTS 保证幂等。
  */
+export const dynamic = 'force-dynamic';
+
 export async function GET() {
   const results: string[] = [];
   try {

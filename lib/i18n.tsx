@@ -433,12 +433,6 @@ const zh: Dict = {
   blog_post2_body:
     '填表单 → 选主题 → 发布，全程无代码。这篇教程带你三分钟做出第一张能展示作品、动态和社交链接的个人主页，并分享三个让页面更好看的小技巧。',
 
-  blog_post2_tag: 'Tutorial',
-  blog_post2_title: 'Launch Your First Personal Homepage in 3 Minutes',
-  blog_post2_date: 'August 2026',
-  blog_post2_body:
-    'Fill a form, pick a theme, publish — zero code. This tutorial takes you from zero to your first homepage with portfolio, posts, and social links, plus three tips to make it shine.',
-
   // Contact
   contact_title: '联系我们',
   contact_intro: '有任何问题、建议或合作意向，欢迎随时联系我们。',
@@ -851,6 +845,11 @@ const en: Dict = {
   blog_post1_date: 'July 2026',
   blog_post1_body:
     'We built Dynamic Profile so everyone can present themselves with dignity — curate your personal brand like editing a magazine. This blog will share tips, design notes and product updates.',
+  blog_post2_tag: 'Tutorial',
+  blog_post2_title: 'Launch Your First Personal Homepage in 3 Minutes',
+  blog_post2_date: 'August 2026',
+  blog_post2_body:
+    'Fill a form, pick a theme, publish — zero code. This tutorial takes you from zero to your first homepage with portfolio, posts, and social links, plus three tips to make it shine.',
 
   // Contact
   contact_title: 'Contact',

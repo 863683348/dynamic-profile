@@ -6,6 +6,8 @@ import { sql } from '@/lib/db';
  * 部署后访问一次 /api/migrate-style 即可；IF NOT EXISTS 保证幂等。
  * 迁移完成后可删除此文件。
  */
+export const dynamic = 'force-dynamic';
+
 export async function GET() {
   try {
     await sql`

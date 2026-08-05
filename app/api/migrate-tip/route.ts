@@ -6,6 +6,8 @@ import { sql } from '@/lib/db';
  * 访问一次即可；IF NOT EXISTS 保证幂等。
  * 迁移完成后可删除此文件。
  */
+export const dynamic = 'force-dynamic';
+
 export async function GET() {
   try {
     await sql`ALTER TABLE profiles ADD COLUMN IF NOT EXISTS tip_enabled   boolean NOT NULL DEFAULT false`;
