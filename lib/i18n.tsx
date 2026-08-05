@@ -433,6 +433,12 @@ const zh: Dict = {
   blog_post2_body:
     '填表单 → 选主题 → 发布，全程无代码。这篇教程带你三分钟做出第一张能展示作品、动态和社交链接的个人主页，并分享三个让页面更好看的小技巧。',
 
+  blog_post3_tag: '观点',
+  blog_post3_title: 'Linktree 太普通？你需要的是"个人主页"而非链接页',
+  blog_post3_date: '2026 年 8 月',
+  blog_post3_body:
+    '链接页只是导航，个人主页才是品牌。别人点开你的 Linktree 看到几排图标；点开你的个人主页看到的是作品、动态与个人风格。对自由职业者、创作者和求职者来说，后者才真正赢得信任——这也是我们做 Dynamic Profile 的原因：像经营杂志一样经营你自己。',
+
   // Contact
   contact_title: '联系我们',
   contact_intro: '有任何问题、建议或合作意向，欢迎随时联系我们。',
@@ -850,6 +856,12 @@ const en: Dict = {
   blog_post2_date: 'August 2026',
   blog_post2_body:
     'Fill a form, pick a theme, publish — zero code. This tutorial takes you from zero to your first homepage with portfolio, posts, and social links, plus three tips to make it shine.',
+
+  blog_post3_tag: 'Opinion',
+  blog_post3_title: 'Beyond Linktree: Why You Need a Homepage, Not a Link Page',
+  blog_post3_date: 'August 2026',
+  blog_post3_body:
+    'A link page is navigation; a homepage is your brand. When someone opens your Linktree they see rows of icons; when they open your homepage they see your work, your voice, your style. For freelancers, creators and job seekers, the latter is what actually earns trust — that is why we built Dynamic Profile: to run yourself like a magazine.',
 
   // Contact
   contact_title: 'Contact',
