@@ -300,6 +300,46 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* ───────── 真实用户故事 ───────── */}
+      <section className="mx-auto max-w-6xl px-5 py-16 sm:py-20">
+        <p className="text-xs uppercase tracking-[0.2em] text-[color:var(--primary)]">
+          真实故事
+        </p>
+        <h2 className="magazine-title mt-2 text-3xl sm:text-4xl">他们用动态主页做了什么</h2>
+        <div className="mt-10 grid gap-6 lg:grid-cols-2">
+          <article className="paper-card p-7">
+            <div className="flex items-center gap-3">
+              <div className="flex h-11 w-11 items-center justify-center rounded-full border-2 border-[color:var(--primary)] magazine-title text-lg text-primary">
+                陈
+              </div>
+              <div>
+                <h3 className="magazine-title text-xl">陈默 · 独立摄影师</h3>
+                <p className="text-xs opacity-60">把客片排成一本可分享的杂志</p>
+              </div>
+            </div>
+            <p className="mt-4 text-sm leading-relaxed opacity-80">
+              陈默过去把作品分散在多个图床和社交账号，客户总找不到完整合集。用动态主页后，他把每次拍摄精选 6–10
+              张，配上拍摄手记，自动生成带网格排版的杂志页。客户扫码即可浏览，成交前的沟通成本降了一半。
+            </p>
+          </article>
+          <article className="paper-card p-7">
+            <div className="flex items-center gap-3">
+              <div className="flex h-11 w-11 items-center justify-center rounded-full border-2 border-[color:var(--primary)] magazine-title text-lg text-primary">
+                苏
+              </div>
+              <div>
+                <h3 className="magazine-title text-xl">苏雯 · 产品经理</h3>
+                <p className="text-xs opacity-60">用主页沉淀个人方法论</p>
+              </div>
+            </div>
+            <p className="mt-4 text-sm leading-relaxed opacity-80">
+              苏雯习惯把读书笔记和产品复盘写成短文。动态主页的"链接聚合 + 文章流"让她不用再维护一个笨重的个人网站，
+              周末花十分钟就能更新一期内容，半年积累了 40 多篇，还因此收到了两次演讲邀请。
+            </p>
+          </article>
+        </div>
+      </section>
+
       {/* ───────── FAQ 引导 ───────── */}
       <section className="mx-auto max-w-3xl px-5 py-16 sm:py-20">
         <h2 className="magazine-title text-3xl sm:text-4xl">{t('faq_teaser_title')}</h2>
