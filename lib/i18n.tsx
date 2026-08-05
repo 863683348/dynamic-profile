@@ -380,7 +380,7 @@ const zh: Dict = {
   privacy_contact_b: '关于本政策的任何问题，欢迎通过下方邮箱联系我们。',
   privacy_ads_h: '广告',
   privacy_ads_b:
-    '本服务可能通过 Google AdSense 展示广告。Google 及其合作伙伴可能使用 Cookie 与其它技术投放与你的兴趣相关的广告，并衡量广告效果。你可以通过 Google 的广告设置（aboutads.info）管理个性化广告偏好。我们不会将你的个人档案内容用于广告定向。',
+    '本服务通过 Google AdSense 展示广告。作为第三方广告供应商，Google 及其合作伙伴会使用 Cookie（包括 DART Cookie）与其它技术，根据你在本站及互联网上其它网站的访问记录，投放与你的兴趣相关的广告，并衡量广告效果。你可以通过 Google 广告设置（https://www.google.com/settings/ads）或 Your Online Choices（http://www.aboutads.info/choices）管理或退出个性化广告；关于 Google 如何使用数据，请参阅其广告隐私政策（https://policies.google.com/technologies/ads）。我们不会将你的个人档案内容用于广告定向。',
 
   // Terms
   terms_title: '服务条款',
@@ -805,7 +805,7 @@ const en: Dict = {
   privacy_contact_b: 'For any questions about this policy, reach us via the email below.',
   privacy_ads_h: 'Advertising',
   privacy_ads_b:
-    'This service may display ads served by Google AdSense. Google and its partners may use cookies and similar technologies to serve ads based on your interests and to measure ad performance. You can manage personalized ad preferences via Google’s Ads Settings (aboutads.info). We do not use your profile content for ad targeting.',
+    'This service displays ads served by Google AdSense. As a third-party advertising vendor, Google and its partners use cookies (including the DART cookie) and similar technologies to serve ads based on your interests and to measure ad performance, drawing on your visits to this and other websites on the Internet. You can manage or opt out of personalized advertising via Google Ads Settings (https://www.google.com/settings/ads) or Your Online Choices (http://www.aboutads.info/choices); for details on how Google uses data, see its advertising privacy policy (https://policies.google.com/technologies/ads). We do not use your profile content for ad targeting.',
 
   // Terms
   terms_title: 'Terms of Service',
