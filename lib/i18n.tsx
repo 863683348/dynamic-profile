@@ -439,6 +439,12 @@ const zh: Dict = {
   blog_post3_body:
     '链接页只是导航，个人主页才是品牌。别人点开你的 Linktree 看到几排图标；点开你的个人主页看到的是作品、动态与个人风格。对自由职业者、创作者和求职者来说，后者才真正赢得信任——这也是我们做 Dynamic Profile 的原因：像经营杂志一样经营你自己。',
 
+  blog_post4_tag: '指南',
+  blog_post4_title: '如何打造一个让人记住的个人主页：5 个关键元素',
+  blog_post4_date: '2026 年 8 月',
+  blog_post4_body:
+    '个人主页不是链接的集合，而是你这个人的一次完整表达。下面五个元素，能帮你从一堆图标里跳出来，让人真的记住你。第一，一句清楚的定位：用一句话说清你是谁、为谁解决什么问题，放在最显眼处。第二，精选作品集：不要堆全部，只放三到五件最能代表你水平的作品，并写清你做了什么、结果如何。第三，动态更新区：放最近的动态、文章或项目，让页面活起来，而不是一张静态名片。第四，社会证明：客户评价、合作品牌、数据成果，用具体数字比形容词更有说服力。第五，一致的视觉：统一的配色与字体，让人一眼认出是你。把这五点做扎实，你的主页就不再只是导航，而是会替你说话的个人品牌。',
+
   // Contact
   contact_title: '联系我们',
   contact_intro: '有任何问题、建议或合作意向，欢迎随时联系我们。',
@@ -862,6 +868,12 @@ const en: Dict = {
   blog_post3_date: 'August 2026',
   blog_post3_body:
     'A link page is navigation; a homepage is your brand. When someone opens your Linktree they see rows of icons; when they open your homepage they see your work, your voice, your style. For freelancers, creators and job seekers, the latter is what actually earns trust — that is why we built Dynamic Profile: to run yourself like a magazine.',
+
+  blog_post4_tag: 'Guide',
+  blog_post4_title: 'How to Build a Personal Homepage People Remember: 5 Key Elements',
+  blog_post4_date: 'August 2026',
+  blog_post4_body:
+    'A personal homepage is not a pile of links; it is one complete expression of who you are. Five elements will help you stand out from a wall of icons and actually be remembered. First, a clear positioning line: say in one sentence who you are and whose problem you solve, and put it where it is seen first. Second, a curated portfolio: do not dump everything, show only three to five pieces that best represent your level, and state what you did and what the result was. Third, a live updates area: recent posts, projects or activity that keeps the page alive instead of a static business card. Fourth, social proof: client quotes, partner brands, measurable outcomes — concrete numbers beat adjectives. Fifth, consistent visuals: one color scheme and one typeface so people recognize you at a glance. Get these five right and your homepage stops being navigation and becomes a personal brand that speaks for you.',
 
   // Contact
   contact_title: 'Contact',

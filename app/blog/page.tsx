@@ -33,6 +33,14 @@ export default function BlogPage() {
         <h2 className="magazine-title mb-2 mt-3 text-2xl">{t('blog_post3_title')}</h2>
         <p className="text-sm leading-relaxed opacity-80">{t('blog_post3_body')}</p>
       </article>
+      <article className="paper-card p-6">
+        <div className="flex items-center gap-2">
+          <span className="source-badge text-primary">{t('blog_post4_tag')}</span>
+          <span className="text-xs opacity-60">{t('blog_post4_date')}</span>
+        </div>
+        <h2 className="magazine-title mb-2 mt-3 text-2xl">{t('blog_post4_title')}</h2>
+        <p className="text-sm leading-relaxed opacity-80">{t('blog_post4_body')}</p>
+      </article>
       <AdSlot className="my-8 min-h-[120px]" />
     </LegalLayout>
   );
