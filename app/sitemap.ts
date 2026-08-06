@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { sql } from '@/lib/db/index';
+import { BLOG_POSTS } from '@/lib/blog-posts';
 
 const SITE =
   process.env.NEXT_PUBLIC_SITE_URL || 'https://dynamic-profile.shop';
@@ -34,5 +35,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // DB 不可用时至少保留静态路由
   }
 
-  return [...staticRoutes, ...dynamic];
+  const blogPosts: MetadataRoute.Sitemap = BLOG_POSTS.map((p) => ({
+    url: `${SITE}/blog/${p.slug}`,
+    lastModified: new Date(p.publishedAt),
+    changeFrequency: 'monthly' as const,
+    priority: 0.6,
+  }));
+
+  return [...staticRoutes, ...blogPosts, ...dynamic];
 }
