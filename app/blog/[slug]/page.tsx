@@ -74,8 +74,9 @@ export default function BlogPostPage({
     description: post.body.en,
     datePublished: post.publishedAt,
     dateModified: post.publishedAt,
+    image: SITE + '/og-image.svg',
     inLanguage: ['en', 'zh-CN'],
-    author: { '@type': 'Organization', name: 'Dynamic Profile' },
+    author: { '@type': 'Organization', name: 'Dynamic Profile', url: SITE, '@id': SITE + '#organization' },
     publisher: {
       '@type': 'Organization',
       name: 'Dynamic Profile',
