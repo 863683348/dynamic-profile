@@ -421,6 +421,7 @@ const zh: Dict = {
   // Blog
   blog_title: '博客',
   blog_intro: '关于个人品牌、作品集与动态主页的思考与更新。',
+  blog_related: '相关文章',
   blog_post1_tag: '公告',
   blog_post1_title: '欢迎来到动态主页',
   blog_post1_date: '2026 年 7 月',
@@ -852,6 +853,7 @@ const en: Dict = {
   // Blog
   blog_title: 'Blog',
   blog_intro: 'Thoughts and updates on personal branding, portfolios and dynamic homepages.',
+  blog_related: 'Related posts',
   blog_post1_tag: 'Announcement',
   blog_post1_title: 'Welcome to Dynamic Profile',
   blog_post1_date: 'July 2026',
