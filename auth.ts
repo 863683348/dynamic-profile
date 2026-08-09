@@ -13,6 +13,13 @@ const googleEnabled = Boolean(
 // MVP 阶段：任意合法邮箱即可登录（无密码、无 SMTP），owner_id 直接使用邮箱。
 // 生产环境应替换为真实验证（邮件验证码 / GitHub OAuth 等）。
 export const { handlers, auth, signIn, signOut } = NextAuth({
+  // Vercel 等反向代理后，必须信任请求的 Host header 才能正确推断
+  // callback/redirect_uri 与 state 校验所需的 URL，否则回调会被误判为
+  // 不信任来源，state/PKCE 校验对不上 → 渲染成 error=Configuration。
+  trustHost: true,
+  // 临时开启以便排查回调失败（Vercel Function Logs 会输出具体错误类型）。
+  // 问题解决后改为 false。
+  debug: process.env.NODE_ENV === "production",
   session: { strategy: "jwt" },
   secret: process.env.AUTH_SECRET,
   providers: [
