@@ -17,9 +17,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   // callback/redirect_uri 与 state 校验所需的 URL，否则回调会被误判为
   // 不信任来源，state/PKCE 校验对不上 → 渲染成 error=Configuration。
   trustHost: true,
-  // 临时开启以便排查回调失败（Vercel Function Logs 会输出具体错误类型）。
-  // 问题解决后改为 false。
-  debug: process.env.NODE_ENV === "production",
+  // 调试开关：已定位并修复 OAuth 回调 iss 缺失问题，关闭以免生产日志泄露敏感信息。
+  debug: false,
   session: { strategy: "jwt" },
   secret: process.env.AUTH_SECRET,
   providers: [
@@ -37,10 +36,25 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       },
     }),
     ...(googleEnabled
-      ? [
+        ? [
           Google({
             // 同一邮箱通过"邮箱登录"与"谷歌登录"进入时合并为同一账号
             allowDangerousEmailAccountLinking: true,
+            // 显式给出 Google 的 OAuth 端点，跳过 OIDC discovery。
+            // 原因：Google 的发现文档声明 authorization_response_iss_parameter_supported:true，
+            // 但回跳的授权响应里并不携带 iss 参数，导致 oauth4webapi 在
+            // validateAuthResponse 阶段抛 "response parameter iss (issuer) missing"。
+            // 显式给出 token/userinfo 端点后，@auth/core 走手工构造 as 的分支，
+            // 不再带该标志，从而绕开此校验（id_token 校验仍保留）。
+            authorization: {
+              url: "https://accounts.google.com/o/oauth2/v2/auth",
+              params: {
+                scope: "openid email profile",
+                prompt: "select_account",
+              },
+            },
+            token: { url: "https://oauth2.googleapis.com/token" },
+            userinfo: { url: "https://openidconnect.googleapis.com/v1/userinfo" },
           }),
         ]
       : []),
