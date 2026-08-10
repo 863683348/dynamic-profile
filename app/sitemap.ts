@@ -1,4 +1,5 @@
 import type { MetadataRoute } from 'next';
+import { unstable_cache } from 'next/cache';
 import { sql } from '@/lib/db/index';
 import { BLOG_POSTS } from '@/lib/blog-posts';
 
@@ -25,13 +26,25 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       : []),
   ];
 
+  // profiles 列表走数据缓存（unstable_cache，revalidate=86400），
+  // 否则 neon no-store 查询会强制 sitemap 动态渲染，Googlebot 高频抓取
+  // 仍会触发函数执行与 FOT。缓存后整张 sitemap 可静态生成并命中边缘。
+  const getCachedProfileHandles = unstable_cache(
+    async () => {
+      const rows = (await sql`SELECT handle FROM profiles`) as {
+        handle: string;
+      }[];
+      return rows.map((r) => r.handle);
+    },
+    ["sitemap-profiles"],
+    { revalidate: 86400 },
+  );
+
   let dynamic: MetadataRoute.Sitemap = [];
   try {
-    const rows = (await sql`SELECT handle FROM profiles`) as {
-      handle: string;
-    }[];
-    dynamic = rows.map((r) => ({
-      url: `${SITE}/${r.handle}`,
+    const handles = await getCachedProfileHandles();
+    dynamic = handles.map((h) => ({
+      url: `${SITE}/${h}`,
       lastModified: new Date(),
       changeFrequency: 'weekly' as const,
       priority: 0.7,
