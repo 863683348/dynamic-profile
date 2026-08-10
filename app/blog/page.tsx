@@ -27,7 +27,12 @@ export default function BlogPage() {
               >
                 <div className="flex items-center gap-2">
                   <span className="source-badge text-primary">{p.tag[lang]}</span>
-                  <span className="text-xs opacity-60">{p.date[lang]}</span>
+                  <span className="text-xs opacity-60">
+                    {new Date(p.publishedAt).toLocaleDateString(
+                      lang === "zh" ? "zh-CN" : "en-US",
+                      { year: "numeric", month: "long", day: "numeric" }
+                    )}
+                  </span>
                 </div>
                 <h2 className="magazine-title mb-2 mt-3 text-2xl">{p.title[lang]}</h2>
                 <p className="text-sm leading-relaxed opacity-80">{excerpt}</p>
