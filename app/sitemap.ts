@@ -5,6 +5,11 @@ import { BLOG_POSTS } from '@/lib/blog-posts';
 const SITE =
   process.env.NEXT_PUBLIC_SITE_URL || 'https://dynamic-profile.shop';
 
+// 缓存 24 小时：sitemap 仅在新主页/博客发布时变化，
+// 但 Googlebot 高频抓取，每次都执行 SELECT handle FROM profiles 会推高 FOT；
+// 整站缓存后绝大部分抓取直接命中边缘，不再触发函数执行。
+export const revalidate = 86400;
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: `${SITE}/`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 1 },

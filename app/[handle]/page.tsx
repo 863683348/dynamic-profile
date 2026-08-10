@@ -16,7 +16,11 @@ import { AdSlot } from '@/components/AdSlot';
 const SITE =
   process.env.NEXT_PUBLIC_SITE_URL || 'https://dynamic-profile.shop';
 
-export const dynamic = "force-dynamic";
+// ISR 缓存 5 分钟：个人主页数据（资料/帖子/统计）变更不频繁，
+// 此前为 force-dynamic 导致每次请求都执行函数 + 3 次 DB 查询，
+// 是 Fast Origin Transfer（输入输出）居高不下的主因。
+// 浏览量统计由客户端 ViewTracker 独立打 API，不受影响。
+export const revalidate = 300;
 
 export async function generateMetadata({
   params,
