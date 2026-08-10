@@ -12,7 +12,9 @@ export default function BlogPage() {
       <p className="text-sm opacity-80">{t('blog_intro')}</p>
 
       <ul className="mt-6 space-y-4">
-        {BLOG_POSTS.map((p) => {
+        {[...BLOG_POSTS]
+          .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime())
+          .map((p) => {
           const excerpt =
             p.body[lang].length > 120
               ? p.body[lang].slice(0, 117) + '…'
