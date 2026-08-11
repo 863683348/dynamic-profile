@@ -57,6 +57,18 @@ const nextConfig = {
           },
         ],
       },
+      // FOT 修复：公开页加边缘缓存（Next.js 默认 max-age=0 每次回源验证）。
+      // 排除 /api（接口）、/dashboard（用户后台）、/ads.txt；覆盖 sitemap.xml/robots.txt
+      // 与全部公开页（含 /s/[handle] 个人主页、/blog、/pricing、/faq 等）。
+      {
+        source: '/:path((?!api|dashboard|ads\\.txt).*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, s-maxage=86400, stale-while-revalidate=604800',
+          },
+        ],
+      },
     ];
   },
 };
