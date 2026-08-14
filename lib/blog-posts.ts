@@ -364,7 +364,156 @@ There's no absolute answer. It depends on your subject. Single strong shots suit
 Not the exact person. But you get the source channel, the time spent, and what they browsed.`,
     },
   },
+  {
+    id: 14,
+    slug: 'photographer-portfolio-layout-guide',
+    publishedAt: '2026-08-15',
+    tag: { zh: '指南', en: 'Guide' },
+    title: { zh: "摄影师作品集怎么排版？让照片自己开口说话", en: "Portfolio Layout for Photographers: Let Photos Speak" },
+    date: { zh: '2026 年 8 月', en: 'August 2026' },
+    body: {
+      zh: `客户打开你的摄影师作品集，第一眼看的不是你的名字，是照片。photo portfolio page 排版的核心就一句话：让照片自己开口说话，你不抢戏。
+
+## 先分清两种主流布局
+
+| 布局 | 适合 | 观感 |
+|---|---|---|
+| 大图沉浸式 | 风光、人像、婚礼，单张照片就够撑满一屏 | 纵深强，滑起来像看片 |
+| 网格缩略图 | 街拍、产品、多题材混合作品 | 信息密度高，方便快速扫 |
+
+选哪种，取决于你照片的单张成色。一张图扛得起整屏，就上大图；需要靠数量堆出作品广度，就上网格。混着用也没问题：首页给一张主视觉大图，下面接网格，这是 photography portfolio layout 里很稳的组合。
+
+## 留白不是浪费，是呼吸
+
+新手最常见的问题，是把页面塞满。照片之间没有间距，观感就糊成一团。我的建议是图距至少 24px，大图之间留到 48px 以上。留白让眼睛知道"这张结束了，下一张开始"，照片反而更有分量。
+
+## 每个项目给一个案例块
+
+别只堆图。每个作品配一个案例块，里面放：
+
+- 项目名称和拍摄时间
+- 一两句拍摄背景或思路
+- 4–8 张成片
+- 客户或题材标签
+
+访客看到的就不只是"拍得好看"，还有你的专业度。案例块的标题里带上项目关键词，也是作品集页 SEO 的好载体。
+
+## 移动端是主战场
+
+手机上浏览作品的人比电脑多得多。移动端的习惯是竖滑，首屏就要给大图，别放一大段自我介绍。
+
+- 首屏：一张大图 + 名字 + 一句定位
+- 下面直接进作品流，越往后越精彩
+- 联系方式固定在底部或角落菜单，随时能点到
+
+## 联系方式放在最后，也要放在最容易被找到的地方
+
+拍得再好，客户找不到你的邮箱，等于白拍。作品集页末尾放一个醒目的联系块，页脚再重复一遍。别让客户往回翻。
+
+## 动态个人主页：知道谁在看你的作品
+
+这是零代码动态个人主页最值钱的地方。普通作品集页是个哑巴，你不知道谁来过。用访客画像功能，你能看到：
+
+- 来访者大概从哪个渠道进来（站内直达、Instagram，还是搜索）
+- 停留了多久、看了哪些项目
+- 是手机还是电脑打开的
+
+对摄影师来说，这些信息直接决定你怎么跟进。从 Instagram 点进来的，多半是看了你发的新片，适合私信补一句；从搜索引擎来的，可能是主动找服务的客户，适合发作品集之外的报价说明。
+
+具体操作三步就能上线：
+
+1. 在编辑器里选作品集模板，替换成自己的照片
+2. 每个项目建一个案例块，填好标题和拍摄背景
+3. 发布后打开访客画像面板，看真实来访数据
+
+想从模板开始，回到[首页](/)选一个顺眼的版式。布局思路的更多细节，可以翻我之前写的 [Day 7](/blog.html#day7) 和 [Day 8](/blog.html#day8) 两篇。
+
+## FAQ
+
+**摄影师作品集页放多少张照片合适？**
+20–40 张精选就够了，质量优先。放几百张反而稀释重点。
+How many photos should a photographer portfolio hold? Twenty to forty curated shots is enough.
+
+**大图布局和网格布局哪个更好？**
+没有绝对答案，取决于你的题材。单张成色好就大图，题材广就网格。
+Which is better, large-image or grid layout? It depends on your subject matter.
+
+**访客画像能告诉我具体是谁在看吗？**
+不能精确到个人，但能看到渠道、时长和浏览行为。
+Can visitor profiles tell me exactly who is viewing? Not the exact person, but you get the source, time and behavior.`,
+      en: `A client opening your photographer portfolio doesn't look for your name first. They look at the photos. Most portfolio pages fail not because the work is weak, but because the layout gets in the way. What I want to do here is show you how to make the layout disappear.
+
+## Two main layouts: immersive large images vs grid thumbnails
+
+| Layout | Best for | Feel |
+|---|---|---|
+| Immersive large image | landscape, portrait, wedding; single shots that can carry a full screen | cinematic scroll |
+| Grid thumbnails | street, product, mixed genres | dense, quick to scan |
+
+The choice depends on how strong your individual shots are. If one image can hold a full screen, go large. If you need volume to show range, go grid. Mixing works too. A hero image on top, a grid below, that's a stable photography portfolio layout that rarely misses.
+
+## White space is not waste
+
+The most common beginner mistake is packing the page full. When photos have no gap between them, everything blurs into one grey soup. Keep at least 24px between images, and 48px for the large ones. White space tells the eye "this one ended, the next begins." The photos actually feel heavier when they get room to breathe.
+
+## Give each project its own case block
+
+Don't just dump images. Each project deserves a case block with:
+
+- project name and shoot date
+- one or two lines about the background or approach
+- four to eight finished shots
+- a tag for the client or the genre
+
+What you're showing is not just "the photos look good." You're showing process and professionalism. Case blocks also carry SEO weight, so put the project keyword in the heading.
+
+## Mobile is the main battlefield
+
+More people view your photo portfolio page on a phone than on a desktop, full stop. On mobile the habit is vertical scrolling, and the first screen has to be an image. Not a paragraph about yourself.
+
+- First screen: one large image, your name, a one-line positioning.
+- Right after that, the work flow. Keep the strongest shots toward the end.
+- Contact fixed in a corner menu or at the bottom, always one tap away.
+
+## Contact goes last, but must be impossible to miss
+
+If the client can't find your email after seeing great work, the whole page was pointless. Put a visible contact block at the end, and repeat it in the footer. Don't make them scroll back up to hunt for it.
+
+## Dynamic profile: know who is looking at your work
+
+This is where a dynamic profile page beats a static one. A regular portfolio is a dummy page. It never tells you who came. With visitor profiles, you can see:
+
+- which channel the visitor came from (direct, Instagram, or search)
+- how long they stayed and which projects they opened
+- phone or desktop
+
+For a photographer this decides how you follow up. Someone arriving from Instagram probably saw your newest post, so a quick private message works. Someone arriving from search is hunting for services, so they'd rather get a pricing note than a "thanks for looking."
+
+Three steps to set it up:
+
+1. Pick a portfolio template in the editor and swap in your photos.
+2. Build a case block for each project with a title and context.
+3. Publish, then open the visitor profile panel and read the real data.
+
+Start from a template on the [homepage](/). For more layout thinking, the [Day 7](/blog.html#day7) and [Day 8](/blog.html#day8) posts cover related ground.
+
+## FAQ
+
+**How many photos should a photographer portfolio hold?**
+Twenty to forty curated shots is enough. More just dilutes the focus. 摄影师作品集页放多少张照片合适？20–40 张精选就足够。
+
+**Which is better, large-image or grid layout?**
+There's no absolute answer. It depends on your subject. Single strong shots suit large images, wide ranges suit grids. 大图布局和网格布局哪个更好？看题材，没有标准答案。
+
+**Can visitor profiles tell me exactly who is viewing?**
+Not the exact person. But you get the source channel, the time spent, and what they browsed. 访客画像能看到具体是谁吗？看不到个人，但渠道、时长和浏览行为都有。
+
+Head back to the [homepage](/) and grab a portfolio template that fits your work. The layout is the easy part. The photos were already speaking for you.`,
+    },
+  },
+
 ];
+;
 
 export function getPostBySlug(slug: string): BlogPost | undefined {
   return BLOG_POSTS.find((p) => p.slug === slug);
