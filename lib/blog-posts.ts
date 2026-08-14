@@ -118,6 +118,252 @@ export const BLOG_POSTS: BlogPost[] = [
       en: 'A quick observation before anything else: editorial aesthetic homepages age better than template pages. Not because they are fancier, quite the opposite. They look like a magazine spread: big headlines, restrained color, a clear reading rhythm. For creators, this style is a natural fit for showing work, opinions and progress. Here is why.\n\nThe editorial aesthetic comes from magazine and newspaper layout: content first, decoration steps aside. An editorial design personal site usually has: big, confident headline typography that grabs attention in one line; a restrained palette, usually one main color plus neutrals; clear grids and whitespace, room to breathe between sections; image and text alternating, like flipping through a magazine. It is not just another name for minimalism. Editorial is about arranging content with hierarchy so visitors want to keep reading.\n\nWhy it fits creators. First, work needs context: one image with one line of explanation beats a full-screen gallery. Second, opinions need rhythm: when long posts, short notes and project logs mix, the grid keeps things readable. Third, brand needs consistency: a unified typographic style is more memorable than sticker-style decoration. Compare the alternatives: card-style pages are built for quick scanning and shop-style display; editorial pages are built for deep reading and narrative. If you live on words and work, a designer, writer or indie developer, a magazine style portfolio fits you better.\n\nBuilding an editorial homepage in 3 steps. First, pick one visual keyword for the page, such as restrained, warm, or sharp, and make every layout decision follow it. Second, sort your work by narrative, not by date: lead with the piece you most want people to remember. Third, write one sentence of context for each piece, what you did and what problem it solved. Those three steps give your page editorial feel, no design software required.\n\nPeople mix editorial and minimalist up a lot. Minimalist means delete until nothing is left; editorial means arrange until the hierarchy is clear. A minimalist homepage might be one tagline plus a button; an editorial homepage has a big headline, an intro paragraph, three pieces of work and a short bio, each with an obvious reading order. For creators, the latter carries far more of who you are.\n\nHead to the homepage of Dynamic Profile (dynamic-profile.shop) and start building, or read our welcome post first. The free plan is enough for an editorial-style page.',
     },
   },
+  {
+    id: 9,
+    slug: 'everything-on-one-page',
+    publishedAt: '2026-08-11',
+    tag: { zh: '指南', en: 'Guide' },
+    title: { zh: '作品集、博客、动态、链接一页全收', en: 'Portfolio, Updates, Links: Everything on One Page' },
+    date: { zh: '2026 年 8 月', en: 'August 2026' },
+    body: {
+      zh: '别人搜到你名字，点进来看到的应该是什么？不是社交平台主页，也不是一堆散落的链接，而是一张 one page personal site，作品集、博客、动态、社交链接全部收在一页里。这篇讲讲"一页聚合"为什么是个人主页的最佳形态，以及怎么搭。\n\n传统思路是把网站拆成作品集页、博客页、关于页，访客要点三下才知道你是谁。一页聚合的逻辑相反：首屏放你是谁，往下是代表作，再往下是动态和全部链接。访客从上往下滑一遍，就完成了从认识你到 follow 你的完整路径。对创作者尤其重要：你的访客大多是路过的，耐心有限。all in one portfolio 把决策成本降到最低，别人不用猜你的主页在哪，因为你只给了一个地址。\n\n一页里应该有什么，按顺序：你是谁（一句话定位、头像、名字）；代表作 3-5 件，不是全部，放最能代表你的；最近动态（作品更新、文章、项目进度），让页面活起来；全部链接（社交媒体、邮箱、店铺）一处收齐；一句 CTA（想让你做的事，加个邮箱或约聊按钮）。顺序有讲究：作品在前，链接垫底。先让人记住你，再给人 follow 你的理由。\n\n很多人担心一页站会死，建完就扔在那里。解决办法是加一个动态区：作品更新、博客新文、项目进度都往这里放。updates and links page 的模式就是这样：静态的作品集负责你是谁，动态区负责你最近在干嘛。两者结合，访客每次来都有新东西看，也有理由回访。\n\n链接页解决的是链接太多的问题，但它只有链接，没有内容。访客点进去看到一排按钮，对你的认知停留在这个人有五个账号。一页聚合解决的是我是谁的问题：先展示你，再给链接。前者是目录，后者是主页。这也是为什么越来越多人从链接页升级到一页个人站。\n\n到 Dynamic Profile（dynamic-profile.shop）的首页直接开始搭建，几分钟就能上线自己的 one page personal site，免费版就够用。第一次用的话，可以先读读我们的三分钟上线教程。',
+      en: 'When someone searches your name and clicks through, what should they land on? Not a social profile, and not a pile of scattered links. A one page personal site, with portfolio, blog, updates and links all on a single page. This post explains why the everything-on-one-page format is the best shape for a personal homepage, and how to build one.\n\nThe traditional approach splits a site into portfolio, blog and about pages, and visitors need three clicks to figure out who you are. The one-page logic is the opposite: the first screen says who you are, scrolling shows your best work, then your updates, then all your links. A visitor who scrolls top to bottom completes the whole journey from meeting you to following you. This matters most for creators. Most visitors are passersby with limited patience. An all in one portfolio cuts the decision cost: people never wonder where your homepage is, because you only gave them one address.\n\nWhat belongs on the page, in order: who you are (one-line positioning, photo, name); best work, 3-5 pieces, not everything, the ones that represent you; recent updates (new work, articles, project progress) that keep the page alive; all links (social, email, store) collected in one place; one CTA, the thing you want people to do, an email box or a book-a-call button. The order matters. Work first, links last. Get people to remember you, then give them a reason to follow.\n\nA common worry is that a one-pager goes stale, built once and abandoned. The fix is an updates section: new work, new posts, project progress all land here. The updates and links page pattern works like this: the static portfolio answers who you are, the updates section answers what you are doing lately. Together, visitors always find something new, and there is a reason to come back.\n\nA link-in-bio page solves the too-many-links problem, but it only has links, no content. Visitors see a column of buttons and learn little more than this person has five accounts. The one-page approach answers the bigger question: show the person first, then the links. One is a table of contents, the other is a homepage. That is why more people are upgrading from link pages to one-page personal sites.\n\nHead to the homepage of Dynamic Profile (dynamic-profile.shop) and start building. Your one page personal site can be live in minutes, and the free plan is enough. First time here? Read our three-minute launch guide.',
+    },
+  },  {
+    id: 10,
+    slug: 'visitor-insights-pro-guide',
+    publishedAt: '2026-08-12',
+    tag: { zh: '指南', en: 'Guide' },
+    title: { zh: '访客分析（Pro）：知道谁在看你', en: "Visitor Insights (Pro): See Who's Looking" },
+    date: { zh: '2026 年 8 月', en: 'August 2026' },
+    body: {
+      zh: '访客分析是 Pro 计划里最容易被低估的功能。这篇讲它到底能告诉你什么：访问量趋势、流量来源、设备分布、停留时长——以及看完这些数据之后，你该怎么改自己的主页。\n\n## 访问量趋势：数字告诉你主页的"呼吸"\n趋势曲线是最基础也最有用的一张图。它把主页访问量按天画出来，你能一眼看到：发了一条动态后访问量有没有涨、改了文案之后有没有变化、周末是不是掉得厉害。别盯着单日数字看，看趋势。单日波动是噪音，连续两周的上升才是信号。\n\n## 流量来源：访客从哪来\n访客不会凭空出现。来源分布告诉你流量是从搜索引擎、社交媒体、还是直接访问来的。这个数据的价值在于归因：你在 Twitter 发的东西带来了多少访问？Google 搜索又带来了多少？知道来源，你才知道该往哪里用力。\n\n## 设备与地域：谁在看、用什么看\n设备分布和地域分布回答了同一个问题的两个侧面：你的访客是移动端多还是桌面端多？集中在哪个时区？移动端占大头意味着你的主页必须在手机上好看；集中在某个时区意味着你发动态的时间可以更精准。\n\n## 看完数据之后：三个动作\n第一，把访问量最高的页面置顶或强化。第二，把跳出率最高的部分改掉或删掉。第三，根据流量来源决定下一步动作：搜索流量多就多写内容，社交流量多就多互动。数据本身不产生价值，看完数据做的决定才产生价值。\n\n访客分析在 Dynamic Profile 的 Pro 计划里。想升级，去定价页看看，或者直接在主页仪表盘里点升级按钮。',
+      en: 'Visitor insights is the most underrated feature in the Pro plan. This post covers what it actually tells you: traffic trends, source breakdown, device split, visit duration, and what to change on your page after you read them.\n\n## Traffic trends: the pulse of your page\nThe trend line is the most basic and most useful chart. It plots daily visits, and you can see at a glance: did that new update bump the numbers? Did the copy change move anything? Do weekends always dip? Do not stare at single-day numbers. Trends, not spikes. One day is noise, two weeks of rising line is a signal.\n\n## Source breakdown: where visitors come from\nVisitors do not appear out of thin air. The source split tells you whether traffic comes from search engines, social media, or direct visits. The value is attribution: how much traffic did that post on Twitter actually drive? How much does Google send? Know the source, and you know where to put effort.\n\n## Devices and geography: who is looking, on what\nDevice split and geography answer two sides of one question: mobile or desktop? Which timezone? If mobile dominates, your page must look good on a phone. If one timezone dominates, you can time your posts better.\n\n## After the data: three moves\nFirst, pin or strengthen whatever page gets the most visits. Second, cut or fix whatever has the highest bounce. Third, act on the source split: if search drives traffic, write more; if social does, engage more. Data on its own produces nothing. Decisions made after reading data produce everything.\n\nVisitor insights ships in the Dynamic Profile Pro plan. To upgrade, check the pricing page, or hit the upgrade button in your dashboard.',
+    },
+  },  {
+    id: 11,
+    slug: 'how-no-code-generator-works',
+    publishedAt: '2026-08-13',
+    tag: { zh: '指南', en: 'Guide' },
+    title: { zh: '无代码生成器如何工作？填表即建站', en: 'How a No-Code Generator Works: Form to Website' },
+    date: { zh: '2026 年 8 月', en: 'August 2026' },
+    body: {
+      zh: '很多人第一次听说"填个表就能建站"时都以为是个噱头。这篇拆开看一个 no code website generator 的内部：你填的那些字段去了哪里，它们怎么变成页面，以及哪些事情它替你做了、哪些事情它没做。\n\n## 你填的表单，最终变成什么\n一个个人主页生成器，核心是把结构化信息变成结构化页面。你的名字、简介、头像、社交链接、作品列表——每一项都对应页面上的一个区块。生成器做的事和工程师做的事一样：读取数据，套用模板，输出页面。区别只是你不需要写代码。\n\n## 模板是骨架，数据是血肉\nform based website builder 的原理可以概括成一句话：模板决定长什么样，数据决定里面是什么。你选一个模板，填完信息，生成器把两者拼起来。同一个模板，两个人填不同内容，出来的就是两个完全不同的主页。这也是为什么生成器能这么快，模板是提前做好的，你只是填内容。\n\n## 它替你做了什么\n第一，布局。区块怎么排、间距怎么调、响应式怎么处理，模板里都写好了。第二，部署。生成器直接把页面发布到线上，给你一个可以分享的链接，你不用碰服务器。第三，维护。想改内容，回到表单改一行，重新生成就完事。\n\n## 它没替你做什么\n没有银弹。你仍然需要想清楚：你的简介要传达什么、放哪张照片最合适、作品集里放什么。生成器处理的是"怎么呈现"，不处理"呈现什么"。这也是为什么两个用同一款工具的人，主页水平可以差很多。\n\n## 什么时候该用生成器\n你需要一个体面的个人主页，但不想为它投入几周时间。你在找工作或接活，需要一个能快速更新的门面。你试过自己写代码，但发现维护成本超过了收益。这些场景里，一个 no code website generator 是合理的工程决策，不是偷懒。\n\n想试试填表即建站？去 Dynamic Profile 首页点"开始"，五分钟内拿到你的第一个链接。',
+      en: 'When people hear "fill a form, get a website", most assume it is a gimmick. This post opens up the hood of a no code website generator: where your form fields go, how they become a page, and which parts it does for you and which it does not.\n\n## What your form becomes\nA personal page generator is really about turning structured info into a structured page. Your name, bio, avatar, social links, portfolio items, every field maps to a block on the page. The generator does what an engineer does: read data, apply a template, output a page. The only difference is you skip the coding.\n\n## Template is the skeleton, data is the flesh\nThe principle behind a form based website builder fits in one sentence: the template decides how it looks, the data decides what is in it. You pick a template, fill in your info, and the generator combines the two. Same template, two different people, two completely different homepages. That is why generators are fast: templates are built in advance, you only fill in content.\n\n## What it does for you\nFirst, layout. Block order, spacing, responsive behavior, all baked into the template. Second, deployment. The generator publishes the page live and hands you a shareable link, no server on your side. Third, maintenance. Want to change something? Edit a line in the form, regenerate, done.\n\n## What it does not do\nThere is no silver bullet. You still have to decide what your bio should say, which photo works best, what goes in the portfolio. The generator handles presentation, not content. That is also why two people using the same tool can end up with very different pages.\n\n## When a generator makes sense\nYou need a decent personal page and do not want to sink weeks into it. You are job hunting or freelancing and need a storefront you can update fast. You tried hand-coding and found the maintenance cost beats the benefit. In these cases a no code website generator is a reasonable engineering decision, not laziness.\n\nWant to try form-to-website? Hit "Start" on the Dynamic Profile homepage and get your first link in five minutes.',
+    },
+  },
+  {
+    id: 12,
+    slug: 'first-week-checklist-60-to-90',
+    publishedAt: '2026-08-14',
+    tag: { zh: '指南', en: 'Guide' },
+    title: { zh: '第一周清单：让主页从 60 分到 90 分', en: 'First-Week Checklist: From 60 to 90 Points' },
+    date: { zh: '2026 年 8 月', en: 'August 2026' },
+    body: {
+      zh: `你刚把第一张个人主页做上线，感觉……还行。没坏，也不惊艳。如果给它打个 60 分，其实你已经比大多数人强了，很多人连 30 分都到不了。这份第一周清单的目标，是让主页从 60 分一路提升到 90 分，也就是真正"拿得出手"的程度。你不需要重做，只需要一次集中的优化：改动几个地方，就能改变陌生人点开你页面头十秒里的印象。下面就是我们在 Dynamic Profile 给每个新用户第一周的标准动作。
+
+## 先用主页 优化 清单，而不是急着改版
+
+很多人第一周最容易犯的错，是一上来就处处改：换配色、换字体、挪照片，然后全部撤回。什么都没定下来。与其这样，不如先写一张主页 优化 清单，只做清单上的事。清单给你一条终点线；没有它，你会一直改下去，页面永远不"完工"。
+
+我们最信得过的五项：一句话定位、三到五件代表作、一个活的动态区、一个清楚的联系按钮、一套统一的视觉。就这五条，其余都是装饰。
+
+## 把个人主页文案打磨到只剩一句话
+
+如果说 60 分和 90 分之间只差一样东西，那就是顶部那句话。多数第一版主页写着"热爱创作、喜欢折腾"，访客看完啥也不知道。把个人主页文案打磨到第一句就说清：你是谁、你解决谁的问题。"我帮独立创始人做出第一个落地页"胜过任何形容词堆砌。
+
+作品描述也照做一遍。每件作品写清你做了什么、结果如何。"重做结账流程，转化 +18%"比"负责 UI"有力十倍。具体永远胜过花哨。
+
+## 第一周清单，逐条过
+
+把清单列成一张可以今天勾完的表：
+
+- [ ] 一句话定位钉在页面最顶部
+- [ ] 展示三到五件代表作，不是全部存档
+- [ ] 每件作品都带一个结果或数字
+- [ ] 动态区至少有一条近期更新
+- [ ] 一个联系按钮，不是一整面链接墙
+- [ ] 全站一套配色、一种字体
+- [ ] 一张真的是你的头像或封面
+- [ ] 用手机测过，因为多数访客从手机来
+
+八条全勾完，你已经到 80 分。最后十分来自下面两个动作。
+
+## 三个悄悄拉低 60 分的小坑
+
+第一，砍掉链接堆。一排十个社交图标是噪音。先让人记住你，链接放最底下。第二，藏起空模块。一个空的"作品"标签页，比没有更糟。第三，收住滚动节奏。90 分的页面从上到下讲一个故事；60 分的像一张设置页。
+
+这些都不是大改动，却决定了别人觉得"这人有个站"还是"这人值得聊"。
+
+## 第七天之后，继续优化你的个人主页
+
+主页不是纹身。分数最高的人，是把第一周当起点而不是终点的人。每两周丢一条动态，做完一件事写一句话。页面活着，印象也活着。
+
+在 Dynamic Profile 上这很轻松：打开控制台，发条动态，完事。不用重新构建，不用部署。
+
+## 常见问题
+
+**第一周这一遍要花多久？**
+多数人一小时内能勾完八条清单。难的不是加什么，是删什么。
+
+**要开 Pro 才能到 90 分吗？**
+不用。清单上的每条在免费版都能做。Pro 帮你绑定自定义域名、看数据，但一张利落的免费主页胜过乱糟糟的 Pro 主页。
+
+**性价比最高的一处改动是什么？**
+顶部那句话定位。人人都先看它，多数页面却写错了。
+
+**该重做还是只改？**
+只改。重做会浪费你第一周。用主页 优化 清单，先上线，再根据真实反馈迭代。
+
+## 准备好从 60 分到 90 分了吗？
+
+你现在有了完整的第一周动作：一张清单、几个悄悄的修复、一个让页面活着的习惯。最快的落地方式，是到 dynamic-profile.shop 建好你的主页，边做边勾。去 dynamic-profile.shop 免费开始，你的 90 分主页，午饭前就能上线。`,
+      en: `You just shipped your first personal homepage and it feels... fine. Not broken, not great. If you scored it a 60, that is actually a decent spot, most people never clear 30. The goal of this first-week checklist is to improve your personal homepage from a passable 60 to a page that reads like a 90. You do not need a redesign. You need one focused pass: a few edits that change how a stranger reads you in the first ten seconds. Here is the exact routine we hand every new Dynamic Profile user in their first seven days.
+
+## Start with a homepage checklist, not a redesign
+
+The mistake most people make in week one is editing everything at once. Pick a color, change a font, move a photo, then undo it all. Nothing sticks. Instead, write down a homepage checklist of five things and do only those. A checklist gives you a finish line. Without one, you will keep polishing forever and your page will never go live.
+
+The five items we trust most: a one-line positioning statement, three to five representative works, a live updates section, a single clear contact button, and one consistent visual style. That is the whole list. Everything else is decoration.
+
+## Polish your personal site copy down to one line
+
+If there is one thing that separates a 60 from a 90, it is the top line. Most first pages say something like "passionate creator who loves building things." That tells a visitor nothing. Polish your personal site copy until the first sentence says who you are and whose problem you solve. "I help indie founders ship their first landing page" beats any adjective salad.
+
+Do the same pass on your work descriptions. Each piece should state what you did and what happened. "Redesigned checkout, +18% conversion" reads ten times stronger than "worked on UI." Concrete beats clever every time.
+
+## The first-week checklist, point by point
+
+Here is the checklist as a list you can tick off today:
+
+- [ ] One-line positioning statement pinned to the top of the page
+- [ ] Three to five works shown, not your whole archive
+- [ ] A result or number attached to each work
+- [ ] An updates section with at least one recent post
+- [ ] A single contact button, not a wall of links
+- [ ] One color scheme and one typeface used everywhere
+- [ ] A photo or avatar that is actually you
+- [ ] Tested on a phone, because most visitors arrive there
+
+If all eight are done, you are already at an 80. The last ten points come from the next two fixes.
+
+## Three quiet fixes that move a 60 to a 90
+
+First, cut the link dump. A column of ten social icons is noise. Lead with who you are, and put links at the bottom. Second, remove the dead sections. If a module is empty, hide it, an empty "Works" tab looks worse than no tab at all. Third, tighten the scroll. A 90-point page tells one story top to bottom; a 60-point page feels like a settings screen.
+
+These are not big changes. They are the difference between "this person has a site" and "this person is worth talking to."
+
+## Keep improving your personal homepage after day seven
+
+A homepage is not a tattoo. The people who score highest are the ones who treat week one as the start, not the end. Drop a new update every week or two. When you finish something, write one line about it. The page stays alive, and so does the impression it makes.
+
+On Dynamic Profile this is painless: open the console, post an update, done. No rebuild, no deploy.
+
+## FAQ
+
+**How long should the first-week pass take?**
+Most people finish the eight-item checklist in under an hour. The hard part is deciding what to cut, not what to add.
+
+**Do I need Pro to hit 90 points?**
+No. Every item on this checklist works on the free plan. Pro helps with custom domains and analytics, but a sharp free page beats a messy Pro page.
+
+**What is the single highest-impact edit?**
+The one-line positioning statement. It is the first thing anyone reads, and most pages get it wrong.
+
+**Should I redesign or just edit?**
+Edit. A redesign wastes your first week. Use the homepage checklist, ship it, then improve from real feedback.
+
+## Ready to go from 60 to 90?
+
+You now have the full first-week routine to improve your personal homepage: a checklist, the quiet fixes, and a habit to keep it alive. The fastest way to apply it is to build your page on dynamic-profile.shop and tick the boxes as you go. Start free at dynamic-profile.shop and your 90-point homepage can be live before lunch.`,
+    },
+  },
+  {
+    id: 13,
+    slug: 'photographer-portfolio-layout-guide',
+    publishedAt: '2026-08-15',
+    tag: { zh: '指南', en: 'Guide' },
+    title: { zh: '摄影师作品集怎么排版？让照片自己开口说话', en: 'Portfolio Layout for Photographers: Let Photos Speak' },
+    date: { zh: '2026 年 8 月', en: 'August 2026' },
+    body: {
+      zh: `客户打开你的摄影师作品集，第一眼看的不是你的名字，是照片。photo portfolio page 排版的核心就一句话：让照片自己开口说话，你不抢戏。
+
+## 先分清两种主流布局
+
+一种是沉浸式大图，适合风光、人像、婚礼——单张照片就够撑满一屏，纵深强，滑起来像看片。另一种是网格缩略图，适合街拍、产品、多题材混合作品——信息密度高，方便快速扫。选哪种，取决于你照片的单张成色：一张图扛得起整屏就上大图，需要靠数量堆出广度就上网格。混着用也没问题：首页给一张主视觉大图，下面接网格，这是 photography portfolio layout 里很稳的组合。
+
+## 留白不是浪费，是呼吸
+
+新手最常见的问题是把页面塞满，照片之间没有间距，观感就糊成一团。建议图距至少 24px，大图之间留到 48px 以上。留白让眼睛知道"这张结束了，下一张开始"，照片反而更有分量。
+
+## 每个项目给一个案例块
+
+别只堆图。每个作品配一个案例块，里面放：项目名称和拍摄时间、一两句拍摄背景或思路、4-8 张成片、客户或题材标签。访客看到的就不只是"拍得好看"，还有你的专业度。案例块的标题里带上项目关键词，也是作品集页 SEO 的好载体。
+
+## 移动端是主战场
+
+手机上浏览作品的人比电脑多得多。移动端的习惯是竖滑：首屏放一张大图加名字和一句定位，下面直接进作品流，联系方式固定在底部或角落菜单，随时能点到。
+
+## 联系方式放在最后，也要放在最容易被找到的地方
+
+拍得再好，客户找不到你的邮箱，等于白拍。作品集页末尾放一个醒目的联系块，页脚再重复一遍，别让客户往回翻。
+
+## 动态个人主页：知道谁在看你的作品
+
+普通作品集页是个哑巴，你不知道谁来过。用访客画像功能，你能看到来访者大概从哪个渠道进来（站内直达、Instagram，还是搜索）、停留了多久、看了哪些项目、是手机还是电脑打开的。对摄影师来说，这些信息直接决定你怎么跟进：从 Instagram 点进来的，多半是看了你发的新片，适合私信补一句；从搜索引擎来的，可能是主动找服务的客户，适合发作品集之外的报价说明。具体操作三步就能上线：在编辑器里选作品集模板，替换成自己的照片；每个项目建一个案例块，填好标题和拍摄背景；发布后打开访客画像面板，看真实来访数据。
+
+想从模板开始，回到 dynamic-profile.shop 首页选一个顺眼的版式；布局的更多细节可以在博客列表里翻之前几篇。
+
+## FAQ
+
+**摄影师作品集页放多少张照片合适？**
+20-40 张精选就够了，质量优先。放几百张反而稀释重点。
+
+**大图布局和网格布局哪个更好？**
+没有绝对答案，取决于你的题材。单张成色好就大图，题材广就网格。
+
+**访客画像能告诉我具体是谁在看吗？**
+不能精确到个人，但能看到渠道、时长和浏览行为。`,
+      en: `A client opening your photographer portfolio doesn't look for your name first. They look at the photos. Most portfolio pages fail not because the work is weak, but because the layout gets in the way. This guide shows you how to make the layout disappear.
+
+## Two main layouts: immersive large images vs grid thumbnails
+
+Immersive large images suit landscape, portrait and wedding work — single shots that can carry a full screen, cinematic scroll. Grid thumbnails suit street, product and mixed genres — dense, quick to scan. The choice depends on how strong your individual shots are. If one image can hold a full screen, go large. If you need volume to show range, go grid. Mixing works too: a hero image on top, a grid below, that's a stable photography portfolio layout that rarely misses.
+
+## White space is not waste
+
+The most common beginner mistake is packing the page full. When photos have no gap between them, everything blurs into one grey soup. Keep at least 24px between images, and 48px for the large ones. White space tells the eye "this one ended, the next begins." The photos actually feel heavier when they get room to breathe.
+
+## Give each project its own case block
+
+Don't just dump images. Each project deserves a case block with: project name and shoot date, one or two lines about the background or approach, four to eight finished shots, and a tag for the client or the genre. What you're showing is not just "the photos look good" — you're showing process and professionalism. Case blocks also carry SEO weight, so put the project keyword in the heading.
+
+## Mobile is the main battlefield
+
+More people view a photo portfolio page on a phone than on a desktop. On mobile the habit is vertical scrolling: the first screen has to be one large image, your name and a one-line positioning. Right after that, the work flow. Contact fixed in a corner menu or at the bottom, always one tap away.
+
+## Contact goes last, but must be impossible to miss
+
+If the client can't find your email after seeing great work, the whole page was pointless. Put a visible contact block at the end, and repeat it in the footer. Don't make them scroll back up to hunt for it.
+
+## Dynamic profile: know who is looking at your work
+
+This is where a dynamic profile page beats a static one. A regular portfolio is a dummy page — it never tells you who came. With visitor profiles, you can see which channel the visitor came from (direct, Instagram, or search), how long they stayed and which projects they opened, and whether they were on phone or desktop. For a photographer this decides how you follow up: someone arriving from Instagram probably saw your newest post, so a quick private message works; someone arriving from search is hunting for services, so they'd rather get a pricing note. Three steps to set it up: pick a portfolio template in the editor and swap in your photos; build a case block for each project with a title and context; publish, then open the visitor profile panel and read the real data.
+
+Start from a template on the dynamic-profile.shop homepage, and browse the blog list for more layout thinking from earlier posts.
+
+## FAQ
+
+**How many photos should a photographer portfolio hold?**
+Twenty to forty curated shots is enough. More just dilutes the focus.
+
+**Which is better, large-image or grid layout?**
+There's no absolute answer. It depends on your subject. Single strong shots suit large images, wide ranges suit grids.
+
+**Can visitor profiles tell me exactly who is viewing?**
+Not the exact person. But you get the source channel, the time spent, and what they browsed.`,
+    },
+  },
 ];
 
 export function getPostBySlug(slug: string): BlogPost | undefined {
