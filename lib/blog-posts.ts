@@ -152,6 +152,132 @@ export const BLOG_POSTS: BlogPost[] = [
       en: 'When people hear "fill a form, get a website", most assume it is a gimmick. This post opens up the hood of a no code website generator: where your form fields go, how they become a page, and which parts it does for you and which it does not.\n\n## What your form becomes\nA personal page generator is really about turning structured info into a structured page. Your name, bio, avatar, social links, portfolio items, every field maps to a block on the page. The generator does what an engineer does: read data, apply a template, output a page. The only difference is you skip the coding.\n\n## Template is the skeleton, data is the flesh\nThe principle behind a form based website builder fits in one sentence: the template decides how it looks, the data decides what is in it. You pick a template, fill in your info, and the generator combines the two. Same template, two different people, two completely different homepages. That is why generators are fast: templates are built in advance, you only fill in content.\n\n## What it does for you\nFirst, layout. Block order, spacing, responsive behavior, all baked into the template. Second, deployment. The generator publishes the page live and hands you a shareable link, no server on your side. Third, maintenance. Want to change something? Edit a line in the form, regenerate, done.\n\n## What it does not do\nThere is no silver bullet. You still have to decide what your bio should say, which photo works best, what goes in the portfolio. The generator handles presentation, not content. That is also why two people using the same tool can end up with very different pages.\n\n## When a generator makes sense\nYou need a decent personal page and do not want to sink weeks into it. You are job hunting or freelancing and need a storefront you can update fast. You tried hand-coding and found the maintenance cost beats the benefit. In these cases a no code website generator is a reasonable engineering decision, not laziness.\n\nWant to try form-to-website? Hit "Start" on the Dynamic Profile homepage and get your first link in five minutes.',
     },
   },
+  {
+    id: 12,
+    slug: 'first-week-checklist-60-to-90',
+    publishedAt: '2026-08-14',
+    tag: { zh: '指南', en: 'Guide' },
+    title: { zh: '第一周清单：让主页从 60 分到 90 分', en: 'First-Week Checklist: From 60 to 90 Points' },
+    date: { zh: '2026 年 8 月', en: 'August 2026' },
+    body: {
+      zh: `你刚把第一张个人主页做上线，感觉……还行。没坏，也不惊艳。如果给它打个 60 分，其实你已经比大多数人强了，很多人连 30 分都到不了。这份第一周清单的目标，是让主页从 60 分一路提升到 90 分，也就是真正"拿得出手"的程度。你不需要重做，只需要一次集中的优化：改动几个地方，就能改变陌生人点开你页面头十秒里的印象。下面就是我们在 Dynamic Profile 给每个新用户第一周的标准动作。
+
+## 先用主页 优化 清单，而不是急着改版
+
+很多人第一周最容易犯的错，是一上来就处处改：换配色、换字体、挪照片，然后全部撤回。什么都没定下来。与其这样，不如先写一张主页 优化 清单，只做清单上的事。清单给你一条终点线；没有它，你会一直改下去，页面永远不"完工"。
+
+我们最信得过的五项：一句话定位、三到五件代表作、一个活的动态区、一个清楚的联系按钮、一套统一的视觉。就这五条，其余都是装饰。
+
+## 把个人主页文案打磨到只剩一句话
+
+如果说 60 分和 90 分之间只差一样东西，那就是顶部那句话。多数第一版主页写着"热爱创作、喜欢折腾"，访客看完啥也不知道。把个人主页文案打磨到第一句就说清：你是谁、你解决谁的问题。"我帮独立创始人做出第一个落地页"胜过任何形容词堆砌。
+
+作品描述也照做一遍。每件作品写清你做了什么、结果如何。"重做结账流程，转化 +18%"比"负责 UI"有力十倍。具体永远胜过花哨。
+
+## 第一周清单，逐条过
+
+把清单列成一张可以今天勾完的表：
+
+- [ ] 一句话定位钉在页面最顶部
+- [ ] 展示三到五件代表作，不是全部存档
+- [ ] 每件作品都带一个结果或数字
+- [ ] 动态区至少有一条近期更新
+- [ ] 一个联系按钮，不是一整面链接墙
+- [ ] 全站一套配色、一种字体
+- [ ] 一张真的是你的头像或封面
+- [ ] 用手机测过，因为多数访客从手机来
+
+八条全勾完，你已经到 80 分。最后十分来自下面两个动作。
+
+## 三个悄悄拉低 60 分的小坑
+
+第一，砍掉链接堆。一排十个社交图标是噪音。先让人记住你，链接放最底下。第二，藏起空模块。一个空的"作品"标签页，比没有更糟。第三，收住滚动节奏。90 分的页面从上到下讲一个故事；60 分的像一张设置页。
+
+这些都不是大改动，却决定了别人觉得"这人有个站"还是"这人值得聊"。
+
+## 第七天之后，继续优化你的个人主页
+
+主页不是纹身。分数最高的人，是把第一周当起点而不是终点的人。每两周丢一条动态，做完一件事写一句话。页面活着，印象也活着。
+
+在 Dynamic Profile 上这很轻松：打开控制台，发条动态，完事。不用重新构建，不用部署。
+
+## 常见问题
+
+**第一周这一遍要花多久？**
+多数人一小时内能勾完八条清单。难的不是加什么，是删什么。
+
+**要开 Pro 才能到 90 分吗？**
+不用。清单上的每条在免费版都能做。Pro 帮你绑定自定义域名、看数据，但一张利落的免费主页胜过乱糟糟的 Pro 主页。
+
+**性价比最高的一处改动是什么？**
+顶部那句话定位。人人都先看它，多数页面却写错了。
+
+**该重做还是只改？**
+只改。重做会浪费你第一周。用主页 优化 清单，先上线，再根据真实反馈迭代。
+
+## 准备好从 60 分到 90 分了吗？
+
+你现在有了完整的第一周动作：一张清单、几个悄悄的修复、一个让页面活着的习惯。最快的落地方式，是到 dynamic-profile.shop 建好你的主页，边做边勾。去 dynamic-profile.shop 免费开始，你的 90 分主页，午饭前就能上线。`,
+      en: `You just shipped your first personal homepage and it feels... fine. Not broken, not great. If you scored it a 60, that is actually a decent spot, most people never clear 30. The goal of this first-week checklist is to improve your personal homepage from a passable 60 to a page that reads like a 90. You do not need a redesign. You need one focused pass: a few edits that change how a stranger reads you in the first ten seconds. Here is the exact routine we hand every new Dynamic Profile user in their first seven days.
+
+## Start with a homepage checklist, not a redesign
+
+The mistake most people make in week one is editing everything at once. Pick a color, change a font, move a photo, then undo it all. Nothing sticks. Instead, write down a homepage checklist of five things and do only those. A checklist gives you a finish line. Without one, you will keep polishing forever and your page will never go live.
+
+The five items we trust most: a one-line positioning statement, three to five representative works, a live updates section, a single clear contact button, and one consistent visual style. That is the whole list. Everything else is decoration.
+
+## Polish your personal site copy down to one line
+
+If there is one thing that separates a 60 from a 90, it is the top line. Most first pages say something like "passionate creator who loves building things." That tells a visitor nothing. Polish your personal site copy until the first sentence says who you are and whose problem you solve. "I help indie founders ship their first landing page" beats any adjective salad.
+
+Do the same pass on your work descriptions. Each piece should state what you did and what happened. "Redesigned checkout, +18% conversion" reads ten times stronger than "worked on UI." Concrete beats clever every time.
+
+## The first-week checklist, point by point
+
+Here is the checklist as a list you can tick off today:
+
+- [ ] One-line positioning statement pinned to the top of the page
+- [ ] Three to five works shown, not your whole archive
+- [ ] A result or number attached to each work
+- [ ] An updates section with at least one recent post
+- [ ] A single contact button, not a wall of links
+- [ ] One color scheme and one typeface used everywhere
+- [ ] A photo or avatar that is actually you
+- [ ] Tested on a phone, because most visitors arrive there
+
+If all eight are done, you are already at an 80. The last ten points come from the next two fixes.
+
+## Three quiet fixes that move a 60 to a 90
+
+First, cut the link dump. A column of ten social icons is noise. Lead with who you are, and put links at the bottom. Second, remove the dead sections. If a module is empty, hide it, an empty "Works" tab looks worse than no tab at all. Third, tighten the scroll. A 90-point page tells one story top to bottom; a 60-point page feels like a settings screen.
+
+These are not big changes. They are the difference between "this person has a site" and "this person is worth talking to."
+
+## Keep improving your personal homepage after day seven
+
+A homepage is not a tattoo. The people who score highest are the ones who treat week one as the start, not the end. Drop a new update every week or two. When you finish something, write one line about it. The page stays alive, and so does the impression it makes.
+
+On Dynamic Profile this is painless: open the console, post an update, done. No rebuild, no deploy.
+
+## FAQ
+
+**How long should the first-week pass take?**
+Most people finish the eight-item checklist in under an hour. The hard part is deciding what to cut, not what to add.
+
+**Do I need Pro to hit 90 points?**
+No. Every item on this checklist works on the free plan. Pro helps with custom domains and analytics, but a sharp free page beats a messy Pro page.
+
+**What is the single highest-impact edit?**
+The one-line positioning statement. It is the first thing anyone reads, and most pages get it wrong.
+
+**Should I redesign or just edit?**
+Edit. A redesign wastes your first week. Use the homepage checklist, ship it, then improve from real feedback.
+
+## Ready to go from 60 to 90?
+
+You now have the full first-week routine to improve your personal homepage: a checklist, the quiet fixes, and a habit to keep it alive. The fastest way to apply it is to build your page on dynamic-profile.shop and tick the boxes as you go. Start free at dynamic-profile.shop and your 90-point homepage can be live before lunch.`,
+    },
+  },
 ];
 
 export function getPostBySlug(slug: string): BlogPost | undefined {
