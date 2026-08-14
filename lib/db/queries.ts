@@ -1,4 +1,5 @@
 import { sql } from "./index";
+import { unstable_cache } from "next/cache";
 import { isStyleId, DEFAULT_STYLE } from "@/lib/styles";
 import type {
   Profile,
@@ -71,6 +72,41 @@ export async function getStats(handle: string): Promise<Stats | null> {
     SELECT * FROM stats WHERE handle = ${handle} LIMIT 1
   `) as Stats[];
   return rows[0] ?? null;
+}
+
+// ----------------------------------------------------------------------------
+// 读取（带 ISR 数据缓存）
+// ----------------------------------------------------------------------------
+// 下述封装在 unstable_cache 中：neon serverless 驱动底层是 no-store 的 HTTP
+// fetch，会让页面即便设了 `revalidate` 仍被判定为动态渲染（Fast Origin Transfer
+// 居高不下的根因）。把查询包进 unstable_cache 后，数据层可缓存 300s，
+// 页面才能真正走 ISR（CDN s-maxage=300），大幅降低 FOT 输入输出。
+// 浏览量统计由客户端 ViewTracker 打独立 API，不在此缓存范围内。
+
+export async function getCachedProfileByHandle(
+  handle: string,
+): Promise<Profile | null> {
+  return unstable_cache(
+    () => getProfileByHandle(handle),
+    ["profile", handle],
+    { revalidate: 300, tags: [`profile:${handle}`] },
+  )();
+}
+
+export async function getCachedPublishedPosts(handle: string): Promise<Post[]> {
+  return unstable_cache(
+    () => getPublishedPosts(handle),
+    ["posts", handle],
+    { revalidate: 300, tags: [`posts:${handle}`] },
+  )();
+}
+
+export async function getCachedStats(handle: string): Promise<Stats | null> {
+  return unstable_cache(
+    () => getStats(handle),
+    ["stats", handle],
+    { revalidate: 300, tags: [`stats:${handle}`] },
+  )();
 }
 
 // ----------------------------------------------------------------------------

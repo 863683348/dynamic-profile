@@ -1,10 +1,10 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import type { CSSProperties } from 'react';
-import { sql } from '@/lib/db/index';
 import {
-  getProfileByHandle,
-  getStats,
+  getCachedProfileByHandle,
+  getCachedPublishedPosts,
+  getCachedStats,
 } from '@/lib/db/queries';
 import type { Post, Profile, Stats } from '@/lib/types';
 import { ProfileCard } from '@/components/ProfileCard';
@@ -27,7 +27,7 @@ export async function generateMetadata({
 }: {
   params: { handle: string };
 }): Promise<Metadata> {
-  const profile = await getProfileByHandle(params.handle);
+  const profile = await getCachedProfileByHandle(params.handle);
   if (!profile) {
     return { title: 'User not found' };
   }
@@ -57,33 +57,20 @@ export async function generateMetadata({
   };
 }
 
-/**
- * 安全的 handle 转义（防止 SQL 注入）。
- * handle 已通过 HANDLE_RE = /^[a-z0-9_]{3,20}$/ 校验，
- * 这里做双重防护，确保只保留合法字符。
- */
-function escHandle(handle: string): string {
-  return handle.replace(/[^a-z0-9_]/g, '').slice(0, 20);
-}
-
 export default async function ProfilePage({
   params,
 }: {
   params: { handle: string };
 }) {
   const handle = params.handle;
-  const profile = await getProfileByHandle(handle);
+  const profile = await getCachedProfileByHandle(handle);
   if (!profile) notFound();
 
-  // 使用字符串拼接查询（绕过 @neondatabase/serverless 在 RSC 上下文中
-  // 对某些 handle 值的参数化查询返回空结果的 bug）
-  const safeH = escHandle(handle);
-  const postsRaw = await sql(
-    [`SELECT id, handle, title, content, source, category, status, created_at FROM posts WHERE handle = '${safeH}' AND status = 'published' ORDER BY created_at DESC`] as any,
-  );
-  const posts = postsRaw as Post[];
+  // 已发布内容走数据缓存（unstable_cache，revalidate=300），
+  // 与 getProfileByHandle / getStats 一同打破 neon no-store 对 ISR 的阻断。
+  const posts = await getCachedPublishedPosts(handle);
 
-  const stats = await getStats(handle);
+  const stats = await getCachedStats(handle);
 
   const themeStyle = (profile.theme_color
     ? { '--primary': profile.theme_color }
