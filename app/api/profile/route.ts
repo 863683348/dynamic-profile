@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidateTag } from "next/cache";
 import { auth } from "@/auth";
 import { upsertProfile, getProfileByOwner } from "@/lib/db/queries";
 
@@ -27,6 +28,8 @@ export async function POST(req: NextRequest) {
     // [临时测试] 放开 Pro 门禁（风格/主题色），便于测试；生产上线前需恢复下方门禁
     const raw = body as Record<string, unknown>;
     const profile = await upsertProfile(raw as never, ownerId);
+    // 失效公开主页缓存，让 /{handle} 立即反映风格/资料变更
+    revalidateTag(`profile:${profile.handle}`);
     return NextResponse.json({ ok: true, profile });
   } catch (e) {
     if (e instanceof Error && e.message === "INVALID_HANDLE") {
