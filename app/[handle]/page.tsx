@@ -4,9 +4,10 @@ import type { CSSProperties } from 'react';
 import {
   getCachedProfileByHandle,
   getCachedPublishedPosts,
+  getCachedPublishedWorks,
   getCachedStats,
 } from '@/lib/db/queries';
-import type { Post, Profile, Stats } from '@/lib/types';
+import type { Post, Work, Profile, Stats } from '@/lib/types';
 import { ProfileCard } from '@/components/ProfileCard';
 import { Tabs } from '@/components/Tabs';
 import { ViewTracker } from '@/components/ViewTracker';
@@ -69,6 +70,7 @@ export default async function ProfilePage({
   // 已发布内容走数据缓存（unstable_cache，revalidate=300），
   // 与 getProfileByHandle / getStats 一同打破 neon no-store 对 ISR 的阻断。
   const posts = await getCachedPublishedPosts(handle);
+  const works = await getCachedPublishedWorks(handle);
 
   const stats = await getCachedStats(handle);
 
@@ -109,7 +111,7 @@ export default async function ProfilePage({
           <ProfileCard profile={profile} stats={stats} postCount={posts.length} />
         </aside>
         <div>
-          <Tabs posts={posts} profile={profile} />
+          <Tabs posts={posts} works={works} profile={profile} />
         </div>
       </div>
 

@@ -2,8 +2,9 @@
 
 import { useState } from 'react';
 import { PenLine, User, FolderOpen, type LucideIcon } from 'lucide-react';
-import type { Post, Profile } from '@/lib/types';
+import type { Post, Work, Profile } from '@/lib/types';
 import { PostCard } from './PostCard';
+import { WorkCard } from './WorkCard';
 import { useI18n } from '@/lib/i18n';
 
 type TabKey = 'posts' | 'about' | 'works';
@@ -14,7 +15,15 @@ const TABS: { key: TabKey; labelKey: string; icon: LucideIcon }[] = [
   { key: 'works', labelKey: 'tab_works', icon: FolderOpen },
 ];
 
-export function Tabs({ posts, profile }: { posts: Post[]; profile: Profile }) {
+export function Tabs({
+  posts,
+  works,
+  profile,
+}: {
+  posts: Post[];
+  works: Work[];
+  profile: Profile;
+}) {
   const { t } = useI18n();
   const [tab, setTab] = useState<TabKey>('posts');
 
@@ -47,12 +56,11 @@ export function Tabs({ posts, profile }: { posts: Post[]; profile: Profile }) {
       <div className="pt-2">
         {tab === 'posts' &&
           (() => {
-            const dynamics = posts.filter(p => p.category === 'post');
-            return dynamics.length === 0 ? (
+            return posts.length === 0 ? (
               <p className="py-10 text-center text-sm opacity-60">{t('no_posts')}</p>
             ) : (
               <div className="posts-list">
-                {dynamics.map((p) => (
+                {posts.map((p) => (
                   <PostCard key={p.id} post={p} />
                 ))}
               </div>
@@ -99,13 +107,12 @@ export function Tabs({ posts, profile }: { posts: Post[]; profile: Profile }) {
 
         {tab === 'works' &&
           (() => {
-            const works = posts.filter(p => p.category === 'work');
             return works.length === 0 ? (
               <p className="py-10 text-center text-sm opacity-60">{t('no_works_public')}</p>
             ) : (
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                {works.map((p) => (
-                  <PostCard key={p.id} post={p} />
+                {works.map((w) => (
+                  <WorkCard key={w.id} work={w} />
                 ))}
               </div>
             );

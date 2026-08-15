@@ -7,7 +7,7 @@ import Link from 'next/link';
 import { Loader2, Crown, FileText, Briefcase, ArrowUpRight } from 'lucide-react';
 import { useI18n } from '@/lib/i18n';
 import { LoginButton } from '@/components/LoginButton';
-import type { Profile, Post, PlanStatus, Stats } from '@/lib/types';
+import type { Profile, Post, Work, PlanStatus, Stats } from '@/lib/types';
 
 const POLAR_ENABLED = process.env.NEXT_PUBLIC_POLAR_ENABLED === 'true';
 
@@ -17,6 +17,7 @@ export default function DashboardOverviewPage() {
   const router = useRouter();
   const [profile, setProfile] = useState<Profile | null>(null);
   const [posts, setPosts] = useState<Post[]>([]);
+  const [works, setWorks] = useState<Work[]>([]);
   const [stats, setStats] = useState<Stats | null>(null);
   const [sub, setSub] = useState<PlanStatus | null>(null);
   const [upgrading, setUpgrading] = useState<false | 'monthly' | 'yearly'>(false);
@@ -32,6 +33,7 @@ export default function DashboardOverviewPage() {
       const json = await res.json();
       setProfile(json.profile ?? null);
       setPosts(json.posts ?? []);
+      setWorks(json.works ?? []);
       setStats(json.stats ?? null);
       const resSub = await fetch('/api/subscription');
       if (resSub.ok) setSub(await resSub.json());
@@ -89,8 +91,8 @@ export default function DashboardOverviewPage() {
     );
   }
 
-  const postCount = posts.filter((p) => p.category === 'post').length;
-  const workCount = posts.filter((p) => p.category === 'work').length;
+  const postCount = posts.length;
+  const workCount = works.length;
 
   return (
     <div>

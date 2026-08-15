@@ -3,12 +3,12 @@
 import { useState, useEffect } from 'react';
 import { Send, Github, RefreshCw, Loader2 } from 'lucide-react';
 import { useI18n } from '@/lib/i18n';
-import type { PostCategory, Post } from '@/lib/types';
+import type { Post, Work } from '@/lib/types';
 
 export type PostDraft = {
   title: string;
   content: string;
-  category: PostCategory;
+  url?: string | null;
   status: 'draft' | 'published';
   source?: 'manual' | 'github';
 };
@@ -33,20 +33,26 @@ export function PostComposer({
   // editingId 非空时走"更新"，否则走"新建"
   onPublish: (data: PostDraft, editingId?: string | null) => void;
   saving: boolean;
-  initial?: Post | null;
-  lockCategory?: PostCategory;
+  initial?: Post | Work | null;
+  lockCategory?: 'post' | 'work';
 }) {
   const { t } = useI18n();
   const isEditing = Boolean(initial);
+  const isWork = lockCategory === 'work';
 
   const [source, setSource] = useState<'manual' | 'github'>('manual');
 
   // 手动模式
   const [title, setTitle] = useState(initial?.title ?? '');
-  const [content, setContent] = useState(initial?.content ?? '');
-  const [category, setCategory] = useState<PostCategory>(
-    initial?.category ?? lockCategory ?? 'post'
+  const [url, setUrl] = useState(
+    initial && 'url' in initial ? (initial.url ?? '') : ''
   );
+  const [content, setContent] = useState(() => {
+    if (!initial) return '';
+    return 'content' in initial
+      ? (initial.content ?? '')
+      : (initial.description ?? '');
+  });
   const [status, setStatus] = useState<'draft' | 'published'>(
     initial?.status === 'hidden' ? 'draft' : initial?.status ?? 'published'
   );
@@ -54,8 +60,14 @@ export function PostComposer({
   // 切换编辑目标 / 取消编辑时，同步表单
   useEffect(() => {
     setTitle(initial?.title ?? '');
-    setContent(initial?.content ?? '');
-    setCategory(initial?.category ?? lockCategory ?? 'post');
+    setUrl(initial && 'url' in initial ? (initial.url ?? '') : '');
+    setContent(
+      initial
+        ? 'content' in initial
+          ? (initial.content ?? '')
+          : (initial.description ?? '')
+        : ''
+    );
     setStatus(initial?.status === 'hidden' ? 'draft' : initial?.status ?? 'published');
     setSource('manual');
   }, [initial, lockCategory]);
@@ -70,13 +82,18 @@ export function PostComposer({
     e.preventDefault();
     if (!title.trim()) return;
     onPublish(
-      { title: title.trim(), content: content.trim(), category, status },
+      {
+        title: title.trim(),
+        content: content.trim(),
+        url: isWork ? (url.trim() || null) : undefined,
+        status,
+      },
       initial?.id ?? null
     );
     if (!isEditing) {
       setTitle('');
+      setUrl('');
       setContent('');
-      setCategory(lockCategory ?? 'post');
       setStatus('published');
     }
   }
@@ -103,13 +120,22 @@ export function PostComposer({
   }
 
   function importGithub(item: GithubActivity) {
-    onPublish({
-      title: item.title,
-      content: `${item.summary}\n${item.url}`,
-      category: item.category,
-      status: 'published',
-      source: 'github',
-    });
+    if (isWork) {
+      onPublish({
+        title: item.title,
+        content: item.summary,
+        url: item.url,
+        status: 'published',
+        source: 'github',
+      });
+    } else {
+      onPublish({
+        title: item.title,
+        content: `${item.summary}\n${item.url}`,
+        status: 'published',
+        source: 'github',
+      });
+    }
   }
 
   return (
@@ -119,7 +145,7 @@ export function PostComposer({
     >
       <div className="flex items-center justify-between">
         <h3 className="magazine-title text-lg">
-          {isEditing ? t('pc_editing') : t('pc_title')}
+          {isEditing ? (isWork ? t('pc_editing_work') : t('pc_editing')) : (isWork ? t('pc_title_work') : t('pc_title'))}
         </h3>
       </div>
 
@@ -148,39 +174,25 @@ export function PostComposer({
 
       {source === 'manual' ? (
         <>
-          {/* 类型切换：动态 / 作品（新建且未锁定类别时显示） */}
-          {!lockCategory && !isEditing && (
-            <div className="flex gap-2" role="radiogroup" aria-label={t('pc_category_label')}>
-              {(['post', 'work'] as PostCategory[]).map((cat) => (
-                <button
-                  key={cat}
-                  type="button"
-                  role="radio"
-                  aria-checked={category === cat}
-                  onClick={() => setCategory(cat)}
-                  className={`rounded-md border px-3 py-1.5 text-sm font-medium transition-colors ${
-                    category === cat
-                      ? 'border-primary bg-primary/10 text-primary'
-                      : 'border-gray-300 opacity-70 hover:border-gray-400 hover:opacity-100'
-                  }`}
-                >
-                  {cat === 'post' ? t('pc_cat_post') : t('pc_cat_work')}
-                </button>
-              ))}
-            </div>
-          )}
-
           <input
             className="mag-input"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            placeholder={t('pc_ph_title')}
+            placeholder={isWork ? t('pc_ph_title_work') : t('pc_ph_title')}
           />
+          {isWork && (
+            <input
+              className="mag-input"
+              value={url}
+              onChange={(e) => setUrl(e.target.value)}
+              placeholder={t('pc_ph_url_work')}
+            />
+          )}
           <textarea
             className="mag-input min-h-[80px]"
             value={content}
             onChange={(e) => setContent(e.target.value)}
-            placeholder={t('pc_ph_content')}
+            placeholder={isWork ? t('pc_ph_content_work') : t('pc_ph_content')}
           />
           <div className="flex flex-wrap items-center justify-between gap-3">
             <label className="flex items-center gap-2 text-sm">
@@ -189,7 +201,7 @@ export function PostComposer({
                 checked={status === 'published'}
                 onChange={(e) => setStatus(e.target.checked ? 'published' : 'draft')}
               />
-              {t('pc_now')}
+              {isWork ? t('pc_now_work') : t('pc_now')}
             </label>
             <button
               type="submit"
@@ -200,9 +212,9 @@ export function PostComposer({
               {saving
                 ? t('pc_saving')
                 : isEditing
-                ? t('pc_save_changes')
+                ? (isWork ? t('pc_save_changes_work') : t('pc_save_changes'))
                 : status === 'published'
-                ? t('pc_publish')
+                ? (isWork ? t('pc_publish_work') : t('pc_publish'))
                 : t('pc_draft')}
             </button>
           </div>
