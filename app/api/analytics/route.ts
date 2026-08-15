@@ -28,31 +28,31 @@ export async function GET() {
   const handle = profile.handle;
   const stats = await getStats(handle);
 
-  const trend = (await sql`
-    SELECT date_trunc('day', visited_at)::date AS day, COUNT(*)::int AS pv
-    FROM visits
-    WHERE handle = ${handle} AND visited_at >= now() - interval '30 days'
-    GROUP BY 1 ORDER BY 1
-  `) as { day: string; pv: number }[];
-
-  const uvRow = (await sql`
-    SELECT COUNT(DISTINCT vid)::int AS uv
-    FROM visits
-    WHERE handle = ${handle} AND visited_at >= now() - interval '30 days'
-  `) as { uv: number }[];
-
-  const sources = (await sql`
-    SELECT COALESCE(referrer_domain, '(直接访问)') AS domain, COUNT(*)::int AS cnt
-    FROM visits
-    WHERE handle = ${handle}
-    GROUP BY 1 ORDER BY cnt DESC LIMIT 8
-  `) as { domain: string; cnt: number }[];
-
-  const loginRow = (await sql`
-    SELECT COUNT(*)::int AS total,
-           SUM(CASE WHEN is_logged_in THEN 1 ELSE 0 END)::int AS logged
-    FROM visits WHERE handle = ${handle}
-  `) as { total: number; logged: number }[];
+  // 4 路聚合并发，sources / 登录占比加 90 天时间窗走索引，避免全表扫描。
+  const [trend, uvRow, sources, loginRow] = await Promise.all([
+    sql`
+      SELECT date_trunc('day', visited_at)::date AS day, COUNT(*)::int AS pv
+      FROM visits
+      WHERE handle = ${handle} AND visited_at >= now() - interval '30 days'
+      GROUP BY 1 ORDER BY 1
+    ` as Promise<{ day: string; pv: number }[]>,
+    sql`
+      SELECT COUNT(DISTINCT vid)::int AS uv
+      FROM visits
+      WHERE handle = ${handle} AND visited_at >= now() - interval '30 days'
+    ` as Promise<{ uv: number }[]>,
+    sql`
+      SELECT COALESCE(referrer_domain, '(直接访问)') AS domain, COUNT(*)::int AS cnt
+      FROM visits
+      WHERE handle = ${handle} AND visited_at >= now() - interval '90 days'
+      GROUP BY 1 ORDER BY cnt DESC LIMIT 8
+      ` as Promise<{ domain: string; cnt: number }[]>,
+    sql`
+      SELECT COUNT(*)::int AS total,
+             SUM(CASE WHEN is_logged_in THEN 1 ELSE 0 END)::int AS logged
+      FROM visits WHERE handle = ${handle} AND visited_at >= now() - interval '90 days'
+    ` as Promise<{ total: number; logged: number }[]>,
+  ]);
 
   const totalVisits = loginRow[0]?.total ?? 0;
   const loggedVisits = loginRow[0]?.logged ?? 0;
