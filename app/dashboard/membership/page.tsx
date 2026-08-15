@@ -17,6 +17,8 @@ import {
 } from 'lucide-react';
 import { useI18n } from '@/lib/i18n';
 import { LoginButton } from '@/components/LoginButton';
+import { StylePreviewCard } from '@/components/StylePreviewCard';
+import { STYLE_IDS } from '@/lib/styles';
 import type { Profile, PlanStatus } from '@/lib/types';
 
 const POLAR_ENABLED = process.env.NEXT_PUBLIC_POLAR_ENABLED === 'true';
@@ -349,6 +351,35 @@ export default function MembershipPage() {
             href="/dashboard/profile"
           />
         </div>
+      </section>
+
+      {/* 主题风格预览：把 5 套视觉风格的真实预览放上来，给升级前的用户做引导 */}
+      <section className="mt-2">
+        <div className="double-rule mb-4 flex items-center justify-between px-1 py-3">
+          <span className="magazine-title text-xl">{t('theme_gallery_title')}</span>
+          <span className="text-xs uppercase tracking-[0.2em] opacity-70">
+            {t('nav_profile')}
+          </span>
+        </div>
+        <p className="mb-5 text-sm opacity-70">{t('theme_gallery_sub')}</p>
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {STYLE_IDS.map((id) => (
+            <StylePreviewCard
+              key={id}
+              id={id}
+              badge={isPro ? null : 'pro'}
+              showDesc
+            />
+          ))}
+        </div>
+        {!isPro && POLAR_ENABLED && (
+          <div className="mt-5">
+            <a href="/pricing" className="mag-btn flex items-center gap-2">
+              <Sparkles className="h-4 w-4" />
+              {t('theme_gallery_upgrade')}
+            </a>
+          </div>
+        )}
       </section>
     </div>
   );
