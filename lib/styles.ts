@@ -1,7 +1,12 @@
-// 5 套视觉风格（对应原型 A–E），仅改变「观感」（字体 / 配色 / 卡片质感），
-// 不改动页面结构。每套风格通过 [data-style="<id>"] 在 globals.css 中落地。
-// 强调色 --primary 仍由用户自选 theme_color 决定（内联在容器上，优先级最高），
-// 风格只负责字体、背景、卡片质感与发光/模糊等氛围，二者正交组合。
+// 5 套视觉与排版风格（对应原型 A–E）。
+// 每套风格不仅改变观感（字体 / 配色 / 卡片质感），还改变页面布局结构：
+//   magazine  → 双栏侧栏+内容（经典编辑风）
+//   minimal  → 单列居中、无侧栏（极简留白）
+//   geek     → 终端窗口框架 + 等宽字体 + 数据表格
+//   glass    → 浮动毛玻璃面板 + 瀑布流网格
+//   neon     → 发光边框 + 大写标题 + 水平分区
+// 通过 [data-style="<id>"] 在 globals.css 落地 CSS 变量，
+// 通过 ProfileLayoutDispatcher 在 [handle]/page.tsx 落地布局。
 
 export const STYLE_IDS = [
   "minimal", // A 简约风
