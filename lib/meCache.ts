@@ -8,13 +8,14 @@
 // 短时间内（TTL）的重复调用直接返回缓存，避免 mutation 之外的多余请求。
 // force=true 时清空缓存（用于提交/删除后主动刷新）。
 
-import type { Profile, Post, Work, Stats } from '@/lib/types';
+import type { Profile, Post, Work, Stats, Subscription } from '@/lib/types';
 
 type MeData = {
   profile: Profile | null;
   posts: Post[];
   works: Work[];
   stats: Stats | null;
+  sub: Subscription | null;
 } | null;
 
 let inflight: Promise<MeData> | null = null;

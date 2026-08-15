@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
@@ -18,6 +18,7 @@ import {
 import { useI18n } from '@/lib/i18n';
 import { LoginButton } from '@/components/LoginButton';
 import { StylePreviewCard } from '@/components/StylePreviewCard';
+import { useMe } from '@/lib/meContext';
 import { STYLE_IDS } from '@/lib/styles';
 import type { Profile, PlanStatus } from '@/lib/types';
 
@@ -42,8 +43,14 @@ export default function MembershipPage() {
   const { data: session, status } = useSession();
   const { t, lang } = useI18n();
   const router = useRouter();
-  const [profile, setProfile] = useState<Profile | null>(null);
-  const [sub, setSub] = useState<PlanStatus | null>(null);
+  const { me } = useMe();
+  // SSR 已预取 me：profile / sub 首屏直接用，零转圈。
+  const [profile, setProfile] = useState<Profile | null>(
+    () => (me?.profile as Profile | null) ?? null
+  );
+  const [sub, setSub] = useState<PlanStatus | null>(
+    () => (me?.sub as PlanStatus | null) ?? null
+  );
   const [upgrading, setUpgrading] = useState<false | 'monthly' | 'yearly'>(false);
   const [openingPortal, setOpeningPortal] = useState(false);
   const [portalError, setPortalError] = useState<string | null>(null);
@@ -55,20 +62,6 @@ export default function MembershipPage() {
       ? new Date(s).toLocaleDateString(lang === 'en' ? 'en-US' : 'zh-CN')
       : '';
 
-  const loadData = useCallback(async () => {
-    try {
-      const res = await fetch('/api/me');
-      if (res.ok) {
-        const json = await res.json();
-        setProfile(json.profile ?? null);
-      }
-      const resSub = await fetch('/api/subscription');
-      if (resSub.ok) setSub(await resSub.json());
-    } catch {
-      /* 忽略 */
-    }
-  }, []);
-
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const params = new URLSearchParams(window.location.search);
@@ -78,10 +71,6 @@ export default function MembershipPage() {
       }
     }
   }, [router]);
-
-  useEffect(() => {
-    if (status === 'authenticated') void loadData();
-  }, [status, loadData]);
 
   async function handleUpgrade(plan: 'monthly' | 'yearly') {
     setUpgrading(plan);
@@ -123,24 +112,27 @@ export default function MembershipPage() {
   const isPro = sub?.plan === 'pro';
   const isCanceled = sub?.status === 'canceled' && sub?.cancel_at_period_end;
 
-  if (status === 'loading') {
-    return (
-      <div className="flex justify-center py-20">
-        <Loader2 className="h-6 w-6 animate-spin opacity-60" />
-      </div>
-    );
-  }
-
-  if (!session?.user) {
-    return (
-      <div className="mx-auto max-w-md px-6 py-20">
-        <h1 className="magazine-title text-3xl">{t('d_login_title')}</h1>
-        <p className="mt-2 text-sm opacity-80">{t('d_login_desc')}</p>
-        <div className="mt-8">
-          <LoginButton />
+  // me 已由 SSR 预取：已登录用户直接渲染内容，跳过客户端转圈。
+  if (!me) {
+    if (status === 'loading') {
+      return (
+        <div className="flex justify-center py-20">
+          <Loader2 className="h-6 w-6 animate-spin opacity-60" />
         </div>
-      </div>
-    );
+      );
+    }
+
+    if (!session?.user) {
+      return (
+        <div className="mx-auto max-w-md px-6 py-20">
+          <h1 className="magazine-title text-3xl">{t('d_login_title')}</h1>
+          <p className="mt-2 text-sm opacity-80">{t('d_login_desc')}</p>
+          <div className="mt-8">
+            <LoginButton />
+          </div>
+        </div>
+      );
+    }
   }
 
   return (
@@ -192,7 +184,7 @@ export default function MembershipPage() {
           )}
           <div className="min-w-0">
             <p className="magazine-title truncate text-lg">
-              {profile?.display_name || session.user.name || profile?.handle || t('mem_plan')}
+              {profile?.display_name || session?.user?.name || profile?.handle || t('mem_plan')}
             </p>
             {profile?.handle && (
               <p className="truncate text-sm opacity-60">@{profile.handle}</p>

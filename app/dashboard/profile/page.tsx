@@ -4,24 +4,23 @@ import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { Loader2 } from 'lucide-react';
 import { useI18n } from '@/lib/i18n';
+import { useMe } from '@/lib/meContext';
 import { ProfileForm, type ProfileFormData } from '@/components/ProfileForm';
 import type { Profile } from '@/lib/types';
 
 export default function ProfilePage() {
   const { status } = useSession();
   const { t } = useI18n();
+  const { me, refresh } = useMe();
   const [profile, setProfile] = useState<Profile | null>(null);
   const [saving, setSaving] = useState(false);
   const [msg, setMsg] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
+  // SSR 已预取 me：首屏直接用 profile，无需客户端再转圈拉 /api/me。
   useEffect(() => {
-    if (status !== 'authenticated') return;
-    fetch('/api/me')
-      .then((r) => (r.ok ? r.json() : null))
-      .then((j) => setProfile(j?.profile ?? null))
-      .catch(() => {});
-  }, [status]);
+    if (me) setProfile((me.profile as Profile | null) ?? null);
+  }, [me]);
 
   async function handleSave(data: ProfileFormData) {
     setSaving(true);
@@ -37,6 +36,7 @@ export default function ProfilePage() {
       if (!res.ok) throw new Error(json?.message ?? t('d_err_save'));
       setProfile(json.profile as Profile);
       setMsg(t('d_msg_saved'));
+      await refresh();
     } catch (e) {
       setError(e instanceof Error ? e.message : t('d_err_save'));
     } finally {
@@ -44,7 +44,7 @@ export default function ProfilePage() {
     }
   }
 
-  if (status === 'loading') {
+  if (status === 'loading' && !profile) {
     return (
       <div className="flex justify-center py-20">
         <Loader2 className="h-6 w-6 animate-spin opacity-60" />

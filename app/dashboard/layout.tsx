@@ -1,50 +1,34 @@
-'use client';
+import { auth } from '@/auth';
+import { loadMe } from '@/lib/me';
+import { MeProvider } from '@/lib/meContext';
+import { DashboardShell } from '@/components/DashboardShell';
 
-import { useSession } from 'next-auth/react';
-import { useEffect, useState, type CSSProperties } from 'react';
-import { DashboardNav } from '@/components/DashboardNav';
-import { DashboardTopNav } from '@/components/DashboardTopNav';
-import { fetchMe } from '@/lib/meCache';
-
-export default function DashboardLayout({
+/**
+ * Dashboard 布局（Server Component）。
+ * - 服务端用 auth() 取会话，已登录则 loadMe() 预取全部后台数据；
+ * - 数据通过 <MeProvider initialMe> 注入客户端 MeContext，
+ *   子页面首屏即带数据，无需客户端再转圈拉取。
+ * - MeProvider 始终包裹 children（含未登录分支），保证 useMe() 不抛错；
+ *   未登录时仅渲染窄容器 + 子页自行显示登录引导，不渲染后台导航。
+ */
+export default async function DashboardLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const { status } = useSession();
-  const [style, setStyle] = useState('magazine');
-  const [primary, setPrimary] = useState<string | undefined>(undefined);
-
-  // 跟随所选风格 + 主题色（与公开主页一致）
-  useEffect(() => {
-    if (status !== 'authenticated') return;
-    fetchMe()
-      .then((j) => {
-        if (j?.profile) {
-          setStyle((j.profile as { style?: string }).style || 'magazine');
-          setPrimary((j.profile as { theme_color?: string }).theme_color || undefined);
-        }
-      })
-      .catch(() => {});
-  }, [status]);
+  const session = await auth();
+  const ownerId = session?.user?.id;
+  const me = ownerId ? await loadMe(ownerId) : null;
 
   return (
-    <main
-      className="theme-surface min-h-screen"
-      data-style={style}
-      style={{ '--primary': primary } as CSSProperties}
-    >
-      {status === 'authenticated' ? (
-        <div className="min-h-screen">
-          <DashboardTopNav />
-          <div className="mx-auto flex max-w-5xl flex-col gap-8 px-4 py-8 md:flex-row">
-            <DashboardNav />
-            <div className="min-w-0 flex-1">{children}</div>
-          </div>
-        </div>
+    <MeProvider initialMe={me}>
+      {ownerId ? (
+        <DashboardShell>{children}</DashboardShell>
       ) : (
-        <div className="mx-auto max-w-3xl px-6 py-10">{children}</div>
+        <main className="theme-surface min-h-screen">
+          <div className="mx-auto max-w-3xl px-6 py-10">{children}</div>
+        </main>
       )}
-    </main>
+    </MeProvider>
   );
 }

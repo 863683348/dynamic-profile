@@ -3,7 +3,7 @@
 import { useEffect, useState, useCallback } from 'react';
 import { Plus, Pencil, Trash2, Eye, EyeOff, Loader2 } from 'lucide-react';
 import { useI18n } from '@/lib/i18n';
-import { fetchMe, clearMeCache } from '@/lib/meCache';
+import { useMe } from '@/lib/meContext';
 import { PostComposer, type PostDraft } from '@/components/PostComposer';
 import type { Post, Work, PostStatus } from '@/lib/types';
 
@@ -11,10 +11,14 @@ export type ContentCategory = 'post' | 'work';
 
 export function ContentManager({ category }: { category: ContentCategory }) {
   const { t, lang } = useI18n();
-  const [posts, setPosts] = useState<Post[]>([]);
-  const [works, setWorks] = useState<Work[]>([]);
-  const [handle, setHandle] = useState<string>('');
-  const [loading, setLoading] = useState(true);
+  const { me, refresh } = useMe();
+  // SSR 已预取 me：首屏 state 直接落地，零转圈、零闪烁。
+  const [posts, setPosts] = useState<Post[]>(() => (me?.posts ?? []) as Post[]);
+  const [works, setWorks] = useState<Work[]>(() => (me?.works ?? []) as Work[]);
+  const [handle, setHandle] = useState<string>(
+    () => (me?.profile as { handle?: string } | null)?.handle ?? ''
+  );
+  const [loading, setLoading] = useState<boolean>(!me);
   const [saving, setSaving] = useState(false);
   const [composerOpen, setComposerOpen] = useState(false);
   const [editing, setEditing] = useState<Post | Work | null>(null);
@@ -24,25 +28,28 @@ export function ContentManager({ category }: { category: ContentCategory }) {
   const titleKey = category === 'post' ? 'd_manage_posts' : 'd_manage_works';
   const emptyKey = category === 'post' ? 'cm_empty_posts' : 'cm_empty_works';
 
-  const load = useCallback(async (force = false) => {
-    try {
-      // 强制刷新（提交/删除后）时清空缓存，确保拿到最新数据
-      if (force) clearMeCache();
-      const json = await fetchMe(force);
-      if (!json) return;
-      setHandle((json.profile as { handle?: string } | null)?.handle ?? '');
-      setPosts((json.posts ?? []) as Post[]);
-      setWorks((json.works ?? []) as Work[]);
-    } catch {
-      /* 忽略 */
-    } finally {
-      setLoading(false);
-    }
-  }, []);
-
+  // 兜底：仅当 context 无数据（异常）时才客户端拉一次。
   useEffect(() => {
-    void load();
-  }, [load]);
+    if (me) return;
+    let cancelled = false;
+    (async () => {
+      try {
+        const { fetchMe } = await import('@/lib/meCache');
+        const json = await fetchMe(true);
+        if (cancelled || !json) return;
+        setHandle((json.profile as { handle?: string } | null)?.handle ?? '');
+        setPosts((json.posts ?? []) as Post[]);
+        setWorks((json.works ?? []) as Work[]);
+      } catch {
+        /* 忽略 */
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [me]);
 
   const items = (category === 'post' ? posts : works) as Array<Post | Work>;
 
@@ -85,7 +92,7 @@ export function ContentManager({ category }: { category: ContentCategory }) {
       setMsg(editingId ? t('d_saved_change') : t('d_msg_published'));
       setEditing(null);
       setComposerOpen(false);
-      await load(true);
+      await refresh();
     } catch (e) {
       setError(e instanceof Error ? e.message : t('d_err_publish'));
     } finally {
@@ -131,7 +138,7 @@ export function ContentManager({ category }: { category: ContentCategory }) {
         setComposerOpen(false);
       }
       setMsg(t('d_deleted'));
-      await load(true);
+      await refresh();
     } catch (e) {
       setError(e instanceof Error ? e.message : t('d_err_status'));
     }

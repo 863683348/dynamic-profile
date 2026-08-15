@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/auth";
-import { getProfileByOwner, getOwnerPosts, getOwnerWorks, getStats } from "@/lib/db/queries";
+import { loadMe } from "@/lib/me";
 
 export const dynamic = "force-dynamic";
 
@@ -13,16 +13,6 @@ export async function GET() {
     return NextResponse.json({ code: 40101, message: "未登录" }, { status: 401 });
   }
 
-  const profile = await getProfileByOwner(ownerId);
-  // 仅取一次 profile，再用其 handle 并发拉取 动态/作品/统计；
-  // 避免原先 getOwnerPosts/getOwnerWorks 内部各重复查一次 profile
-  // （一次 /api/me 从 6 次顺序查询降为「profile + 3 路并发」≈ 2 个网络往返）。
-  const [posts, works, stats] = profile
-    ? await Promise.all([
-        getOwnerPosts(profile.handle),
-        getOwnerWorks(profile.handle),
-        getStats(profile.handle),
-      ])
-    : [[], [], null];
-  return NextResponse.json({ profile, posts, works, stats });
+  const { profile, posts, works, stats, sub } = await loadMe(ownerId);
+  return NextResponse.json({ profile, posts, works, stats, sub });
 }
