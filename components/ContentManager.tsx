@@ -66,6 +66,7 @@ export function ContentManager({ category }: { category: ContentCategory }) {
               title: data.title,
               url: data.url ?? null,
               description: data.content,
+              image_url: data.image_url ?? null,
               status: data.status,
               ...(editingId ? {} : { handle, source: data.source ?? 'manual' }),
             };
@@ -212,7 +213,15 @@ export function ContentManager({ category }: { category: ContentCategory }) {
               key={p.id}
               className="paper-card flex items-start justify-between gap-4 p-4"
             >
-              <div className="min-w-0">
+              {('image_url' in p && p.image_url) && (
+                <img
+                  src={p.image_url}
+                  alt=""
+                  className="h-16 w-16 shrink-0 rounded-md border object-cover"
+                  style={{ borderColor: 'var(--rule)' }}
+                />
+              )}
+              <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-2">
                   <h3 className="magazine-title truncate text-lg">{p.title}</h3>
                   <span className="source-badge">

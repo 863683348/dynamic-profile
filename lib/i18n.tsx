@@ -209,6 +209,8 @@ const zh: Dict = {
   pc_publish_work: '保存作品',
   pc_editing_work: '编辑作品',
   pc_save_changes_work: '保存作品修改',
+  pc_upload_image_work: '上传作品图',
+  pc_img_work_hint: '建议 800×600，自动压缩',
 
   // Dashboard
   d_login_title: '登录控制台',
@@ -663,6 +665,8 @@ const en: Dict = {
   pc_publish_work: 'Save work',
   pc_editing_work: 'Edit work',
   pc_save_changes_work: 'Save work changes',
+  pc_upload_image_work: 'Upload work image',
+  pc_img_work_hint: '800×600 recommended, auto-compressed',
 
   d_login_title: 'Sign in to Console',
   d_login_desc: 'Sign in with email to edit your dynamic homepage.',

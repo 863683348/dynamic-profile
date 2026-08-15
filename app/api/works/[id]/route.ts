@@ -22,6 +22,7 @@ export async function PATCH(
     title?: string | null;
     url?: string | null;
     description?: string | null;
+    image_url?: string | null;
     status?: string;
   };
   try {
@@ -86,6 +87,7 @@ export async function PATCH(
         title: body.title,
         url: body.url,
         description: body.description,
+        image_url: body.image_url,
         status: body.status as never,
       },
       ownerId

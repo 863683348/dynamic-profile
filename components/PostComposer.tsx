@@ -1,14 +1,16 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { Send, Github, RefreshCw, Loader2 } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+import { Send, Github, RefreshCw, Loader2, Upload, ImageIcon, Trash2 } from 'lucide-react';
 import { useI18n } from '@/lib/i18n';
 import type { Post, Work } from '@/lib/types';
+import { workImageDataUrl } from '@/lib/image';
 
 export type PostDraft = {
   title: string;
   content: string;
   url?: string | null;
+  image_url?: string | null;
   status: 'draft' | 'published';
   source?: 'manual' | 'github';
 };
@@ -57,6 +59,14 @@ export function PostComposer({
     initial?.status === 'hidden' ? 'draft' : initial?.status ?? 'published'
   );
 
+  // 作品封面图（仅 isWork 使用）
+  const [imageUrl, setImageUrl] = useState<string | null>(
+    initial && 'image_url' in initial ? (initial.image_url ?? null) : null
+  );
+  const imageInput = useRef<HTMLInputElement>(null);
+  const [imgBusy, setImgBusy] = useState(false);
+  const [imgErr, setImgErr] = useState<string | null>(null);
+
   // 切换编辑目标 / 取消编辑时，同步表单
   useEffect(() => {
     setTitle(initial?.title ?? '');
@@ -69,8 +79,23 @@ export function PostComposer({
         : ''
     );
     setStatus(initial?.status === 'hidden' ? 'draft' : initial?.status ?? 'published');
+    setImageUrl(initial && 'image_url' in initial ? (initial.image_url ?? null) : null);
+    setImgErr(null);
     setSource('manual');
   }, [initial, lockCategory]);
+
+  async function onPickImage(file?: File) {
+    if (!file) return;
+    setImgBusy(true);
+    setImgErr(null);
+    try {
+      setImageUrl(await workImageDataUrl(file));
+    } catch {
+      setImgErr(t('img_invalid'));
+    } finally {
+      setImgBusy(false);
+    }
+  }
 
   // GitHub 模式
   const [ghUser, setGhUser] = useState('');
@@ -86,6 +111,7 @@ export function PostComposer({
         title: title.trim(),
         content: content.trim(),
         url: isWork ? (url.trim() || null) : undefined,
+        image_url: isWork ? (imageUrl ?? null) : undefined,
         status,
       },
       initial?.id ?? null
@@ -94,6 +120,7 @@ export function PostComposer({
       setTitle('');
       setUrl('');
       setContent('');
+      setImageUrl(null);
       setStatus('published');
     }
   }
@@ -187,6 +214,59 @@ export function PostComposer({
               onChange={(e) => setUrl(e.target.value)}
               placeholder={t('pc_ph_url_work')}
             />
+          )}
+          {isWork && (
+            <div className="space-y-2">
+              <span className="mag-label">{t('pc_upload_image_work')}</span>
+              <div className="flex items-center gap-3">
+                <div
+                  className="h-20 w-28 shrink-0 overflow-hidden rounded-md border"
+                  style={{ borderColor: 'var(--rule)' }}
+                >
+                  {imageUrl ? (
+                    <img src={imageUrl} alt="" className="h-full w-full object-cover" />
+                  ) : (
+                    <div
+                      className="h-full w-full"
+                      style={{
+                        background:
+                          'linear-gradient(135deg, color-mix(in srgb, var(--primary) 70%, #fff), var(--primary))',
+                      }}
+                    />
+                  )}
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  <button
+                    type="button"
+                    className="mag-btn mag-btn-secondary"
+                    onClick={() => imageInput.current?.click()}
+                    disabled={imgBusy}
+                  >
+                    <Upload className="h-4 w-4" />
+                    {imageUrl ? t('change_image') : t('pc_upload_image_work')}
+                  </button>
+                  {imageUrl && (
+                    <button
+                      type="button"
+                      className="mag-btn mag-btn-secondary"
+                      onClick={() => setImageUrl(null)}
+                      aria-label={t('remove_image')}
+                    >
+                      <Trash2 className="h-4 w-4" />
+                    </button>
+                  )}
+                </div>
+                <input
+                  ref={imageInput}
+                  type="file"
+                  accept="image/*"
+                  className="hidden"
+                  onChange={(e) => onPickImage(e.target.files?.[0])}
+                />
+              </div>
+              <p className="text-xs opacity-60">{t('pc_img_work_hint')}</p>
+              {imgErr && <p className="text-xs text-primary">{imgErr}</p>}
+            </div>
           )}
           <textarea
             className="mag-input min-h-[80px]"

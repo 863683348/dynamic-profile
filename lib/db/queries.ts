@@ -57,7 +57,7 @@ export async function getPublishedPosts(handle: string): Promise<Post[]> {
 export async function getPublishedWorks(handle: string): Promise<Work[]> {
   const safeH = handle.replace(/[^a-z0-9_]/g, '').slice(0, 20);
   const rows = (await sql(
-    [`SELECT id, handle, title, url, description, source, status, created_at FROM works WHERE handle = '${safeH}' AND status = 'published' ORDER BY created_at DESC`] as any,
+    [`SELECT id, handle, title, url, description, image_url, source, status, created_at FROM works WHERE handle = '${safeH}' AND status = 'published' ORDER BY created_at DESC`] as any,
   )) as Work[];
   return rows;
 }
@@ -82,7 +82,7 @@ export async function getOwnerWorks(ownerId: string): Promise<Work[]> {
   if (!profile) return [];
 
   const rows = (await sql`
-    SELECT id, handle, title, url, description, source, status, created_at
+    SELECT id, handle, title, url, description, image_url, source, status, created_at
     FROM works
     WHERE handle = ${profile.handle}
     ORDER BY created_at DESC
@@ -271,16 +271,17 @@ export async function createWork(input: WorkInput, ownerId: string): Promise<Wor
   }
 
   const rows = (await sql`
-    INSERT INTO works (handle, title, url, description, source, status)
+    INSERT INTO works (handle, title, url, description, image_url, source, status)
     VALUES (
       ${input.handle},
       ${input.title ?? null},
       ${input.url ?? null},
       ${input.description ?? null},
+      ${input.image_url ?? null},
       ${input.source ?? "manual"},
       ${input.status ?? "draft"}
     )
-    RETURNING id, handle, title, url, description, source, status, created_at
+    RETURNING id, handle, title, url, description, image_url, source, status, created_at
   `) as Work[];
   return rows[0];
 }
@@ -371,12 +372,13 @@ export async function updateWork(
     title?: string | null;
     url?: string | null;
     description?: string | null;
+    image_url?: string | null;
     status?: PostStatus;
   },
   ownerId: string
 ): Promise<boolean> {
   const existing = (await sql`
-    SELECT title, url, description, status
+    SELECT title, url, description, image_url, status
     FROM works
     WHERE id = ${id}
       AND handle IN (SELECT handle FROM profiles WHERE owner_id = ${ownerId})
@@ -385,6 +387,7 @@ export async function updateWork(
     title: string | null;
     url: string | null;
     description: string | null;
+    image_url: string | null;
     status: PostStatus;
   }>;
   const cur = existing[0];
@@ -394,11 +397,13 @@ export async function updateWork(
   const url = patch.url !== undefined ? (patch.url ?? null) : cur.url;
   const description =
     patch.description !== undefined ? (patch.description ?? null) : cur.description;
+  const image_url =
+    patch.image_url !== undefined ? (patch.image_url ?? null) : cur.image_url;
   const status = patch.status !== undefined ? patch.status : cur.status;
 
   const rows = (await sql`
     UPDATE works
-    SET title = ${title}, url = ${url}, description = ${description}, status = ${status}
+    SET title = ${title}, url = ${url}, description = ${description}, image_url = ${image_url}, status = ${status}
     WHERE id = ${id}
       AND handle IN (SELECT handle FROM profiles WHERE owner_id = ${ownerId})
     RETURNING id

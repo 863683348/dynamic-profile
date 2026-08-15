@@ -67,6 +67,7 @@ export interface Work {
   title: string | null;
   url: string | null;
   description: string | null;
+  image_url: string | null; // 作品封面图（缩放后的 data URL，存 text 字段）
   source: string;
   status: PostStatus;
   created_at: string;
@@ -114,6 +115,7 @@ export interface WorkInput {
   title?: string | null;
   url?: string | null;
   description?: string | null;
+  image_url?: string | null;
   source?: string;
   status?: PostStatus;
 }

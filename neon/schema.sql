@@ -64,6 +64,11 @@ WHERE category = 'work'
 -- 删除动态表中的 category 列（作品数据已迁移，动态行 category 恒为 'post'）
 ALTER TABLE posts DROP COLUMN IF EXISTS category;
 
+-- 2026-08-15（追加）：作品支持 1 张封面图。图片经前端缩放后以 data URL 形式
+-- 存入 text 字段（与 avatar_url / cover_url 同方案），无需图床或对象存储。
+-- 幂等：可重复执行。
+ALTER TABLE works ADD COLUMN IF NOT EXISTS image_url text;
+
 -- 视觉风格（对应原型 A–E）：minimal / magazine / geek / glass / neon
 -- 仅改变观感（字体 / 配色 / 卡片质感），与 theme_color（强调色）正交。
 -- 已有库默认 'magazine'（杂志编辑风），不影响现有数据。
