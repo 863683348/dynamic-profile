@@ -5,6 +5,7 @@ import { useSession } from 'next-auth/react';
 import { Crown, Check } from 'lucide-react';
 import { useI18n } from '@/lib/i18n';
 import { SiteFooter } from '@/components/SiteFooter';
+import { LandingNav } from '@/components/LandingNav';
 import type { PlanStatus } from '@/lib/types';
 
 const POLAR_ENABLED = process.env.NEXT_PUBLIC_POLAR_ENABLED === 'true';
@@ -55,13 +56,8 @@ export default function PricingPage() {
 
   return (
     <main className="theme-surface min-h-screen">
-      <div className="mx-auto max-w-3xl px-6 py-12">
-        <div className="double-rule mb-8 flex items-center justify-between px-1 py-3">
-          <span className="text-xs uppercase tracking-[0.2em] opacity-70">
-            {t('nav_pricing')}
-          </span>
-        </div>
-
+      <LandingNav />
+      <div className="mx-auto max-w-5xl px-6 py-12">
         <h1 className="magazine-title text-3xl sm:text-4xl">{t('pricing_title')}</h1>
         <p className="mt-3 text-lg opacity-80">{t('pricing_sub')}</p>
 
