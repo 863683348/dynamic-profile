@@ -35,6 +35,21 @@ export async function loadMe(ownerId: string): Promise<MeData> {
   return { profile, posts, works, stats, sub: serializeSub(sub) };
 }
 
+/**
+ * 仅加载后台布局/导航所需的轻量数据（profile + stats），
+ * 供 dashboard 布局 SSR 预取注入 MeContext。
+ *
+ * 故意**不包含** posts / works / subscription —— 它们只有 works/posts 列表页
+ * 与 overview 计数才需要。若放在布局里，membership、analytics、profile 这类
+ * 根本用不到内容的页也会被 200+200 的重查询拖慢。
+ * posts/works 由各页自行按需拉取（见 components/ContentManager、app/dashboard/page.tsx）。
+ */
+export async function loadDashboardMe(ownerId: string): Promise<MeData> {
+  const profile = await getProfileByOwner(ownerId);
+  const stats = profile ? await getStats(profile.handle) : null;
+  return { profile, posts: [], works: [], stats, sub: null };
+}
+
 // Neon 的 timestamptz 字段默认返回 JS Date 对象；Next.js RSC 向客户端组件传 props 时
 // Date 序列化在不同版本/边界下可能不稳定，统一转成 ISO 字符串避免 membership 等页崩溃。
 function serializeSub(sub: Subscription | null): Subscription | null {

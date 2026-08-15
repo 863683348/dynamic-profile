@@ -45,14 +45,14 @@ export async function loadAnalytics(ownerId: string): Promise<AnalyticsResult> {
   const sources = (await sql`
     SELECT COALESCE(referrer_domain, '(直接访问)') AS domain, COUNT(*)::int AS cnt
     FROM visits
-    WHERE handle = ${handle}
+    WHERE handle = ${handle} AND visited_at >= now() - interval '90 days'
     GROUP BY 1 ORDER BY cnt DESC LIMIT 8
   `) as { domain: string; cnt: number }[];
 
   const loginRow = (await sql`
     SELECT COUNT(*)::int AS total,
            SUM(CASE WHEN is_logged_in THEN 1 ELSE 0 END)::int AS logged
-    FROM visits WHERE handle = ${handle}
+    FROM visits WHERE handle = ${handle} AND visited_at >= now() - interval '90 days'
   `) as { total: number; logged: number }[];
 
   const totalVisits = loginRow[0]?.total ?? 0;
@@ -66,6 +66,7 @@ export async function loadAnalytics(ownerId: string): Promise<AnalyticsResult> {
       trend,
       sources,
       loggedRatio: totalVisits > 0 ? loggedVisits / totalVisits : 0,
+      // 近 90 天访客数（与 sources/loginRow 口径一致，避免全表扫描）
       totalVisits,
     },
   };

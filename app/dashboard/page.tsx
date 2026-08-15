@@ -8,6 +8,7 @@ import { Loader2, Crown, FileText, Briefcase, ArrowUpRight } from 'lucide-react'
 import { useI18n } from '@/lib/i18n';
 import { LoginButton } from '@/components/LoginButton';
 import { useMe } from '@/lib/meContext';
+import { fetchMe } from '@/lib/meCache';
 import type { Profile, Post, Work, PlanStatus, Stats } from '@/lib/types';
 
 const POLAR_ENABLED = process.env.NEXT_PUBLIC_POLAR_ENABLED === 'true';
@@ -48,6 +49,24 @@ export default function DashboardOverviewPage() {
       if (params.get('upgraded') === '1') router.replace('/dashboard');
     }
   }, [router]);
+
+  // layout 只注入了 profile+stats（让 membership/analytics 等非内容页更快），
+  // overview 需要 posts/works 计数，这里按需补拉一次。meCache 会自动去重 + 短缓存。
+  useEffect(() => {
+    if (me && (me.posts?.length === 0 || me.works?.length === 0)) {
+      let cancelled = false;
+      fetchMe(true)
+        .then((json) => {
+          if (cancelled || !json) return;
+          setPosts((json.posts ?? []) as Post[]);
+          setWorks((json.works ?? []) as Work[]);
+        })
+        .catch(() => {});
+      return () => {
+        cancelled = true;
+      };
+    }
+  }, [me]);
 
   async function handleUpgrade(plan: 'monthly' | 'yearly') {
     setUpgrading(plan);

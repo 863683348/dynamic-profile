@@ -18,7 +18,9 @@ export function ContentManager({ category }: { category: ContentCategory }) {
   const [handle, setHandle] = useState<string>(
     () => (me?.profile as { handle?: string } | null)?.handle ?? ''
   );
-  const [loading, setLoading] = useState<boolean>(!me);
+  const [loading, setLoading] = useState<boolean>(
+    !me || (category === 'post' ? !me.posts?.length : !me.works?.length)
+  );
   const [saving, setSaving] = useState(false);
   const [composerOpen, setComposerOpen] = useState(false);
   const [editing, setEditing] = useState<Post | Work | null>(null);
@@ -28,9 +30,11 @@ export function ContentManager({ category }: { category: ContentCategory }) {
   const titleKey = category === 'post' ? 'd_manage_posts' : 'd_manage_works';
   const emptyKey = category === 'post' ? 'cm_empty_posts' : 'cm_empty_works';
 
-  // 兜底：仅当 context 无数据（异常）时才客户端拉一次。
+  // 兜底：layout 只注入了 profile+stats，posts/works 由本组件按需补拉。
+  // 仅当 context 缺本类数据时拉取（me 有数据但本类为空也拉，避免显示空列表）。
   useEffect(() => {
-    if (me) return;
+    const have = me && (category === 'post' ? me.posts?.length : me.works?.length);
+    if (have) return;
     let cancelled = false;
     (async () => {
       try {
@@ -49,7 +53,7 @@ export function ContentManager({ category }: { category: ContentCategory }) {
     return () => {
       cancelled = true;
     };
-  }, [me]);
+  }, [me, category]);
 
   const items = (category === 'post' ? posts : works) as Array<Post | Work>;
 
