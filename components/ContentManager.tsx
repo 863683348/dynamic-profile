@@ -3,6 +3,7 @@
 import { useEffect, useState, useCallback } from 'react';
 import { Plus, Pencil, Trash2, Eye, EyeOff, Loader2 } from 'lucide-react';
 import { useI18n } from '@/lib/i18n';
+import { fetchMe, clearMeCache } from '@/lib/meCache';
 import { PostComposer, type PostDraft } from '@/components/PostComposer';
 import type { Post, Work, PostStatus } from '@/lib/types';
 
@@ -23,12 +24,13 @@ export function ContentManager({ category }: { category: ContentCategory }) {
   const titleKey = category === 'post' ? 'd_manage_posts' : 'd_manage_works';
   const emptyKey = category === 'post' ? 'cm_empty_posts' : 'cm_empty_works';
 
-  const load = useCallback(async () => {
+  const load = useCallback(async (force = false) => {
     try {
-      const res = await fetch('/api/me');
-      if (!res.ok) return;
-      const json = await res.json();
-      setHandle(json.profile?.handle ?? '');
+      // 强制刷新（提交/删除后）时清空缓存，确保拿到最新数据
+      if (force) clearMeCache();
+      const json = await fetchMe(force);
+      if (!json) return;
+      setHandle((json.profile as { handle?: string } | null)?.handle ?? '');
       setPosts((json.posts ?? []) as Post[]);
       setWorks((json.works ?? []) as Work[]);
     } catch {
@@ -83,7 +85,7 @@ export function ContentManager({ category }: { category: ContentCategory }) {
       setMsg(editingId ? t('d_saved_change') : t('d_msg_published'));
       setEditing(null);
       setComposerOpen(false);
-      await load();
+      await load(true);
     } catch (e) {
       setError(e instanceof Error ? e.message : t('d_err_publish'));
     } finally {
@@ -129,7 +131,7 @@ export function ContentManager({ category }: { category: ContentCategory }) {
         setComposerOpen(false);
       }
       setMsg(t('d_deleted'));
-      await load();
+      await load(true);
     } catch (e) {
       setError(e instanceof Error ? e.message : t('d_err_status'));
     }

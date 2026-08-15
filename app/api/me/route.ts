@@ -14,8 +14,15 @@ export async function GET() {
   }
 
   const profile = await getProfileByOwner(ownerId);
-  const posts = profile ? await getOwnerPosts(ownerId) : [];
-  const works = profile ? await getOwnerWorks(ownerId) : [];
-  const stats = profile ? await getStats(profile.handle) : null;
+  // 仅取一次 profile，再用其 handle 并发拉取 动态/作品/统计；
+  // 避免原先 getOwnerPosts/getOwnerWorks 内部各重复查一次 profile
+  // （一次 /api/me 从 6 次顺序查询降为「profile + 3 路并发」≈ 2 个网络往返）。
+  const [posts, works, stats] = profile
+    ? await Promise.all([
+        getOwnerPosts(profile.handle),
+        getOwnerWorks(profile.handle),
+        getStats(profile.handle),
+      ])
+    : [[], [], null];
   return NextResponse.json({ profile, posts, works, stats });
 }

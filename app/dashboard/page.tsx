@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { Loader2, Crown, FileText, Briefcase, ArrowUpRight } from 'lucide-react';
 import { useI18n } from '@/lib/i18n';
 import { LoginButton } from '@/components/LoginButton';
+import { fetchMe } from '@/lib/meCache';
 import type { Profile, Post, Work, PlanStatus, Stats } from '@/lib/types';
 
 const POLAR_ENABLED = process.env.NEXT_PUBLIC_POLAR_ENABLED === 'true';
@@ -28,9 +29,8 @@ export default function DashboardOverviewPage() {
 
   const loadData = useCallback(async () => {
     try {
-      const res = await fetch('/api/me');
-      if (!res.ok) return;
-      const json = await res.json();
+      const json = await fetchMe();
+      if (!json) return;
       setProfile(json.profile ?? null);
       setPosts(json.posts ?? []);
       setWorks(json.works ?? []);

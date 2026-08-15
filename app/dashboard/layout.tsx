@@ -3,6 +3,7 @@
 import { useSession } from 'next-auth/react';
 import { useEffect, useState, type CSSProperties } from 'react';
 import { DashboardNav } from '@/components/DashboardNav';
+import { fetchMe } from '@/lib/meCache';
 
 export default function DashboardLayout({
   children,
@@ -16,12 +17,11 @@ export default function DashboardLayout({
   // 跟随所选风格 + 主题色（与公开主页一致）
   useEffect(() => {
     if (status !== 'authenticated') return;
-    fetch('/api/me')
-      .then((r) => (r.ok ? r.json() : null))
+    fetchMe()
       .then((j) => {
         if (j?.profile) {
-          setStyle(j.profile.style || 'magazine');
-          setPrimary(j.profile.theme_color || undefined);
+          setStyle((j.profile as { style?: string }).style || 'magazine');
+          setPrimary((j.profile as { theme_color?: string }).theme_color || undefined);
         }
       })
       .catch(() => {});

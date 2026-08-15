@@ -62,29 +62,25 @@ export async function getPublishedWorks(handle: string): Promise<Work[]> {
   return rows;
 }
 
-/** 获取某 owner 名下的全部动态（含草稿），用于后台管理。 */
-export async function getOwnerPosts(ownerId: string): Promise<Post[]> {
-  const profile = await getProfileByOwner(ownerId);
-  if (!profile) return [];
-
+/** 获取某 handle 名下的全部动态（含草稿），用于后台管理。
+ *  入参直接是 handle（由调用方先取一次 profile 得到），避免重复查询 profile。 */
+export async function getOwnerPosts(handle: string): Promise<Post[]> {
   const rows = (await sql`
     SELECT id, handle, title, content, source, status, created_at
     FROM posts
-    WHERE handle = ${profile.handle}
+    WHERE handle = ${handle}
     ORDER BY created_at DESC
   `) as Post[];
   return rows;
 }
 
-/** 获取某 owner 名下的全部作品（含草稿），用于后台管理。 */
-export async function getOwnerWorks(ownerId: string): Promise<Work[]> {
-  const profile = await getProfileByOwner(ownerId);
-  if (!profile) return [];
-
+/** 获取某 handle 名下的全部作品（含草稿），用于后台管理。
+ *  入参直接是 handle（由调用方先取一次 profile 得到），避免重复查询 profile。 */
+export async function getOwnerWorks(handle: string): Promise<Work[]> {
   const rows = (await sql`
     SELECT id, handle, title, url, description, image_url, source, status, created_at
     FROM works
-    WHERE handle = ${profile.handle}
+    WHERE handle = ${handle}
     ORDER BY created_at DESC
   `) as Work[];
   return rows;
