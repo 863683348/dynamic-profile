@@ -23,8 +23,8 @@ const ITEMS: NavItem[] = [
 
 /**
  * Dashboard 顶部横向导航栏（登录后后台页面使用）。
- * 与 DashboardNav（侧边栏）共享同一套 ITEMS + i18n key，
- * 但以 sticky top bar 形式呈现，方便移动端和桌面端快速切换。
+ * 原左侧侧边栏（DashboardNav）已移除，菜单统一收归此顶栏，
+ * 方便移动端和桌面端快速切换。
  */
 export function DashboardTopNav() {
   const pathname = usePathname();

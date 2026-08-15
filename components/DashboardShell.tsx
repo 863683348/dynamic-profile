@@ -1,14 +1,13 @@
 'use client';
 
 import { useEffect, useState, type CSSProperties } from 'react';
-import { DashboardNav } from '@/components/DashboardNav';
 import { DashboardTopNav } from '@/components/DashboardTopNav';
 import { useMe } from '@/lib/meContext';
 
 /**
  * Dashboard 布局的客户端外壳（已登录态）。
  * - 跟随 profile 的 style / 主题色（与公开主页一致）；
- * - 渲染顶部横向导航 + 左侧侧边栏 + 内容区。
+ * - 渲染顶部横向导航 + 内容区（左侧侧边栏已移除，菜单统一在顶栏）。
  * MeContext 由上级服务端布局（app/dashboard/layout.tsx）统一提供。
  */
 export function DashboardShell({
@@ -39,9 +38,8 @@ export function DashboardShell({
     >
       <div className="min-h-screen">
         <DashboardTopNav />
-        <div className="mx-auto flex max-w-5xl flex-col gap-8 px-4 py-8 md:flex-row">
-          <DashboardNav />
-          <div className="min-w-0 flex-1">{children}</div>
+        <div className="mx-auto max-w-5xl px-4 py-8">
+          <div className="min-w-0">{children}</div>
         </div>
       </div>
     </main>
