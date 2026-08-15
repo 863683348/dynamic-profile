@@ -33,6 +33,9 @@ export function StylePreviewCard({
 }) {
   const { t } = useI18n();
   const accent = STYLE_ACCENT[id];
+  // 暗色风格（极客 / 霓虹）在缩略图里露出真实暗底，所见即所得；
+  // 其余风格用统一浅底，保证白底画廊里整齐可读。
+  const isDarkStyle = id === 'geek' || id === 'neon';
 
   // 迷你主页缩略图：封面 + 头像 + 名字/状态 + 外链 chip + 打赏按钮，
   // 全部复用公开主页的真实 class（magazine-title / link-chip / mag-btn），
@@ -42,13 +45,15 @@ export function StylePreviewCard({
       data-style={id}
       className="style-preview"
       style={
-        {
-          '--primary': accent,
-          '--bg': '#f7f6f2',
-          '--paper': '#ffffff',
-          '--ink': '#1c1917',
-          '--rule': 'rgba(28,25,23,0.14)',
-        } as CSSProperties
+        isDarkStyle
+          ? ({ '--primary': accent } as CSSProperties)
+          : ({
+              '--primary': accent,
+              '--bg': '#f7f6f2',
+              '--paper': '#ffffff',
+              '--ink': '#1c1917',
+              '--rule': 'rgba(28,25,23,0.14)',
+            } as CSSProperties)
       }
     >
       {/* 封面条 */}
