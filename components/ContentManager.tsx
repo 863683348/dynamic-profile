@@ -30,8 +30,9 @@ export function ContentManager({ category }: { category: ContentCategory }) {
   const titleKey = category === 'post' ? 'd_manage_posts' : 'd_manage_works';
   const emptyKey = category === 'post' ? 'cm_empty_posts' : 'cm_empty_works';
 
-  // 兜底：layout 只注入了 profile+stats，posts/works 由本组件按需补拉。
-  // 仅当 context 缺本类数据时拉取（me 有数据但本类为空也拉，避免显示空列表）。
+  // 兜底：正常情况下 dashboard 布局已通过 SSR 把 posts/works 一起预取进 MeContext，
+  // 此处 me.posts/me.works 已有数据，have 为真直接 return，不发起任何客户端请求。
+  // 仅当 SSR 未注入本类数据（极端情况）时才回退到 fetchMe() 补拉，避免白屏。
   useEffect(() => {
     const have = me && (category === 'post' ? me.posts?.length : me.works?.length);
     if (have) return;

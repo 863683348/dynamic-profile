@@ -1,5 +1,5 @@
 import { auth } from '@/auth';
-import { loadDashboardMe } from '@/lib/me';
+import { loadMe } from '@/lib/me';
 import { MeProvider } from '@/lib/meContext';
 import { DashboardShell } from '@/components/DashboardShell';
 
@@ -18,9 +18,10 @@ export default async function DashboardLayout({
 }) {
   const session = await auth();
   const ownerId = session?.user?.id;
-  // 仅注入轻量数据（profile+stats），posts/works 由各页按需自拉，
-  // 避免 membership/analytics 等非内容页被重查询拖慢。
-  const me = ownerId ? await loadDashboardMe(ownerId) : null;
+  // 服务端一次性预取全部后台数据（profile + posts + works + stats + sub），
+  // 通过 MeProvider 注入；posts/works 页首屏直出，零客户端拉取、零转圈。
+  // 布局只跑一次，SSR 并行查询（≈2 个 DB 往返）远快于客户端瀑布加载。
+  const me = ownerId ? await loadMe(ownerId) : null;
 
   return (
     <MeProvider initialMe={me}>
