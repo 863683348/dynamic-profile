@@ -44,13 +44,11 @@ export default function MembershipPage() {
   const { t, lang } = useI18n();
   const router = useRouter();
   const { me } = useMe();
-  // SSR 已预取 me：profile / sub 首屏直接用，零转圈。
+  // SSR 已预取 me：profile 首屏直接用，零转圈。
   const [profile, setProfile] = useState<Profile | null>(
     () => (me?.profile as Profile | null) ?? null
   );
-  const [sub, setSub] = useState<PlanStatus | null>(
-    () => (me?.sub as PlanStatus | null) ?? null
-  );
+  const [sub, setSub] = useState<PlanStatus | null>(null);
   const [upgrading, setUpgrading] = useState<false | 'monthly' | 'yearly'>(false);
   const [openingPortal, setOpeningPortal] = useState(false);
   const [portalError, setPortalError] = useState<string | null>(null);
@@ -71,6 +69,21 @@ export default function MembershipPage() {
       }
     }
   }, [router]);
+
+  // 订阅状态走独立端点（与 dashboard overview 一致），避免 SSR me.sub 的 Date 序列化问题。
+  useEffect(() => {
+    if (status !== 'authenticated') return;
+    let cancelled = false;
+    fetch('/api/subscription')
+      .then((r) => (r.ok ? r.json() : null))
+      .then((j) => {
+        if (!cancelled) setSub(j ?? null);
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, [status]);
 
   async function handleUpgrade(plan: 'monthly' | 'yearly') {
     setUpgrading(plan);

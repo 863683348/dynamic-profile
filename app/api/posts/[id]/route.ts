@@ -1,6 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/auth";
-import { updatePostStatus, updatePost, deletePost } from "@/lib/db/queries";
+import {
+  updatePostStatus,
+  updatePost,
+  deletePost,
+  revalidateOwnerContent,
+} from "@/lib/db/queries";
 
 export const dynamic = "force-dynamic";
 
@@ -59,6 +64,7 @@ export async function PATCH(
           { status: 404 }
         );
       }
+      await revalidateOwnerContent(ownerId);
       return NextResponse.json({ ok: true });
     } catch (e) {
       console.error("[api/posts/[id]] status update failed", e);
@@ -93,6 +99,7 @@ export async function PATCH(
         { status: 404 }
       );
     }
+    await revalidateOwnerContent(ownerId);
     return NextResponse.json({ ok: true });
   } catch (e) {
     console.error("[api/posts/[id]] update failed", e);
@@ -123,6 +130,7 @@ export async function DELETE(
         { status: 404 }
       );
     }
+    await revalidateOwnerContent(ownerId);
     return NextResponse.json({ ok: true });
   } catch (e) {
     console.error("[api/posts/[id]] delete failed", e);

@@ -1,5 +1,5 @@
 import { sql } from "./index";
-import { unstable_cache } from "next/cache";
+import { unstable_cache, revalidateTag } from "next/cache";
 import { isStyleId, DEFAULT_STYLE } from "@/lib/styles";
 import type {
   Profile,
@@ -70,6 +70,7 @@ export async function getOwnerPosts(handle: string): Promise<Post[]> {
     FROM posts
     WHERE handle = ${handle}
     ORDER BY created_at DESC
+    LIMIT 200
   `) as Post[];
   return rows;
 }
@@ -82,8 +83,35 @@ export async function getOwnerWorks(handle: string): Promise<Work[]> {
     FROM works
     WHERE handle = ${handle}
     ORDER BY created_at DESC
+    LIMIT 200
   `) as Work[];
   return rows;
+}
+
+// Dashboard 读取缓存：后台管理页高频切换同一 handle 时避免重复查询 Neon，
+// 同时用 tag 在 mutation 后主动失效（见 /api/posts / /api/works）。
+export async function getCachedOwnerPosts(handle: string): Promise<Post[]> {
+  return unstable_cache(
+    () => getOwnerPosts(handle),
+    ["owner-posts", handle],
+    { revalidate: 300, tags: [`owner-posts:${handle}`] },
+  )();
+}
+
+export async function getCachedOwnerWorks(handle: string): Promise<Work[]> {
+  return unstable_cache(
+    () => getOwnerWorks(handle),
+    ["owner-works", handle],
+    { revalidate: 300, tags: [`owner-works:${handle}`] },
+  )();
+}
+
+/** 内容 mutation 后失效该 owner 的 dashboard 缓存，保证 /api/me 与 dashboard 布局取到最新。 */
+export async function revalidateOwnerContent(ownerId: string): Promise<void> {
+  const profile = await getProfileByOwner(ownerId);
+  if (!profile) return;
+  revalidateTag(`owner-posts:${profile.handle}`);
+  revalidateTag(`owner-works:${profile.handle}`);
 }
 
 /** 获取公开统计（浏览量 / 关注数）。 */

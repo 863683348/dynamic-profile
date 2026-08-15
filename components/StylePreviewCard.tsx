@@ -33,6 +33,8 @@ export function StylePreviewCard({
 }) {
   const { t } = useI18n();
   const accent = STYLE_ACCENT[id];
+  // 防御：若 id 非法或 CSS 变量缺失，不渲染避免整页白屏。
+  if (!accent) return null;
   // 暗色风格（极客 / 霓虹）在缩略图里露出真实暗底，所见即所得；
   // 其余风格用统一浅底，保证白底画廊里整齐可读。
   const isDarkStyle = id === 'geek' || id === 'neon';

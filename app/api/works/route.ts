@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/auth";
-import { createWork } from "@/lib/db/queries";
+import { createWork, revalidateOwnerContent } from "@/lib/db/queries";
 
 export const dynamic = "force-dynamic";
 
@@ -25,6 +25,7 @@ export async function POST(req: NextRequest) {
 
   try {
     const work = await createWork(body as never, ownerId);
+    await revalidateOwnerContent(ownerId);
     return NextResponse.json({ work });
   } catch (e) {
     if (e instanceof Error && e.message === "FORBIDDEN_HANDLE") {
