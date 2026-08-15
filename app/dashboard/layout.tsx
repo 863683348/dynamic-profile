@@ -3,6 +3,7 @@
 import { useSession } from 'next-auth/react';
 import { useEffect, useState, type CSSProperties } from 'react';
 import { DashboardNav } from '@/components/DashboardNav';
+import { DashboardTopNav } from '@/components/DashboardTopNav';
 import { fetchMe } from '@/lib/meCache';
 
 export default function DashboardLayout({
@@ -34,9 +35,12 @@ export default function DashboardLayout({
       style={{ '--primary': primary } as CSSProperties}
     >
       {status === 'authenticated' ? (
-        <div className="mx-auto flex max-w-5xl flex-col gap-8 px-4 py-10 md:flex-row">
-          <DashboardNav />
-          <div className="min-w-0 flex-1">{children}</div>
+        <div className="min-h-screen">
+          <DashboardTopNav />
+          <div className="mx-auto flex max-w-5xl flex-col gap-8 px-4 py-8 md:flex-row">
+            <DashboardNav />
+            <div className="min-w-0 flex-1">{children}</div>
+          </div>
         </div>
       ) : (
         <div className="mx-auto max-w-3xl px-6 py-10">{children}</div>
