@@ -512,6 +512,102 @@ Head back to the [homepage](/) and grab a portfolio template that fits your work
     },
   },
 
+  {
+    id: 15,
+    slug: 'illustrator-portfolio-process-guide',
+    publishedAt: '2026-08-16',
+    tag: { zh: '指南', en: 'Guide' },
+    title: { zh: "插画师主页怎么搭？把过程也放进作品集", en: "Illustrator Homepages: Show Your Process Too" },
+    date: { zh: '2026 年 8 月', en: 'August 2026' },
+    body: {
+      zh: `插画师做主页，最亏的做法是只放成品图。甲方看得懂成图，但真正让甲方觉得"这个人靠谱"的，是过程。ill portfolio 的进阶玩法，就是把草稿、线稿、配色方案也摆上桌面，让访客看到一张图是怎么从零长出来的。
+
+## 为什么过程稿比成图更打动人
+
+成图只能证明你画得完，过程稿能证明你会思考。一张完整的插画主页，通常放三类过程素材：
+
+- 草稿/缩略图（thumbnails）：展示构图思路，说明你不是瞎画
+- 线稿或黑白稿：展示造型能力，线条干净程度一眼可见
+- 配色方案/色彩研究：展示审美判断，为什么选这组颜色
+
+甲方看商业插画，最担心的是"沟通成本"。过程稿等于提前回答了"你是怎么想的"，比任何自我介绍都管用。
+
+## 怎么排版：时间线比瀑布流更合适
+
+插画作品的排版，我建议用时间线（timeline）而不是纯瀑布流。瀑布流适合量大而均匀的照片，插画每张的观看时长差异很大，时间线能让访客按你的成长顺序看，也方便你在每个节点插一段创作思路的文字。
+
+- 顶部：一张代表作品 + 名字 + 一句话定位
+- 中间：按年份或项目排的 timeline，每段配 3-6 张过程稿
+- 底部：联系方式 + 一句"接单中/开放合作"的状态
+
+## 每张作品配一段"创作笔记"
+
+不用长，两三句就够：这张图的客户是谁、风格要求是什么、你做了什么取舍。创作笔记的价值在于，它把"插画作品集"升级成"插画师个人网站"——访客看完记住的不是单张图，而是你这个人的工作方式。
+
+## 过程稿也会被搜到
+
+草稿图一样能参与搜索。给每张过程稿写 alt 文本的时候，别只写"草图 1"，写成"角色设计草稿 女性 奇幻"，零成本把 illustrator personal site 的覆盖面扩大一倍。
+
+## 别把过程做成流水账
+
+放过程稿有个度：选每个项目 3-6 张有代表性的，别把一百张废稿全传上去。过程是证明思考的工具，不是工作量展览。挑得出重点，本身也是一种专业度。
+
+## 动态个人主页：知道谁在看你的插画
+
+这是零代码动态个人主页（dynamic profile）最值钱的地方：访客画像会告诉你，看你的插画页的人是甲方、同行还是收藏爱好者，从哪个渠道来，停留了多久。把"最受欢迎的作品"放到首页，把"停留时间最短的页面"删掉或重做——用数据调整你的 illustrator portfolio，比拍脑袋强十倍。
+
+**插画师主页必须放过程稿吗？** 不是必须，但强烈建议。商业插画的甲方普遍担心沟通成本，过程稿是降低这个成本最直接的方式，尤其是中大型项目。
+
+**过程稿放多少合适？** 每个项目 3-6 张，选有代表性的：构图草稿、线稿、配色研究各一张，别把废稿全传上去。
+
+**动态主页对插画师有用吗？** 有用。访客画像能看到谁在看、看了多久、从哪来，帮你判断哪些作品最受欢迎，把首页空间留给真正有吸引力的插画。
+
+想搭一个带过程展示和访客画像的插画师主页？回[首页](/)选一个模板，五分钟就能上线。`,
+      en: `The biggest mistake illustrators make on a personal site is showing only finished pieces. Clients can read a final image, but what makes them trust you is the process. The advanced play for an illustrator portfolio is putting sketches, line work, and color studies on the table, so visitors can watch an image grow from zero.
+
+## Why process shots beat finals
+
+A finished piece proves you can finish. Process shots prove you can think. A strong illustrator personal site usually shows three kinds of process material:
+
+- Thumbnails: composition thinking, proof you are not drawing blind
+- Line art or grayscale: draftsmanship, clean lines are visible at a glance
+- Color studies: aesthetic judgment, why these colors
+
+Commercial clients worry about communication cost. Process shots answer "how do you think" in advance, which works better than any bio.
+
+## Layout: timeline beats masonry
+
+For illustration, use a timeline instead of a pure masonry grid. Masonry suits large uniform photo sets; illustration viewing time varies wildly per piece. A timeline lets visitors follow your growth in order and lets you drop a short note at each stage.
+
+- Top: one hero piece + name + one-line positioning
+- Middle: timeline by year or project, 3-6 process shots each
+- Bottom: contact + a clear "open for commissions" status
+
+## Add a short creation note to every piece
+
+Two or three sentences are enough: who the client was, what style was requested, what you traded off. The note upgrades an illustrator portfolio into an actual illustrator personal site. Visitors remember your working style, not just one image.
+
+## Process shots are searchable too
+
+Sketches rank as well. When you write alt text, skip "sketch 1" and write "character design sketch woman fantasy". It doubles the reach of your art portfolio process pages for free.
+
+## Do not turn process into a logbook
+
+Pick 3-6 representative shots per project. Nobody needs a hundred failed drafts. Editing is a professional skill, and showing restraint is part of the pitch.
+
+## Dynamic profile: know who views your art
+
+This is where a no-code dynamic profile shines: visitor analytics tell you whether clients, peers, or collectors are looking at your pages, where they came from, and how long they stayed. Put the most-viewed pieces on the homepage and rework or cut the pages nobody watches. Data beats guesswork for tuning your illustrator portfolio.
+
+**Does an illustrator homepage need process shots?** Not required, but strongly recommended. Commercial clients worry about communication cost, and process shots lower it directly, especially on mid-size and large projects.
+
+**How many process shots per project?** Three to six, representative ones: a composition sketch, line art, and a color study. Do not upload every failed draft.
+
+**Is a dynamic profile useful for illustrators?** Yes. Visitor analytics show who is looking, how long they stay, and where they came from, so you can feature the pieces that actually attract attention.
+
+Want an illustrator homepage with process display and visitor analytics? Head back to the [homepage](/) and pick a template. Five minutes to launch.`,
+    },
+  },
 ];
 ;
 
