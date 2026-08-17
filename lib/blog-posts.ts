@@ -620,6 +620,130 @@ Want an illustrator homepage with process display and visitor analytics? Head ba
       zh: `"独立开发者的个人主页，最容易写成“简历的网页版”：头像、技术栈、项目链接，三点一线。但真正让访客记住你的，从来不是你会什么技术，而是你为什么做这些东西。indie dev homepage 的进阶玩法，是把“代码之外的故事”也放上去。\n\n## 简历式主页的问题\n\n技术栈列表是给机器看的，不是给人看的。访客在主页上停留的前 30 秒，决定了他会不会继续看你的项目。满屏的 React / Next.js / TypeScript 标签，和一句“我用三年时间做了一个没有人用的产品，然后把它重写了一遍”，哪个更让人想往下读？\n\n答案是后者。dev portfolio personal site 的竞争不在技术深度，在叙事能力。\n\n## 三件代码之外必放的事\n\n- 你的“为什么”：为什么做独立开发，为什么是这几个方向，一句话讲清楚\n- 你的失败：做砸过的产品、放弃过的方向、踩过的坑。失败比成功更能建立信任\n- 你的日常：正在做什么、下一步想做什么。让人看到你的进程，而不是只有结果\n\n## 怎么放项目：故事优先，代码其次\n\n项目展示的顺序，建议按“叙事价值”而不是“技术含量”排。每个项目配三段话：\n\n- 这个产品解决什么问题\n- 你是怎么发现这个问题的（这往往是最有趣的部分）\n- 结果如何，包括不理想的结果\n\n技术栈放底部一行小字就够了。想深入看代码的人会自己去 GitHub，主页的责任是让他产生这个念头。\n\n## 动态主页：让访客画像帮你迭代\n\n独立开发者的主页应该常改常新，但改哪里？零代码动态个人主页（dynamic profile）的访客画像会告诉你：哪些页面停留时间长、访客从哪来、是同行还是潜在用户。用数据决定主页改版方向，比凭感觉强。\n\n比如你发现“项目页”停留时间远超“关于我”，说明访客更关心产品而不是你的故事——那就把项目前置。反过来，如果“关于我”更受欢迎，说明你的故事本身就是差异化，多写。\n\n## 让主页开始工作\n\n独立开发者的主页不是名片，是产品。它要回答三个问题：你是谁、你为什么做这个、你现在在做什么。代码之外的故事，是这三个问题的答案里最有辨识度的部分。\n\n**独立开发者主页一定要放失败经历吗？** 不是必须，但强烈建议。失败经历是建立信任最高效的方式之一，它证明你真实、你在场、你做过事。不需要惨烈，一两句诚实的复盘就够。\n\n**技术栈还要不要放？** 要放，但放底部。技术栈是给筛选简历的人和搜索引擎看的，不是给访客的。把它压缩成一行，把页面空间留给故事。\n\n**动态主页对独立开发者有用吗？** 非常有用。访客画像能看到谁在看你的主页、停留多久、从哪来，直接指导你下次改版改哪里。\n\n想搭一个带访客画像的独立开发者主页？回[首页](/)选一个模板，把“代码之外的故事”写上去，五分钟上线。"`,
       en: `"An indie developer homepage is the easiest page on the internet to write as a resume: photo, tech stack, three project links. But what visitors remember is never the technologies you know. It is why you make the things you make. The advanced play for an indie dev homepage is putting the story beyond code on it.\n\n## The problem with resume-style homepages\n\nA tech stack list is written for machines, not people. The first 30 seconds on your homepage decide whether someone keeps scrolling. A wall of React / Next.js / TypeScript badges, versus one line like “I spent three years building a product nobody used, then rebuilt it from scratch” — which one makes you want to read on?\n\nThe second one. An indie developer personal site competes on storytelling, not technical depth.\n\n## Three things beyond code that belong on the page\n\n- Your why: why indie development, why these directions, in one sentence\n- Your failures: products that flopped, directions you abandoned, mistakes you made. Failures build trust faster than wins\n- Your now: what you are working on and what is next. Show process, not just results\n\n## How to present projects: story first, code second\n\nOrder projects by narrative value, not technical impressiveness. Give each project three short paragraphs:\n\n- What problem does it solve\n- How you discovered that problem — usually the most interesting part\n- What happened, including what did not work out\n\nThe tech stack goes in one small line at the bottom. People who want to read code will find your GitHub. The homepage's job is to make them want to.\n\n## Dynamic profile: let visitor data drive iteration\n\nAn indie homepage should change often. But where? A no-code dynamic profile's visitor analytics tells you which sections hold attention, where visitors come from, and whether they are peers or potential users. Data beats guesswork for deciding what to redesign.\n\nIf your projects page holds attention far longer than your about section, visitors care about products more than your story — put projects first. If the reverse, your story is the differentiator. Write more of it.\n\n## Let the homepage do work\n\nAn indie developer homepage is not a business card. It is a product. It answers three questions: who you are, why you build, and what you are building now. The story beyond code is the most distinctive part of all three answers.\n\n**Do I have to include failures?** Not required, but strongly recommended. Failures are one of the fastest ways to build trust. They prove you are real, you showed up, you shipped. One or two honest lines are enough.\n\n**Should I still list my tech stack?** Yes, at the bottom. The stack is for recruiters skimming and search engines, not for visitors. Compress it to one line and give the space to the story.\n\n**Is a dynamic profile useful for indie developers?** Very. Visitor analytics show who looks at your page, how long they stay, and where they come from, which directly tells you what to change next.\n\nWant an indie developer homepage with visitor analytics? Head back to the [homepage](/) and pick a template. Write your story beyond code and launch in five minutes."`,
     },
+  },
+  {
+    id: 17,
+    slug: 'making-homepage-alive-with-posts',
+    publishedAt: '2026-08-18',
+    tag: { zh: '指南', en: 'Guide' },
+    title: { zh: '动态（Posts）怎么玩：让主页活起来', en: 'Making Your Homepage Alive with Posts' },
+    date: { zh: '2026 年 8 月', en: 'August 2026' },
+    body: {
+      zh: `很多人主页做完就再也没碰过，像一张印好就压箱底的传单。其实 Dynamic Profile 里最容易被忽略的，是“动态（Posts）”——它就是让一张静态个人主页活起来的东西。如果你想让自己的个人主页保持动态、又不知道从哪开始，这篇就聊聊怎么玩。
+
+## 动态到底是什么：主页上的“第二层内容”
+
+简单说，动态是你主页上的一块实时内容区。和作品集不同，作品集是你“做过什么”，动态是你“最近在干嘛”。发一条新动态，访客一进来就能看到，不用去翻你的社交账号。
+
+它长这样：一句话 + 一张图（可选）+ 一个时间。没有排版压力，写完就发。
+
+## 为什么个人主页需要动态，而不只是作品集
+
+静态主页的问题是：建完那天最漂亮，之后只会越来越旧。带动态的主页，每次有人来都有新东西看。两者差别其实挺明显：
+
+| 对比 | 静态主页 | 带动态的主页 |
+|---|---|---|
+| 访客每次来访 | 看到同一张旧脸 | 看到你最近在做什么 |
+| 信任感 | 像一张名片 | 像一个有在活动的人 |
+| 回访理由 | 几乎没有 | “他最近又发了什么” |
+
+我自己体感最深的，是动态给了我一个不发长文也能保持存在的理由。不是每个人都愿意写博客，但几乎人人都能发一条“这周做了个小东西”。
+
+## 三种更新频率：哪种适合你
+
+- 每天一条：适合正在做项目、想让人看到进度的人。成本最低，写一句就完事。
+- 每周两三条：大多数人的甜点区。有节奏，又不至于变成噪音。
+- 随缘更新：只在真有事时说一声。比不更新强，但别指望它带来回访。
+
+别逼自己日更。动态的价值不在频率，在于“你还在”。两条有内容的动态，胜过三十条“早安”。
+
+## 动态写什么：4 个不费劲的角度
+
+1. 做完了什么：上线一个功能、交了稿、画完一张图，配一句背景。
+2. 学到了什么：踩了个坑、读了篇好文、想到一个点子。
+3. 在做什么：把进行中的事摆出来，哪怕没做完。过程本身有人看。
+4. 推荐点什么：一本书、一个工具、一个方法。顺手就发。
+
+关键是具体。把“今天也在努力”换成“今天把结账流程重做了一遍，转化 +12%”，访客才知道你是真的在做事。
+
+## 用访客画像，反推该发什么
+
+这是免费版也能用的思路：动态发出去之后，看谁在看、看了多久。如果某条动态的停留明显更长，说明这类内容你的访客买账，那就多往这个方向发。主页不是发了就完，发了看反馈、再调整，才转得起来。
+
+想从模板开始，回[首页](/)选一个顺眼的版式；更多布局思路可以翻 [Day 8：一页聚合](/blog/everything-on-one-page) 和 [Day 12：第一周清单](/blog/first-week-checklist-60-to-90)。
+
+## 常见问题
+
+**动态要每天发吗？**
+不用。每天发适合做项目的人，大多数人每周两三条就够。重点是持续，不是高频。
+
+**动态和博客有什么区别？**
+动态是一两句话的短更新，随手就发；博客是长文，要构思。动态是日常，博客是深度，两者互补。
+
+**免费版能用动态吗？**
+能用。动态在免费版就开放，不用升级。想看谁在看你的动态，再考虑 Pro 的访客画像。
+
+## 让你的主页活起来
+
+你不需要重做主页，只要在[首页](/)建好之后，发第一条动态。哪怕只是“今天把作品集整理了一遍”。主页活了，访客才记得住你。去 [dynamic-profile.shop](/) 免费开始，五分钟发出你的第一条。`,
+      en: `Most people ship a personal homepage and then never touch it again, like a flyer printed and shoved in a drawer. The most underused thing in Dynamic Profile is Posts: short updates that keep a page alive. If you want your personal site posts to actually say something about you, here's how I'd play it.
+
+## What Posts actually are: a second layer on your page
+
+In plain terms, Posts are a live section on your homepage. A portfolio shows what you've done; Posts show what you're doing lately. Drop one and a visitor sees it the moment they land, no need to dig through your socials.
+
+It's a line of text plus an optional image plus a timestamp. No layout pressure. Write and ship.
+
+## Why a homepage needs posts, not just a portfolio
+
+A static homepage looks best on launch day and only gets staler after. A page with Posts gives returning visitors something new each time. The gap is bigger than people think:
+
+| | Static homepage | Homepage with Posts |
+|---|---|---|
+| Each visit | the same old face | what you did this week |
+| Trust | reads like a card | reads like a person |
+| Reason to return | almost none | "what did they post now" |
+
+What hit me most is that Posts gave me a reason to stay present without writing a full article. Not everyone wants a blog, but almost anyone can post "shipped a small thing this week."
+
+## Three posting rhythms: which fits you
+
+- Daily: good if you're mid-project and want people to see progress. Cheapest to do, one line and done.
+- Two or three a week: the sweet spot for most. Rhythmic without becoming noise.
+- Whenever: only speak up when there's real news. Better than silence, but don't expect return visits.
+
+Don't force a daily streak. The value isn't frequency, it's "you're still here." Two posts with substance beat thirty "good mornings."
+
+## What to post: four low-effort angles
+
+1. What you finished: a feature shipped, a draft delivered, a sketch done, with one line of context.
+2. What you learned: a bug, a good read, a small idea.
+3. What you're doing: show work in progress, even unfinished. The process has an audience.
+4. What you'd recommend: a book, a tool, a method. Post it on the spot.
+
+Be specific. Swap "still grinding today" for "rebuilt the checkout flow, +12% conversion" and visitors know you're actually doing things.
+
+## Use visitor insights to decide what to post
+
+This works on the free plan too: after you post, see who looked and how long. If one post holds attention noticeably longer, your visitors like that kind, so post more of it. A homepage isn't fire-and-forget; post, read the feedback, adjust, repeat.
+
+To start from a template, head back to the [homepage](/) and pick a layout you like. For more layout thinking, the [Day 8: everything on one page](/blog/everything-on-one-page) and [Day 12: first-week checklist](/blog/first-week-checklist-60-to-90) posts cover related ground.
+
+## FAQ
+
+**Do I need to post every day?**
+No. Daily suits people in the middle of a project; two or three a week is enough for most. The point is consistency, not volume.
+
+**How is a Post different from a blog?**
+A Post is a one- or two-line update you fire off in seconds. A blog is a long piece that needs planning. Posts are the daily, the blog is the deep dive; they cover each other.
+
+**Does the free plan support Posts?**
+Yes. Posts are open on the free plan, no upgrade needed. If you want to see who's reading them, that's where Pro's visitor insights come in.
+
+## Make your homepage alive
+
+You don't need to rebuild anything. Just create your page on the [homepage](/), then post your first update, even if it's only "tidied my portfolio today." A live page is a page people remember. Start free at [dynamic-profile.shop](/) and post your first line within five minutes.`,
+    },
   },];
 ;
 
