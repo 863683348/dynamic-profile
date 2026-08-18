@@ -744,7 +744,112 @@ Yes. Posts are open on the free plan, no upgrade needed. If you want to see who'
 
 You don't need to rebuild anything. Just create your page on the [homepage](/), then post your first update, even if it's only "tidied my portfolio today." A live page is a page people remember. Start free at [dynamic-profile.shop](/) and post your first line within five minutes.`,
     },
-  },];
+  },
+  {
+    id: 18,
+    slug: 'writers-homepage-guide',
+    publishedAt: '2026-08-19',
+    tag: { zh: '指南', en: 'Guide' },
+    title: { zh: '写作人主页：把文章当作品展示', en: "Writers' Homepages: Articles as Portfolio" },
+    date: { zh: '2026 年 8 月', en: 'August 2026' },
+    body: {
+      zh: `很多写作人觉得，自己的文章散落在各个平台：公众号一篇、Medium 一篇、博客一篇，读者要翻三个地方才能拼出你是谁。其实写作人最该有的，是一张把文章当作品展示的主页。今天聊聊 writer portfolio 怎么搭，让文字替你说话。
+
+## 为什么写作人需要一张主页，而不只是账号
+
+社交平台是租来的地。哪天算法变了，你的文章就沉了。一张属于你自己的主页，是把散落的文章收拢成「作品集」的地方：访客滑一遍，就知道你写什么、写得怎么样、风格是什么。对自由撰稿人、技术作者、独立写作者来说，writer personal site 是比任何单篇爆款都稳的个人资产。
+
+## 文章怎么当作品展示
+
+别把主页做成博客后台的列表。把文章当成策展对象：
+
+- 精选 5-8 篇代表作，不是全部存档
+- 每篇给一句语境：写于什么背景、解决什么问题、读者反馈如何
+- 按主题或叙事排，而不是倒序时间
+- 热门或最新的放最前，让人一眼看到你的水平
+
+article showcase 的重点不是多，是「看完记得住你」。一篇有数据或故事开头的文章，胜过十篇没有上下文的标题。
+
+## 三种写作人主页的搭法
+
+- 专栏型：以一个核心主题串起所有文章，适合垂直领域作者
+- 作品型：按媒介分（长文、短评、通讯），适合多面写手
+- 旅程型：按时间讲创作成长，适合正在积累的新人
+
+[Day 14：独立开发者的个人主页](/blog/indie-developer-homepage-guide) 里也提到，主页要讲「代码之外的故事」。对写作人来说，故事就是你的文字本身。
+
+## 用动态让主页活起来
+
+写完一篇就发一条动态，比憋大招更稳。读者每次来都有新东西，回访的理由就是「他最近又写了什么」。在 Dynamic Profile 上，动态在免费版就开放，不用升级。
+
+## 从模板开始最快
+
+回[首页](/)选一个顺眼的版式，把精选文章填进去，几分钟就能上线你的 writer personal site。免费版就够用，不用先想付费的事。
+
+## FAQ
+
+**写作人主页一定要放全部文章吗？**
+不用。精选代表作比全量存档更有力，访客记不住一百篇，但会记住三篇写得好。
+
+**没有个人域名能做吗？**
+能。Dynamic Profile 的子路径就能承载一整张主页，等有需要再绑自定义域名。
+
+**动态和博客冲突吗？**
+不冲突。动态是短更新，博客是长文，两者互补：动态引出新文，博客沉淀深度。
+
+## 开始搭建你的写作人主页
+
+你不需要重做网站，只要在[首页](/)建好之后，把精选文章摆上去。哪怕先放三篇。主页活了，读者才记得住你。去 [dynamic-profile.shop](/) 免费开始，五分钟搭出你的 writer portfolio。`,
+      en: `Most writers scatter their work across platforms: one piece on WeChat, one on Medium, one on a personal blog. A reader has to visit three places to figure out who you are. The fix is a homepage that treats your articles as a portfolio. Here is how I would set up a writer portfolio.
+
+## Why a writer needs a homepage, not just accounts
+
+Social platforms are rented land. Change the algorithm and your pieces sink. A homepage you own is where scattered articles become a portfolio: a visitor scrolls once and learns what you write, how well, and in what voice. For freelancers, technical authors, and indie writers, a writer personal site is a steadier asset than any single viral post.
+
+## How to show articles as work
+
+Do not turn the homepage into a blog backend list. Curate the articles like exhibits:
+
+- Pick 5-8 representative pieces, not the whole archive
+- Give each one a line of context: what it was written for, what problem it solved, how readers reacted
+- Order by theme or narrative, not strict reverse date
+- Lead with the popular or newest so your level shows immediately
+
+The point of an article showcase is not volume, it is being remembered. One piece with a data point or a story opening beats ten headlines with no context.
+
+## Three ways to build a writer homepage
+
+- Column style: one core theme tying every piece, good for vertical authors
+- Portfolio style: grouped by medium (longform, shorts, newsletter), good for multi-face writers
+- Journey style: a timeline of creative growth, good for newcomers still building
+
+The [Day 14: indie developer homepage](/blog/indie-developer-homepage-guide) post also argues a homepage should tell the story beyond the code. For a writer, that story is the writing itself.
+
+## Keep the page alive with posts
+
+Publish a short update each time you finish a piece. It beats hoarding for a big launch. Visitors always find something new, and the reason to return is what they wrote now. On Dynamic Profile, posts are open on the free plan, no upgrade needed.
+
+## Start from a template
+
+Head back to the [homepage](/) and pick a layout you like, drop in your best articles, and your writer personal site is live in minutes. The free plan is enough, no need to think about paid yet.
+
+## FAQ
+
+**Does a writer homepage need every article?**
+No. A few representative pieces beat a full archive. Readers will not remember a hundred posts, but they will remember three good ones.
+
+**Can I do this without a personal domain?**
+Yes. A Dynamic Profile sub-path already carries a full homepage. Bind a custom domain later if you want one.
+
+**Do posts conflict with the blog?**
+They do not. A post is a short update, the blog is the long piece; posts tease new writing and the blog holds the depth.
+
+## Build your writer homepage
+
+You do not need to rebuild anything. Just create your page on the [homepage](/), then place your best articles. Even three is enough to start. A live page is one people remember. Start free at [dynamic-profile.shop](/) and build your writer portfolio within five minutes.`,
+    },
+  },
+];
 ;
 
 export function getPostBySlug(slug: string): BlogPost | undefined {
