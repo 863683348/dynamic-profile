@@ -26,17 +26,34 @@ CREATE TABLE IF NOT EXISTS posts (
   created_at timestamptz NOT NULL DEFAULT now()
 );
 
--- 作品表（2026-08-15 与动态拆分开）：作品 = 项目 / 作品集，可带链接与描述。
+-- 作品表（2026-08-15 与动态拆分开）：作品 = 项目 / 作品集，可带链接、描述与封面图。
 CREATE TABLE IF NOT EXISTS works (
   id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
   handle text NOT NULL REFERENCES profiles(handle) ON DELETE CASCADE ON UPDATE CASCADE,
   title text,
   url text,
   description text,
+  image_url text,
   source text NOT NULL DEFAULT 'manual',
   status text NOT NULL DEFAULT 'draft' CHECK (status IN ('draft', 'published', 'hidden')),
   created_at timestamptz NOT NULL DEFAULT now()
 );
+
+-- 兼容旧库：works 表已存在但缺 image_url 列时补齐（2026-08-15 加封面字段）
+-- 若上一版误加了 cover_url，自动重命名为 image_url，与 lib/types.ts 一致。
+ALTER TABLE works ADD COLUMN IF NOT EXISTS image_url text;
+DO $$
+BEGIN
+  IF EXISTS (
+    SELECT 1 FROM information_schema.columns
+    WHERE table_name = 'works' AND column_name = 'cover_url'
+  ) AND NOT EXISTS (
+    SELECT 1 FROM information_schema.columns
+    WHERE table_name = 'works' AND column_name = 'image_url'
+  ) THEN
+    ALTER TABLE works RENAME COLUMN cover_url TO image_url;
+  END IF;
+END $$;
 
 CREATE TABLE IF NOT EXISTS stats (
   handle text PRIMARY KEY REFERENCES profiles(handle) ON DELETE CASCADE ON UPDATE CASCADE,
