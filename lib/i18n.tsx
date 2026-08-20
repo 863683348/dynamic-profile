@@ -440,6 +440,15 @@ const zh: Dict = {
   faq_q5: '我的数据保存在哪里？',
   faq_a5:
     '档案与动态保存在我们的数据库（Neon Postgres）。支付信息由 Polar 保管，我们不会接触你的银行卡号。',
+  faq_q6: '主页「资源」区的 Popular 列表显示什么？',
+  faq_a6:
+    'Popular 列表会把你添加的各类资源（链接、文件、页面）按访客实际打开的次数排序——被点得最多的资源自动浮到最上面，让新访客第一眼就看到你最受欢迎的内容。',
+  faq_q7: '怎么在个人主页上发动态？',
+  faq_a7:
+    '在控制台（Dashboard）里写一句话、加一张图就能发布，无需重新部署。动态会出现在你主页的实时区，让页面保持活跃。免费版就支持。',
+  faq_q8: '动态主页免费吗？',
+  faq_a8:
+    '免费。免费版就能创建并发布主页、添加作品集与动态、使用子路径域名。Pro 版额外提供自定义域名、更多主题与访客数据分析。',
 
   // Blog
   blog_title: '博客',
@@ -895,6 +904,15 @@ const en: Dict = {
   faq_q5: 'Where is my data stored?',
   faq_a5:
     'Your profile and updates are stored in our database (Neon Postgres). Payment info is held by Polar — we never touch your card number.',
+  faq_q6: 'What does the Popular list in the Resources section show?',
+  faq_a6:
+    'The Popular list ranks the resources you have added (links, files, pages) by how often visitors actually open them — your most-clicked items rise to the top, so new visitors see your best content first.',
+  faq_q7: 'How do I post updates on my homepage?',
+  faq_a7:
+    'In the Dashboard, write one line plus an optional image and publish — no rebuild needed. The update appears in the live section of your page and keeps it active. The free plan supports it.',
+  faq_q8: 'Is Dynamic Profile free?',
+  faq_a8:
+    'Yes. The free plan lets you create and publish your homepage, add a portfolio and posts, and use a sub-path domain. Pro adds a custom domain, more themes, and visitor analytics.',
 
   // Blog
   blog_title: 'Blog',

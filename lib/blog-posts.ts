@@ -87,7 +87,7 @@ export const BLOG_POSTS: BlogPost[] = [
     slug: 'homepage-5-must-have-sections',
     publishedAt: '2026-08-08',
     tag: { zh: '指南', en: 'Guide' },
-    title: { zh: '个人主页上放什么？5 个必填模块', en: 'What Goes on Your Homepage? 5 Must-Have Sections' },
+    title: { zh: '个人主页必备的 5 个模块（附示例）', en: '5 Must-Have Homepage Sections for Creators (With Examples)' },
     date: { zh: '2026 年 8 月', en: 'August 2026' },
     body: {
       zh: '第一次做个人主页，最容易犯的错是"什么都想放"。结果页面变成一个超链接垃圾桶，访客 3 秒就划走了。把重心收回到 homepage sections 上，其实只需要 5 个模块，就能把一张主页从"还行"变成"这人靠谱"。\n\n第一，一句话定位。放在最顶部，用一句话说清你是谁、为谁解决什么问题。别写"热爱生活、追求卓越"，那是简历里的废话；写"帮独立开发者做产品落地"这种能让人立刻判断要不要继续看下去的话。\n\n第二，精选作品。放 3 到 5 件最能代表你水平的作品，每件写清楚你做了什么、结果如何。宁缺毋滥——一件有数据支撑的作品，胜过十个没有上下文的截图。\n\n第三，动态区。最近在做什么、写了什么文章、发布了什么项目。这一块让页面"活着"，也是访客判断你还在不在活跃期的依据。动态更新的人，比一张三年没动过的名片可信得多。\n\n第四，社交证明。客户评价、合作过的品牌、公开的数据成果。用具体数字：不是"客户很满意"，而是"服务过 40+ 客户，复购率 70%"。\n\n第五，联系入口。一个醒目的 CTA，加上邮箱或社交链接。很多人主页做得很漂亮，但访客想联系时找不到按钮——这是最亏的流失。\n\n这 5 个模块就是 personal page sections 的基本盘。想看得更细，可以看看我们之前写的三分钟上线教程（https://dynamic-profile.shop/blog/launch-first-homepage-3-minutes），或者直接去首页（https://dynamic-profile.shop）把内容填起来。免费版就支持全部 5 个模块，不用升级也能做出体面的主页。',
@@ -111,7 +111,7 @@ export const BLOG_POSTS: BlogPost[] = [
     slug: 'why-editorial-aesthetic-fits-creators',
     publishedAt: '2026-08-10',
     tag: { zh: '观点', en: 'Opinion' },
-    title: { zh: '设计不设限：为什么编辑风更适合创作者', en: 'Why the Editorial Aesthetic Fits Creators' },
+    title: { zh: '编辑风为什么更适合创作者（2026 指南）', en: 'Editorial Aesthetic for Creators: Why It Converts (2026 Guide)' },
     date: { zh: '2026 年 8 月', en: 'August 2026' },
     body: {
       zh: '先说个观察：同样是个人主页，编辑风（editorial aesthetic）的作品比普通模板主页耐看得多。不是因为它更"花"，恰恰相反，它更像一本杂志的版面：大标题、克制配色、明确的阅读节奏。对创作者来说，这种风格天然适合展示作品、观点和成长轨迹，这篇讲讲为什么。\n\n编辑风来自杂志与报纸的版面设计传统：内容优先，装饰让路。一个 editorial design personal site 通常有这些特征：大而有力的标题排版，一句话就能抓住注意力；克制的配色，通常一个主色加中性色；明确的栅格与留白，段落之间有呼吸感；图片与文字交替，像在翻一本杂志。它不是"性冷淡风"的另一个名字，重点是把内容编排得有层次，让访客愿意往下读。\n\n为什么它适合创作者？第一，作品需要语境：一张图片配一句说明，比满屏画廊更能讲清你的想法。第二，观点需要节奏：长文、短评、项目笔记混排时，栅格帮你保持可读性。第三，品牌需要一致性：统一的排版风格比贴纸式装饰更能形成记忆点。对比一下：卡片风主页适合快速浏览、电商式展示；编辑风主页适合深度阅读、叙事式表达。如果你靠文字和作品吃饭，设计师、写作者、独立开发者，magazine style portfolio 是更贴脸的选项。\n\n一个编辑风主页怎么搭？三步。第一，定一个主视觉词，比如"克制""温度""锐利"，所有排版决策都围绕它。第二，把作品按叙事排序，而不是按时间倒序：开头放你最想让人记住的那件。第三，给每件作品写一句话语境，讲清楚你做了什么、解决了什么问题。这三点做完，你的页面就有了"编辑感"，不需要会设计软件。\n\n很多人分不清编辑风和极简风。极简风追求"删到不能再删"，编辑风追求"编排出层次"。极简主页可能只有一句标语加一个按钮；编辑风主页会有大标题、引言、三件作品、一段个人经历，每块都有明确的阅读顺序。对创作者来说，后者能承载的信息量明显更大，也更像"你"而不是"一张名片"。\n\n到 Dynamic Profile（dynamic-profile.shop）的首页直接开始搭建，或先读读我们的欢迎文了解产品理念。免费版就能做出编辑风主页。',
@@ -276,92 +276,6 @@ Edit. A redesign wastes your first week. Use the homepage checklist, ship it, th
 ## Ready to go from 60 to 90?
 
 You now have the full first-week routine to improve your personal homepage: a checklist, the quiet fixes, and a habit to keep it alive. The fastest way to apply it is to build your page on dynamic-profile.shop and tick the boxes as you go. Start free at dynamic-profile.shop and your 90-point homepage can be live before lunch.`,
-    },
-  },
-  {
-    id: 13,
-    slug: 'photographer-portfolio-layout-guide',
-    publishedAt: '2026-08-15',
-    tag: { zh: '指南', en: 'Guide' },
-    title: { zh: '摄影师作品集怎么排版？让照片自己开口说话', en: 'Portfolio Layout for Photographers: Let Photos Speak' },
-    date: { zh: '2026 年 8 月', en: 'August 2026' },
-    body: {
-      zh: `客户打开你的摄影师作品集，第一眼看的不是你的名字，是照片。photo portfolio page 排版的核心就一句话：让照片自己开口说话，你不抢戏。
-
-## 先分清两种主流布局
-
-一种是沉浸式大图，适合风光、人像、婚礼——单张照片就够撑满一屏，纵深强，滑起来像看片。另一种是网格缩略图，适合街拍、产品、多题材混合作品——信息密度高，方便快速扫。选哪种，取决于你照片的单张成色：一张图扛得起整屏就上大图，需要靠数量堆出广度就上网格。混着用也没问题：首页给一张主视觉大图，下面接网格，这是 photography portfolio layout 里很稳的组合。
-
-## 留白不是浪费，是呼吸
-
-新手最常见的问题是把页面塞满，照片之间没有间距，观感就糊成一团。建议图距至少 24px，大图之间留到 48px 以上。留白让眼睛知道"这张结束了，下一张开始"，照片反而更有分量。
-
-## 每个项目给一个案例块
-
-别只堆图。每个作品配一个案例块，里面放：项目名称和拍摄时间、一两句拍摄背景或思路、4-8 张成片、客户或题材标签。访客看到的就不只是"拍得好看"，还有你的专业度。案例块的标题里带上项目关键词，也是作品集页 SEO 的好载体。
-
-## 移动端是主战场
-
-手机上浏览作品的人比电脑多得多。移动端的习惯是竖滑：首屏放一张大图加名字和一句定位，下面直接进作品流，联系方式固定在底部或角落菜单，随时能点到。
-
-## 联系方式放在最后，也要放在最容易被找到的地方
-
-拍得再好，客户找不到你的邮箱，等于白拍。作品集页末尾放一个醒目的联系块，页脚再重复一遍，别让客户往回翻。
-
-## 动态个人主页：知道谁在看你的作品
-
-普通作品集页是个哑巴，你不知道谁来过。用访客画像功能，你能看到来访者大概从哪个渠道进来（站内直达、Instagram，还是搜索）、停留了多久、看了哪些项目、是手机还是电脑打开的。对摄影师来说，这些信息直接决定你怎么跟进：从 Instagram 点进来的，多半是看了你发的新片，适合私信补一句；从搜索引擎来的，可能是主动找服务的客户，适合发作品集之外的报价说明。具体操作三步就能上线：在编辑器里选作品集模板，替换成自己的照片；每个项目建一个案例块，填好标题和拍摄背景；发布后打开访客画像面板，看真实来访数据。
-
-想从模板开始，回到 dynamic-profile.shop 首页选一个顺眼的版式；布局的更多细节可以在博客列表里翻之前几篇。
-
-## FAQ
-
-**摄影师作品集页放多少张照片合适？**
-20-40 张精选就够了，质量优先。放几百张反而稀释重点。
-
-**大图布局和网格布局哪个更好？**
-没有绝对答案，取决于你的题材。单张成色好就大图，题材广就网格。
-
-**访客画像能告诉我具体是谁在看吗？**
-不能精确到个人，但能看到渠道、时长和浏览行为。`,
-      en: `A client opening your photographer portfolio doesn't look for your name first. They look at the photos. Most portfolio pages fail not because the work is weak, but because the layout gets in the way. This guide shows you how to make the layout disappear.
-
-## Two main layouts: immersive large images vs grid thumbnails
-
-Immersive large images suit landscape, portrait and wedding work — single shots that can carry a full screen, cinematic scroll. Grid thumbnails suit street, product and mixed genres — dense, quick to scan. The choice depends on how strong your individual shots are. If one image can hold a full screen, go large. If you need volume to show range, go grid. Mixing works too: a hero image on top, a grid below, that's a stable photography portfolio layout that rarely misses.
-
-## White space is not waste
-
-The most common beginner mistake is packing the page full. When photos have no gap between them, everything blurs into one grey soup. Keep at least 24px between images, and 48px for the large ones. White space tells the eye "this one ended, the next begins." The photos actually feel heavier when they get room to breathe.
-
-## Give each project its own case block
-
-Don't just dump images. Each project deserves a case block with: project name and shoot date, one or two lines about the background or approach, four to eight finished shots, and a tag for the client or the genre. What you're showing is not just "the photos look good" — you're showing process and professionalism. Case blocks also carry SEO weight, so put the project keyword in the heading.
-
-## Mobile is the main battlefield
-
-More people view a photo portfolio page on a phone than on a desktop. On mobile the habit is vertical scrolling: the first screen has to be one large image, your name and a one-line positioning. Right after that, the work flow. Contact fixed in a corner menu or at the bottom, always one tap away.
-
-## Contact goes last, but must be impossible to miss
-
-If the client can't find your email after seeing great work, the whole page was pointless. Put a visible contact block at the end, and repeat it in the footer. Don't make them scroll back up to hunt for it.
-
-## Dynamic profile: know who is looking at your work
-
-This is where a dynamic profile page beats a static one. A regular portfolio is a dummy page — it never tells you who came. With visitor profiles, you can see which channel the visitor came from (direct, Instagram, or search), how long they stayed and which projects they opened, and whether they were on phone or desktop. For a photographer this decides how you follow up: someone arriving from Instagram probably saw your newest post, so a quick private message works; someone arriving from search is hunting for services, so they'd rather get a pricing note. Three steps to set it up: pick a portfolio template in the editor and swap in your photos; build a case block for each project with a title and context; publish, then open the visitor profile panel and read the real data.
-
-Start from a template on the dynamic-profile.shop homepage, and browse the blog list for more layout thinking from earlier posts.
-
-## FAQ
-
-**How many photos should a photographer portfolio hold?**
-Twenty to forty curated shots is enough. More just dilutes the focus.
-
-**Which is better, large-image or grid layout?**
-There's no absolute answer. It depends on your subject. Single strong shots suit large images, wide ranges suit grids.
-
-**Can visitor profiles tell me exactly who is viewing?**
-Not the exact person. But you get the source channel, the time spent, and what they browsed.`,
     },
   },
   {
@@ -849,31 +763,47 @@ They do not. A post is a short update, the blog is the long piece; posts tease n
 You do not need to rebuild anything. Just create your page on the [homepage](/), then place your best articles. Even three is enough to start. A live page is one people remember. Start free at [dynamic-profile.shop](/) and build your writer portfolio within five minutes.`,
     },
   },
-];
-;
-
-export function getPostBySlug(slug: string): BlogPost | undefined {
-  return BLOG_POSTS.find((p) => p.slug === slug);
-}
-
-export function getPostById(id: number): BlogPost | undefined {
-  return BLOG_POSTS.find((p) => p.id === id);
-}
-  ,
   {
-    id: 18,
+    id: 19,
     slug: 'restrained-typography-feels-expensive',
+    publishedAt: '2026-08-20',
+    tag: { zh: '设计', en: 'Design' },
     title: {
       zh: '设计原则：克制排版为什么"贵"',
       en: 'Why Restrained Typography Feels Expensive',
     },
-    date: '2026-08-20',
-    publishedAt: '2026-08-20',
-    excerpt: {
-      zh: '为什么有些排版看起来"贵"，有些看起来很廉价？关键不在字体价格，而在克制度。本文拆解克制排版的 5 个原则。',
-      en: 'Why does some typography feel expensive while other feels cheap? It is not about font price — it is about restraint. This post breaks down 5 principles of restrained typography.',
-    },
-    body: `## What makes typography feel expensive
+    date: { zh: '2026 年 8 月', en: 'August 2026' },
+    body: {
+      zh: `## 为什么排版看起来"贵"
+我见过最有高级感的版面，用的都不是昂贵的字体，而是克制。廉价版面与昂贵版面的差别，很少在字体本身——而在于你给每个元素多少空间、你多严格地遵守自己的规则、以及你多果断地舍弃。
+
+## 克制排版的五个原则
+**1. 一个字族，最多两种字重。** 最有高级感的版面通常只用同一个字族，配常规与半粗（或中等）两种字重，有些甚至只用一种字重。这种限制逼你靠字号、间距和位置来建立层级——而这恰恰是版面"刻意感"的来源。
+**2. 留白不是可选项。** 廉价版面把内容塞满；昂贵版面给内容呼吸的空间。留白不是空白，它是设计元素。当你看到大边距、宽行高、区块之间有呼吸感的版面，你的大脑在读懂任何一个字之前，就已经把它判为"贵"了。
+**3. 克制的配色。** 克制排版几乎从不超过两到三种颜色：正文用黑或深灰，链接和关键元素用一种强调色，背景用白或米白。每多一种颜色都在争夺注意力，稀释层级。
+**4. 一致的齐。** 廉价版面随意混用左对齐、居中和右对齐；昂贵版面选定一套对齐系统并严格执行。左对齐正文配一致的右边线，是最常见的"贵"选择——读起来自然，也显得刻意。
+**5. 果断的内容取舍。** 最贵的版面往往最短。字更少、字号更大，相信读者自己补足留白。页面上每个元素都要 earned its place；不为核心信息服务的，就删掉。
+
+## 为什么克制读起来"贵"
+克制传递自信。自信的设计师不需要用内容填满每个像素、给每个元素加装饰、或用冷门字体证明品味。空白是刻意的，简单是经过筛选的。这正是"贵"的感觉来源。
+
+## 怎么用到你的个人主页
+让主页显得贵，不需要设计学位。从这几步开始：
+1. 选一个字族，全站统一使用
+2. 设置宽行高（正文 1.6 到 1.8）
+3. 只用两种颜色加白色
+4. 所有元素对齐到同一网格
+5. 删掉你写的一半内容
+结果会比你靠"加更多"达成的任何效果都更显贵。
+
+## 常见问题
+**昂贵的排版需要昂贵的字体吗？** 不需要。最有高级感的版面常常用免费的 Google Fonts。贵来自克制、间距和自信，而不是字体的价签。
+**唯一最重要的排版规则是什么？** 一致。简单、一致的版面，永远比复杂、不一致的版面显得贵。定好规则，全站执行。
+**留白太多会让版面显得空吗？** 会，如果内容单薄。留白会放大页面上的任何东西。有实质内容配大留白，显得高级；单薄内容配大留白，显得没做完。先把内容填实，再给它空间。
+
+## 搭一个克制的个人主页
+回到[首页](/)选一个偏爱留白和简洁排版的版式。最好的个人主页不拥挤，而是自信。去 [dynamic-profile.shop](/) 免费开始，不花一分设计费，也能做出显贵的主页。`,
+      en: `## What makes typography feel expensive
 
 The most expensive-looking layouts I have seen do not use expensive fonts. They use restraint. The difference between a cheap layout and an expensive one is rarely the typeface — it is how much space you give each element, how consistently you follow your own rules, and how confidently you leave things out.
 
@@ -923,6 +853,17 @@ Yes, if the content is thin. Whitespace amplifies whatever is on the page. Good 
 
 ## Build your restrained homepage
 
-Head back to the [homepage](/) and pick a layout that favors whitespace and simple typography. The best personal homepages are not crowded — they are confident. Start free at [dynamic-profile.shop](/) and build a homepage that feels expensive without spending a dollar on design.`
-  }
+Head back to the [homepage](/) and pick a layout that favors whitespace and simple typography. The best personal homepages are not crowded — they are confident. Start free at [dynamic-profile.shop](/) and build a homepage that feels expensive without spending a dollar on design.`,
+    },
+  },
 ];
+
+;
+
+export function getPostBySlug(slug: string): BlogPost | undefined {
+  return BLOG_POSTS.find((p) => p.slug === slug);
+}
+
+export function getPostById(id: number): BlogPost | undefined {
+  return BLOG_POSTS.find((p) => p.id === id);
+}
