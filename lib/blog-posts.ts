@@ -856,6 +856,16 @@ Yes, if the content is thin. Whitespace amplifies whatever is on the page. Good 
 Head back to the [homepage](/) and pick a layout that favors whitespace and simple typography. The best personal homepages are not crowded — they are confident. Start free at [dynamic-profile.shop](/) and build a homepage that feels expensive without spending a dollar on design.`,
     },
   },
+
+  {
+    id: 20,
+    slug: "one-sentence-positioning-homepage",
+    publishedAt: "2026-08-23",
+    tag: { zh: "品牌", en: "Branding" },
+    title: { zh: "你的主页应该传达什么？一句话定位法", en: "One-Sentence Positioning for Your Homepage" },
+    date: { zh: "2026 年 8 月", en: "August 2026" },
+    body: { zh: "你的主页在 3 秒内说了什么？一句话定位法让你的主页从信息堆砌变成清晰有力。", en: "What does your homepage say in 3 seconds? One-sentence positioning transforms your homepage from info dump to clear and powerful." }
+  },
 ];
 
 ;
