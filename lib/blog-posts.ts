@@ -866,9 +866,20 @@ Head back to the [homepage](/) and pick a layout that favors whitespace and simp
     date: { zh: "2026 年 8 月", en: "August 2026" },
     body: { zh: "你的主页在 3 秒内说了什么？一句话定位法让你的主页从信息堆砌变成清晰有力。", en: "What does your homepage say in 3 seconds? One-sentence positioning transforms your homepage from info dump to clear and powerful." }
   },
-];
 
-;
+  {
+    id: 21,
+    slug: "freelancer-pages-convert-clients",
+    publishedAt: "2026-08-25",
+    tag: { zh: "职业", en: "Career" },
+    title: { zh: "能转化客户的自由职业者页面指南", en: "Freelancer Pages That Convert Clients" },
+    date: { zh: "2026 年 8 月", en: "August 2026" },
+    body: {
+      zh: "你的动态档案不只是简历——它是你的 24/7 销售页面。对自由职业者而言，一个被忽视的页面和一个能转化客户的页面之间的差别，通常在于结构、信息传达和社会证明。每 2-3 个月至少添加一个新案例研究，让潜在客户看到你最近的成果。",
+      en: "Your dynamic profile isn't just a resume — it's your 24/7 sales page. For freelancers, the difference between a profile that gets ignored and one that converts clients often comes down to structure, messaging, and social proof. At minimum, add a new case study every 2-3 months so prospective clients always see recent work."
+    }
+  }
+];
 
 export function getPostBySlug(slug: string): BlogPost | undefined {
   return BLOG_POSTS.find((p) => p.slug === slug);
