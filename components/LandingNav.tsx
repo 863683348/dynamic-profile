@@ -21,11 +21,11 @@ export function LandingNav() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[color:var(--rule)] bg-[color:var(--paper)]">
-      <nav className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-4 px-5">
+    <header className="sticky top-0 z-40 border-b border-[color:var(--rule)] bg-[color:var(--paper)]">
+      <nav className="mx-auto flex h-14 max-w-6xl items-center gap-4 px-5">
         <Logo />
 
-        <div className="hidden items-center gap-6 text-sm md:flex">
+        <div className="hidden flex-1 items-center justify-center gap-6 text-sm md:flex">
           {links.map((l) => (
             <Link
               key={l.href}
@@ -36,6 +36,9 @@ export function LandingNav() {
             </Link>
           ))}
         </div>
+
+        {/* 为右上角 fixed 浮动的 TopControls（个人中心/Google 登录/语言/主题）预留宽度，避免桌面端导航链接重叠 */}
+        <div className="hidden w-[180px] shrink-0 md:block" aria-hidden="true" />
       </nav>
     </header>
   );
