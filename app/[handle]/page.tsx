@@ -4,14 +4,15 @@ import type { CSSProperties } from 'react';
 import {
   getCachedProfileByHandle,
   getCachedPublishedPosts,
+  getCachedPublishedWorks,
   getCachedStats,
 } from '@/lib/db/queries';
-import type { Post, Profile, Stats } from '@/lib/types';
-import { ProfileCard } from '@/components/ProfileCard';
-import { Tabs } from '@/components/Tabs';
+import type { Post, Work, Profile, Stats } from '@/lib/types';
 import { ViewTracker } from '@/components/ViewTracker';
 import { ProfileThemeInit } from '@/components/ProfileThemeInit';
 import { AdSlot } from '@/components/AdSlot';
+import { ProfileLayoutDispatcher } from '@/components/profile-layouts/ProfileLayoutDispatcher';
+import { isStyleId, type StyleId } from '@/lib/styles';
 
 const SITE =
   process.env.NEXT_PUBLIC_SITE_URL || 'https://dynamic-profile.shop';
@@ -69,6 +70,7 @@ export default async function ProfilePage({
   // 已发布内容走数据缓存（unstable_cache，revalidate=300），
   // 与 getProfileByHandle / getStats 一同打破 neon no-store 对 ISR 的阻断。
   const posts = await getCachedPublishedPosts(handle);
+  const works = await getCachedPublishedWorks(handle);
 
   const stats = await getCachedStats(handle);
 
@@ -76,7 +78,7 @@ export default async function ProfilePage({
     ? { '--primary': profile.theme_color }
     : {}) as unknown as CSSProperties;
 
-  const pageStyle = profile.style || 'magazine';
+  const pageStyle: StyleId = isStyleId(profile.style) ? profile.style : 'magazine';
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -104,14 +106,15 @@ export default async function ProfilePage({
         }}
       />
       <ProfileThemeInit dark={profile.theme_dark} />
-      <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6 md:py-10 md:grid md:grid-cols-[320px_1fr] md:gap-8">
-        <aside className="md:sticky md:top-4 md:self-start">
-          <ProfileCard profile={profile} stats={stats} postCount={posts.length} />
-        </aside>
-        <div>
-          <Tabs posts={posts} profile={profile} />
-        </div>
-      </div>
+
+      {/* 按风格分发不同排版：magazine(双栏) / minimal(单列) / geek(终端) / glass(浮动) / neon(发光) */}
+      <ProfileLayoutDispatcher
+        style={pageStyle}
+        profile={profile}
+        posts={posts}
+        works={works}
+        stats={stats}
+      />
 
       {/* 页脚品牌标识：仅免费版显示，Pro 去除（收付款 ⑥ 权益之一） */}
       {profile.plan !== 'pro' && (

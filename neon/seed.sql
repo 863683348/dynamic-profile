@@ -21,6 +21,12 @@ INSERT INTO posts (handle, title, content, source, status) VALUES
   ('linxi', '一个小工具开源了', '把常用的 JSON 格式化脚本抽成了 CLI，欢迎来玩。', 'manual', 'published')
 ON CONFLICT DO NOTHING;
 
+-- 示例作品（2026-08-15 数据层拆分后独立 works 表）
+INSERT INTO works (handle, title, url, description, source, status) VALUES
+  ('linxi', 'json-cli', 'https://github.com/', '用 Rust 写的 JSON 格式化 CLI，支持缩进/排序/去重。', 'github', 'published'),
+  ('linxi', '动态个人主页', 'https://dynamic-profile.shop/linxi', '基于 Next.js 的杂志风个人主页，支持打赏与订阅。', 'manual', 'published')
+ON CONFLICT DO NOTHING;
+
 -- stats 由触发器自动生成；这里确保有一行初始浏览量
 INSERT INTO stats (handle, views) VALUES ('linxi', 128)
 ON CONFLICT (handle) DO UPDATE SET views = EXCLUDED.views;

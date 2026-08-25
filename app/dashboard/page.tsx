@@ -7,7 +7,9 @@ import Link from 'next/link';
 import { Loader2, Crown, FileText, Briefcase, ArrowUpRight } from 'lucide-react';
 import { useI18n } from '@/lib/i18n';
 import { LoginButton } from '@/components/LoginButton';
-import type { Profile, Post, PlanStatus, Stats } from '@/lib/types';
+import { useMe } from '@/lib/meContext';
+import { fetchMe } from '@/lib/meCache';
+import type { Profile, Post, Work, PlanStatus, Stats } from '@/lib/types';
 
 const POLAR_ENABLED = process.env.NEXT_PUBLIC_POLAR_ENABLED === 'true';
 
@@ -15,9 +17,16 @@ export default function DashboardOverviewPage() {
   const { data: session, status } = useSession();
   const { t, lang } = useI18n();
   const router = useRouter();
-  const [profile, setProfile] = useState<Profile | null>(null);
-  const [posts, setPosts] = useState<Post[]>([]);
-  const [stats, setStats] = useState<Stats | null>(null);
+  const { me, refresh } = useMe();
+  // SSR 已预取 me：首屏 state 直接落地，零转圈、零闪烁。
+  const [profile, setProfile] = useState<Profile | null>(
+    () => (me?.profile as Profile | null) ?? null
+  );
+  const [posts, setPosts] = useState<Post[]>(() => (me?.posts ?? []) as Post[]);
+  const [works, setWorks] = useState<Work[]>(() => (me?.works ?? []) as Work[]);
+  const [stats, setStats] = useState<Stats | null>(
+    () => (me?.stats as Stats | null) ?? null
+  );
   const [sub, setSub] = useState<PlanStatus | null>(null);
   const [upgrading, setUpgrading] = useState<false | 'monthly' | 'yearly'>(false);
   const [error, setError] = useState<string | null>(null);
@@ -25,20 +34,14 @@ export default function DashboardOverviewPage() {
   const fmtDate = (s: string | null) =>
     s ? new Date(s).toLocaleDateString(lang === 'en' ? 'en-US' : 'zh-CN') : '';
 
-  const loadData = useCallback(async () => {
-    try {
-      const res = await fetch('/api/me');
-      if (!res.ok) return;
-      const json = await res.json();
-      setProfile(json.profile ?? null);
-      setPosts(json.posts ?? []);
-      setStats(json.stats ?? null);
-      const resSub = await fetch('/api/subscription');
-      if (resSub.ok) setSub(await resSub.json());
-    } catch {
-      /* 忽略 */
-    }
-  }, []);
+  // subscription 走独立端点（不在 me 内），客户端拉一次（单查询，快）。
+  useEffect(() => {
+    if (status !== 'authenticated') return;
+    fetch('/api/subscription')
+      .then((r) => (r.ok ? r.json() : null))
+      .then((j) => setSub(j))
+      .catch(() => {});
+  }, [status]);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -46,6 +49,24 @@ export default function DashboardOverviewPage() {
       if (params.get('upgraded') === '1') router.replace('/dashboard');
     }
   }, [router]);
+
+  // layout 只注入了 profile+stats（让 membership/analytics 等非内容页更快），
+  // overview 需要 posts/works 计数，这里按需补拉一次。meCache 会自动去重 + 短缓存。
+  useEffect(() => {
+    if (me && (me.posts?.length === 0 || me.works?.length === 0)) {
+      let cancelled = false;
+      fetchMe(true)
+        .then((json) => {
+          if (cancelled || !json) return;
+          setPosts((json.posts ?? []) as Post[]);
+          setWorks((json.works ?? []) as Work[]);
+        })
+        .catch(() => {});
+      return () => {
+        cancelled = true;
+      };
+    }
+  }, [me]);
 
   async function handleUpgrade(plan: 'monthly' | 'yearly') {
     setUpgrading(plan);
@@ -65,32 +86,32 @@ export default function DashboardOverviewPage() {
     }
   }
 
-  useEffect(() => {
-    if (status === 'authenticated') void loadData();
-  }, [status, loadData]);
-
-  if (status === 'loading') {
-    return (
-      <div className="flex justify-center py-20">
-        <Loader2 className="h-6 w-6 animate-spin opacity-60" />
-      </div>
-    );
-  }
-
-  if (!session?.user) {
-    return (
-      <div className="mx-auto max-w-md px-6 py-20">
-        <h1 className="magazine-title text-3xl">{t('d_login_title')}</h1>
-        <p className="mt-2 text-sm opacity-80">{t('d_login_desc')}</p>
-        <div className="mt-8">
-          <LoginButton />
+  // me 已由 SSR 预取：已登录用户直接渲染内容，跳过客户端转圈。
+  // 仅当 me 为空（未登录 / 会话仍在客户端解析）时才等待或显示登录引导。
+  if (!me) {
+    if (status === 'loading') {
+      return (
+        <div className="flex justify-center py-20">
+          <Loader2 className="h-6 w-6 animate-spin opacity-60" />
         </div>
-      </div>
-    );
+      );
+    }
+
+    if (!session?.user) {
+      return (
+        <div className="mx-auto max-w-md px-6 py-20">
+          <h1 className="magazine-title text-3xl">{t('d_login_title')}</h1>
+          <p className="mt-2 text-sm opacity-80">{t('d_login_desc')}</p>
+          <div className="mt-8">
+            <LoginButton />
+          </div>
+        </div>
+      );
+    }
   }
 
-  const postCount = posts.filter((p) => p.category === 'post').length;
-  const workCount = posts.filter((p) => p.category === 'work').length;
+  const postCount = posts.length;
+  const workCount = works.length;
 
   return (
     <div>

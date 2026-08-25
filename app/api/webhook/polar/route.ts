@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidateTag } from "next/cache";
 import { Webhook, WebhookVerificationError } from "standardwebhooks";
 import { upsertSubscription, tryProcessWebhook } from "@/lib/db/queries";
 
@@ -90,4 +91,7 @@ async function handleEvent(event: { type?: string; data?: Record<string, any> })
     metadata: d.metadata,
     grantPlan: grant,
   });
+
+  // 订阅权益变更后，立即失效该 owner 的套餐缓存（/api/subscription 用 120s 缓存）
+  revalidateTag(`sub:${ownerEmail}`);
 }

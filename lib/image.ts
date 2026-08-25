@@ -61,3 +61,8 @@ export function coverDataUrl(file: File): Promise<string> {
 export function qrDataUrl(file: File): Promise<string> {
   return fileToResizedDataUrl(file, { maxW: 400, maxH: 400, quality: 0.95, mime: "image/png" });
 }
+
+/** 作品封面：800×600 以内等比缩放，质量 0.8（典型输出 60–140KB 的 data URL）。 */
+export function workImageDataUrl(file: File): Promise<string> {
+  return fileToResizedDataUrl(file, { maxW: 800, maxH: 600, quality: 0.8 });
+}

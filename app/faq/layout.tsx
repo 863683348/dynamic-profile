@@ -4,6 +4,9 @@ export const metadata: Metadata = {
   title: 'FAQ · Dynamic Profile Help Center',
   description:
     'Frequently asked questions about Dynamic Profile — sign up, usage, pricing, and features. Get help building your no-code personal homepage.',
+  alternates: {
+    canonical: '/faq',
+  },
   openGraph: {
     title: 'FAQ · Dynamic Profile Help Center',
     description:

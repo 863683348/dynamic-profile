@@ -22,10 +22,38 @@ CREATE TABLE IF NOT EXISTS posts (
   title text,
   content text,
   source text NOT NULL DEFAULT 'manual',
-  category text NOT NULL DEFAULT 'post' CHECK (category IN ('post', 'work')),
   status text NOT NULL DEFAULT 'draft' CHECK (status IN ('draft', 'published', 'hidden')),
   created_at timestamptz NOT NULL DEFAULT now()
 );
+
+-- 作品表（2026-08-15 与动态拆分开）：作品 = 项目 / 作品集，可带链接、描述与封面图。
+CREATE TABLE IF NOT EXISTS works (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  handle text NOT NULL REFERENCES profiles(handle) ON DELETE CASCADE ON UPDATE CASCADE,
+  title text,
+  url text,
+  description text,
+  image_url text,
+  source text NOT NULL DEFAULT 'manual',
+  status text NOT NULL DEFAULT 'draft' CHECK (status IN ('draft', 'published', 'hidden')),
+  created_at timestamptz NOT NULL DEFAULT now()
+);
+
+-- 兼容旧库：works 表已存在但缺 image_url 列时补齐（2026-08-15 加封面字段）
+-- 若上一版误加了 cover_url，自动重命名为 image_url，与 lib/types.ts 一致。
+ALTER TABLE works ADD COLUMN IF NOT EXISTS image_url text;
+DO $$
+BEGIN
+  IF EXISTS (
+    SELECT 1 FROM information_schema.columns
+    WHERE table_name = 'works' AND column_name = 'cover_url'
+  ) AND NOT EXISTS (
+    SELECT 1 FROM information_schema.columns
+    WHERE table_name = 'works' AND column_name = 'image_url'
+  ) THEN
+    ALTER TABLE works RENAME COLUMN cover_url TO image_url;
+  END IF;
+END $$;
 
 CREATE TABLE IF NOT EXISTS stats (
   handle text PRIMARY KEY REFERENCES profiles(handle) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -35,14 +63,28 @@ CREATE TABLE IF NOT EXISTS stats (
 );
 
 CREATE INDEX IF NOT EXISTS idx_posts_handle_created ON posts(handle, created_at DESC);
+CREATE INDEX IF NOT EXISTS idx_works_handle_created ON works(handle, created_at DESC);
 CREATE INDEX IF NOT EXISTS idx_profiles_owner ON profiles(owner_id);
 
 -- 内容分类：post = 动态（状态更新），work = 作品（项目/作品集）
--- 迁移：已有库默认 'post'，不影响现有数据
-ALTER TABLE posts
-  ADD COLUMN IF NOT EXISTS category text NOT NULL DEFAULT 'post';
-ALTER TABLE posts
-  ADD CONSTRAINT posts_category_check CHECK (category IN ('post', 'work'));
+-- 2026-08-15：作品已拆到独立 works 表。以下迁移把旧 posts.category='work' 的数据
+-- 迁入 works 表（title/content → title/description），随后删除 posts.category 列。
+-- 可安全重复执行（幂等：仅在 works 表尚不存在对应数据时插入）。
+INSERT INTO works (id, handle, title, description, source, status, created_at)
+SELECT id, handle, title, content, source, status, created_at
+FROM posts
+WHERE category = 'work'
+  AND NOT EXISTS (
+    SELECT 1 FROM works w WHERE w.id = posts.id
+  );
+
+-- 删除动态表中的 category 列（作品数据已迁移，动态行 category 恒为 'post'）
+ALTER TABLE posts DROP COLUMN IF EXISTS category;
+
+-- 2026-08-15（追加）：作品支持 1 张封面图。图片经前端缩放后以 data URL 形式
+-- 存入 text 字段（与 avatar_url / cover_url 同方案），无需图床或对象存储。
+-- 幂等：可重复执行。
+ALTER TABLE works ADD COLUMN IF NOT EXISTS image_url text;
 
 -- 视觉风格（对应原型 A–E）：minimal / magazine / geek / glass / neon
 -- 仅改变观感（字体 / 配色 / 卡片质感），与 theme_color（强调色）正交。

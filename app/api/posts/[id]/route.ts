@@ -1,13 +1,18 @@
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/auth";
-import { updatePostStatus, updatePost, deletePost } from "@/lib/db/queries";
+import {
+  updatePostStatus,
+  updatePost,
+  deletePost,
+  revalidateOwnerContent,
+} from "@/lib/db/queries";
 
 export const dynamic = "force-dynamic";
 
 // PATCH /api/posts/[id]
-// 鉴权后更新某条内容。body 可包含：
+// 鉴权后更新某条动态。body 可包含：
 //   - status      : draft / published / hidden（仅改状态时只传这个）
-//   - title/content/category/status : 整条编辑（按需部分更新）
+//   - title/content/status : 整条编辑（按需部分更新）
 export async function PATCH(
   req: NextRequest,
   { params }: { params: { id: string } }
@@ -21,7 +26,6 @@ export async function PATCH(
   let body: {
     title?: string | null;
     content?: string | null;
-    category?: string;
     status?: string;
   };
   try {
@@ -36,9 +40,8 @@ export async function PATCH(
   const hasStatus = body.status !== undefined;
   const hasTitle = body.title !== undefined;
   const hasContent = body.content !== undefined;
-  const hasCategory = body.category !== undefined;
 
-  if (!hasStatus && !hasTitle && !hasContent && !hasCategory) {
+  if (!hasStatus && !hasTitle && !hasContent) {
     return NextResponse.json(
       { code: 40003, message: "至少需要提供一个要更新的字段" },
       { status: 400 }
@@ -46,7 +49,7 @@ export async function PATCH(
   }
 
   // 仅改状态：沿用原逻辑
-  if (hasStatus && !hasTitle && !hasContent && !hasCategory) {
+  if (hasStatus && !hasTitle && !hasContent) {
     if (!["draft", "published", "hidden"].includes(body.status ?? "")) {
       return NextResponse.json(
         { code: 40003, message: "status 必须是 draft / published / hidden" },
@@ -61,6 +64,7 @@ export async function PATCH(
           { status: 404 }
         );
       }
+      await revalidateOwnerContent(ownerId);
       return NextResponse.json({ ok: true });
     } catch (e) {
       console.error("[api/posts/[id]] status update failed", e);
@@ -72,12 +76,6 @@ export async function PATCH(
   }
 
   // 整条编辑
-  if (body.category !== undefined && !["post", "work"].includes(body.category)) {
-    return NextResponse.json(
-      { code: 40003, message: "category 必须是 post / work" },
-      { status: 400 }
-    );
-  }
   if (body.status !== undefined && !["draft", "published", "hidden"].includes(body.status)) {
     return NextResponse.json(
       { code: 40003, message: "status 必须是 draft / published / hidden" },
@@ -91,7 +89,6 @@ export async function PATCH(
       {
         title: body.title,
         content: body.content,
-        category: body.category as never,
         status: body.status as never,
       },
       ownerId
@@ -102,6 +99,7 @@ export async function PATCH(
         { status: 404 }
       );
     }
+    await revalidateOwnerContent(ownerId);
     return NextResponse.json({ ok: true });
   } catch (e) {
     console.error("[api/posts/[id]] update failed", e);
@@ -132,6 +130,7 @@ export async function DELETE(
         { status: 404 }
       );
     }
+    await revalidateOwnerContent(ownerId);
     return NextResponse.json({ ok: true });
   } catch (e) {
     console.error("[api/posts/[id]] delete failed", e);

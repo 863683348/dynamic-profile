@@ -24,7 +24,6 @@ export interface Profile {
   alipay_qr_url: string | null; // 支付宝收款码
 }
 
-export type PostCategory = "post" | "work";
 export type PostStatus = "draft" | "published" | "hidden";
 
 // 订阅（Polar.sh）记录，与 neon/schema.sql 的 subscriptions 表对应。
@@ -50,13 +49,26 @@ export interface PlanStatus {
   current_period_end: string | null;
 }
 
+// 动态（状态更新）：文字为主，无结构化链接
 export interface Post {
   id: string;
   handle: string;
   title: string | null;
   content: string | null;
   source: string;
-  category: PostCategory;
+  status: PostStatus;
+  created_at: string;
+}
+
+// 作品（项目 / 作品集）：可带 URL 与描述
+export interface Work {
+  id: string;
+  handle: string;
+  title: string | null;
+  url: string | null;
+  description: string | null;
+  image_url: string | null; // 作品封面图（缩放后的 data URL，存 text 字段）
+  source: string;
   status: PostStatus;
   created_at: string;
 }
@@ -88,12 +100,22 @@ export interface ProfileInput {
   alipay_qr_url?: string | null;
 }
 
-// 创建内容时的输入
+// 创建动态时的输入
 export interface PostInput {
   handle: string;
   title?: string | null;
   content?: string | null;
   source?: string;
-  category?: PostCategory;
+  status?: PostStatus;
+}
+
+// 创建作品时的输入
+export interface WorkInput {
+  handle: string;
+  title?: string | null;
+  url?: string | null;
+  description?: string | null;
+  image_url?: string | null;
+  source?: string;
   status?: PostStatus;
 }

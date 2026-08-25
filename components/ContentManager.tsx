@@ -3,42 +3,60 @@
 import { useEffect, useState, useCallback } from 'react';
 import { Plus, Pencil, Trash2, Eye, EyeOff, Loader2 } from 'lucide-react';
 import { useI18n } from '@/lib/i18n';
+import { useMe } from '@/lib/meContext';
 import { PostComposer, type PostDraft } from '@/components/PostComposer';
-import type { Post, PostCategory } from '@/lib/types';
+import type { Post, Work, PostStatus } from '@/lib/types';
 
-export function ContentManager({ category }: { category: PostCategory }) {
+export type ContentCategory = 'post' | 'work';
+
+export function ContentManager({ category }: { category: ContentCategory }) {
   const { t, lang } = useI18n();
-  const [posts, setPosts] = useState<Post[]>([]);
-  const [handle, setHandle] = useState<string>('');
-  const [loading, setLoading] = useState(true);
+  const { me, refresh } = useMe();
+  // SSR 已预取 me：首屏 state 直接落地，零转圈、零闪烁。
+  const [posts, setPosts] = useState<Post[]>(() => (me?.posts ?? []) as Post[]);
+  const [works, setWorks] = useState<Work[]>(() => (me?.works ?? []) as Work[]);
+  const [handle, setHandle] = useState<string>(
+    () => (me?.profile as { handle?: string } | null)?.handle ?? ''
+  );
+  const [loading, setLoading] = useState<boolean>(
+    !me || (category === 'post' ? !me.posts?.length : !me.works?.length)
+  );
   const [saving, setSaving] = useState(false);
   const [composerOpen, setComposerOpen] = useState(false);
-  const [editing, setEditing] = useState<Post | null>(null);
+  const [editing, setEditing] = useState<Post | Work | null>(null);
   const [msg, setMsg] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   const titleKey = category === 'post' ? 'd_manage_posts' : 'd_manage_works';
   const emptyKey = category === 'post' ? 'cm_empty_posts' : 'cm_empty_works';
 
-  const load = useCallback(async () => {
-    try {
-      const res = await fetch('/api/me');
-      if (!res.ok) return;
-      const json = await res.json();
-      setHandle(json.profile?.handle ?? '');
-      setPosts((json.posts ?? []) as Post[]);
-    } catch {
-      /* 忽略 */
-    } finally {
-      setLoading(false);
-    }
-  }, []);
-
+  // 兜底：正常情况下 dashboard 布局已通过 SSR 把 posts/works 一起预取进 MeContext，
+  // 此处 me.posts/me.works 已有数据，have 为真直接 return，不发起任何客户端请求。
+  // 仅当 SSR 未注入本类数据（极端情况）时才回退到 fetchMe() 补拉，避免白屏。
   useEffect(() => {
-    void load();
-  }, [load]);
+    const have = me && (category === 'post' ? me.posts?.length : me.works?.length);
+    if (have) return;
+    let cancelled = false;
+    (async () => {
+      try {
+        const { fetchMe } = await import('@/lib/meCache');
+        const json = await fetchMe(true);
+        if (cancelled || !json) return;
+        setHandle((json.profile as { handle?: string } | null)?.handle ?? '');
+        setPosts((json.posts ?? []) as Post[]);
+        setWorks((json.works ?? []) as Work[]);
+      } catch {
+        /* 忽略 */
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [me, category]);
 
-  const items = posts.filter((p) => p.category === category);
+  const items = (category === 'post' ? posts : works) as Array<Post | Work>;
 
   async function handleSubmit(data: PostDraft, editingId?: string | null) {
     if (!handle) {
@@ -49,15 +67,25 @@ export function ContentManager({ category }: { category: PostCategory }) {
     setError(null);
     setMsg(null);
     try {
-      const body = {
-        title: data.title,
-        content: data.content,
-        category: data.category,
-        status: data.status,
-        ...(editingId ? {} : { handle, source: data.source ?? 'manual' }),
-      };
+      const apiBase = category === 'post' ? '/api/posts' : '/api/works';
+      const body =
+        category === 'post'
+          ? {
+              title: data.title,
+              content: data.content,
+              status: data.status,
+              ...(editingId ? {} : { handle, source: data.source ?? 'manual' }),
+            }
+          : {
+              title: data.title,
+              url: data.url ?? null,
+              description: data.content,
+              image_url: data.image_url ?? null,
+              status: data.status,
+              ...(editingId ? {} : { handle, source: data.source ?? 'manual' }),
+            };
       const res = await fetch(
-        editingId ? `/api/posts/${editingId}` : '/api/posts',
+        editingId ? `${apiBase}/${editingId}` : apiBase,
         {
           method: editingId ? 'PATCH' : 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -69,7 +97,7 @@ export function ContentManager({ category }: { category: PostCategory }) {
       setMsg(editingId ? t('d_saved_change') : t('d_msg_published'));
       setEditing(null);
       setComposerOpen(false);
-      await load();
+      await refresh();
     } catch (e) {
       setError(e instanceof Error ? e.message : t('d_err_publish'));
     } finally {
@@ -77,40 +105,45 @@ export function ContentManager({ category }: { category: PostCategory }) {
     }
   }
 
-  async function toggleStatus(post: Post) {
-    const next = post.status === 'published' ? 'draft' : 'published';
-    setPosts((prev) =>
-      prev.map((p) => (p.id === post.id ? { ...p, status: next } : p))
-    );
+  async function toggleStatus(item: Post | Work) {
+    const next: PostStatus =
+      item.status === 'published' ? 'draft' : 'published';
+    const apiBase = category === 'post' ? '/api/posts' : '/api/works';
+    const prev =
+      category === 'post'
+        ? (posts.map((p) => (p.id === item.id ? { ...p, status: next } : p)) as Post[])
+        : (works.map((w) => (w.id === item.id ? { ...w, status: next } : w)) as Work[]);
+    if (category === 'post') setPosts(prev as Post[]);
+    else setWorks(prev as Work[]);
     setError(null);
     try {
-      const res = await fetch(`/api/posts/${post.id}`, {
+      const res = await fetch(`${apiBase}/${item.id}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status: next }),
       });
       if (!res.ok) throw new Error(t('d_err_status'));
     } catch (e) {
-      setPosts((prev) =>
-        prev.map((p) => (p.id === post.id ? { ...p, status: post.status } : p))
-      );
+      if (category === 'post') setPosts(posts);
+      else setWorks(works);
       setError(e instanceof Error ? e.message : t('d_err_status'));
     }
   }
 
-  async function remove(post: Post) {
+  async function remove(item: Post | Work) {
     if (!confirm(t('d_delete_confirm'))) return;
     setError(null);
     setMsg(null);
     try {
-      const res = await fetch(`/api/posts/${post.id}`, { method: 'DELETE' });
+      const apiBase = category === 'post' ? '/api/posts' : '/api/works';
+      const res = await fetch(`${apiBase}/${item.id}`, { method: 'DELETE' });
       if (!res.ok) throw new Error(t('d_err_status'));
-      if (editing?.id === post.id) {
+      if (editing?.id === item.id) {
         setEditing(null);
         setComposerOpen(false);
       }
       setMsg(t('d_deleted'));
-      await load();
+      await refresh();
     } catch (e) {
       setError(e instanceof Error ? e.message : t('d_err_status'));
     }
@@ -123,8 +156,8 @@ export function ContentManager({ category }: { category: PostCategory }) {
     setMsg(null);
   }
 
-  function startEdit(post: Post) {
-    setEditing(post);
+  function startEdit(item: Post | Work) {
+    setEditing(item);
     setComposerOpen(true);
     setError(null);
     setMsg(null);
@@ -194,7 +227,15 @@ export function ContentManager({ category }: { category: PostCategory }) {
               key={p.id}
               className="paper-card flex items-start justify-between gap-4 p-4"
             >
-              <div className="min-w-0">
+              {('image_url' in p && p.image_url) && (
+                <img
+                  src={p.image_url}
+                  alt=""
+                  className="h-16 w-16 shrink-0 rounded-md border object-cover"
+                  style={{ borderColor: 'var(--rule)' }}
+                />
+              )}
+              <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-2">
                   <h3 className="magazine-title truncate text-lg">{p.title}</h3>
                   <span className="source-badge">
@@ -205,8 +246,6 @@ export function ContentManager({ category }: { category: PostCategory }) {
                   {fmt(p.created_at)} ·{' '}
                   {p.status === 'published'
                     ? t('d_status_published')
-                    : p.status === 'hidden'
-                    ? t('d_status_draft')
                     : t('d_status_draft')}
                 </p>
               </div>

@@ -125,6 +125,19 @@ const zh: Dict = {
   st_geek: '极客风',
   st_glass: '玻璃拟态',
   st_neon: '霓虹赛博',
+  style_free: '免费',
+  style_pro: 'Pro',
+  style_pick_title: '选择你的主页风格',
+  style_pick_sub: '每套风格只改变观感（字体 / 配色 / 卡片质感），结构不变。强调色由上方主题色决定。',
+  st_desc_minimal: '留白克制，专注内容本身，最干净。',
+  st_desc_magazine: '编辑感衬线大标题，作品集与简历首选。',
+  st_desc_geek: '等宽终端风，程序员味十足。',
+  st_desc_glass: '半透明玻璃拟态，现代轻盈有质感。',
+  st_desc_neon: '霓虹赛博光效，夜场与潮流感拉满。',
+  theme_gallery_title: '主题风格预览',
+  theme_gallery_sub: '5 套视觉风格随心切换，Pro 会员全部解锁。',
+  theme_gallery_upgrade: '升级 Pro 解锁全部 5 套风格',
+  nav_center: '个人中心',
   label_status: '状态文字',
   ph_status: '正在构建有趣的东西',
   label_bio: '简介',
@@ -188,6 +201,16 @@ const zh: Dict = {
   gh_err: '拉取失败，请检查用户名或稍后重试。',
   pc_editing: '编辑内容',
   pc_save_changes: '保存修改',
+  pc_title_work: '新增作品',
+  pc_ph_title_work: '作品标题',
+  pc_ph_url_work: '作品链接（https://…，可选）',
+  pc_ph_content_work: '作品描述（支持换行）',
+  pc_now_work: '立即上架',
+  pc_publish_work: '保存作品',
+  pc_editing_work: '编辑作品',
+  pc_save_changes_work: '保存作品修改',
+  pc_upload_image_work: '上传作品图',
+  pc_img_work_hint: '建议 800×600，自动压缩',
 
   // Dashboard
   d_login_title: '登录控制台',
@@ -417,6 +440,15 @@ const zh: Dict = {
   faq_q5: '我的数据保存在哪里？',
   faq_a5:
     '档案与动态保存在我们的数据库（Neon Postgres）。支付信息由 Polar 保管，我们不会接触你的银行卡号。',
+  faq_q6: '主页「资源」区的 Popular 列表显示什么？',
+  faq_a6:
+    'Popular 列表会把你添加的各类资源（链接、文件、页面）按访客实际打开的次数排序——被点得最多的资源自动浮到最上面，让新访客第一眼就看到你最受欢迎的内容。',
+  faq_q7: '怎么在个人主页上发动态？',
+  faq_a7:
+    '在控制台（Dashboard）里写一句话、加一张图就能发布，无需重新部署。动态会出现在你主页的实时区，让页面保持活跃。免费版就支持。',
+  faq_q8: '动态主页免费吗？',
+  faq_a8:
+    '免费。免费版就能创建并发布主页、添加作品集与动态、使用子路径域名。Pro 版额外提供自定义域名、更多主题与访客数据分析。',
 
   // Blog
   blog_title: '博客',
@@ -561,6 +593,19 @@ const en: Dict = {
   st_geek: 'Geek',
   st_glass: 'Glass',
   st_neon: 'Neon',
+  style_free: 'Free',
+  style_pro: 'Pro',
+  style_pick_title: 'Pick your profile style',
+  style_pick_sub: 'Each style changes only the look (font / color / card texture); the layout stays the same. Accent color comes from the theme color above.',
+  st_desc_minimal: 'Restrained whitespace, content-first, cleanest look.',
+  st_desc_magazine: 'Editorial serif headlines — best for portfolios & resumes.',
+  st_desc_geek: 'Monospace terminal vibe, built for developers.',
+  st_desc_glass: 'Translucent glassmorphism, modern and airy.',
+  st_desc_neon: 'Neon cyber glow, full nightlife & street energy.',
+  theme_gallery_title: 'Style previews',
+  theme_gallery_sub: 'Switch among 5 visual styles; Pro unlocks them all.',
+  theme_gallery_upgrade: 'Upgrade to Pro to unlock all 5 styles',
+  nav_center: 'My Center',
   label_status: 'Status text',
   ph_status: 'Building something fun',
   label_bio: 'Bio',
@@ -621,6 +666,16 @@ const en: Dict = {
   gh_err: 'Fetch failed — check the username or try again later.',
   pc_editing: 'Edit content',
   pc_save_changes: 'Save changes',
+  pc_title_work: 'Add a work',
+  pc_ph_title_work: 'Work title',
+  pc_ph_url_work: 'Work link (https://…, optional)',
+  pc_ph_content_work: 'Description (line breaks supported)',
+  pc_now_work: 'Publish now',
+  pc_publish_work: 'Save work',
+  pc_editing_work: 'Edit work',
+  pc_save_changes_work: 'Save work changes',
+  pc_upload_image_work: 'Upload work image',
+  pc_img_work_hint: '800×600 recommended, auto-compressed',
 
   d_login_title: 'Sign in to Console',
   d_login_desc: 'Sign in with email to edit your dynamic homepage.',
@@ -849,6 +904,15 @@ const en: Dict = {
   faq_q5: 'Where is my data stored?',
   faq_a5:
     'Your profile and updates are stored in our database (Neon Postgres). Payment info is held by Polar — we never touch your card number.',
+  faq_q6: 'What does the Popular list in the Resources section show?',
+  faq_a6:
+    'The Popular list ranks the resources you have added (links, files, pages) by how often visitors actually open them — your most-clicked items rise to the top, so new visitors see your best content first.',
+  faq_q7: 'How do I post updates on my homepage?',
+  faq_a7:
+    'In the Dashboard, write one line plus an optional image and publish — no rebuild needed. The update appears in the live section of your page and keeps it active. The free plan supports it.',
+  faq_q8: 'Is Dynamic Profile free?',
+  faq_a8:
+    'Yes. The free plan lets you create and publish your homepage, add a portfolio and posts, and use a sub-path domain. Pro adds a custom domain, more themes, and visitor analytics.',
 
   // Blog
   blog_title: 'Blog',

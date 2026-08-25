@@ -1,13 +1,14 @@
 import { sql } from "./index";
-import { unstable_cache } from "next/cache";
+import { unstable_cache, revalidateTag } from "next/cache";
 import { isStyleId, DEFAULT_STYLE } from "@/lib/styles";
 import type {
   Profile,
   Post,
+  Work,
   Stats,
   ProfileInput,
   PostInput,
-  PostCategory,
+  WorkInput,
   PostStatus,
   Subscription,
 } from "@/lib/types";
@@ -40,30 +41,77 @@ export async function getProfileByOwner(ownerId: string): Promise<Profile | null
   return rows[0] ?? null;
 }
 
-/** 获取某 handle 下已发布的内容（按时间倒序）。 */
+/** 获取某 handle 下已发布的动态（按时间倒序）。 */
 export async function getPublishedPosts(handle: string): Promise<Post[]> {
   // 使用字符串拼接查询（绕过 @neondatabase/serverless 在 RSC / API Route
   // 上下文中对某些 handle 值的参数化查询返回空结果的 bug）。
   // handle 已通过 HANDLE_RE = /^[a-z0-9_]{3,20}$/ 校验，此处做转义双重防护。
   const safeH = handle.replace(/[^a-z0-9_]/g, '').slice(0, 20);
   const rows = (await sql(
-    [`SELECT id, handle, title, content, source, category, status, created_at FROM posts WHERE handle = '${safeH}' AND status = 'published' ORDER BY created_at DESC`] as any,
+    [`SELECT id, handle, title, content, source, status, created_at FROM posts WHERE handle = '${safeH}' AND status = 'published' ORDER BY created_at DESC`] as any,
   )) as Post[];
   return rows;
 }
 
-/** 获取某 owner 名下的全部内容（含草稿），用于后台管理。 */
-export async function getOwnerPosts(ownerId: string): Promise<Post[]> {
-  const profile = await getProfileByOwner(ownerId);
-  if (!profile) return [];
+/** 获取某 handle 下已发布的作品（按时间倒序）。 */
+export async function getPublishedWorks(handle: string): Promise<Work[]> {
+  const safeH = handle.replace(/[^a-z0-9_]/g, '').slice(0, 20);
+  const rows = (await sql(
+    [`SELECT id, handle, title, url, description, image_url, source, status, created_at FROM works WHERE handle = '${safeH}' AND status = 'published' ORDER BY created_at DESC`] as any,
+  )) as Work[];
+  return rows;
+}
 
+/** 获取某 handle 名下的全部动态（含草稿），用于后台管理。
+ *  入参直接是 handle（由调用方先取一次 profile 得到），避免重复查询 profile。 */
+export async function getOwnerPosts(handle: string): Promise<Post[]> {
   const rows = (await sql`
-    SELECT id, handle, title, content, source, category, status, created_at
+    SELECT id, handle, title, content, source, status, created_at
     FROM posts
-    WHERE handle = ${profile.handle}
+    WHERE handle = ${handle}
     ORDER BY created_at DESC
+    LIMIT 200
   `) as Post[];
   return rows;
+}
+
+/** 获取某 handle 名下的全部作品（含草稿），用于后台管理。
+ *  入参直接是 handle（由调用方先取一次 profile 得到），避免重复查询 profile。 */
+export async function getOwnerWorks(handle: string): Promise<Work[]> {
+  const rows = (await sql`
+    SELECT id, handle, title, url, description, image_url, source, status, created_at
+    FROM works
+    WHERE handle = ${handle}
+    ORDER BY created_at DESC
+    LIMIT 200
+  `) as Work[];
+  return rows;
+}
+
+// Dashboard 读取缓存：后台管理页高频切换同一 handle 时避免重复查询 Neon，
+// 同时用 tag 在 mutation 后主动失效（见 /api/posts / /api/works）。
+export async function getCachedOwnerPosts(handle: string): Promise<Post[]> {
+  return unstable_cache(
+    () => getOwnerPosts(handle),
+    ["owner-posts", handle],
+    { revalidate: 300, tags: [`owner-posts:${handle}`] },
+  )();
+}
+
+export async function getCachedOwnerWorks(handle: string): Promise<Work[]> {
+  return unstable_cache(
+    () => getOwnerWorks(handle),
+    ["owner-works", handle],
+    { revalidate: 300, tags: [`owner-works:${handle}`] },
+  )();
+}
+
+/** 内容 mutation 后失效该 owner 的 dashboard 缓存，保证 /api/me 与 dashboard 布局取到最新。 */
+export async function revalidateOwnerContent(ownerId: string): Promise<void> {
+  const profile = await getProfileByOwner(ownerId);
+  if (!profile) return;
+  revalidateTag(`owner-posts:${profile.handle}`);
+  revalidateTag(`owner-works:${profile.handle}`);
 }
 
 /** 获取公开统计（浏览量 / 关注数）。 */
@@ -98,6 +146,14 @@ export async function getCachedPublishedPosts(handle: string): Promise<Post[]> {
     () => getPublishedPosts(handle),
     ["posts", handle],
     { revalidate: 300, tags: [`posts:${handle}`] },
+  )();
+}
+
+export async function getCachedPublishedWorks(handle: string): Promise<Work[]> {
+  return unstable_cache(
+    () => getPublishedWorks(handle),
+    ["works", handle],
+    { revalidate: 300, tags: [`works:${handle}`] },
   )();
 }
 
@@ -207,7 +263,7 @@ export async function upsertProfile(input: ProfileInput, ownerId: string): Promi
 }
 
 /**
- * 新建内容。要求 input.handle 属于该 owner。
+ * 新建动态。要求 input.handle 属于该 owner。
  */
 export async function createPost(input: PostInput, ownerId: string): Promise<Post> {
   const profile = await getProfileByOwner(ownerId);
@@ -216,22 +272,46 @@ export async function createPost(input: PostInput, ownerId: string): Promise<Pos
   }
 
   const rows = (await sql`
-    INSERT INTO posts (handle, title, content, source, category, status)
+    INSERT INTO posts (handle, title, content, source, status)
     VALUES (
       ${input.handle},
       ${input.title ?? null},
       ${input.content ?? null},
       ${input.source ?? "manual"},
-      ${input.category ?? "post"},
       ${input.status ?? "draft"}
     )
-    RETURNING id, handle, title, content, source, category, status, created_at
+    RETURNING id, handle, title, content, source, status, created_at
   `) as Post[];
   return rows[0];
 }
 
 /**
- * 更新内容状态（draft / published / hidden）。仅 owner 可操作
+ * 新建作品。要求 input.handle 属于该 owner。
+ */
+export async function createWork(input: WorkInput, ownerId: string): Promise<Work> {
+  const profile = await getProfileByOwner(ownerId);
+  if (!profile || profile.handle !== input.handle) {
+    throw new Error("FORBIDDEN_HANDLE");
+  }
+
+  const rows = (await sql`
+    INSERT INTO works (handle, title, url, description, image_url, source, status)
+    VALUES (
+      ${input.handle},
+      ${input.title ?? null},
+      ${input.url ?? null},
+      ${input.description ?? null},
+      ${input.image_url ?? null},
+      ${input.source ?? "manual"},
+      ${input.status ?? "draft"}
+    )
+    RETURNING id, handle, title, url, description, image_url, source, status, created_at
+  `) as Work[];
+  return rows[0];
+}
+
+/**
+ * 更新动态状态（draft / published / hidden）。仅 owner 可操作
  * （通过 handle 归属校验：只更新属于该 owner 的 handle 下的记录）。
  */
 export async function updatePostStatus(
@@ -249,7 +329,24 @@ export async function updatePostStatus(
 }
 
 /**
- * 整条更新内容（标题 / 内容 / 类别 / 状态，按需部分更新）。仅 owner 可操作。
+ * 更新作品状态（draft / published / hidden）。仅 owner 可操作。
+ */
+export async function updateWorkStatus(
+  id: string,
+  status: PostStatus,
+  ownerId: string
+): Promise<boolean> {
+  const rows = (await sql`
+    UPDATE works SET status = ${status}
+    WHERE id = ${id}
+      AND handle IN (SELECT handle FROM profiles WHERE owner_id = ${ownerId})
+    RETURNING id
+  `) as { id: string }[];
+  return rows.length > 0;
+}
+
+/**
+ * 整条更新动态（标题 / 内容 / 状态，按需部分更新）。仅 owner 可操作。
  * 通过 handle 归属校验保证只能改自己名下的内容。
  */
 export async function updatePost(
@@ -257,14 +354,13 @@ export async function updatePost(
   patch: {
     title?: string | null;
     content?: string | null;
-    category?: PostCategory;
     status?: PostStatus;
   },
   ownerId: string
 ): Promise<boolean> {
   // 先取现有行，未提供的字段保留原值（仍走参数化，避免 SQL 注入）
   const existing = (await sql`
-    SELECT title, content, category, status
+    SELECT title, content, status
     FROM posts
     WHERE id = ${id}
       AND handle IN (SELECT handle FROM profiles WHERE owner_id = ${ownerId})
@@ -272,7 +368,6 @@ export async function updatePost(
   `) as Array<{
     title: string | null;
     content: string | null;
-    category: PostCategory;
     status: PostStatus;
   }>;
   const cur = existing[0];
@@ -280,12 +375,11 @@ export async function updatePost(
 
   const title = patch.title !== undefined ? (patch.title ?? null) : cur.title;
   const content = patch.content !== undefined ? (patch.content ?? null) : cur.content;
-  const category = patch.category !== undefined ? patch.category : cur.category;
   const status = patch.status !== undefined ? patch.status : cur.status;
 
   const rows = (await sql`
     UPDATE posts
-    SET title = ${title}, content = ${content}, category = ${category}, status = ${status}
+    SET title = ${title}, content = ${content}, status = ${status}
     WHERE id = ${id}
       AND handle IN (SELECT handle FROM profiles WHERE owner_id = ${ownerId})
     RETURNING id
@@ -294,11 +388,72 @@ export async function updatePost(
 }
 
 /**
- * 删除内容。仅 owner 可操作（同理归属校验）。
+ * 整条更新作品（标题 / URL / 描述 / 状态，按需部分更新）。仅 owner 可操作。
+ */
+export async function updateWork(
+  id: string,
+  patch: {
+    title?: string | null;
+    url?: string | null;
+    description?: string | null;
+    image_url?: string | null;
+    status?: PostStatus;
+  },
+  ownerId: string
+): Promise<boolean> {
+  const existing = (await sql`
+    SELECT title, url, description, image_url, status
+    FROM works
+    WHERE id = ${id}
+      AND handle IN (SELECT handle FROM profiles WHERE owner_id = ${ownerId})
+    LIMIT 1
+  `) as Array<{
+    title: string | null;
+    url: string | null;
+    description: string | null;
+    image_url: string | null;
+    status: PostStatus;
+  }>;
+  const cur = existing[0];
+  if (!cur) return false;
+
+  const title = patch.title !== undefined ? (patch.title ?? null) : cur.title;
+  const url = patch.url !== undefined ? (patch.url ?? null) : cur.url;
+  const description =
+    patch.description !== undefined ? (patch.description ?? null) : cur.description;
+  const image_url =
+    patch.image_url !== undefined ? (patch.image_url ?? null) : cur.image_url;
+  const status = patch.status !== undefined ? patch.status : cur.status;
+
+  const rows = (await sql`
+    UPDATE works
+    SET title = ${title}, url = ${url}, description = ${description}, image_url = ${image_url}, status = ${status}
+    WHERE id = ${id}
+      AND handle IN (SELECT handle FROM profiles WHERE owner_id = ${ownerId})
+    RETURNING id
+  `) as unknown as { id: string }[];
+  return rows.length > 0;
+}
+
+/**
+ * 删除动态。仅 owner 可操作（同理归属校验）。
  */
 export async function deletePost(id: string, ownerId: string): Promise<boolean> {
   const rows = (await sql`
     DELETE FROM posts
+    WHERE id = ${id}
+      AND handle IN (SELECT handle FROM profiles WHERE owner_id = ${ownerId})
+    RETURNING id
+  `) as { id: string }[];
+  return rows.length > 0;
+}
+
+/**
+ * 删除作品。仅 owner 可操作（同理归属校验）。
+ */
+export async function deleteWork(id: string, ownerId: string): Promise<boolean> {
+  const rows = (await sql`
+    DELETE FROM works
     WHERE id = ${id}
       AND handle IN (SELECT handle FROM profiles WHERE owner_id = ${ownerId})
     RETURNING id

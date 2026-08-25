@@ -1,10 +1,11 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { useSession, signIn, signOut, getProviders } from 'next-auth/react';
 import { LangToggle } from './LangToggle';
 import { ThemeToggle } from './ThemeToggle';
-import { LogOut, User } from 'lucide-react';
+import { LogOut, LayoutDashboard } from 'lucide-react';
 import { useI18n } from '@/lib/i18n';
 
 // 从 getProviders 返回值推导 provider 元素类型（该版本 next-auth 未导出 ClientSafeProvider）
@@ -76,12 +77,25 @@ export function TopControls() {
         </button>
       )}
 
-      {/* 已登录 → 显示用户名 + 退出链接 */}
+      {/* 已登录 → 显示「个人中心」入口 + 用户名 + 退出 */}
       {status === 'authenticated' && (
         <div className="flex items-center gap-2">
-          <span className="max-w-[120px] truncate text-xs font-medium text-[color:var(--ink)]">
+          <Link
+            href="/dashboard"
+            className="flex items-center gap-1 rounded-full border border-[color:var(--rule)] bg-[color:var(--paper)] px-2 py-1 text-xs font-medium transition-colors hover:border-[color:var(--primary)] hover:text-[color:var(--primary)]"
+            style={{ backdropFilter: 'blur(4px)' }}
+            title={t('nav_center')}
+          >
+            <LayoutDashboard className="h-3 w-3" />
+            <span className="hidden sm:inline">{t('nav_center')}</span>
+          </Link>
+          <Link
+            href="/dashboard"
+            className="max-w-[120px] truncate text-xs font-medium text-[color:var(--ink)] transition-colors hover:text-[color:var(--primary)]"
+            title={t('nav_center')}
+          >
             {session.user?.name || session.user?.email || 'User'}
-          </span>
+          </Link>
           <button
             type="button"
             onClick={handleLogout}

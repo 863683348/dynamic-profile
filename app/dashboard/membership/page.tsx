@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
@@ -17,6 +17,9 @@ import {
 } from 'lucide-react';
 import { useI18n } from '@/lib/i18n';
 import { LoginButton } from '@/components/LoginButton';
+import { StylePreviewCard } from '@/components/StylePreviewCard';
+import { useMe } from '@/lib/meContext';
+import { STYLE_IDS } from '@/lib/styles';
 import type { Profile, PlanStatus } from '@/lib/types';
 
 const POLAR_ENABLED = process.env.NEXT_PUBLIC_POLAR_ENABLED === 'true';
@@ -40,7 +43,11 @@ export default function MembershipPage() {
   const { data: session, status } = useSession();
   const { t, lang } = useI18n();
   const router = useRouter();
-  const [profile, setProfile] = useState<Profile | null>(null);
+  const { me } = useMe();
+  // SSR 已预取 me：profile 首屏直接用，零转圈。
+  const [profile, setProfile] = useState<Profile | null>(
+    () => (me?.profile as Profile | null) ?? null
+  );
   const [sub, setSub] = useState<PlanStatus | null>(null);
   const [upgrading, setUpgrading] = useState<false | 'monthly' | 'yearly'>(false);
   const [openingPortal, setOpeningPortal] = useState(false);
@@ -53,20 +60,6 @@ export default function MembershipPage() {
       ? new Date(s).toLocaleDateString(lang === 'en' ? 'en-US' : 'zh-CN')
       : '';
 
-  const loadData = useCallback(async () => {
-    try {
-      const res = await fetch('/api/me');
-      if (res.ok) {
-        const json = await res.json();
-        setProfile(json.profile ?? null);
-      }
-      const resSub = await fetch('/api/subscription');
-      if (resSub.ok) setSub(await resSub.json());
-    } catch {
-      /* 忽略 */
-    }
-  }, []);
-
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const params = new URLSearchParams(window.location.search);
@@ -77,9 +70,20 @@ export default function MembershipPage() {
     }
   }, [router]);
 
+  // 订阅状态走独立端点（与 dashboard overview 一致），避免 SSR me.sub 的 Date 序列化问题。
   useEffect(() => {
-    if (status === 'authenticated') void loadData();
-  }, [status, loadData]);
+    if (status !== 'authenticated') return;
+    let cancelled = false;
+    fetch('/api/subscription')
+      .then((r) => (r.ok ? r.json() : null))
+      .then((j) => {
+        if (!cancelled) setSub(j ?? null);
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, [status]);
 
   async function handleUpgrade(plan: 'monthly' | 'yearly') {
     setUpgrading(plan);
@@ -121,24 +125,27 @@ export default function MembershipPage() {
   const isPro = sub?.plan === 'pro';
   const isCanceled = sub?.status === 'canceled' && sub?.cancel_at_period_end;
 
-  if (status === 'loading') {
-    return (
-      <div className="flex justify-center py-20">
-        <Loader2 className="h-6 w-6 animate-spin opacity-60" />
-      </div>
-    );
-  }
-
-  if (!session?.user) {
-    return (
-      <div className="mx-auto max-w-md px-6 py-20">
-        <h1 className="magazine-title text-3xl">{t('d_login_title')}</h1>
-        <p className="mt-2 text-sm opacity-80">{t('d_login_desc')}</p>
-        <div className="mt-8">
-          <LoginButton />
+  // me 已由 SSR 预取：已登录用户直接渲染内容，跳过客户端转圈。
+  if (!me) {
+    if (status === 'loading') {
+      return (
+        <div className="flex justify-center py-20">
+          <Loader2 className="h-6 w-6 animate-spin opacity-60" />
         </div>
-      </div>
-    );
+      );
+    }
+
+    if (!session?.user) {
+      return (
+        <div className="mx-auto max-w-md px-6 py-20">
+          <h1 className="magazine-title text-3xl">{t('d_login_title')}</h1>
+          <p className="mt-2 text-sm opacity-80">{t('d_login_desc')}</p>
+          <div className="mt-8">
+            <LoginButton />
+          </div>
+        </div>
+      );
+    }
   }
 
   return (
@@ -190,7 +197,7 @@ export default function MembershipPage() {
           )}
           <div className="min-w-0">
             <p className="magazine-title truncate text-lg">
-              {profile?.display_name || session.user.name || profile?.handle || t('mem_plan')}
+              {profile?.display_name || session?.user?.name || profile?.handle || t('mem_plan')}
             </p>
             {profile?.handle && (
               <p className="truncate text-sm opacity-60">@{profile.handle}</p>
@@ -349,6 +356,35 @@ export default function MembershipPage() {
             href="/dashboard/profile"
           />
         </div>
+      </section>
+
+      {/* 主题风格预览：把 5 套视觉风格的真实预览放上来，给升级前的用户做引导 */}
+      <section className="mt-2">
+        <div className="double-rule mb-4 flex items-center justify-between px-1 py-3">
+          <span className="magazine-title text-xl">{t('theme_gallery_title')}</span>
+          <span className="text-xs uppercase tracking-[0.2em] opacity-70">
+            {t('nav_profile')}
+          </span>
+        </div>
+        <p className="mb-5 text-sm opacity-70">{t('theme_gallery_sub')}</p>
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {STYLE_IDS.map((id) => (
+            <StylePreviewCard
+              key={id}
+              id={id}
+              badge={isPro ? null : 'pro'}
+              showDesc
+            />
+          ))}
+        </div>
+        {!isPro && POLAR_ENABLED && (
+          <div className="mt-5">
+            <a href="/pricing" className="mag-btn flex items-center gap-2">
+              <Sparkles className="h-4 w-4" />
+              {t('theme_gallery_upgrade')}
+            </a>
+          </div>
+        )}
       </section>
     </div>
   );
