@@ -163,3 +163,117 @@ export function getPostBySlug(slug: string): BlogPost | undefined {
 export function getPostById(id: number): BlogPost | undefined {
   return BLOG_POSTS.find((p) => p.id === id);
 }
+  {
+    id: 12,
+    slug: 'bilingual-homepages-international-brand',
+    tag: { zh: '指南', en: 'Guide' },
+    publishedAt: '2026-08-30',
+    title: { zh: '双语主页：打造真正的国际化品牌', en: 'Bilingual Homepages: A Truly International Brand' },
+    date: { zh: '2026 年 8 月', en: 'August 2026' },
+    body: {
+      zh: '在如今高度互联的世界里，拥有一个双语主页不再是有没有都行的加分项，而是触达全球受众的必要条件。无论你是开发者、设计师还是创作者，用多种语言展示你的作品，传递的是专业性和包容性。\n\n为什么双语很重要？首先，你的潜在受众直接翻倍。那些原本可能错过你内容的中文使用者，现在可以用自己的方式与你互动。其次，展示翻译投入意味着尊重你的国际受众，传递的信息是"我足够重视你，愿意用你的语言交流"。\n\n技术实现上，推荐使用 Next.js 配合 next-intl 或类似方案。关键页面如首页、关于页、联系页建议专业翻译，其他页面可以用机器翻译加人工审核。记住，导航、标题、价值主张这些核心内容一定要人工翻译。\n\n常见错误包括：翻译质量差（差的翻译比不翻译更伤人）、忽视文化语境（英文能打动人的例子中文可能不适用）、更新不一致（一种语言更新了另一种还停留在过去）、忘记移动端（双语站点内容更多，移动端适配很重要）。\n\n到 Dynamic Profile 构建你的双语主页，让作品在国际舞台发光。',
+      en: 'In today\'s connected world, having a bilingual homepage is no longer optional — it is essential for reaching a global audience. Whether you are a developer, designer, or creator, presenting your work in multiple languages signals professionalism and inclusivity.\n\nWhy does bilingual matter? First, your potential audience doubles. Chinese speakers who might otherwise miss your content can now engage with you on their terms. Second, showing translation effort demonstrates respect for your international audience. It says "I value you enough to speak your language."\n\nOn the technical side, Next.js with next-intl is a solid choice. Key pages like homepage, about, and contact should use professional translation. Other pages can use machine translation with human review. Remember, navigation, headlines, and value propositions need human translation.\n\nCommon mistakes include poor translation quality (bad translation hurts more than no translation), ignoring cultural context (what works in English may not resonate in Chinese), inconsistent updates (one language updates while another stays stale), and forgetting mobile (bilingual sites have more content, so mobile适配 is critical).\n\nBuild your bilingual homepage on Dynamic Profile and let your work shine on the global stage.',
+    },
+  },
+
+  {
+    id: 13,
+    slug: 'bilingual-homepages',
+    publishedAt: '2026-08-31',
+    tag: { zh: '教程', en: 'Tutorial' },
+    title: { zh: '多语言主页：中英双语个人品牌', en: '' },
+    date: { zh: '2026 年 8 月', en: 'August 2026' },
+    body: {
+      zh: `<p><strong>主关键词：</strong> 中英双语主页</p>
+<p><strong>长尾关键词：</strong> bilingual personal site, english chinese portfolio, 个人品牌 双语</p>
+<p><strong>日期：</strong> 2026-08-31</p>
+<p>---</p>
+<p>在全球化时代，一个双语个人主页不再只是"加分项"，而是必需品。无论你是在寻找国际客户、申请海外职位，还是建立跨国品牌，双语主页都是你数字形象的关键组成部分。</p>
+<h2>为什么双语主页重要</h2>
+<p><strong>更广泛的受众：</strong></p>
+<p>中文内容触达华语社区，英文内容触达全球开发者、设计师和客户。两个市场，一次投资。</p>
+<p><strong>专业形象：</strong></p>
+<p>双语能力本身就是一种信号——你理解跨文化沟通，你愿意为不同受众调整信息。</p>
+<p><strong>SEO 优势：</strong></p>
+<p>中英双语内容覆盖更多搜索词，提升你在两个搜索引擎生态中的可见度。</p>
+<h2>双语主页的设计原则</h2>
+<p><strong>1. 内容对等，不重复</strong></p>
+<p>中文和英文内容应该是"对等"的——传达相同的信息，但使用相同的语言风格和文化语境。不要简单翻译，要本地化。</p>
+<p><strong>2. 明确的切换机制</strong></p>
+<p>语言切换按钮应该明显、易用。用户不应该在两个语言版本之间迷路。</p>
+<p><strong>3. 一致的视觉设计</strong></p>
+<p>中英文版本应该保持相同的视觉风格、排版和用户体验。切换语言不应该感觉像访问了两个不同的网站。</p>
+<p><strong>4. 文化敏感度</strong></p>
+<p>某些内容在一种文化中有效，在另一种文化中可能无效甚至冒犯。确保内容经过文化审查。</p>
+<h2>Dynamic Profile 的双语支持</h2>
+<p>Dynamic Profile 从第一天起就支持双语内容。你可以：</p>
+<li>为每个模块设置中英文版本</li>
+<li>独立管理语言内容</li>
+<li>自动处理语言检测和重定向</li>
+<li>使用 SEO 友好的 hreflang 标签</li>
+<h2>常见错误</h2>
+<p><strong>机器翻译依赖：</strong></p>
+<p>避免完全依赖机器翻译。高质量的双语内容需要人工编写或深度编辑。</p>
+<p><strong>内容不对等：</strong></p>
+<p>英文版过于详细，中文版过于简略——这种不平衡会让读者感到困惑。</p>
+<p><strong>忽视移动端：</strong></p>
+<p>双语内容在移动端显示时，字体大小、行高、布局都需要调整。</p>
+<h2>FAQ</h2>
+<p><strong>Q: 我应该先做中文还是英文版本？</strong></p>
+<p>A: 根据你的目标受众决定。如果主要服务中国市场，先做中文。如果面向国际，先做英文。但最好同时规划两个版本。</p>
+<p><strong>Q: 双语内容会增加多少工作量？</strong></p>
+<p>A: 大约增加 50-70% 的内容创作时间。但可以通过模板和组件复用减少。</p>
+<p><strong>Q: 搜索引擎如何处理双语内容？</strong></p>
+<p>A: 正确的 hreflang 标签帮助搜索引擎理解内容语言，确保每个语言版本出现在正确的搜索结果中。</p>
+<p><strong>Q: 我可以用不同语言面向不同地区吗？</strong></p>
+<p>A: 是的，Dynamic Profile 支持基于用户位置的语言检测和重定向。</p>
+<h2>关于 Dynamic Profile</h2>
+<p>Dynamic Profile 帮助你创建杂志风格的个人主页，支持中英文双语内容。三分钟上线，无需代码。访问 [dynamic-profile.shop](/) 开始创建你的双语主页。</p>
+<p>---</p>`,
+      en: `<p><strong>Main Keyword:</strong> bilingual portfolio</p>
+<p><strong>Long-tail Keywords:</strong> bilingual personal site, english chinese portfolio, personal branding bilingual</p>
+<p><strong>Date:</strong> 2026-08-31</p>
+<p>---</p>
+<p>In a globalized era, a bilingual personal homepage is no longer just a "nice to have" — it's a necessity. Whether you're seeking international clients, applying for overseas positions, or building a cross-border brand, a bilingual homepage is a key component of your digital presence.</p>
+<h2>Why Bilingual Homepages Matter</h2>
+<p><strong>Wider Audience:</strong></p>
+<p>Chinese content reaches the Chinese-speaking community, English content reaches global developers, designers, and clients. Two markets, one investment.</p>
+<p><strong>Professional Image:</strong></p>
+<p>Bilingual capability itself is a signal — you understand cross-cultural communication, you're willing to adapt messaging for different audiences.</p>
+<p><strong>SEO Advantage:</strong></p>
+<p>Bilingual content covers more search terms, increasing your visibility in both search engine ecosystems.</p>
+<h2>Design Principles for Bilingual Homepages</h2>
+<p><strong>1. Content Equivalence, Not Duplication</strong></p>
+<p>Chinese and English content should be "equivalent" — conveying the same information but using the appropriate language style and cultural context. Don't just translate; localize.</p>
+<p><strong>2. Clear Switching Mechanism</strong></p>
+<p>Language switch buttons should be prominent and easy to use. Users shouldn't get lost between language versions.</p>
+<p><strong>3. Consistent Visual Design</strong></p>
+<p>Chinese and English versions should maintain the same visual style, typography, and user experience. Switching languages shouldn't feel like visiting two different websites.</p>
+<p><strong>4. Cultural Sensitivity</strong></p>
+<p>Some content works in one culture but not another — or may even offend. Ensure content is culturally reviewed.</p>
+<h2>Dynamic Profile's Bilingual Support</h2>
+<p>Dynamic Profile has supported bilingual content from day one. You can:</p>
+<li>Set Chinese and English versions for each module</li>
+<li>Manage language content independently</li>
+<li>Auto-handle language detection and redirection</li>
+<li>Use SEO-friendly hreflang tags</li>
+<h2>Common Mistakes</h2>
+<p><strong>Machine Translation Dependence:</strong></p>
+<p>Avoid relying entirely on machine translation. High-quality bilingual content requires human writing or deep editing.</p>
+<p><strong>Content Imbalance:</strong></p>
+<p>English version too detailed, Chinese version too brief — this imbalance confuses readers.</p>
+<p><strong>Ignoring Mobile:</strong></p>
+<p>When bilingual content displays on mobile, font size, line height, and layout all need adjustment.</p>
+<h2>FAQ</h2>
+<p><strong>Q: Should I start with Chinese or English version?</strong></p>
+<p>A: Decide based on your target audience. If primarily serving the Chinese market, start with Chinese. If targeting international, start with English. But it's best to plan both versions simultaneously.</p>
+<p><strong>Q: How much additional work does bilingual content require?</strong></p>
+<p>A: Approximately 50-70% more content creation time. But can be reduced through templates and component reuse.</p>
+<p><strong>Q: How do search engines handle bilingual content?</strong></p>
+<p>A: Proper hreflang tags help search engines understand content language, ensuring each language version appears in the correct search results.</p>
+<p><strong>Q: Can I target different regions with different languages?</strong></p>
+<p>A: Yes, Dynamic Profile supports language detection and redirection based on user location.</p>
+<h2>About Dynamic Profile</h2>
+<p>Dynamic Profile helps you create magazine-style personal homepages with bilingual content support. Launch in three minutes, no code required. Visit [dynamic-profile.shop](/) to start building your bilingual homepage.</p>`,
+    },
+  },];
