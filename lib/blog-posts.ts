@@ -154,15 +154,6 @@ export const BLOG_POSTS: BlogPost[] = [
       en: 'Many people build a personal homepage and then abandon it, as if one construction session is enough for life. The reality is the opposite: a homepage that stays effective over time depends on regular updates. Dynamic content is not decoration; it is the mechanism that keeps a page alive.\n\nWhy do updates matter? Visitors remember that you are still working, not that you worked once. A page untouched for three years sends the signal "this person is no longer active in this field." A page updated two weeks ago, even with imperfect content, tells visitors you can still deliver.\n\nWhat counts as dynamic content? First, new work: recently completed projects, designs, articles, or repos — one image with a short description. Second, activity logs: what you are learning, events you attended, books you read. Third, status updates: whether you are open to collaboration, looking for work, or preparing to launch something new.\n\nOn dynamic-profile, updating is straightforward. No code, no deployment — just add a new post in the backend and it appears in the updates section. Visitors always find something new, and search engines re-crawl your page because the content changed, which matters for long-term personal brand visibility.\n\nHow often? Once a week or once every two weeks is enough. Consistency beats occasional bursts. Visitors form a habit of returning to see what you are doing next.\n\nA personal homepage is not a tombstone. It is a live snapshot of your current state. Keep it updated, and your personal brand stays fresh. Start building on dynamic-profile.shop or read the three-minute launch guide for more.',
     },
   },
-];
-
-export function getPostBySlug(slug: string): BlogPost | undefined {
-  return BLOG_POSTS.find((p) => p.slug === slug);
-}
-
-export function getPostById(id: number): BlogPost | undefined {
-  return BLOG_POSTS.find((p) => p.id === id);
-}
   {
     id: 12,
     slug: 'bilingual-homepages-international-brand',
@@ -276,4 +267,71 @@ export function getPostById(id: number): BlogPost | undefined {
 <h2>About Dynamic Profile</h2>
 <p>Dynamic Profile helps you create magazine-style personal homepages with bilingual content support. Launch in three minutes, no code required. Visit [dynamic-profile.shop](/) to start building your bilingual homepage.</p>`,
     },
-  },];
+  },
+  {
+    id: 15,
+    slug: '7-pillars-of-personal-branding',
+    publishedAt: '2026-09-02',
+    tag: { zh: '教程', en: 'Tutorial' },
+    title: { zh: '个人品牌的 7 个支柱', en: 'The 7 Pillars of Personal Branding' },
+    date: { zh: '2026 年 9 月', en: 'September 2026' },
+    body: {
+      zh: `个人品牌不是关于创造一个人设。它是关于识别和放大使你成为你的核心元素。
+
+把你的个人品牌想象成一座建筑。没有支柱，它会倒塌。有了坚固的支柱，它会高耸并支持你建造的一切。
+
+个人品牌的 7 个支柱
+
+1. 真实性——基础。你的品牌必须忠于你是谁。虚假的人设会在压力下崩溃。真实性意味着拥有你的优势，承认你的弱点，并在各平台上保持一致。
+
+2. 专业知识——价值主张。你知道别人不知道的什么？你的专业知识是你的竞争优势。它可能是技术技能、行业知识或独特的视角。
+
+3. 一致性——粘合剂。无论某人是在 LinkedIn、你的网站还是在会议上遇到你，你的品牌应该感觉很熟悉。一致的信息、视觉身份和语气建立认可和信任。
+
+4. 可见性——触达。如果你的品牌无人知晓，那毫无意义。可见性来自于定期露面、分享你的作品和与你的受众互动。
+
+5. 关系——网络。个人品牌不是独自完成的。它是通过与他人的联系建立的。导师、同行和关注者都为你的品牌生态系统做出贡献。
+
+6. 演变——成长。你的品牌不是静态的。随着你的成长，你的品牌也应该演变。最好的个人品牌在适应的同时保持忠于他们的核心价值观。
+
+7. 影响力——目的。你想造成什么不同？你的品牌应该服务于超越你自身的目的。无论是帮助他人学习、解决问题还是创造机会，影响力给你的品牌意义。
+
+构建你的品牌支柱从回答这些问题开始：我的核心价值观是什么？我希望因什么技能而闻名？我的目标受众是谁？我希望人们在与我互动时有什么感受？你的答案成为你品牌支柱的基础。
+
+Dynamic Profile 让你在一个地方展示所有七个支柱。与静态简历或社交媒体个人资料不同，个人网站可以随着你而演变，以连贯的方式展示你的专业知识、项目和个性。
+
+你的品牌是你的故事。确保它值得讲述。`,
+      en: `Personal branding isn't about creating a persona. It's about identifying and amplifying the core elements that make you, you.
+
+Think of your personal brand as a building. Without pillars, it collapses. With strong pillars, it stands tall and supports everything else you build.
+
+The 7 pillars of personal branding:
+
+1. Authenticity — The Foundation. Your brand must be true to who you are. Fake personas crumble under pressure. Authenticity means owning your strengths, acknowledging your weaknesses, and staying consistent across platforms.
+
+2. Expertise — The Value Proposition. What do you know that others don't? Your expertise is your competitive advantage. It could be technical skills, industry knowledge, or a unique perspective.
+
+3. Consistency — The Glue. Your brand should feel familiar whether someone encounters you on LinkedIn, your website, or at a conference. Consistent messaging, visual identity, and tone build recognition and trust.
+
+4. Visibility — The Reach. Your brand means nothing if no one knows it exists. Visibility comes from showing up regularly, sharing your work, and engaging with your audience.
+
+5. Relationships — The Network. Personal branding isn't solo. It's built through connections with others. Mentors, peers, and followers all contribute to your brand ecosystem.
+
+6. Evolution — The Growth. Your brand isn't static. As you grow, your brand should evolve too. The best personal brands adapt while staying true to their core values.
+
+7. Impact — The Purpose. What difference do you want to make? Your brand should serve a purpose beyond yourself. Whether it's helping others learn, solving problems, or creating opportunities, impact gives your brand meaning.
+
+Building your brand pillars starts by answering these questions: What are my core values? What skills do I want to be known for? Who is my target audience? How do I want people to feel when they interact with me? Your answers become the foundation for your brand pillars.
+
+A dynamic profile lets you showcase all seven pillars in one place. Unlike static resumes or social media profiles, a personal website can evolve with you, displaying your expertise, projects, and personality in a cohesive way. Your brand is your story. Make sure it's worth telling.`,
+    },
+  },
+];
+
+export function getPostBySlug(slug: string): BlogPost | undefined {
+  return BLOG_POSTS.find((p) => p.slug === slug);
+}
+
+export function getPostById(id: number): BlogPost | undefined {
+  return BLOG_POSTS.find((p) => p.id === id);
+}
