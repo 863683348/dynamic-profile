@@ -326,6 +326,144 @@ Building your brand pillars starts by answering these questions: What are my cor
 A dynamic profile lets you showcase all seven pillars in one place. Unlike static resumes or social media profiles, a personal website can evolve with you, displaying your expertise, projects, and personality in a cohesive way. Your brand is your story. Make sure it's worth telling.`,
     },
   },
+  {
+    id: 16,
+    slug: 'tone-and-personality-homepage',
+    publishedAt: '2026-09-03',
+    tag: { zh: '观点', en: 'Opinion' },
+    title: { zh: '与受众对话：主页语气与人格', en: 'Tone & Personality: Talking to Your Audience on Your Page' },
+    date: { zh: '2026 年 9 月', en: 'September 2026' },
+    body: {
+      zh: `大多数个人主页读起来像是由一个从未见过你的委员会写的。语法没问题，但完全记不住："充满热情的设计师"、"交付创新解决方案"、"很高兴分享我的旅程"。这种主页语气不会主动伤害你——它只会让访客在八秒后停止阅读。
+
+主页的声音，是"被人扫过"和"被人记住"之间的区别。而且不同于 logo 或配色，改语气的成本是零。你今天坐下来改一次就能见效。
+
+为什么语气比设计更重要
+
+访客的判断很快。眼动研究反复得出同一个结论：大多数人在一页上读到的词不到 20%。他们扫你的标题、第一句自我介绍、一条项目描述和联系按钮——这四个位置承载了你全部的人格。如果四处都很模板化，你读起来就是模板，哪怕作品很出色。
+
+还有信任效应。一句具体、有立场的文案（"我给生鲜 App 设计结算流程"）证明背后有真人。一句放之四海皆准的话，谁都能写，包括模板本身。2026 年 AI 文本铺天盖地，"听起来像真人"的门槛只会更高。
+
+三组可以直接抄的改写
+
+1. 自我介绍那一句。
+改前："我是一名充满热情的前端工程师，拥有 5 年以上现代 Web 应用开发经验。"
+改后："这五年我一直在让 React 应用变快。卡顿的后台系统是我的私人仇敌。"
+第一句能套在一万个人头上，第二句只可能是你。
+
+2. 项目描述。
+改前："该项目展示了我在 UI 设计和响应式布局方面的能力。"
+改后："重新设计了一家诊所的预约表单，每天有 200 位患者填写。把 11 个字段砍到 6 个之后，中途放弃率下降了三分之一。"
+事实和数字自带人格，"展示了我的能力"什么也不带。
+
+3. 行动按钮。
+改前："欢迎随时联系，探讨潜在的合作机会。"
+改后："在招人？给我发邮件，一个工作日内必回。"
+语气也包括按钮。"欢迎随时"是没人要求的许可；一个具体的承诺才是自信。
+
+语气住在主页的哪几个位置
+
+四个地方，按影响力排序：
+
+标题。说清你为谁做什么，用大白话。"给独立书店做网站"胜过"用热情打造的数字体验"。
+
+自我介绍的第一句。先给具体的主张，再谈形容词。
+
+项目描述。一句结果，一句背景。欢迎放数字。
+
+按钮和链接文字。"看诊所这个项目"胜过"了解更多"——它告诉人家要去哪。
+
+你不需要讲段子，也不必堆网络流行语。语气不等于幽默。安静、精确的文风也是一种声音。如果你本人写字偏干，一个偏干的主页反而显得诚实，完全没问题。真正杀死一个页面的不是文风平淡，而是内容空泛。
+
+什么时候该收着写
+
+有些受众惩罚"放飞"。如果你面对的是银行、律所或政府相关客户，去掉玩笑，保留具体——上面的改写一个口语词都不用也能成立。英语是第二语言的话，别硬用你自己开会都不会说的俚语，蹩脚的随意比干净的正式更减分。
+
+还有一条：别掉进"假随意"的坑。"嘿，流浪者，欢迎来到我的小角落"只是另一件戏服。按你向站在旁边的客户解释工作的方式来写，就够了。
+
+一次 20 分钟的语气体检
+
+打开你的主页，做四件事：
+
+把标题改到能点名一类具体受众或工作。
+
+把简介里每个形容词（"热情""专注""有创造力"）换成一个事实。
+
+给每条项目描述加一个数字：用户数、省下的时间、营收、工期。
+
+把联系按钮从"邀请"改写成"承诺"。
+
+最后把整页朗读一遍。任何一句你对真人说不出口的话，重写它。测试就这一个。
+
+关于 Dynamic Profile
+
+Dynamic Profile（dynamic-profile.shop）是一个无需代码的杂志风个人主页生成器，内置博客与中英双语支持，三分钟即可上线。如果你正在重写主页的声音，建议先读主页必备要素指南（/blog/5-key-elements-memorable-homepage）和个人品牌七支柱（/blog/7-pillars-of-personal-branding），然后把改好的语气直接发布到你自己的 dynamic-profile.shop 主页上。`,
+      en: `Most personal homepages read like they were written by a committee that has never met you. The grammar is fine and the words are completely forgettable: "passionate designer", "delivering innovative solutions", "excited to share my journey". A personal page tone like that doesn't actively hurt you — it just makes visitors stop reading after eight seconds.
+
+Your homepage voice is the difference between a page people skim and a page people remember. And unlike a logo or a color scheme, tone costs nothing to change. You can fix it in one editing session today.
+
+Why tone matters more than design
+
+Visitors decide fast. Eye-tracking studies keep landing on the same conclusion: most people read fewer than 20% of the words on a page. They scan your headline, your first bio line, one project description, and the contact button. Those four spots carry your entire personality. If all four sound generic, you read as generic — even if your work is excellent.
+
+There's also a trust effect. A specific, opinionated line ("I design checkout flows for grocery apps") proves a human wrote it. A generic one could have come from anyone, including a template. In 2026, with AI text everywhere, the bar for "sounds like a real person" has only moved up.
+
+Three rewrites you can steal
+
+1. The bio line.
+Before: "I'm a passionate frontend developer with 5+ years of experience building modern web applications."
+After: "I've spent five years making React apps load faster. Slow dashboards are my personal enemy."
+The first sentence could describe ten thousand people. The second could only describe you.
+
+2. The project blurb.
+Before: "This project demonstrates my skills in UI design and responsive layout."
+After: "Redesigned a clinic booking form that 200 patients fill in daily. Drop-off fell by a third after we cut it from 11 fields to 6."
+Facts and numbers carry personality. "Demonstrates my skills" carries nothing.
+
+3. The call to action.
+Before: "Feel free to reach out to discuss potential opportunities."
+After: "Hiring? Email me. I answer within one working day."
+A personal tone of voice includes your buttons. "Feel free" is permission nobody asked for; a concrete promise is confidence.
+
+Where tone lives on your page
+
+Four places, in order of impact:
+
+The headline. Say what you do and for whom, in plain words. "Websites for independent bookshops" beats "Digital experiences crafted with passion".
+
+The first bio sentence. Lead with a specific claim, not an adjective.
+
+Project blurbs. One sentence of outcome, one of context. Numbers welcome.
+
+Button and link labels. "See the clinic project" beats "Learn more" — it tells people where they're going.
+
+You don't need jokes or slang. Tone is not the same thing as humor. A quiet, precise voice is still a voice. If your natural writing is dry, a dry homepage reads as honest — that's fine. What kills pages is not a bland style but vague content.
+
+When to keep the volume down
+
+Some audiences punish looseness. If you pitch banks, law firms, or government-adjacent clients, drop the jokes and keep the specificity — the rewrites above work without a single casual word. If English is your second language, don't force idioms you wouldn't use in a meeting; awkward casualness reads worse than clean formality.
+
+And skip the fake-casual trap: "hey wanderer, welcome to my little corner of the internet" is just another costume. Write the way you'd explain your work to a client standing next to you.
+
+A 20-minute tone pass
+
+Open your homepage and make four edits:
+
+Rewrite the headline so it names a specific audience or type of work.
+
+Replace every adjective in your bio ("passionate", "dedicated", "creative") with a fact.
+
+Add one number to each project blurb — users, hours saved, revenue, deadlines.
+
+Rewrite the contact button as a promise, not an invitation.
+
+Then read the page out loud once. Any sentence you would never say to a real person, rewrite it. That's the whole test.
+
+About Dynamic Profile
+
+Dynamic Profile (dynamic-profile.shop) is a no-code builder for magazine-style personal homepages, with a built-in blog and bilingual support — launch in three minutes. If you're reworking your voice, start with the homepage essentials guide (/blog/5-key-elements-memorable-homepage) and the personal branding pillars post (/blog/7-pillars-of-personal-branding), then publish the result on your own page at dynamic-profile.shop.`,
+    },
+  },
 ];
 
 export function getPostBySlug(slug: string): BlogPost | undefined {
