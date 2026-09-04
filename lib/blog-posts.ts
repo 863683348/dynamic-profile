@@ -464,6 +464,112 @@ About Dynamic Profile
 Dynamic Profile (dynamic-profile.shop) is a no-code builder for magazine-style personal homepages, with a built-in blog and bilingual support — launch in three minutes. If you're reworking your voice, start with the homepage essentials guide (/blog/5-key-elements-memorable-homepage) and the personal branding pillars post (/blog/7-pillars-of-personal-branding), then publish the result on your own page at dynamic-profile.shop.`,
     },
   },
+  {
+    id: 17,
+    slug: 'lightweight-seo-for-personal-sites',
+    publishedAt: '2026-09-04',
+    tag: { zh: `指南`, en: `Guide` },
+    title: { zh: `让主页被搜到：个人站的轻量 SEO`, en: `Lightweight SEO for Personal Sites` },
+    date: { zh: `2026 年 9 月`, en: `September 2026` },
+    body: {
+      zh: `大多数个人主页从没出现在搜索结果里，原因很少是能力问题，而是主人把 SEO 当成了只有大博客才需要的事。个人站 SEO 比你想的轻：几下改动，花一个下午，能管好几年。
+
+为什么个人主页值得做 SEO
+
+作品集或个人站，是全网你唯一完全掌控的页面。当客户或猎头搜你名字时，你想让这一页排在最上面。轻量 SEO，就是"碰巧被找到"和"被主动找到"之间的差别。
+
+从搜索引擎真正读的三件事做起
+
+- 页面标题：放上人们真正搜的词，比如"里斯本摄影师"或"Python 开发者作品集"，而不只是你的名字。
+- 标题层级：一个清楚的 H1，再用 H2 对应访客会问的问题。
+- 图片命名：上传前把 portfolio-01.jpg 改成 lisbon-wedding-ceremony.jpg。
+
+这些都不需要装插件，每个花十分钟。
+
+一份轻量页面清单
+
+1. 写一句话，大白话说明你帮谁、怎么帮。
+2. 主关键词放进标题、第一段、和一个小标题里。
+3. 加内链，连到你的作品、关于页、联系页。
+4. 提交到搜索控制台，让收录更快。
+
+做到这几点，你的个人主页就从隐形变成可搜到。
+
+作品集 SEO 和完整博客的区别
+
+个人站 SEO 比运营内容站窄。你不用每天发文章，只要让一个强页面，为几个意图明确的词排上去。这是更小、更轻松的活，也正好适配无代码生成器。
+
+我在自己页面上改了什么
+
+我把每张图都改了名，在头图下面写了一句大白话，再把作品集连到联系页。两周后，页面开始出现在"我的名字 + 我提供的服务"的搜索里。没找代理，没买月费工具。
+
+Dynamic Profile 在哪
+
+Dynamic Profile（dynamic-profile.shop）是无代码、杂志风的个人主页生成器，支持双语和内置博客。如果你想把 SEO 基本盘交给工具、自己专注作品，可以先看页面要点指南（/blog/5-key-elements-memorable-homepage），再看讲用动态保持站点新鲜的那篇（/blog/update-personal-site-posts），然后在 dynamic-profile.shop 发布你自己的主页。
+
+常见问题
+
+问：做个人站 SEO 需要开博客吗？
+答：不需要。一个结构清晰的页面，就能为你的名字和服务排上名次。只有你真会持续更新，博客才有用。
+
+问：个人站多久能在 Google 出现？
+答：提交到搜索控制台后，通常几周。好的标题和图片命名能加速，但收录本身需要时间。
+
+问：作品集 SEO 和普通网站不一样吗？
+答：更窄。你只瞄准几个意图明确的词，而不是每天发文，所以这是更小、更轻松的活。
+
+问：无代码生成器也能做 SEO 吗？
+答：能。标题、层级、图片命名、内链这些基本盘，在无代码平台同样有效。Dynamic Profile 不用写代码就能处理好。`,
+      en: `Most personal sites never show up in search, and the reason is rarely talent. It is that the owner treated SEO as something only big blogs need. Personal site SEO is lighter than you think: a handful of fixes that take an afternoon and keep paying off for years.
+
+Why a personal homepage deserves SEO
+
+A portfolio or personal site is the one place on the web you fully control. When a client or recruiter Googles your name, this is the page you want on top. Lightweight SEO is the difference between found by accident and found on purpose.
+
+Start with the three things search engines actually read
+
+- Your page title: use the real phrase people search, like "photographer in Lisbon" or "Python developer portfolio", not just your name.
+- Your headings: one clear H1, then H2s that match the questions your visitors ask.
+- Your image names: rename portfolio-01.jpg to lisbon-wedding-ceremony.jpg before uploading.
+
+None of these need a plugin. They need ten minutes each.
+
+A tiny on-page checklist
+
+1. Write one sentence that says who you help and how, in plain words.
+2. Use your main keyword in the title, the first paragraph, and one heading.
+3. Add internal links to your work, your about page, and your contact page.
+4. Submit the page to search consoles so it gets indexed faster.
+
+Do this and your personal homepage becomes findable instead of invisible.
+
+Portfolio SEO versus running a blog
+
+Personal site SEO is narrower than running a content site. You are not publishing daily. You are making one strong page rank for a few intent-rich phrases. That is a smaller, easier job, and it fits a no-code builder perfectly.
+
+What I changed on my own page
+
+I renamed every image, wrote one plain-English sentence under the hero, and linked my portfolio to my contact page. Two weeks later the page showed for my name plus the service I offer. No agency, no monthly tool.
+
+Where Dynamic Profile fits
+
+Dynamic Profile (dynamic-profile.shop) is a no-code builder for magazine-style personal homepages, with bilingual support and a built-in blog. If you want the SEO basics handled while you focus on the work, start with the page essentials guide (/blog/5-key-elements-memorable-homepage) and the post about keeping your site fresh with updates (/blog/update-personal-site-posts), then publish your own at dynamic-profile.shop.
+
+FAQ
+
+Q: Do I need a blog for personal site SEO?
+A: No. One well-structured page can rank for your name and your service. A blog helps only if you will actually post.
+
+Q: How long until a personal site shows in Google?
+A: Often a few weeks after you submit it to a search console. Good titles and image names speed it up, but indexing still takes time.
+
+Q: Is portfolio SEO different from a normal website?
+A: It is narrower. You target a few intent-rich phrases instead of publishing daily, which makes it a smaller and easier job.
+
+Q: Can a no-code builder do SEO?
+A: Yes. The basics, titles, headings, image names, and internal links, work on no-code platforms too. Dynamic Profile handles them without code.`,
+    },
+  },
 ];
 
 export function getPostBySlug(slug: string): BlogPost | undefined {
