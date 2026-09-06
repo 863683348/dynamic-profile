@@ -570,6 +570,100 @@ Q: Can a no-code builder do SEO?
 A: Yes. The basics, titles, headings, image names, and internal links, work on no-code platforms too. Dynamic Profile handles them without code.`,
     },
   },
+  {
+    id: 18,
+    slug: 'one-page-everywhere-ending-card-anxiety',
+    publishedAt: '2026-09-06',
+    tag: { zh: '指南', en: 'Guide' },
+    title: { zh: '名片焦虑终结者：一张主页发遍全网', en: 'One Page, Everywhere: Ending the Card Anxiety' },
+    date: { zh: '2026 年 9 月', en: 'September 2026' },
+    body: {
+      zh: `名片焦虑是真的：你明明只想给一个人一个能找到你的方式，结果微信、邮箱、小红书、GitHub、个人站……塞了五六个，对方一个都没记住。这篇讲怎么用一张 digital business card（数字名片）把这些都收口，一个链接，发遍全网。
+
+## 名片焦虑从哪来
+
+问题不在你没有联系方式，而在它们散落在八个平台。别人要加你，得先决定去哪个平台搜你；搜完还要判断哪个账号是真的你。每一步都在流失。焦虑的本质，是"我该给你哪个"这件事你自己也没想清。
+
+## 一张主页，一个链接
+
+解法很朴素：把所有身份收进一张个人主页，再只对外发那一个地址。Dynamic Profile 的主页把作品、动态、社交链接聚在一页，你印在名片和简历上的，永远是同一个 URL。
+
+- 一个链接代替五个：微信、邮箱、GitHub、店铺，全收进主页。
+- 链接稳定：改了简介不用重发，URL 永远不变。
+- 体面：比一排图标更像"一个人"，而不是"一堆账号"。
+
+## 怎么把链接发出去
+
+有了主页，下一步是让它出现在所有该出现的地方。三个高频位最值得先占：
+
+1. 简历和名片：联系方式直接换成主页 URL。
+2. 各平台简介栏：把"主页链接"统一成同一个。
+3. 邮件签名：一行字，放主页地址。
+
+这一步做完，"分享哪条"的焦虑就消失了，你只有一条。
+
+## 数字名片 vs 链接页
+
+链接页（Linktree 那类）只解决问题的一半：它收了链接，但没有内容。别人点进去看到一排按钮，对你的认知停留在"这人有几个账号"。数字名片式的主页先展示你，再给链接，它是你的门面，不是目录。
+
+## 常见问题
+
+问：一张主页真的够用吗？
+答：对绝大多数人够用。作品、动态、联系方式都在一页，访客从上滑到下就认识了你。想更深再开博客。
+
+问：链接换了怎么办？
+答：主页 URL 不变，你只改主页里的内容。不用通知任何人，旧链接依然有效。
+
+问：免费版能做数字名片吗？
+答：能。免费版就支持全部模块，把主页当数字名片发出去完全够用。
+
+## 关于 Dynamic Profile
+
+Dynamic Profile（dynamic-profile.shop）是无代码、杂志风的个人主页生成器，支持双语和内置博客，三分钟上线。先把你的联系方式收进一张主页，再读读"你的 @handle 就是你的数字名片"（/blog/your-handle-digital-business-card）那篇，然后把唯一的主页链接印到所有地方。免费版就够用，不用升级。`,
+      en: `Card anxiety is real: you just want to give one person a way to find you, yet you end up handing over WeChat, email, Xiaohongshu, GitHub, a personal site — five or six of them, and the other person remembers none. This post is about collapsing all of that into one digital business card: a single link you can send everywhere.
+
+## Where card anxiety comes from
+
+The problem isn't that you lack contact details. It's that they're scattered across eight platforms. To add you, someone has to decide which platform to search, then judge which account is really you. Every step leaks attention. The anxiety is really about not having settled, yourself, which link to give.
+
+## One homepage, one link
+
+The fix is plain: pull every identity into one personal homepage, then hand out only that address. A dynamic-profile homepage gathers your work, your updates, and your social links on a single page, so the URL on your card and resume is always the same one.
+
+- One link instead of five: WeChat, email, GitHub, store — all live on the homepage.
+- The link stays put: edit your bio without re-sending anything; the URL never changes.
+- It looks like a person: a column of icons reads as "a bunch of accounts," a homepage reads as "someone."
+
+## Where to put the link
+
+Once the homepage exists, the next job is showing up in the right places. Three spots are worth claiming first:
+
+1. Resume and business card: swap the contact line for the homepage URL.
+2. Every platform bio: make the "link" field the same everywhere.
+3. Email signature: one line, the homepage address.
+
+Do this and the "which link do I send" anxiety disappears — you only have one.
+
+## Digital business card vs link page
+
+A link page (the Linktree kind) solves half the problem: it collects links but has no content. People who click see a column of buttons and learn little beyond "this person has a few accounts." A digital-business-card homepage shows you first, then gives the links — it's your front door, not a directory.
+
+## FAQ
+
+Q: Is one homepage really enough?
+A: For most people, yes. Work, updates, and contact details sit on one page; a visitor knows you after one scroll. Open a blog later if you want more depth.
+
+Q: What if I change my links?
+A: The homepage URL doesn't change; you only edit what's inside it. Nobody needs a new link, and the old one still works.
+
+Q: Can the free plan be my digital business card?
+A: Yes. The free plan supports every module, so sending your homepage out as a card is more than enough.
+
+## About Dynamic Profile
+
+Dynamic Profile (dynamic-profile.shop) is a no-code builder for magazine-style personal homepages, with bilingual support and a built-in blog — live in three minutes. Gather your contact details onto one homepage first, then read the post on your @handle as a digital business card (/blog/your-handle-digital-business-card), and put that one homepage link everywhere. The free plan is enough; no upgrade needed.`,
+    },
+  },
 ];
 
 export function getPostBySlug(slug: string): BlogPost | undefined {
