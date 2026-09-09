@@ -760,11 +760,7 @@ In 2026, AI personal branding tools will continue to evolve in these directions:
 
 Whether you're a freelancer, entrepreneur, or corporate employee, choosing the right AI tools can significantly improve the efficiency of building your personal brand.`,
     },
-    faq: [
-      { q: 'AI 工具能替代设计师吗？', a: 'AI 工具可以辅助设计工作，提高效率，但对于高度创意性和品牌战略层面的设计，人类设计师的专业判断仍然不可替代。最佳实践是 AI 处理常规任务，人类专注于创意决策。' },
-      { q: '如何选择适合我行业的 AI 工具？', a: '首先明确你的品牌定位和内容需求，然后试用几款主流工具。建议从免费版本开始，熟悉后再决定是否付费订阅。关键是找到与你的工作流程最匹配的工具。' },
-      { q: 'AI 生成内容会影响 SEO 吗？', a: '合理使用 AI 工具生成的内容不仅不会影响 SEO，反而能通过更专业的结构、关键词优化和内容质量提升排名。关键在于添加个人见解和真实经验，让内容更具独特性。' },
-    ],
+
   },
 ];
 
