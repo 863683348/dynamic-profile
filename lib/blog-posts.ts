@@ -661,7 +661,9 @@ A: Yes. The free plan supports every module, so sending your homepage out as a c
 
 ## About Dynamic Profile
 
-Dynamic Profile (dynamic-profile.shop) is a no-code builder for magazine-style personal homepages, with bilingual support and a built-in blog — live in three minutes. Gather your contact details onto one homepage first, then read the post on your @handle as a digital business card (/blog/your-handle-digital-business-card), and put that one homepage link everywhere. The free plan is enough; no upgrade needed.`,
+Dynamic Profile (dynamic-profile.shop) is a no-code builder for magazine-style personal homepages, with bilingual support and a built-in blog — live in three minutes. Gather your contact details onto one homepage first, then read the post on your @handle as a digital business card (/blog/your-handle-digital-business-card), and put that one homepage link everywhere. The free plan is enough;     no upgrade needed.`,
+    },
+  },
 
   {
     id: 37,
@@ -764,7 +766,7 @@ Whether you're a freelancer, entrepreneur, or corporate employee, choosing the r
       { q: 'AI 生成内容会影响 SEO 吗？', a: '合理使用 AI 工具生成的内容不仅不会影响 SEO，反而能通过更专业的结构、关键词优化和内容质量提升排名。关键在于添加个人见解和真实经验，让内容更具独特性。' },
     ],
   },
-
+];
 
 export function getPostBySlug(slug: string): BlogPost | undefined {
   return BLOG_POSTS.find((p) => p.slug === slug);
