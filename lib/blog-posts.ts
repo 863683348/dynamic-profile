@@ -1071,6 +1071,154 @@ Usually yes. Keep your copy in one plain text file and your images in one folder
 Build a personal site your way. Start from the [homepage](/) for free, read more breakdowns on the [blog](/blog), or check [pricing](/pricing) when you need a custom domain and extra sections. The eight tools above are not ranked, because the right pick depends on whether you are building a page or a habit.`,
     },
   },
+  {
+    id: 41,
+    slug: 'vs-carrd-magazine-layout',
+    publishedAt: '2026-09-09',
+    tag: { zh: '对比', en: 'Comparison' },
+    title: { zh: '对比 Carrd：当你想更“杂志”一点', en: 'vs Carrd: When You Want More "Magazine"' },
+    date: { zh: '2026年9月', en: 'September 2026' },
+    body: {
+      zh: `Carrd 很适合简单的单页网站。但如果你想要更多编辑感，它就使不上劲了。这篇对比帮你看清什么时候该选 Dynamic Profile，什么时候不该。
+
+## Carrd 强在哪
+
+Carrd 快、便宜、干净：
+- 五分钟以内就能搭好
+- 单页模板本身就很好看
+- Pro 一年 $19
+- 做一个 link-in-bio 页面够用
+
+如果这份清单正好是你要的，可以直接用 Carrd。
+
+## Dynamic Profile 走得更远的地方
+
+**1. 编辑式布局**
+Carrd 停在单页。Dynamic Profile 支持多区块布局，有杂志式网格、特色内容区和清晰的视觉层级。
+
+**2. 装得下真正的内容**
+Carrd 做信息页很稳。Dynamic Profile 做作品集、博客、案例研究，布局不会散架。
+
+**3. 对排版和留白的控制**
+Carrd 让你调整模板。Dynamic Profile 让你控制字体、间距和层级。
+
+**4. 更完整的观感**
+杂志式布局读起来像被精心编排过。对创意工作者、顾问、以及靠网站撑职业第一印象的人来说，这一点很重要。
+
+## 继续用 Carrd 的情况
+
+- 你只需要一个简单的链接页
+- 搭建速度比设计深度更重要
+- 预算是决定性因素
+- 你永远只做一页
+
+## 换到 Dynamic Profile 的情况
+
+- 你想要杂志式布局
+- 你需要多个内容区块
+- 设计质感是你品牌的一部分
+- 你在展示创意作品
+
+## 功能对比
+
+| 功能 | Carrd | Dynamic Profile |
+|------|-------|-----------------|
+| 页面 | 1-3 | 无限 |
+| 布局 | 单页 | 多区块 |
+| 模板 | 50+ | 30+ 编辑式 |
+| 自定义 | 中等 | 深度 |
+| 博客 | 无 | 有 |
+| 定价 | $19/年 | 免费/Pro |
+
+## 结论
+
+Carrd 适合快速、简单的网站。Dynamic Profile 适合那种应该读起来像一本精心编排的杂志的个人网站：有层次，经过考虑。
+
+## 常见问题
+
+### 能把 Carrd 站点导入 Dynamic Profile 吗？
+不能直接导入。你要在 Dynamic Profile 编辑器里重做内容。简单站点大约半小时。
+
+### Dynamic Profile 比 Carrd 贵吗？
+Dynamic Profile 有免费档。Pro 起价有竞争力，不少用户觉得多出来的区块值这个价。
+
+### 做作品集哪个更好？
+Dynamic Profile 就是为杂志式作品集布局做的。Carrd 在这方面弱一些。
+
+## 关于 dynamic-profile.shop
+
+搭建你的杂志式个人网站。访问[首页](/)开始，或看[定价](/pricing)了解 Pro。`,
+      en: `Carrd is excellent for simple one-page sites. It is the wrong tool when you want an editorial feel. This comparison shows when Dynamic Profile is the better pick, and when it is not.
+
+## Where Carrd wins
+
+Carrd is fast, cheap, and clean:
+- Setup in five minutes or less
+- One-page templates that already look good
+- $19 a year for the Pro plan
+- A solid link-in-bio page
+
+If that list matches your job, use Carrd and move on.
+
+## Where Dynamic Profile goes further
+
+**1. Editorial layouts**
+Carrd stays on a single page. Dynamic Profile supports multi-section layouts with magazine-style grids, a featured area, and a clear visual hierarchy.
+
+**2. Room for real content**
+Carrd handles an info page well. Dynamic Profile handles portfolios, blogs, and case studies without the layout falling apart.
+
+**3. Control over type and space**
+Carrd lets you adjust a template. Dynamic Profile gives you control over typography, spacing, and hierarchy.
+
+**4. A more finished look**
+The magazine layout reads as curated. That matters for creatives, consultants, and anyone whose site carries a professional first impression.
+
+## Stay on Carrd if
+
+- You need one simple link page
+- Setup speed matters more than design depth
+- Budget is the deciding factor
+- One page is all you will ever build
+
+## Move to Dynamic Profile if
+
+- You want a magazine-style layout
+- You need several content sections
+- Design quality is part of your brand
+- You are showing creative work
+
+## Feature comparison
+
+| Feature | Carrd | Dynamic Profile |
+|---------|-------|-----------------|
+| Pages | 1-3 | Unlimited |
+| Layout | Single page | Multi-section |
+| Templates | 50+ | 30+ editorial |
+| Customization | Moderate | Deep |
+| Blog | No | Yes |
+| Pricing | $19/year | Free/Pro |
+
+## The verdict
+
+Carrd is the right choice for a quick, simple site. Dynamic Profile is for a personal site that should read like a curated magazine: layered and considered.
+
+## FAQ
+
+### Can I import my Carrd site to Dynamic Profile?
+Not directly. You recreate the content in the Dynamic Profile editor. A simple site takes about 30 minutes.
+
+### Is Dynamic Profile more expensive than Carrd?
+Dynamic Profile has a free tier. Pro starts at a competitive price, and many users find the extra sections worth it.
+
+### Which is better for portfolios?
+Dynamic Profile is built for portfolios with magazine-style layouts. Carrd does less here.
+
+## About dynamic-profile.shop
+
+Build your magazine-style personal site. Visit [dynamic-profile.shop](/) to start, or see [pricing](/pricing) for Pro.`,
+    },
+  },
 ];
 
 export function getPostBySlug(slug: string): BlogPost | undefined {
