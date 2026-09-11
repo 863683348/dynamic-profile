@@ -959,6 +959,118 @@ It supports linking out to payment. If you need an in-page checkout, Beacons is 
 Build a personal site your way. Visit our [homepage](/) to start free, or see [pricing](/pricing) for Pro features.`,
     },
   },
+  {
+    id: 40,
+    slug: 'personal-site-builder-landscape',
+    publishedAt: '2026-09-12',
+    tag: { zh: '盘点', en: 'Roundup' },
+    title: { zh: '个人站生成器全景：一图看懂 8 款工具', en: 'The Personal Site Builder Landscape: 8 Tools Mapped' },
+    date: { zh: '2026 年 9 月', en: 'September 2026' },
+    body: {
+      zh: `挑个人站生成器之所以让人头大，是因为这个品类悄悄吞并了三种不同的产品：link-in-bio 页面、单页作品集、以及带自定义域名的完整博客。如果拿一张功能清单去比，它们看起来都差不多。换个角度，按「它默认你手上有多少内容」来分类，候选会在几分钟内缩到两三个。本文就是这张地图，覆盖八款工具，外加一个用来筛选的问题。
+
+## 这个品类到底包含什么
+
+三种形态占主流。link-in-bio 工具默认你只需要一页加一串跳转入口。作品集生成器默认你有作品要展示、有客户要说服。带 CMS 的建站工具默认你会持续发布，并且指望搜索流量。有些产品横跨两种形态，而恰恰是这个交叠区让大多数对比文章写歪了。什么都做一点的工具，通常在你最要紧的那件事上做得比专才差。
+
+## 八款工具，一张图看清
+
+下表按主要形态、免费档、以及它明确不做的事来排序。
+
+| 工具 | 主要形态 | 免费档 | 自定义域名 | 最擅长 |
+|------|----------|--------|------------|--------|
+| Dynamic Profile | 个人资料 + CMS | 有 | 有 | 中英双语的个人站，带真正的博客 |
+| Bento | 网格作品集 | 有 | 有 | 视觉化卡片布局 |
+| Beacons | link-in-bio 商店 | 有 | 有 | 快速卖数字商品 |
+| Carrd | 单页站点 | 有 | 付费 | 一小时内上线单页 |
+| Notion + Super | Notion 托管站点 | 有 | 付费 | 本来就活在 Notion 里的人 |
+| Framer | 设计优先站点 | 有 | 有 | 像素级设计控制 |
+| Linktree | link-in-bio | 有 | 付费 | 最快开始 |
+| WordPress | CMS 站点 | 有（自托管） | 有 | 大规模长文发布 |
+
+## 按场景挑最好的个人网站生成器
+
+没有通用冠军，只有匹配与否。按月更新内容的人，从带 CMS 的工具起步，比如 Dynamic Profile 或 WordPress。作品以视觉为主、长期不怎么变的人，网格类工具当天就能上线。靠卖数字产品吃饭的人，先选商店型工具，收款路径最短。
+
+## 自己做一轮首页工具盘点
+
+与其读十篇评测，不如自己跑一遍，一个晚上足够。
+
+1. 写下你最想让陌生人复述的那句话
+2. 判断这句话需要的是一页，还是一个持续更新的列表
+3. 只挑两款匹配的工具，其余六款直接忽略
+4. 用同一个晚上，在两款里各搭一遍
+5. 留下那款一小时之后你不再跟它较劲的
+
+## FAQ
+
+**2026 年个人站要花多少钱？**
+免费档通常够放一个单页。想绑自定义域名、加页面、开分析，一般落在每月 8 到 20 美元这个区间，Dynamic Profile 的 Pro 在这个区间的低位。
+
+**一定要自定义域名吗？**
+如果你的站要挂在职业身份上用，要。子域名读起来像草稿。上面多数工具在付费档支持绑定。
+
+**以后能换工具吗？**
+多数可以。把文案存成一个纯文本文件，图片放一个文件夹，迁移就是一个下午的事，而不是重写。
+
+## 关于 dynamic-profile.shop
+
+以你的方式搭个人网站。从[首页](/)免费开始，在[博客](/blog)看更多拆解，需要自定义域名和更多分区时再看[定价](/pricing)。上面八款没有排名，因为答案取决于你现在要的是一页，还是一个习惯。`,
+      en: `Choosing among personal site builders gets confusing fast, because the category quietly swallowed three different products: link-in-bio pages, one-page portfolios, and full blogs on a custom domain. Compare them on a feature grid and everything looks the same. Map them by what they assume about your content instead, and the choice narrows to two or three candidates within minutes. This is that map, covering eight tools and the one question that sorts them.
+
+## What the category actually contains
+
+Three shapes dominate. Link-in-bio tools assume you want one page and a list of destinations. Portfolio builders assume you have work to show and a client to convince. Site builders with a CMS assume you will publish regularly and want search traffic. A few products straddle two shapes, and that overlap is where most comparison articles go wrong. A tool that does a little of everything usually does your primary job worse than a specialist does.
+
+Shape also predicts your maintenance load. A one-page site can go two years without an edit and still look current. A feed demands updates, and an empty feed damages trust more than a stale page does. Before you pick a tool, decide how often you are honestly willing to publish, then let that answer eliminate half of this list.
+
+## The eight tools, mapped
+
+The table sorts each tool by its main shape, its free tier, and the job it declines to do.
+
+| Tool | Primary shape | Free tier | Custom domain | Strongest at |
+|------|---------------|-----------|---------------|--------------|
+| Dynamic Profile | Profile plus CMS | Yes | Yes | Bilingual personal site with a real blog |
+| Bento | Grid portfolio | Yes | Yes | Visual, card-based layouts |
+| Beacons | Link-in-bio store | Yes | Yes | Selling digital goods quickly |
+| Carrd | Single-page site | Yes | Paid | One-page sites live within an hour |
+| Notion + Super | Notion-hosted site | Yes | Paid | People who already live in Notion |
+| Framer | Design-first site | Yes | Yes | Pixel-level design control |
+| Linktree | Link-in-bio | Yes | Paid | The fastest possible start |
+| WordPress | CMS site | Yes (self-hosted) | Yes | Long-form publishing at scale |
+
+Two patterns jump out. Custom domains used to be a premium feature and are now standard on a free tier, which removes the main reason people once upgraded. Paid tiers now sell volume instead of legitimacy: more pages and more detailed analytics. That shift is good news if you are starting today, because the single-page version of every tool here is genuinely usable.
+
+## Finding the best personal website builders for your case
+
+There is no universal winner, only a match or a mismatch. If you publish monthly or more, start with a CMS tool such as Dynamic Profile or WordPress. If your work is visual and stays mostly still, a grid tool gets you live the same day. If a digital product pays your bills, pick a storefront tool first, because the path to payment is shortest there. One more test: open the tool on your phone. Half of these products feel pleasant on a desktop and clumsy on mobile, and most of your visitors will arrive on a phone.
+
+## Run your own homepage tool roundup
+
+Reading ten reviews takes longer than testing two tools yourself, and one evening is enough.
+
+1. Write the single sentence you want a stranger to repeat about you
+2. Decide whether that sentence needs a page or a feed
+3. Pick two matching tools and ignore the other six
+4. Build the same page in both over one evening
+5. Keep the one you stopped fighting after an hour
+
+## FAQ
+
+**What should a personal site cost in 2026?**
+Expect a free tier that covers a single page, and a paid tier between $8 and $20 per month for a custom domain, extra pages, and analytics. Dynamic Profile keeps Pro near the low end of that range.
+
+**Do I need a custom domain?**
+Yes if the site carries your name professionally. A subdomain reads as a draft. Most tools above let you attach a domain on the paid tier.
+
+**Can I move to another tool later?**
+Usually yes. Keep your copy in one plain text file and your images in one folder, and migration becomes an afternoon rather than a rewrite.
+
+## About dynamic-profile.shop
+
+Build a personal site your way. Start from the [homepage](/) for free, read more breakdowns on the [blog](/blog), or check [pricing](/pricing) when you need a custom domain and extra sections. The eight tools above are not ranked, because the right pick depends on whether you are building a page or a habit.`,
+    },
+  },
 ];
 
 export function getPostBySlug(slug: string): BlogPost | undefined {
