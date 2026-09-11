@@ -765,15 +765,56 @@ Whether you're a freelancer, entrepreneur, or corporate employee, choosing the r
 
   {
     id: 38,
-    title: "vs Bento: Grid or Magazine Layout?",
-    slug: "vs-bento-grid-magazine",
-    category: "design",
-    author: "Dynamic Profile",
-    date: "2026-09-10",
-    excerpt: "Bento grid vs magazine layout comparison.",
-    image: "/images/blog/bento-grid.jpg",
-    content: `
-## English Version
+    slug: 'vs-bento-grid-magazine',
+    publishedAt: '2026-09-10',
+    tag: { zh: '对比', en: 'Comparison' },
+    title: { zh: '对比 Bento：网格还是杂志排版？', en: 'vs Bento: Grid or Magazine Layout?' },
+    date: { zh: '2026年9月', en: 'September 2026' },
+    body: {
+      zh: `### 对比 Bento：网格还是杂志布局？
+
+Bento.me 已成为创作者的首选个人网站构建器，但它适合每个人吗？这是与 Dynamic Profile 的诚实对比。
+
+#### 什么是 Bento？
+
+Bento 是一个可视化、拖拽式的个人网站构建器，专注于"便当盒"网格布局。每个卡片是一个组件——简介、社交链接、项目、嵌入。它快速、可视化，无需编码。
+
+#### Dynamic Profile vs Bento：关键差异
+
+| 功能 | Bento.me | Dynamic Profile |
+|------|----------|-----------------|
+| 布局 | 网格/便当卡片 | 杂志/滚动 |
+| 自定义 | 有限主题 | 完全设计控制 |
+| 博客 | 基础 | 功能完整 |
+| 价格 | 免费+Pro（$12/月）| 免费+Pro（$8/月）|
+| 编码需求 | 无 | 可选（高级）|
+| SEO | 基础 | 高级（JSON-LD、canonical）|
+| 多语言 | 无 | 有 |
+| 分析 | 基础 | 高级 |
+
+#### Bento 适合谁
+
+- 想要快速可视化作品集的设计师
+- 不想碰代码的创作者
+- 偏好便当网格美学的人
+- 需要零维护的人
+
+#### Dynamic Profile 适合谁
+
+- 想要内容优先网站的博主
+- 想要完全自定义的开发者
+- 多语言网站（EN + ZH）
+- 想要开箱即用的高级 SEO
+- 建设有深度的个人品牌的人
+
+#### 结论
+
+Bento 在速度和视觉吸引力上获胜。Dynamic Profile 在灵活性、SEO 和长期可扩展性上获胜。如果你需要博客或多语言内容，Dynamic Profile 是更好的选择。如果你只需要 10 分钟内一个漂亮的作品集，Bento 也可以。
+
+#### 关于 dynamic-profile.shop
+
+以你的方式构建个人网站。访问我们的[首页](/)免费开始，或查看我们的[定价](/pricing)获取 Pro 功能。`,
+      en: `## English Version
 
 Bento.me has become the go-to personal site builder for creators, but is it the right choice for everyone? Here's an honest comparison with Dynamic Profile.
 
@@ -817,262 +858,106 @@ Bento wins on speed and visual appeal. Dynamic Profile wins on flexibility, SEO,
 
 Build your personal site your way. Visit our [homepage](/) to start for free, or check our [pricing](/pricing) for Pro features.
 
----
-
-## 中文版本
-
-### 对比 Bento：网格还是杂志布局？
-
-Bento.me 已成为创作者的首选个人网站构建器，但它适合每个人吗？这是与 Dynamic Profile 的诚实对比。
-
-#### 什么是 Bento？
-
-Bento 是一个可视化、拖拽式的个人网站构建器，专注于"便当盒"网格布局。每个卡片是一个组件——简介、社交链接、项目、嵌入。它快速、可视化，无需编码。
-
-#### Dynamic Profile vs Bento：关键差异
-
-| 功能 | Bento.me | Dynamic Profile |
-|------|----------|-----------------|
-| 布局 | 网格/便当卡片 | 杂志/滚动 |
-| 自定义 | 有限主题 | 完全设计控制 |
-| 博客 | 基础 | 功能完整 |
-| 价格 | 免费+Pro（$12/月）| 免费+Pro（$8/月）|
-| 编码需求 | 无 | 可选（高级）|
-| SEO | 基础 | 高级（JSON-LD、canonical）|
-| 多语言 | 无 | 有 |
-| 分析 | 基础 | 高级 |
-
-#### Bento 适合谁
-
-- 想要快速可视化作品集的设计师
-- 不想碰代码的创作者
-- 偏好便当网格美学的人
-- 需要零维护的人
-
-#### Dynamic Profile 适合谁
-
-- 想要内容优先网站的博主
-- 想要完全自定义的开发者
-- 多语言网站（EN + ZH）
-- 想要开箱即用的高级 SEO
-- 建设有深度的个人品牌的人
-
-#### 结论
-
-Bento 在速度和视觉吸引力上获胜。Dynamic Profile 在灵活性、SEO 和长期可扩展性上获胜。如果你需要博客或多语言内容，Dynamic Profile 是更好的选择。如果你只需要 10 分钟内一个漂亮的作品集，Bento 也可以。
-
-#### 关于 dynamic-profile.shop
-
-以你的方式构建个人网站。访问我们的[首页](/)免费开始，或查看我们的[定价](/pricing)获取 Pro 功能。
-`
+---`,
+    },
   },
-
   {
     id: 39,
-    title: "vs Bento: Grid or Magazine Layout?",
-    slug: "vs-bento-grid-magazine",
-    category: "design",
-    author: "Dynamic Profile",
-    date: "2026-09-10",
-    excerpt: "Bento grid vs magazine layout comparison.",
-    image: "/images/blog/bento-grid.jpg",
-    content: `
-## English Version
+    slug: 'vs-beacons-selling-vs-branding',
+    publishedAt: '2026-09-11',
+    tag: { zh: '对比', en: 'Comparison' },
+    title: { zh: '对比 Beacons：卖货 vs 立人设', en: 'vs Beacons: Selling vs Branding' },
+    date: { zh: '2026年9月', en: 'September 2026' },
+    body: {
+      zh: `Beacons 和 Dynamic Profile 都能给你一个 link-in-bio 页面，但相似之处也就到此为止。一个为卖货而生，一个为展示一个人而生。选错了，你每周都要跟工具较劲。
 
-Bento.me has become the go-to personal site builder for creators, but is it the right choice for everyone? Here's an honest comparison with Dynamic Profile.
+### Beacons 优化什么
 
-### What Is Bento?
+Beacons 起家是商店，默认布局推着你放商品卡、打赏按钮、结账入口。如果你的收入来自卖数字商品，这种偏向是优点：页面就是想要成交。
 
-Bento is a visual, drag-and-drop personal site builder focused on the "bento box" grid layout. Each card is a widget — bio, social links, projects, embeds. It's fast, visual, and requires zero coding.
+代价是 Beacons 页面看起来像家店。每个区块都在要你做决定。对一个靠品味吃饭的作者或设计师来说，这个第一印象是错的。
 
-### Dynamic Profile vs Bento: Key Differences
+### Dynamic Profile 优化什么
 
-| Feature | Bento.me | Dynamic Profile |
-|---------|----------|-----------------|
-| Layout | Grid/bento cards | Magazine/scroll |
-| Customization | Limited themes | Full design control |
-| Blog | Basic | Full-featured blog |
-| Cost | Free tier + Pro ($12/mo) | Free + Pro ($8/mo) |
-| Coding needed | None | Optional (advanced) |
-| SEO | Basic | Advanced (JSON-LD, canonical) |
-| Multi-language | No | Yes |
-| Analytics | Basic | Advanced |
+Dynamic Profile 从个人资料出发，而不是购物车。你搭出来的页面读起来像作品集：你是谁、做过什么、怎么联系你。也能卖东西，但成交从来不是页面上最响的声音。
 
-### Who Bento Is For
+如果你做的东西在被理解之后就能自己卖出去，这就是对的默认值。先立人设，再谈成交。
 
-- Designers who want a quick, visual portfolio
-- Creators who don't want to touch code
-- People who prefer the bento grid aesthetic
-- Those who want zero maintenance
+### 对比表
 
-### Who Dynamic Profile Is For
+| 维度 | Beacons | Dynamic Profile |
+|------|---------|-----------------|
+| 首要目标 | 卖产品 | 展示一个人 |
+| 默认布局 | 商品网格 | 作品集分区 |
+| 适合 | 数字商品、周边 | 写作者、设计师、顾问 |
+| 可定制程度 | 受模板限制 | 布局级控制 |
+| 上手难度 | 极低 | 低 |
+| 不适合 | 你没有东西可卖 | 你开的是店 |
 
-- Bloggers who want a content-first site
-- Developers who want full customization
-- Multi-language sites (EN + ZH)
-- People who want advanced SEO out of the box
-- Those building a personal brand with depth
+### 五分钟做决定
 
-### The Verdict
+只问一个问题：访客落到你页面上时，你要他买，还是要他懂？答案是买，用 Beacons；答案是懂，用 Dynamic Profile。如果两者都要，就在 Beacons 上卖，再链到一个 Dynamic Profile 讲故事。
 
-Bento wins on speed and visual appeal. Dynamic Profile wins on flexibility, SEO, and long-term scalability. If you need a blog or multilingual content, Dynamic Profile is the better pick. If you just need a pretty portfolio in 10 minutes, Bento is fine.
+### 要避免的错误
 
-### About dynamic-profile.shop
+别让一个工具干另一个的活。Beacons 硬掰成作品集模式，像一家熄了灯的店。Dynamic Profile 塞满商品卡，像一本宣传册上焊了个收银机。
 
-Build your personal site your way. Visit our [homepage](/) to start for free, or check our [pricing](/pricing) for Pro features.
+### 常见问题
 
----
+#### 之后能迁移吗？
+可以。两边本质都是 link-in-bio 页面，内容是可携带的。真正的工作量在于重新决定首屏放什么。
 
-## 中文版本
+#### Dynamic Profile 支持收款吗？
+支持外链收款。如果你需要页面内结账，Beacons 更合适。
 
-### 对比 Bento：网格还是杂志布局？
+### 关于 dynamic-profile.shop
 
-Bento.me 已成为创作者的首选个人网站构建器，但它适合每个人吗？这是与 Dynamic Profile 的诚实对比。
+以你的方式搭个人网站。访问[首页](/)免费开始，或看[定价](/pricing)了解 Pro 功能。`,
+      en: `Beacons and Dynamic Profile both hand you a link-in-bio page. That is where the similarity stops. One is built to sell. The other is built to present a person. Pick the wrong one and you fight it every week.
 
-#### 什么是 Bento？
+### What Beacons optimizes for
 
-Bento 是一个可视化、拖拽式的个人网站构建器，专注于"便当盒"网格布局。每个卡片是一个组件——简介、社交链接、项目、嵌入。它快速、可视化，无需编码。
+Beacons started life as a storefront. Its defaults push product cards, tip jars, and checkout. If your income comes from digital goods, that bias is a feature: the page wants a transaction.
 
-#### Dynamic Profile vs Bento：关键差异
+The cost is that a Beacons page reads like a shop. Every section asks for a decision. For a writer or a designer whose value is taste, that is the wrong first impression.
 
-| 功能 | Bento.me | Dynamic Profile |
-|------|----------|-----------------|
-| 布局 | 网格/便当卡片 | 杂志/滚动 |
-| 自定义 | 有限主题 | 完全设计控制 |
-| 博客 | 基础 | 功能完整 |
-| 价格 | 免费+Pro（$12/月）| 免费+Pro（$8/月）|
-| 编码需求 | 无 | 可选（高级）|
-| SEO | 基础 | 高级（JSON-LD、canonical）|
-| 多语言 | 无 | 有 |
-| 分析 | 基础 | 高级 |
+### What Dynamic Profile optimizes for
 
-#### Bento 适合谁
+Dynamic Profile starts from the profile, not the cart. You build something that reads like a portfolio: who you are, what you have made, how to reach you. Commerce is possible, but it is never the loudest thing on the page.
 
-- 想要快速可视化作品集的设计师
-- 不想碰代码的创作者
-- 偏好便当网格美学的人
-- 需要零维护的人
+That is the right default when your work sells itself once people understand it. Brand first, transaction second.
 
-#### Dynamic Profile 适合谁
+### The comparison
 
-- 想要内容优先网站的博主
-- 想要完全自定义的开发者
-- 多语言网站（EN + ZH）
-- 想要开箱即用的高级 SEO
-- 建设有深度的个人品牌的人
+| Dimension | Beacons | Dynamic Profile |
+|-----------|---------|-----------------|
+| Primary goal | Sell products | Present a person |
+| Default layout | Product grid | Portfolio sections |
+| Best for | Digital goods, merch | Writers, designers, consultants |
+| Customization | Template-bound | Layout-level control |
+| Learning curve | Very low | Low |
+| Wrong fit if | You sell nothing | You run a store |
 
-#### 结论
+### How to decide in five minutes
 
-Bento 在速度和视觉吸引力上获胜。Dynamic Profile 在灵活性、SEO 和长期可扩展性上获胜。如果你需要博客或多语言内容，Dynamic Profile 是更好的选择。如果你只需要 10 分钟内一个漂亮的作品集，Bento 也可以。
+Ask one question: when someone lands on your page, do you want them to buy, or to understand? If the answer is buy, use Beacons. If it is understand, use Dynamic Profile. If you need both, sell on Beacons and link to a Dynamic Profile for the story.
 
-#### 关于 dynamic-profile.shop
+### The mistake to avoid
 
-以你的方式构建个人网站。访问我们的[首页](/)免费开始，或查看我们的[定价](/pricing)获取 Pro 功能。
-`
-  },
+Do not make one tool do the other's job. A Beacons page forced into portfolio mode looks like a shop with the lights off. A Dynamic Profile page stuffed with product cards reads like a brochure with a cash register bolted on.
 
-  {
-    id: 40,
-    title: "vs Bento: Grid or Magazine Layout?",
-    slug: "vs-bento-grid-magazine",
-    category: "design",
-    author: "Dynamic Profile",
-    date: "2026-09-10",
-    excerpt: "Bento grid vs magazine layout.",
-    image: "/images/blog/bento-grid.jpg",
-    content: `
-## English Version
+### FAQ
 
-Bento.me has become the go-to personal site builder for creators, but is it the right choice for everyone? Here's an honest comparison with Dynamic Profile.
+#### Can I migrate from Beacons later?
+Yes. Both are link-in-bio pages, so your content is portable. The real work is re-deciding what sits above the fold.
 
-### What Is Bento?
-
-Bento is a visual, drag-and-drop personal site builder focused on the "bento box" grid layout. Each card is a widget — bio, social links, projects, embeds. It's fast, visual, and requires zero coding.
-
-### Dynamic Profile vs Bento: Key Differences
-
-| Feature | Bento.me | Dynamic Profile |
-|---------|----------|-----------------|
-| Layout | Grid/bento cards | Magazine/scroll |
-| Customization | Limited themes | Full design control |
-| Blog | Basic | Full-featured blog |
-| Cost | Free tier + Pro ($12/mo) | Free + Pro ($8/mo) |
-| Coding needed | None | Optional (advanced) |
-| SEO | Basic | Advanced (JSON-LD, canonical) |
-| Multi-language | No | Yes |
-| Analytics | Basic | Advanced |
-
-### Who Bento Is For
-
-- Designers who want a quick, visual portfolio
-- Creators who don't want to touch code
-- People who prefer the bento grid aesthetic
-- Those who want zero maintenance
-
-### Who Dynamic Profile Is For
-
-- Bloggers who want a content-first site
-- Developers who want full customization
-- Multi-language sites (EN + ZH)
-- People who want advanced SEO out of the box
-- Those building a personal brand with depth
-
-### The Verdict
-
-Bento wins on speed and visual appeal. Dynamic Profile wins on flexibility, SEO, and long-term scalability. If you need a blog or multilingual content, Dynamic Profile is the better pick. If you just need a pretty portfolio in 10 minutes, Bento is fine.
+#### Does Dynamic Profile support payments?
+It supports linking out to payment. If you need an in-page checkout, Beacons is the better fit.
 
 ### About dynamic-profile.shop
 
-Build your personal site your way. Visit our [homepage](/) to start for free, or check our [pricing](/pricing) for Pro features.
-
----
-
-## 中文版本
-
-### 对比 Bento：网格还是杂志布局？
-
-Bento.me 已成为创作者的首选个人网站构建器，但它适合每个人吗？这是与 Dynamic Profile 的诚实对比。
-
-#### 什么是 Bento？
-
-Bento 是一个可视化、拖拽式的个人网站构建器，专注于"便当盒"网格布局。每个卡片是一个组件——简介、社交链接、项目、嵌入。它快速、可视化，无需编码。
-
-#### Dynamic Profile vs Bento：关键差异
-
-| 功能 | Bento.me | Dynamic Profile |
-|------|----------|-----------------|
-| 布局 | 网格/便当卡片 | 杂志/滚动 |
-| 自定义 | 有限主题 | 完全设计控制 |
-| 博客 | 基础 | 功能完整 |
-| 价格 | 免费+Pro（$12/月）| 免费+Pro（$8/月）|
-| 编码需求 | 无 | 可选（高级）|
-| SEO | 基础 | 高级（JSON-LD、canonical）|
-| 多语言 | 无 | 有 |
-| 分析 | 基础 | 高级 |
-
-#### Bento 适合谁
-
-- 想要快速可视化作品集的设计师
-- 不想碰代码的创作者
-- 偏好便当网格美学的人
-- 需要零维护的人
-
-#### Dynamic Profile 适合谁
-
-- 想要内容优先网站的博主
-- 想要完全自定义的开发者
-- 多语言网站（EN + ZH）
-- 想要开箱即用的高级 SEO
-- 建设有深度的个人品牌的人
-
-#### 结论
-
-Bento 在速度和视觉吸引力上获胜。Dynamic Profile 在灵活性、SEO 和长期可扩展性上获胜。如果你需要博客或多语言内容，Dynamic Profile 是更好的选择。如果你只需要 10 分钟内一个漂亮的作品集，Bento 也可以。
-
-#### 关于 dynamic-profile.shop
-
-以你的方式构建个人网站。访问我们的[首页](/)免费开始，或查看我们的[定价](/pricing)获取 Pro 功能。
-`
+Build a personal site your way. Visit our [homepage](/) to start free, or see [pricing](/pricing) for Pro features.`,
+    },
   },
 ];
 
