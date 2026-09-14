@@ -1219,6 +1219,27 @@ Dynamic Profile is built for portfolios with magazine-style layouts. Carrd does 
 Build your magazine-style personal site. Visit [dynamic-profile.shop](/) to start, or see [pricing](/pricing) for Pro.`,
     },
   },
+{
+  "id": 42,
+  "slug": "themes-colors-pro-custom-color",
+  "publishedAt": "2026-09-14",
+  "tag": {
+    "zh": "教程",
+    "en": "Tutorial"
+  },
+  "title": {
+    "zh": "主题与配色：用好 Pro 的自定义颜色",
+    "en": "Themes & Colors: Getting Real Use Out of Pro Custom Color"
+  },
+  "date": {
+    "zh": "2026年9月",
+    "en": "September 2026"
+  },
+  "body": {
+    "zh": "Pro 的自定义配色面板看起来是个小功能，用起来却是个大功能。它决定了你的页面\"像一张模板\"还是\"像某个具体的人\"。\n\n## 这个面板到底控制什么\n\n只有三项设置，但它们互相影响：\n\n- **强调色。** 用在链接、按钮，以及引导视线的小高亮上。\n- **表面色。** 卡片和区块的底色。\n- **对比度模式。** 文字与表面色之间拉开多少。\n\n多数人只改强调色，然后纳闷为什么还是显得很一般。强调色是最响的那个旋钮，也是最不重要的那个。\n\n## 从表面色开始，而不是强调色\n\n在你读到一个字之前，表面色就已经决定了页面偏暖、偏冷还是中性。先把表面色定下来，饱和度压低；然后选一个明显比表面色更饱和的强调色。如果两者强度相当，页面就会显得吵，而且靠排版是救不回来的。\n\n一条实用规则：表面色控制在接近中性，把全部色彩预算花在强调色上。一个用得克制的强色，胜过三个到处用的中等色。\n\n## 对比度是可用性决定，不是审美决定\n\n对比度模式是唯一会影响真实读者的选项。文字与表面色分得清，在日光下的手机屏幕上就读得下去。如果你为了\"柔和\"调低对比度，发之前到户外看一眼。在明亮显示器上看着很平静的配色，在手机上可能根本读不了。\n\n## 三套不会出错的配色\n\n- **中性表面 + 单一暖色强调。** 编辑感、平静，很难做坏。\n- **冷灰表面 + 高饱和强调。** 技术感、精确，适合内容密集的作品集。\n- **带色调的表面 + 低饱和强调。** 柔和、私人，但需要更高的对比度模式才够清晰。\n\n避开第四种：深色表面配深色强调。在编辑器里看着很有氛围，到小屏幕上就变成一整团灰。\n\n## 十分钟工作流\n\n1. 先定表面色，饱和度压低。\n2. 选一个强调色，只用在链接和按钮上。\n3. 设好对比度模式，然后在手机满亮度下预览。\n4. 离开一小时再回来，看看还有没有哪个地方显得吵。\n5. 存下这套配色，在所有区块复用，让整页读起来是一套设计。\n\n## 常见问题\n\n### 自定义配色需要 Pro 吗？\n自定义配色属于 Pro 功能。免费档包含内置主题，那些主题的对比度已经调好，如果还没试过，建议先从内置主题入手。\n\n### 之后改颜色会打乱版式吗？\n不会。颜色和版式是分开的，改配色不会移动任何区块。这是刻意的设计：意味着你可以在上线前一周把整页重新配色，而不用重做结构。\n\n### 个人主页用几种颜色合适？\n一个强调色加一个中性表面，其余交给照片和作品本身。颜色和你的作品抢的越多，作品就越不容易被记住。\n\n## 关于 dynamic-profile.shop\n\n在 dynamic-profile.shop 上搭建你的杂志式个人站点，字体、间距、配色都能自己控制。从[首页](/)开始，Pro 的配色面板在[定价页](/pricing)有说明，免费档足够先把版式试出来。",
+    "en": "Pro's custom color panel looks like a small feature and behaves like a large one. It is the difference between a page that looks like a template and one that looks like it belongs to a specific person.\n\n## What the panel actually controls\n\nThere are three settings, and they interact:\n\n- **Accent color.** Used for links, buttons and the small highlights that guide the eye.\n- **Surface tint.** The base colour your cards and sections sit on.\n- **Contrast mode.** How far the text separates from the surface.\n\nMost people change only the accent and wonder why the result still feels generic. The accent is the loudest control and the least important one.\n\n## Start with the surface, not the accent\n\nThe surface decides whether the page feels warm, cool, or neutral before a single word is read. Pick the surface first, at low saturation, then choose an accent that is clearly more saturated than the surface. If both are equally strong, the page reads as noisy and no amount of layout work fixes it.\n\nA practical rule: keep the surface within a few percent of neutral and spend all your colour budget on the accent. One strong colour, used sparingly, outperforms three medium ones used everywhere.\n\n## Contrast is a readability decision, not a taste decision\n\nContrast mode is where people make the only choice that affects real users. Text that separates well from its surface is easier to read on a phone in daylight. If you drop contrast to make a page feel softer, check it outdoors before you publish. What looks calm on a bright monitor can be unreadable on a phone.\n\n## Three palettes that work\n\n- **Neutral surface, single warm accent.** Reads editorial and calm. Hard to get wrong.\n- **Cool grey surface, saturated accent.** Reads technical and precise. Good for portfolios with dense content.\n- **Tinted surface, muted accent.** Reads soft and personal. Needs higher contrast mode to stay legible.\n\nAvoid the fourth one: dark surface with a dark accent. It looks moody in the editor and turns into a single grey mass on a smaller screen.\n\n## A ten-minute workflow\n\n1. Pick the surface first and keep saturation low.\n2. Choose one accent and use it for links, buttons and nothing else.\n3. Set contrast mode, then preview on your phone at full brightness.\n4. Walk away for an hour, come back and check whether anything still feels loud.\n5. Save the palette, then reuse it across every section so the page reads as one design.\n\n## FAQ\n\n### Do I need Pro for custom colors?\nCustom color is a Pro feature. The free tier covers the built-in themes, which are already tuned for contrast, so if you have not tried those first, start there.\n\n### Can I change colors later without breaking my layout?\nYes. Colors are separate from layout, so changing the palette never moves a block. That is deliberate: it means you can restyle the whole page the week before a launch without redoing the structure.\n\n### How many colors should a personal page use?\nOne accent plus a neutral surface, and let photography or work samples supply everything else. The more your colours compete with your work, the less memorable the work becomes.\n\n## About dynamic-profile.shop\n\nBuild your magazine-style personal site with full control over type, spacing and colour. Start at [dynamic-profile.shop](/) — the Pro colour panel is documented on the [pricing page](/pricing), and the free tier is enough to test the layout first."
+  }
+},
 ];
 
 export function getPostBySlug(slug: string): BlogPost | undefined {
