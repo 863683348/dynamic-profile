@@ -1240,6 +1240,78 @@ Build your magazine-style personal site. Visit [dynamic-profile.shop](/) to star
     "en": "Pro's custom color panel looks like a small feature and behaves like a large one. It is the difference between a page that looks like a template and one that looks like it belongs to a specific person.\n\n## What the panel actually controls\n\nThere are three settings, and they interact:\n\n- **Accent color.** Used for links, buttons and the small highlights that guide the eye.\n- **Surface tint.** The base colour your cards and sections sit on.\n- **Contrast mode.** How far the text separates from the surface.\n\nMost people change only the accent and wonder why the result still feels generic. The accent is the loudest control and the least important one.\n\n## Start with the surface, not the accent\n\nThe surface decides whether the page feels warm, cool, or neutral before a single word is read. Pick the surface first, at low saturation, then choose an accent that is clearly more saturated than the surface. If both are equally strong, the page reads as noisy and no amount of layout work fixes it.\n\nA practical rule: keep the surface within a few percent of neutral and spend all your colour budget on the accent. One strong colour, used sparingly, outperforms three medium ones used everywhere.\n\n## Contrast is a readability decision, not a taste decision\n\nContrast mode is where people make the only choice that affects real users. Text that separates well from its surface is easier to read on a phone in daylight. If you drop contrast to make a page feel softer, check it outdoors before you publish. What looks calm on a bright monitor can be unreadable on a phone.\n\n## Three palettes that work\n\n- **Neutral surface, single warm accent.** Reads editorial and calm. Hard to get wrong.\n- **Cool grey surface, saturated accent.** Reads technical and precise. Good for portfolios with dense content.\n- **Tinted surface, muted accent.** Reads soft and personal. Needs higher contrast mode to stay legible.\n\nAvoid the fourth one: dark surface with a dark accent. It looks moody in the editor and turns into a single grey mass on a smaller screen.\n\n## A ten-minute workflow\n\n1. Pick the surface first and keep saturation low.\n2. Choose one accent and use it for links, buttons and nothing else.\n3. Set contrast mode, then preview on your phone at full brightness.\n4. Walk away for an hour, come back and check whether anything still feels loud.\n5. Save the palette, then reuse it across every section so the page reads as one design.\n\n## FAQ\n\n### Do I need Pro for custom colors?\nCustom color is a Pro feature. The free tier covers the built-in themes, which are already tuned for contrast, so if you have not tried those first, start there.\n\n### Can I change colors later without breaking my layout?\nYes. Colors are separate from layout, so changing the palette never moves a block. That is deliberate: it means you can restyle the whole page the week before a launch without redoing the structure.\n\n### How many colors should a personal page use?\nOne accent plus a neutral surface, and let photography or work samples supply everything else. The more your colours compete with your work, the less memorable the work becomes.\n\n## About dynamic-profile.shop\n\nBuild your magazine-style personal site with full control over type, spacing and colour. Start at [dynamic-profile.shop](/) — the Pro colour panel is documented on the [pricing page](/pricing), and the free tier is enough to test the layout first."
   }
 },
+  {
+    id: 42,
+    slug: 'mobile-first-responsive-design',
+    publishedAt: '2026-09-15',
+    tag: { zh: '设计', en: 'Design' },
+    title: { zh: '手机端才是主战场：响应式设计的意义', en: 'Mobile-First Reality: Why Responsive Matters' },
+    date: { zh: '2026 年 9 月', en: 'September 2026' },
+    body: {
+      zh: `你的个人主页有多少访问来自手机？对多数人来说答案是七成以上，而设计时间几乎全花在桌面端预览上。
+
+## 先看真实数据
+
+个人主页的流量结构和大站不同。访问者大多来自社交平台的链接，点开时人在手机前站着、排队、或者躺在床上。桌面端访问主要来自两种情况：你自己检查页面，或者潜在的客户在正式场合看你。
+
+两种访问者都需要照顾，但比例差得很远。
+
+## 响应式保的是内容，不是布局
+
+很多人把响应式理解为「小屏自动缩小」。那不是响应式，那是缩放。真正的响应式保证的是：在任何宽度下，最重要的内容仍然第一眼看到。
+
+## 手机上最容易出问题的三处
+
+1. 首屏信息过多。桌面上两列排开的简介、头像、链接，在手机上会堆成三屏。访客在第一屏看不到重点就走了。
+2. 点击目标太小。桌面端舒服的按钮在手机上是误触来源。拇指的接触面积比鼠标指针大得多。
+3. 图片没做尺寸适配。一张桌面上好看的横幅图，在手机上会被裁掉一半，或者拖慢加载。
+
+## 一个简单的检查方法
+
+在真实手机上打开你的主页，关掉 WiFi 用一次流量。这时候你会看到访客看到的东西：加载时间、首屏内容、按钮是否好点。桌面浏览器模拟器不会告诉你这些。
+
+## 常见问题
+
+**手机端要单独做一版吗？** 不需要，也不建议。响应式一套代码适配所有宽度，维护成本更低。
+
+**字体在手机上要多小？** 正文不要低于 16 像素。低于这个数，iOS 会自动放大页面，布局随之破损。
+
+**图片要准备几个尺寸？** 至少两个：一个给手机，一个给桌面。用 srcset 让浏览器自己选。
+
+从手机视角重新看一遍你的主页，在 dynamic-profile.shop 上开一个页面就能立刻验证。`,
+      en: `How much of your personal homepage traffic comes from a phone? For most people the answer is more than seventy percent, while nearly all the design time goes into checking the desktop preview.
+
+## Look at the real numbers first
+
+The traffic pattern for a personal homepage is different from a large site. Visitors arrive from a link on a social platform, phone in hand, standing in a queue or lying in bed. Desktop visits come from two situations: you checking your own page, and a potential client looking at you in a formal setting.
+
+Both matter, but the proportions are far apart.
+
+## Responsive protects the content, not the layout
+
+Many people read responsive as "it shrinks on small screens". That is scaling, not responsive design. Real responsive work guarantees that at any width, the most important content is still the first thing you see.
+
+## The three places phones break first
+
+1. Too much in the first screen. A bio, avatar and links laid out in two columns on desktop will stack into three screens on a phone. Visitors who cannot see the point in screen one leave.
+2. Touch targets that are too small. A button that feels comfortable with a mouse is a source of mis-taps on a phone. A thumb covers far more area than a pointer.
+3. Images without size adaptation. A banner that looks good on desktop gets cropped in half on a phone, or slows the load to a crawl.
+
+## One check that tells you more than any tool
+
+Open your homepage on a real phone with WiFi off, using mobile data once. You will see what visitors see: load time, first-screen content, and whether the buttons are easy to hit. A desktop browser emulator will not tell you any of that.
+
+## FAQ
+
+**Do I need a separate mobile version?** No, and it is a bad idea. One responsive codebase covers every width and costs less to maintain.
+
+**How small can body text go on a phone?** Never below 16 pixels. Under that, iOS zooms the page automatically and the layout breaks.
+
+**How many image sizes do I need?** At least two: one for phones, one for desktop. Use srcset and let the browser choose.
+
+Look at your homepage again from a phone. Open a page on dynamic-profile.shop and you can verify it immediately.`,
+    },
+  },
 ];
 
 export function getPostBySlug(slug: string): BlogPost | undefined {
