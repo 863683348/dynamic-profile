@@ -1312,6 +1312,86 @@ Open your homepage on a real phone with WiFi off, using mobile data once. You wi
 Look at your homepage again from a phone. Open a page on dynamic-profile.shop and you can verify it immediately.`,
     },
   },
+  {
+    id: 43,
+    slug: 'editorial-layout-grid-whitespace',
+    publishedAt: '2026-09-13',
+    tag: { zh: '设计', en: 'Design' },
+    title: { zh: '杂志排版入门：栅格、留白与层级', en: 'Editorial Layout 101: Grids, Whitespace and Hierarchy' },
+    date: { zh: '2026年9月13日', en: 'September 13, 2026' },
+    body: {
+      zh: `## 杂志排版和网页排版到底差在哪
+
+杂志排版（editorial layout）解决的是一件事：让读者愿意从第一行读到下一行，再从这一段读到下一段。它不追求一屏放下所有信息，而是控制阅读的节奏。
+
+个人主页最容易犯的错，是把所有内容塞进首屏，然后靠缩小字号来解决。杂志做法相反：先用栅格定骨架，再用留白切分节奏，最后用层级告诉眼睛先看哪里。
+
+## 栅格先定，内容后填
+
+栅格（grid layout）是列宽和间距的规则。常见的是 12 列，因为 12 能被 2、3、4、6 整除，一块内容可以轻松占 4 列、6 列或 8 列。
+
+- 栏宽决定每行多少字。正文一行 45 到 75 个字符最好读。
+- 沟槽决定呼吸感。列之间太窄，两块内容会黏在一起。
+- 边距决定版面气质。边距大显得正式，边距小显得紧凑。
+
+先画栅格，再把内容往上放。反过来做，最后一定在调间距上耗掉大部分时间。
+
+## 留白光靠加间距是不够的
+
+留白（whitespace）不是把 padding 调大。它是在内容之间制造层级差：段落之间要小，章节之间要大，章节标题上方要比下方大。
+
+判断方法很简单：把页面缩小到看不清文字，如果还能看出结构，说明留白起了作用；如果缩下去变成一团灰，说明间距太平。
+
+## 层级只做三档
+
+层级（hierarchy）最容易失控。很多人会给标题做四种字号、三种字重、两种颜色，结果是每个标题都在喊。
+
+三档就够：一个主标题，一个章节标题，一个正文。字号差至少要 1.5 倍才看得出来，字重不要同时变太多。层级是靠对比做出来的，不是靠变化数量。
+
+## 常见问题
+
+- 栅格会让版面死板吗？不会。栅格是骨架，不是模板。内容需要时可以跨列。
+- 留白多了是不是浪费空间？在个人主页上，留白换来的是停留时间。
+- 移动端怎么处理？先定单栏，再决定哪些块要并排，不要反过来。
+
+想看看这套做法在真实页面上怎么用，回到[首页](/)看几个排版示例。`,
+      en: `## What editorial layout actually solves
+
+Editorial layout solves one problem: getting a reader to move from the first line to the next, and from that paragraph to the one after it. It is not about fitting everything above the fold. It is about controlling the pace of reading.
+
+The most common mistake on personal sites is cramming everything into the first screen and then shrinking the type until it fits. Magazines do the opposite. The grid sets the skeleton, whitespace sets the rhythm, and hierarchy tells the eye where to land first.
+
+## Set the grid before you place content
+
+A grid is a rule for column widths and gaps. Twelve columns is the common choice, because 12 divides by 2, 3, 4 and 6, so a block can span 4, 6 or 8 columns without awkward remainders.
+
+- Column width decides how many characters sit on a line. Body text reads best between 45 and 75 characters.
+- The gutter decides breathing room. Columns too close together make separate blocks look glued.
+- Margins set the tone. Wide margins read as formal, narrow margins read as dense.
+
+Draw the grid first, then place content into it. Doing it the other way around means most of your time goes into nudging spacing at the end.
+
+## Whitespace is not just extra padding
+
+Whitespace is not about increasing padding. It is about creating a difference in level: small gaps between paragraphs, larger gaps between sections, and more space above a section heading than below it.
+
+There is a simple test. Zoom the page out until the text is unreadable. If the structure is still visible, the whitespace is doing its job. If it collapses into a grey block, your spacing is too even.
+
+## Hierarchy needs three levels, not six
+
+Hierarchy is the easiest thing to lose control of. People end up with four heading sizes, three weights and two colors, and every heading is shouting.
+
+Three levels are enough: one page title, one section heading, one body size. A size difference needs to reach roughly 1.5x to register, and you should not change weight and color at the same time. Hierarchy comes from contrast, not from the number of variations.
+
+## FAQ
+
+- Does a grid make a layout rigid? No. A grid is a skeleton, not a template. Blocks can span columns when the content needs it.
+- Is whitespace wasted space? On a personal site, whitespace buys attention.
+- How do you handle mobile? Set the single-column layout first, then decide which blocks sit side by side. Not the other way round.
+
+To see how this plays out on a real page, look at the layout examples on the [home page](/).`,
+    },
+  },
 ];
 
 export function getPostBySlug(slug: string): BlogPost | undefined {
