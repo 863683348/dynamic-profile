@@ -1392,6 +1392,22 @@ Three levels are enough: one page title, one section heading, one body size. A s
 To see how this plays out on a real page, look at the layout examples on the [home page](/).`,
     },
   },
+
+  {
+    id: 44,
+    slug: "above-the-fold-design-rules",
+    publishedAt: "2026-09-17",
+    tag: { zh: "设计", en: "Design" },
+    title: {
+      zh: "首屏设计法则：第一屏决定转化",
+      en: "Above the Fold: First-Screen Design Rules",
+    },
+    date: { zh: "2026 年 9 月", en: "September 2026" },
+    body: {
+      zh: "「首屏」（above the fold）指访问者不滚动就能看到的一切。对个人品牌页来说，这一屏决定了他会不会继续往下看。页面其余部分再完美，首屏没做好，几乎没人会知道。\n\n## 第一屏要完成的事\n\n首屏只有一个任务：赢得下一秒钟的注意力。三个元素承担了大部分工作：\n- 清晰的价值主张——一句话说清你是谁、交付什么，而不是一句口号。\n- 一个明确的动作——一个按钮（联系、作品集、订阅），而不是五个互相竞争的按钮。\n- 看得见的可信度——名字、面孔、一个关键数字，或别人认识你的 logo。\n\n这三样如果任何一样要滚动才能找到，说明页面在要求它还没挣到的努力。\n\n## 常见的首屏错误\n\n- 主标题在描述行业而不是描述你（「为现代商业提供创意解决方案」没有说任何关于你的信息）。\n- 导航挤占首屏。每多一个链接，都在向真正想要的那个决定收取小额的注意力税。\n- 动效延迟内容。一个 2 秒的 intro 可能赶走带着问题来的访问者。\n\n## 任何屏幕都成立的规则\n\n先设计单列的手机版布局，再往宽做。手机版逼你把顺序收紧，桌面版通常只需要加间距。主标题尽量控制在十个词以内，把动作按钮放在视线自然落下的位置——通常是主标题正下方，而不是埋在菜单里。\n\n## 怎么测试你的首屏\n\n打开页面，看三秒，然后回答两个问题：这个人做什么？我接下来该做什么？两个都答不上来，首屏就需要返工。一个快速的兜底检查：在手机上再做一次同样的测试——手机上的首屏要短得多。\n\n想看这些法则落地，可以在[首页](/)浏览布局示例，或阅读杂志式布局如何处理层级。",
+      en: "Above the fold describes everything a visitor sees before scrolling — and for a personal-brand page, that first screen decides whether they scroll at all. The rest of your page can be perfect; if the fold fails, almost nobody finds out.\n\n## What the first screen must do\n\nThe fold has one job: earn the next second of attention. Three elements do the heavy lifting:\n- A clear value proposition — one sentence that says who you are and what you deliver, not a slogan.\n- One obvious action — a single button (contact, portfolio, newsletter) instead of five competing ones.\n- Proof within view — a name, a face, a headline number, or a logo people already know you by.\n\nIf any of these needs a scroll to find, the page is asking for effort it has not earned.\n\n## Common first-screen mistakes\n\n- Hero copy that describes the industry instead of the person ('Creative solutions for modern businesses' says nothing about you).\n- Navigation that crowds the fold. Every extra link is a small tax on the decision you actually want visitors to make.\n- Animation that delays content. A two-second intro can lose the visitor who arrived with a question.\n\n## Rules that hold up on any screen\n\nDesign the single-column mobile layout first, then widen it. Mobile forces you to keep the sequence tight, and desktop usually just needs spacing. Keep the headline under ten words where you can, and put the action button where the eye lands naturally — typically just under the headline, not buried in a menu.\n\n## How to test your fold\n\nLoad the page, look at it for three seconds, then answer two questions: what does this person do, and what am I supposed to do next? If you cannot answer both, the fold needs work. A quick sanity check: run the same test on a phone, because the fold is much shorter there.\n\nTo see these rules applied, browse the layout examples on the [home page](/), or read how the magazine layout handles hierarchy.",
+    },
+  },
 ];
 
 export function getPostBySlug(slug: string): BlogPost | undefined {
