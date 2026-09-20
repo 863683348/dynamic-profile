@@ -1472,6 +1472,18 @@ To see these principles applied, browse the layout examples on the [home page](/
     },
   },
 
+  {
+    id: 46,
+    slug: 'visual-rhythm-ordering-your-work-on-purpose',
+    publishedAt: '2026-09-21',
+    tag: { zh: '设计', en: 'Design' },
+    title: { zh: '视觉节奏：如何安排作品顺序', en: 'Visual Rhythm: Ordering Your Work on Purpose' },
+    date: { zh: '2026 年 9 月', en: 'September 2026' },
+    body: {
+      zh: '作品集不是把作品按时间堆起来就完事。访客的注意力在头三屏就决定了，而决定这头三屏的不是单件作品有多好，是你把它们排成什么顺序。这篇讲视觉节奏的四种基本手法，以及怎么用它组织一整页作品。',
+      en: 'A portfolio is not a chronological dump of your work. Visitors decide in the first two or three screens, and what they see there is determined less by how good any single piece is than by the order you put them in. Here are four basic moves for building visual rhythm, and how to use them across a whole page.',
+    },
+  },
 ];
 
 export function getPostBySlug(slug: string): BlogPost | undefined {
