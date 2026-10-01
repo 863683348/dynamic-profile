@@ -1484,6 +1484,127 @@ To see these principles applied, browse the layout examples on the [home page](/
       en: 'A portfolio is not a chronological dump of your work. Visitors decide in the first two or three screens, and what they see there is determined less by how good any single piece is than by the order you put them in. Here are four basic moves for building visual rhythm, and how to use them across a whole page.',
     },
   },
+
+  {
+    id: 47,
+    slug: 'visitor-analytics-101-reading-data',
+    publishedAt: '2026-09-23',
+    tag: { zh: '分析', en: 'Analytics' },
+    title: { zh: '访客分析入门：看懂你的主页数据', en: 'Visitor Analytics 101: Reading Your Data' },
+    date: { zh: '2026 年 9 月', en: 'September 2026' },
+    body: {
+      zh: '访客分析不只是数字游戏。每一个访问背后都有一个故事。这篇指南帮助你像专业人士一样解读数据，理解访客行为，并做出明智的决策。',
+      en: 'Visitor analytics is not just about numbers. It is about understanding the story behind each visit. This guide will help you interpret your data like a pro and make informed decisions about your content strategy.',
+    },
+  },
+
+  {
+    id: 48,
+    slug: 'freelancer-website-homepage',
+    publishedAt: '2026-10-02',
+    tag: { zh: '自由职业', en: 'Freelance' },
+    title: {
+      zh: '客户问"你有官网吗"？主页就是答案',
+      en: '"Do You Have a Website?" The Homepage Is the Answer',
+    },
+    date: { zh: '2026 年 10 月', en: 'October 2026' },
+    body: {
+      zh: `客户问「你有官网吗」，通常出现在他正在决定要不要信任你的那一刻，而多数自由职业者答得很糟：甩一个链接页、一份 PDF 作品集，或者一个网盘文件夹。这三种回答说的是同一件事——我有作品，但我没想好怎么呈现它。一个 freelancer 网站用对方提问的形式回答：一个地址，一页，一个站得住的整体印象。
+
+## 他真正在问什么
+
+没人问这句话是为了确认你有没有域名。他在问你好不好合作。这句话底下藏着三个更小的问题：我不问你能不能看到你做什么、能不能看出你现在接不接活、能不能不开会就找到付款方式。
+
+PDF 作品集能回答第一个，但很慢。链接页一个都答不好，因为一排图标把排序的工作丢给了访客。主页能按客户的思考顺序把三个都答了。
+
+## freelancer 网站的最低配置
+
+第一天的 freelancer 网站不需要博客、不需要预约系统、也不需要独立域名。四个区块就覆盖了绝大多数情况：
+
+- 一句话说清你服务谁、交付什么，用客户的话写，不要用行业黑话
+- 三到五件作品，按意图排序，而不是按时间
+- 一小段工作方式说明——周期、修改次数，或者第一周长什么样
+- 一个按钮，联系或预约，放在视线扫过标题后落下的地方
+
+其它都是可选项。页面失败的原因很少是只有四个元素，更多是有十二个互相打架的元素。
+
+## 客户第一印象：三秒测试
+
+client first impression 在任何一句话被读到之前就已经形成了。大约三秒之内，访客会判断这个页面是不是还在维护、这个人是不是真的、值不值得继续往下读。承载这个判断的是三个信号。
+
+- 新鲜度。一条有日期的动态，或者一份在更新的项目列表，说明这门生意还在运转。
+- 一张脸。署名的作品配上一个具体的人，比一个 logo 更像「可以被追责」。
+- 克制。一个明确的动作胜过五个，因为五个动作意味着访客在还没决定任何事之前就得先做选择。
+
+测试方法：打开页面，看三秒，然后回答两个问题——这个人做什么？我接下来该做什么？任何一个答不上来，说明页面在索取它还没挣到的注意力。
+
+## 从链接页升级到主页
+
+如果你已经在用链接页，别删。把它指向主页，而不是反过来。链接页继续当简介里那个入口，主页则成为有人真的在评估你时你发出的那个东西。这个拆分还顺手解决了一个尴尬场景：潜在客户和招聘方看到的是同一排图标。
+
+分三轮搬：把真正会被点的链接挪进主页；删掉没人点的；最后补上顶部那句话——那才是自始至终缺的那部分。
+
+## 常见问题
+
+- 一定要有独立域名吗？一开始不必。 hosted 地址够你测试页面上到底该放什么，等这页真的带来机会了再加域名。
+- 单页够用吗？对多数独立接活的人来说够。客户很少滑到第三屏以外，一页做得紧实，胜过好几页都很空。
+- 多久更新一次？一个月一次就够。加一件或重排一件作品，页面就还是活的。
+- 链接页会损害可信度吗？不至于损害，只是回答得不够。它告诉别人去哪找你，但没告诉别人为什么该雇你。
+
+## 今天就把它做出来
+
+把「你有官网吗」的答案放进一页里。从 dynamic-profile.shop 的[首页](/)开始，看看主页和链接页的差别，读 [Beyond Linktree](/blog/beyond-linktree)，再照着 [搭建步骤](/blog/launch-first-homepage-3-minutes) 走一遍。`,
+      en: `"Do you have a website?" is the question a client asks at the exact moment they are deciding whether to trust you, and most freelancers answer it badly. They paste a link page, a PDF portfolio, or a shared folder. Each of those answers says the same thing: I have work, but I have not decided how to present it. A freelancer website answers in the form the question was asked — one address, one page, one impression that holds together.
+
+## What the client is actually asking
+
+Nobody asks this to confirm that you own a domain. They are asking whether you are easy to hire. Under the question sit three smaller ones: can I see what you do without sending a message, can I tell whether you are taking work right now, and can I find a way to pay you without booking a call.
+
+A PDF portfolio answers the first one slowly, because the file has to be opened, downloaded and read. A link page answers none of them cleanly, since a wall of icons hands the sorting work to the visitor. A homepage answers all three in the order the client thinks about them, which is why it converts a conversation into a decision so much faster than a folder.
+
+## The minimum a freelancer website needs
+
+A freelancer website does not need a blog, a booking system or a custom domain on day one. Four blocks cover almost every case:
+
+- One sentence saying who you serve and what you deliver, written in the client's words rather than your industry's
+- Three to five pieces of work, ordered on purpose rather than by date
+- A short note on how you work — turnaround, revision count, or what the first week looks like
+- One button, contact or book, placed where the eye lands after the headline
+
+Everything else is optional. Pages fail far more often from carrying twelve competing elements than from carrying four, and the fix is almost always subtraction.
+
+Two details decide whether those four blocks hold together. The headline has to fit above the fold on a phone, because that is where a first visit usually happens, so keep it short enough to read without scrolling. The samples below it go in the order a client cares about: the piece closest to the work they want first, not the one you are proudest of.
+
+## Client first impression: the three-second test
+
+Client first impression forms before a single word gets read. In roughly three seconds a visitor decides whether the page is current, whether the person behind it is real, and whether reading on is worth the effort. Three signals carry that decision.
+
+- Recency. A dated update or a project list that keeps changing tells the visitor the practice is running.
+- A face. Named work with a person attached reads as accountable in a way a logo does not.
+- Restraint. One obvious action beats five, because five actions force the visitor to choose before they have decided anything at all.
+
+Run the test by loading your page, looking at it for three seconds, then answering two questions: what does this person do, and what am I supposed to do next. If either answer is missing, the page is asking for attention it has not earned.
+
+## From link page to homepage
+
+If you already run a link page, keep it and point it at the homepage instead of the other way round. The link page stays as the thing you put in a social bio; the homepage becomes the thing you send when someone is genuinely evaluating you. That split also removes the awkward case where a prospect and a recruiter land on the same row of icons.
+
+Move in three passes. Copy across the links people actually click. Delete the ones nobody touches. Then write the sentence at the top, which is the part that was missing the whole time.
+
+Expect the first version to look thin. That is normal. A homepage takes its final shape after you have sent it to five real people and noticed which part each of them asks about.
+
+## FAQ
+
+- Do I need my own domain? Not at the start. A hosted address is enough while you work out what belongs on the page, and you can add a domain once the page starts earning it.
+- Is a one-page site enough? For most independent work, yes. Clients rarely scroll past the third screen, so a tight single page beats a thin site with several empty ones.
+- How often should I update it? Once a month is plenty. Add or reorder one project and the page stays current.
+- Does a link page hurt my credibility? It under-answers rather than damaging. It tells people where to find you without telling them why to hire you.
+
+## Build yours today
+
+Put the answer to "do you have a website?" on a single page. Start from the [home page](/) at dynamic-profile.shop, see how a homepage differs from a link page in [Beyond Linktree](/blog/beyond-linktree), then follow the [setup walkthrough](/blog/launch-first-homepage-3-minutes).`,
+    },
+  },
 ];
 
 export function getPostBySlug(slug: string): BlogPost | undefined {
