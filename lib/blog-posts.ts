@@ -1605,6 +1605,121 @@ Expect the first version to look thin. That is normal. A homepage takes its fina
 Put the answer to "do you have a website?" on a single page. Start from the [home page](/) at dynamic-profile.shop, see how a homepage differs from a link page in [Beyond Linktree](/blog/beyond-linktree), then follow the [setup walkthrough](/blog/launch-first-homepage-3-minutes).`,
     },
   },
+  {
+    id: 49,
+    slug: 'portfolio-trust-homepage-first',
+    publishedAt: '2026-10-03',
+    tag: { zh: '信任', en: 'Trust' },
+    title: {
+      zh: '设计师接单前先发主页：信任建立学',
+      en: 'Send Your Homepage First: How Portfolio Trust Gets Built',
+    },
+    date: { zh: '2026 年 10 月', en: 'October 2026' },
+    body: {
+      zh: `先发报价单的设计师，是在请一个陌生人评估一份承诺；先发主页的设计师，是在请他评估一份证据。portfolio trust 就是这两者的差别，而它决定的第一单，比报价单上那个数字决定的多得多。
+
+客户在收到你的消息之前，已经默认你会迟到、会超支、会交出跟样品不一样的东西。这不是偏见，是他被上一个人骗过。你要做的不是反驳这个预设，而是让他在点开链接的三十秒内自己推翻它。
+
+## 为什么主页要走在报价单前面
+
+报价单是承诺，主页是证据。承诺需要对方先信你才能生效，证据不需要。这就是为什么在没有 portfolio trust 的情况下谈价格，谈的其实不是价格，是风险折价——客户把「可能出问题」的成本提前从你的报价里扣掉了。
+
+把主页先发出去，等于把这一步提前了。他看到的是一个已经存在的东西：有作品、有更新时间、有联系方式。这些都不能直接证明你做得好，但能证明你是个在做事的人，而后者才是陌生客户真正缺的信息。
+
+## 主页要摆出什么才配得上信任
+
+不是作品越多越好。堆二十件作品的人传递的信号是「我不知道哪个好」，而不是「我很能干」。
+
+- 三到五件作品，每件写清你负责哪部分、最后发生了什么
+- 一个说明你在接活的信号，哪怕只是一行字
+- 一句用客户的话写的定位，不要用行业黑话
+- 一个真人：名字、照片，或者一段有语气的手写说明
+- 一个不需要开会就能联系到你的入口
+
+这五样凑齐，portfolio credibility 基本就成立了。缺第二项和第三项最常见，也最伤——客户看完不知道你现在接不接活，也不知道你到底服务谁。
+
+## 前三屏要按客户的检查顺序排
+
+客户不是从上往下读的，他是按疑问往下找的。
+
+- 第一屏：你是谁、你服务谁。答案必须在手机上一屏之内读完
+- 第二屏：你做过什么，按跟客户手头这件活最接近的程度排序，不要按时间
+- 第三屏：怎么合作、怎么联系，最好不用发消息就能判断
+
+把这三屏排好，剩下的部分是加分项。排不好，后面写得再满也补不回来。
+
+## 哪些信任信号造不了假，哪些可以
+
+网上 build trust online 的建议有一半不值得做，因为它们太容易复制。
+
+- 难造假：具体数字、带名字的客户评价、能点进去的真实项目、持续更新的时间线
+- 易造假：徽章墙、"trusted by" 一排灰 logo、没有出处的五星评分
+
+易造假的那些不是不能用，而是用多了会压过难造假的那些。客户分不清哪个徽章是真的，于是把所有徽章一起打折扣，连你真正硬的那部分也跟着折了。
+
+## FAQ
+
+- 作品不够三件怎么办？两件也行，但要写得更细。宁可两件带过程和结果，也不要八件只有图。
+- 主页要多久更新一次？一个月一次足够。换掉一件作品、改一句定位，页面就还是活的。
+- 没有大客户背书怎么办？用你交付之后对方那句原话。一句具体的话比一排 logo 更有用。
+- 先发主页会不会显得我不专业？不会。它回答的是客户本来就要问的问题，早回答比晚回答省一轮来回。
+
+## 先把主页发出去
+
+下次有人问你能不能接，先发主页，再谈价格。从[首页](/)，把三到五件作品和一句定位放上去；不知道页面该放什么，读 [让人记住的主页的五个元素](/blog/5-key-elements-memorable-homepage)；对方是自由职业客户的话，[客户问你有官网吗](/blog/freelancer-website-homepage)那篇讲得更具体。`,
+      en: `A designer who sends a proposal first is asking a stranger to evaluate a promise. A designer who sends a homepage first is asking them to evaluate evidence. That gap is what portfolio trust is made of, and it decides more first contracts than the number on the proposal ever does.
+
+Before a client ever reads your message, they already assume you will run late, run over budget, and deliver something that does not quite match the sample. That is not prejudice; it is what the last person taught them. Your job is not to argue against the assumption. It is to let them overturn it themselves within thirty seconds of opening a link.
+
+## Why the homepage goes out before the proposal
+
+A proposal is a promise. A homepage is evidence. A promise only works once the other person already trusts you; evidence works without that head start. This is why talking about price without portfolio trust is never really about price. It is a risk discount, and the client has already subtracted the cost of things going wrong from your number.
+
+Sending the homepage first moves that step earlier. What the client sees is something that already exists: work, a recent update, a way to reach you. None of it proves you are good. All of it proves you are operating, and operating is the piece of information a stranger is actually missing.
+
+## What a portfolio has to show before it earns trust
+
+More work is not better. Twenty pieces read as "I cannot tell which ones are good" rather than "I am good."
+
+- Three to five pieces, each stating which part you owned and what happened afterwards
+- One signal that you are taking work right now, even if it is a single line
+- One positioning sentence written in the client's words rather than your industry's
+- A person: a name, a face, or a note written in an actual voice
+- A way to reach you that does not require booking a call
+
+Those five are roughly what portfolio credibility is. The second and third are the ones most often missing, and they are the most costly, because the client finishes the page not knowing whether you are available or who you serve.
+
+## The first three screens, in the order a client checks them
+
+Clients do not read top to bottom. They search downward, question by question.
+
+- Screen one: who you are and who you serve. It has to fit on a phone without scrolling.
+- Screen two: what you have done, ordered by closeness to the job the client has in hand rather than by date
+- Screen three: how working together works and how to reach you, ideally without sending a message first
+
+Get those three right and everything below them is upside. Get them wrong and no amount of text further down recovers the page.
+
+## Trust signals nobody can fake, and the ones anyone can
+
+About half the advice about how to build trust online is not worth following, because the signals it recommends are trivially copyable.
+
+- Hard to fake: specific numbers, named testimonials, live projects someone can click into, a timeline that keeps moving
+- Easy to fake: badge walls, a row of grey "trusted by" logos, five-star ratings with no source
+
+The easy ones are not forbidden. They are just dangerous in quantity, because a client who cannot tell which badge is real discounts all of them at once, and the part of your page that was genuinely solid gets discounted along with them.
+
+## FAQ
+
+- What if I only have two pieces of work? Two is fine, written in more detail. Two with process and outcome beats eight images with nothing attached.
+- How often should I update the page? Once a month is plenty. Swap one project or reword the positioning line and the page stays alive.
+- What if no big client will vouch for me? Use the sentence they actually said after you delivered. One concrete quote beats a row of logos.
+- Does sending the homepage first look unprofessional? No. It answers the question the client was going to ask anyway, and answering it early saves a round trip.
+
+## Send the page first
+
+Next time someone asks whether you are available, send the homepage before you send the price. Start from the [home page](/) and put three to five pieces of work plus one positioning line on it. If you are unsure what belongs on the page, read [the five elements of a memorable homepage](/blog/5-key-elements-memorable-homepage), and for freelance clients specifically, [the one about being asked whether you have a website](/blog/freelancer-website-homepage).`,
+    },
+  },
 ];
 
 export function getPostBySlug(slug: string): BlogPost | undefined {
