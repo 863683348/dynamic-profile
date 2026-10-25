@@ -15,6 +15,7 @@ type Dict = Record<string, string>;
 const zh: Dict = {
   // Landing
   brand: '动态个人主页',
+  designer: '设计师',
   hero_a: '把你的动态、作品与链接，',
   hero_b: '排成一本杂志。',
   hero_sub:
@@ -487,6 +488,7 @@ const zh: Dict = {
 
 const en: Dict = {
   brand: 'Dynamic Profile',
+  designer: 'Designer',
   hero_a: 'Turn your updates, work & links',
   hero_b: 'into a magazine.',
   hero_sub:
